@@ -1,0 +1,69 @@
+name: Build and deploy containers
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+
+jobs:
+  build-and-test-containers:
+    name: Build and test
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+
+  build-and-push:
+    name: Build and push containers
+    runs-on: ubuntu-latest
+    needs:
+      - build-and-test-containers
+    permissions:
+      id-token: write
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: ./docker/solr/Dockerfile
+            context: ./docker/solr
+            submodules: ""
+            build-frontend: false
+            name: solr
+            build-container: ${{ needs.build-and-test-containers.outputs.solr == 'true' }}
+          - dockerfile: ./docker/nginx/Dockerfile
+            context: ./docker/nginx
+            submodules: ""
+            build-frontend: false
+            name: nginx
+            build-container: ${{ needs.build-and-test-containers.outputs.nginx == 'true' }}
+          - dockerfile: ./ckan/Dockerfile
+            context: ./ckan
+            submodules: recursive
+            build-frontend: true
+            name: ckan
+            build-container: ${{ needs.build-and-test-containers.outputs.ckan == 'true' }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: ${{ matrix.submodules }}
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: build images
+        uses: docker/build-push-action@v4
+        if: ${{ matrix.build-container == true }}
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.dockerfile }}
+          #push: true
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: |
+            ${{ steps.login.outputs.registry }}/opendata/${{ matrix.name }}:${{ github.sha }}
+            ${{ steps.login.outputs.registry }}/opendata/${{ matrix.name }}:latest
