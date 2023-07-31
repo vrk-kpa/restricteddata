@@ -1,0 +1,46 @@
+name: Changes
+
+on:
+  workflow_call:
+    outputs:
+      ckan:
+        description: "Change in ckan container"
+        value: ${{ jobs.changes_in_containers.outputs.ckan }}
+      nginx:
+        description: "Change in nginx container"
+        value: ${{ jobs.changes_in_containers.outputs.nginx }}
+      solr:
+        description: "Change in solr container"
+        value: ${{ jobs.changes_in_containers.outputs.solr }}
+      environment:
+        description: "Changes in docker environment"
+        value: ${{ jobs.changes_in_containers.outputs.environment }}
+
+jobs:
+  changes_in_containers:
+    runs-on: ubuntu-latest
+    outputs:
+      ckan: ${{ steps.filter.outputs.ckan }}
+      nginx: ${{ steps.filter.outputs.nginx }}
+      solr: ${{ steps.filter.outputs.solr }}
+      environment: ${{ steps.filter.outputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v3
+        id: last_successful_commit
+        with:
+          main-branch-name: 'main'
+          workflow-id: 'main.yml'
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          initial-fetch-depth: '10'
+          base: ${{ steps.last_successful_commit.outputs.base }}
+          filters: |
+            ckan: ckan/**
+            solr: docker/solr/**
+            nginx: docker/nginx/**
+            environment: docker/*
