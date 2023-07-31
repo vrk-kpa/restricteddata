@@ -1,0 +1,151 @@
+[DEFAULT]
+
+debug = {% if environ('DEV_MODE') == 'true' and environ('TEST') != 'true' %} true {% else %} false {% endif %}
+
+# smtp settings that need to be configured in default section for WebError middleware
+smtp_username = {{ environ('SMTP_USERNAME') }}
+smtp_password = {{ environ('SMTP_PASS') }}
+smtp_use_tls = {% if environ('SMTP_PROTOCOL') == 'standard' %} false {% else %} true {% endif %}
+
+
+[server:main]
+
+use = egg:Paste#http
+host = 0.0.0.0
+port = {{ environ('CKAN_PORT') }}
+
+[app:main]
+
+use = egg:ckan
+full_stack = true
+cache_dir = /tmp/%(ckan.site_id)s/
+
+beaker.session.key = ckan
+beaker.session.secret = {{ environ('CKAN_BEAKER_SESSION_SECRET') }}
+# Secure session does not currently work in our environments as ssl is terminated on Load balancerreq
+#beaker.session.secure = True
+beaker.session.httponly = True
+beaker.session.type = ext:database
+beaker.session.url = postgres://{{ environ('DB_CKAN_USER') }}:{{ environ('DB_CKAN_PASS') }}@{{ environ('DB_HOST') }}/{{ environ('DB_CKAN') }}
+
+app_instance_uuid = {{ environ('CKAN_APP_INSTANCE_UUID') }}
+
+who.config_file = %(here)s/who.ini
+who.log_level = warning
+who.log_file = %(cache_dir)s/who_log.ini
+
+sqlalchemy.url = postgres://{{ environ('DB_CKAN_USER') }}:{{ environ('DB_CKAN_PASS') }}@{{ environ('DB_HOST') }}/{{ environ('DB_CKAN') }}
+ckan.site_url = {{ environ('SITE_PROTOCOL') }}://{{ environ('DOMAIN_NAME') }}
+ckan.site_url_internally = {{ environ('SITE_PROTOCOL') }}://{{ environ('DOMAIN_NAME') }}/
+
+ckan.redis.url = redis://{{ environ('REDIS_HOST') }}:{{ environ('REDIS_PORT') }}/{{ environ('REDIS_DB') }}
+
+ckan.auth.anon_create_dataset = false
+ckan.auth.create_unowned_dataset = false
+ckan.auth.create_dataset_if_not_in_organization = false
+ckan.auth.user_create_groups = true
+ckan.auth.user_create_organizations = true
+ckan.auth.user_delete_groups = true
+ckan.auth.user_delete_organizations = true
+ckan.auth.create_user_via_api = false
+ckan.auth.create_user_via_web = true
+ckan.auth.roles_that_cascade_to_sub_groups = admin
+ckan.auth.public_user_details = False
+
+ckan.site_id = {{ environ('CKAN_SITE_ID') }}
+
+ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }}
+
+# TODO: add registrydata schema
+# scheming.dataset_schemas = ckanext.ytp.schemas:dataset.json
+# scheming.presets = ckanext.ytp.schemas:presets.json
+# scheming.group_schemas = ckanext.ytp.schemas:group.json
+# scheming.organization_schemas = ckanext.ytp.schemas:organization.json
+
+ckan.site_title = TODO: Add site title
+ckan.site_logo =
+ckan.site_description =
+
+ckan.favicon = /images/logo/favicon.ico
+ckan.gravatar_default = identicon
+
+ckan.locale_default = fi
+ckan.locale_order = en_GB pt_BR ja it cs_CZ ca es fr el sv sr sr@latin no sk fi ru de pl nl bg ko_KR hu sa sl lv
+ckan.locales_offered = fi sv en_GB
+ckan.locales_filtered_out = en
+ckan.feeds.authority_name =
+ckan.feeds.date = 2019-01-01
+ckan.feeds.author_name =
+ckan.feeds.author_link =
+ckan.search.show_all_types = False
+ckan.max_image_size = 5
+
+ckan.cors.origin_allow_all = True
+ckan.activity_streams_email_notifications = True
+ckan.cache_enabled = True
+ckan.cache_expires = 90
+
+email_to = {{ environ('SMTP_TO') }}
+error_email_from = {{ environ('SMTP_FROM_ERROR') }}
+
+smtp.server = {{ environ('SMTP_HOST') }}:{{ environ('SMTP_PORT') }}
+smtp.user = {{ environ('SMTP_USERNAME') }}
+smtp.password = {{ environ('SMTP_PASS') }}
+smtp.starttls = {% if environ('SMTP_PROTOCOL') == 'standard' %} false {% else %} true {% endif %}
+# smtp settings for WebError middleware
+from_address = {{ environ('SMTP_FROM_ERROR') }}
+smtp_server = {{ environ('SMTP_HOST') }}:{{ environ('SMTP_PORT') }}
+
+smtp.mail_from = {{ environ('SMTP_FROM') }}
+
+ckan.harvest.mq.type = redis
+ckan.harvest.mq.hostname = {{ environ('REDIS_HOST') }}
+ckan.harvest.mq.port = {{ environ('REDIS_PORT') }}
+ckan.harvest.mq.redis_db = {{ environ('REDIS_DB') }}
+
+{% if environ('MATOMO_ENABLED') == 'true' %}
+ckanext.matomo.site_id = {{ environ('MATOMO_SITE_ID') }}
+ckanext.matomo.domain = https://{{ environ('MATOMO_DOMAIN') }}/
+ckanext.matomo.script_domain = {{ environ('MATOMO_SCRIPT_DOMAIN') }}
+ckanext.matomo.token_auth = {{ environ('MATOMO_TOKEN') }}
+ckanext.matomo.ignored_user_agents = docker-healthcheck
+{% endif %}
+
+solr_url = http://{{ environ('SOLR_HOST') }}:{{ environ('SOLR_PORT') }}/{{ environ('SOLR_PATH') }}
+
+ckan.tracking_enabled = true
+ckan.max_resource_size = {{ environ('CKAN_MAX_RESOURCE_SIZE') }}
+
+[loggers]
+keys = root, ckan, ckanext
+
+[handlers]
+keys = console
+
+[formatters]
+keys = generic
+
+[logger_root]
+level = WARNING
+handlers = console
+
+[logger_ckan]
+level = {{ environ('CKAN_LOG_LEVEL') }}
+handlers = console
+qualname = ckan
+propagate = 0
+
+[logger_ckanext]
+level = {{ environ('CKAN_EXT_LOG_LEVEL') }}
+handlers = console
+qualname = ckanext
+propagate = 0
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[formatter_generic]
+format = %(asctime)s %(levelname)-5.5s [%(name)s] %(message)s

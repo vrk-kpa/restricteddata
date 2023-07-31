@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  ckan:
+    image: ${REGISTRY}/${REPOSITORY}/ckan:latest
+  ckan_cron:
+    image: ${REGISTRY}/${REPOSITORY}/ckan:latest
+  nginx:
+    image: ${REGISTRY}/${REPOSITORY}/nginx:latest
+  solr:
+    image: ${REGISTRY}/${REPOSITORY}/solr:latest
