@@ -1,0 +1,24 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Lint
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  ruff:
+    name: ruff
+    runs-on: ubuntu-latest
+    container: python:3.11
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install requirements
+        run: |
+          pip install ruff
+      - name: Run ruff
+        run: |
+          ruff check --format=github ckan
+          
