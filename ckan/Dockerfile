@@ -205,6 +205,11 @@ RUN apk add curl nodejs libjpeg
 ENV APP_DIR=/srv/app
 ENV EXT_DIR=${APP_DIR}/ckanext
 
+# Copy custom modules
+RUN mkdir -p ${EXT_DIR}
+COPY ckanext/ckanext-scheming ${EXT_DIR}
+COPY ckanext/ckanext-fluent ${EXT_DIR}
+COPY ckanext/ckanext-dcat ${EXT_DIR}
 
 #
 # Production image
@@ -215,10 +220,10 @@ FROM ckan_build AS production
 RUN pip install uwsgitop
 
 # copy extensions
-#COPY --from=modules_build ${EXT_DIR} ${EXT_DIR}
+COPY --from=modules_build ${EXT_DIR} ${EXT_DIR}
 
 # install extensions
-#RUN ${SCRIPT_DIR}/install_extensions.sh
+RUN ${SCRIPT_DIR}/install_extensions.sh
 
 # fix permissions
 RUN chown -R ckan:ckan ${APP_DIR}

@@ -1,0 +1,9 @@
+[submodule "ckan/ckanext/ckanext-scheming"]
+	path = ckan/ckanext/ckanext-scheming
+	url = https://github.com/ckan/ckanext-scheming.git
+[submodule "ckan/ckanext/ckanext-dcat"]
+	path = ckan/ckanext/ckanext-dcat
+	url = https://github.com/ckan/ckanext-dcat.git
+[submodule "ckan/ckanext/ckanext-fluent"]
+	path = ckan/ckanext/ckanext-fluent
+	url = https://github.com/ckan/ckanext-fluent.git

@@ -23,9 +23,6 @@ location @internal_error {
   rewrite ^(.*)$ $internal_error;
 }
 
-# fix old ckan file upload paths
-rewrite ^/dataset/(.*)$ $real_scheme://$http_host/dataset/$1 permanent;
-
 location = /favicon.ico {
   log_not_found off;
   access_log off;
