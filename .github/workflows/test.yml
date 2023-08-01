@@ -29,6 +29,7 @@ jobs:
       - detect-changes
     name: Build Containers
     runs-on: ubuntu-latest
+    environment: qa
     permissions:
       id-token: write
       contents: read
@@ -76,8 +77,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           outputs: type=docker,dest=/tmp/${{ matrix.name }}.tar
-          #tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
-        #env:
-          #REGISTRY: ${{ secrets.REGISTRY }}
-          #REPOSITORY: ${{ secrets.REPOSITORY }}
+          tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REPOSITORY: ${{ secrets.REPOSITORY }}
 
