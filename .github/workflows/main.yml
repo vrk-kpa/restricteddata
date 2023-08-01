@@ -61,7 +61,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_BUILD_ROLE }}
           role-session-name: github-actions
-          aws-region: eu-west-1
+          aws-region: eu-north-1
 
       - name: login to AWS ECR
         id: login
