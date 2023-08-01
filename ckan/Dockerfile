@@ -207,9 +207,9 @@ ENV EXT_DIR=${APP_DIR}/ckanext
 
 # Copy custom modules
 RUN mkdir -p ${EXT_DIR}
-COPY ckanext/ckanext-scheming ${EXT_DIR}
-COPY ckanext/ckanext-fluent ${EXT_DIR}
-COPY ckanext/ckanext-dcat ${EXT_DIR}
+COPY ckanext/ckanext-scheming ${EXT_DIR}/ckanext-scheming/
+COPY ckanext/ckanext-fluent ${EXT_DIR}/ckanext-fluent/
+COPY ckanext/ckanext-dcat ${EXT_DIR}/ckanext-dcat/
 
 #
 # Production image
