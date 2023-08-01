@@ -21,6 +21,9 @@ Parameters:
     Description: Audience supplied to configure-aws-credentials.
     Default: "sts.amazonaws.com"
     Type: String
+  ECRRepositoryArn:
+    Description: Arn for the ECR repositories.
+    Type: String
 
 Conditions:
   CreateOIDCProvider: !Equals 
@@ -54,6 +57,47 @@ Resources:
                 Action: "ecr:GetAuthorizationToken"
                 Resource: "*"
 
+  BuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRoleWithWebIdentity
+            Principal:
+              Federated: !If
+                - CreateOIDCProvider
+                - !Ref GithubOidc
+                - !Ref OIDCProviderArn
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: !Ref OIDCAudience
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+      Policies:
+        - PolicyName: ecr-login
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "ecr:GetAuthorizationToken"
+                Resource: "*"
+
+        - PolicyName: ecr-push-pull
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "ecr:BatchGetImage"
+                  - "ecr:BatchCheckLayerAvailability"
+                  - "ecr:CompleteLayerUpload"
+                  - "ecr:GetDownloadUrlForLayer"
+                  - "ecr:InitiateLayerUpload"
+                  - "ecr:PutImage"
+                  - "ecr:UploadLayerPart"
+                Resource: !Ref ECRRepositoryArn
+
 
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
@@ -68,3 +112,5 @@ Resources:
 Outputs:
   Role:
     Value: !GetAtt Role.Arn
+  BuildRole:
+    Value: !GetAtt BuildRole.Arn
