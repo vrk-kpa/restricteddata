@@ -3,7 +3,7 @@ name: Build and deploy containers
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
 
 
@@ -16,6 +16,7 @@ jobs:
   build-and-push:
     name: Build and push containers
     runs-on: ubuntu-latest
+    environment: qa
     needs:
       - build-and-test-containers
     permissions:
