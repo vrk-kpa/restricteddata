@@ -56,8 +56,7 @@ ckan.site_id = {{ environ('CKAN_SITE_ID') }}
 
 ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }}
 
-# TODO: add registrydata schema
-# scheming.dataset_schemas = ckanext.ytp.schemas:dataset.json
+scheming.dataset_schemas = ckanext.registrydata.schemas:dataset.json
 # scheming.presets = ckanext.ytp.schemas:presets.json
 # scheming.group_schemas = ckanext.ytp.schemas:group.json
 # scheming.organization_schemas = ckanext.ytp.schemas:organization.json

@@ -1,0 +1,28 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "dataset",
+  "about_url": "http://github.com/vrk-kpa/registrydata",
+  "dataset_fields": [
+    {
+      "field_name": "title",
+      "label": "Title",
+      "preset": "title",
+      "form_placeholder": "eg. My dataset"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "form_placeholder": "eg. my-dataset"
+    }
+  ],
+  "resource_fields": [
+    {
+      "field_name": "url",
+      "label": "Content",
+      "preset": "resource_url_upload",
+      "form_placeholder": "Resource URL",
+      "upload_label": "Content"
+    }
+  ]
+}
