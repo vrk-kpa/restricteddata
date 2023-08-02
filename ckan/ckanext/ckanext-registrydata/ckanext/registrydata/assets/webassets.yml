@@ -1,0 +1,14 @@
+# registrydata-js:
+#   filter: rjsmin
+#   output: ckanext-registrydata/%(version)s-registrydata.js
+#   contents:
+#     - js/registrydata.js
+#   extra:
+#     preload:
+#       - base/main
+
+# registrydata-css:
+#   filter: cssrewrite
+#   output: ckanext-registrydata/%(version)s-registrydata.css
+#   contents:
+#     - css/registrydata.css
