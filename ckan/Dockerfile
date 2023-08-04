@@ -20,13 +20,10 @@ COPY pip.conf /etc/pip.conf
 #
 FROM configured_base as base_ckan_build
 
-COPY ckan-requirements.txt .
-
+# Packages to build CKAN requirements and plugins
 RUN \
-  # Packages to build CKAN requirements and plugins
   apk add --no-cache \
     bash \
-    python3 \
     python3-dev \
     git \
     curl \
@@ -44,7 +41,11 @@ RUN \
     pcre \
     libffi-dev \
     libxml2-dev \
-    libxslt-dev && \
+    libxslt-dev
+
+COPY ckan-requirements.txt .
+
+RUN \
   # Create the src and pip cache directory
   mkdir -p ${SRC_DIR} && \
   # Fetch and build CKAN and requirements
@@ -56,17 +57,9 @@ RUN \
 #
 FROM configured_base as base_ckan
 
-# Get artifacts from build stages
-COPY --from=base_ckan_build /wheels /srv/app/wheels
-
-# Copy configuration
-COPY ckan-requirements.txt ${SRC_DIR}/ckan-requirements.txt
-COPY setup/app ${APP_DIR}
-
+# Install necessary packages to run CKAN
 RUN \
-  # Install necessary packages to run CKAN
   apk add --no-cache \
-      python3 \
       git \
       gettext \
       curl \
@@ -75,8 +68,16 @@ RUN \
       pcre \
       libxslt \
       libxml2 \
-      tzdata \
-      apache2-utils && \
+      tzdata
+
+# Get artifacts from build stages
+COPY --from=base_ckan_build /wheels /srv/app/wheels
+
+# Copy configuration
+COPY ckan-requirements.txt ${SRC_DIR}/ckan-requirements.txt
+COPY setup/app ${APP_DIR}
+
+RUN \
   # Create SRC_DIR
   mkdir -p ${SRC_DIR} && \
   # Install CKAN and requirements
@@ -125,17 +126,8 @@ ENV PROJ_DIR=/usr \
     EXT_DIR=${APP_DIR}/ckanext \
     WWW_DIR=/var/www
 
-# copy app files
-COPY scripts ${SCRIPT_DIR}
-COPY data ${DATA_DIR}_base
-COPY templates ${TEMPLATE_DIR}
-COPY supervisor ${SUPERV_DIR}
-COPY cron ${CRON_DIR}
-#COPY src/ckan/patches ${SRC_DIR}/ckan/patches
-COPY src/ckan/ckan-uwsgi.ini ${APP_DIR}
-
+# Install required packages
 RUN \
-  # upgrade system + install required packages
   apk add --no-cache \
       bash \
       patch \
@@ -150,7 +142,18 @@ RUN \
     cryptography \
     ndg-httpsclient \
     pyasn1 \
-    polib && \
+    polib
+
+# copy app files
+COPY scripts ${SCRIPT_DIR}
+COPY data ${DATA_DIR}_base
+COPY templates ${TEMPLATE_DIR}
+COPY supervisor ${SUPERV_DIR}
+COPY cron ${CRON_DIR}
+#COPY src/ckan/patches ${SRC_DIR}/ckan/patches
+COPY src/ckan/ckan-uwsgi.ini ${APP_DIR}
+
+RUN \
   # Make scripts executable
   chmod +x ${SCRIPT_DIR}/*.sh && \
   # Remove unused configuration
@@ -210,12 +213,13 @@ COPY ckanext/ ${EXT_DIR}/
 #
 FROM ckan_build AS production
 
+# Install uwsgitop for stats analyzing
+RUN pip install uwsgitop
+
 # copy extensions
 COPY --from=modules_build ${EXT_DIR} ${EXT_DIR}
 
 RUN \
-  # Install uwsgitop for stats analyzing
-  pip install uwsgitop && \
   # install extensions
   ${SCRIPT_DIR}/install_extensions.sh \
   # fix permissions
