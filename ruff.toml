@@ -1,0 +1,10 @@
+select = ["E", "F"]
+
+extend-exclude = [
+  "ckanext-dcat",
+  "ckanext-fluent",
+  "ckanext-scheming",
+  "ckanext-pages"
+]
+
+line-length = 127
