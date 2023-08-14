@@ -1,0 +1,8 @@
+# Compiled translations
+*.mo
+
+# Local docker-compose overrides
+docker/docker-compose.override.yml
+
+# Local environment
+docker/.env
