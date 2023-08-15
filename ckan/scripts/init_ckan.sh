@@ -16,9 +16,6 @@ python prerun.py || { echo '[CKAN prerun] FAILED. Exiting...' ; exit 1; }
 echo "Upgrade CKAN database ..."
 ckan -c ${APP_DIR}/production.ini db upgrade
 
-# minify JS files
-ckan -c ${APP_DIR}/production.ini minify ${SRC_DIR}/ckan/public/base/javascript
-
 # init ckan extensions
 #echo "init ckan extensions ..."
 

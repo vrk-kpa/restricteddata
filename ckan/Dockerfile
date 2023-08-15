@@ -78,8 +78,9 @@ COPY ckan-requirements.txt ${SRC_DIR}/ckan-requirements.txt
 COPY setup/app ${APP_DIR}
 
 RUN \
-  # Create SRC_DIR
+  # Create SRC_DIR and DATA_DIR
   mkdir -p ${SRC_DIR} && \
+  mkdir -p ${DATA_DIR} && \
   # Install CKAN and requirements
   pip install --find-links=/srv/app/wheels -r ${SRC_DIR}/ckan-requirements.txt && \
   # Configure environment
