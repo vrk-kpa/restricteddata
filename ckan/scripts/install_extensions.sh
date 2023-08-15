@@ -19,18 +19,23 @@ pip_install "${EXT_DIR}/ckanext-dcat/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-fluent/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-registrydata/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-scheming/requirements.txt"
+pip_install "${EXT_DIR}/ckanext-pages/requirements.txt"
+pip_install "${EXT_DIR}/ckanext-markdown_editor/requirements.txt"
 
 # install extension pip requirements
 pip_install "${EXT_DIR}/ckanext-dcat/pip-requirements.txt"
 pip_install "${EXT_DIR}/ckanext-fluent/pip-requirements.txt"
 pip_install "${EXT_DIR}/ckanext-registrydata/pip-requirements.txt"
 pip_install "${EXT_DIR}/ckanext-scheming/pip-requirements.txt"
+pip_install "${EXT_DIR}/ckanext-markdown_editor/pip-requirements.txt"
 
 # install extensions
 pip install -e ${EXT_DIR}/ckanext-dcat \
     -e ${EXT_DIR}/ckanext-fluent \
     -e ${EXT_DIR}/ckanext-registrydata \
-    -e ${EXT_DIR}/ckanext-scheming
+    -e ${EXT_DIR}/ckanext-scheming \
+    -e ${EXT_DIR}/ckanext-pages \
+    -e ${EXT_DIR}/ckanext-markdown_editor
 
 
 # compile translations

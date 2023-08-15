@@ -57,7 +57,9 @@ ckan.site_id = {{ environ('CKAN_SITE_ID') }}
 ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }}
 
 scheming.dataset_schemas = ckanext.registrydata.schemas:dataset.json
-# scheming.presets = ckanext.ytp.schemas:presets.json
+scheming.presets = ckanext.scheming:presets.json
+				   ckanext.fluent:presets.json
+                   ckanext.markdown_editor:presets.json
 # scheming.group_schemas = ckanext.ytp.schemas:group.json
 # scheming.organization_schemas = ckanext.ytp.schemas:organization.json
 
@@ -101,6 +103,8 @@ ckan.harvest.mq.type = redis
 ckan.harvest.mq.hostname = {{ environ('REDIS_HOST') }}
 ckan.harvest.mq.port = {{ environ('REDIS_PORT') }}
 ckan.harvest.mq.redis_db = {{ environ('REDIS_DB') }}
+
+ckanext.pages.editor = ckeditor
 
 {% if environ('MATOMO_ENABLED') == 'true' %}
 ckanext.matomo.site_id = {{ environ('MATOMO_SITE_ID') }}
