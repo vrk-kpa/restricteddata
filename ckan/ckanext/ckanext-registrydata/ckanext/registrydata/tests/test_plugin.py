@@ -56,3 +56,4 @@ from ckan.plugins import plugin_loaded
 @pytest.mark.usefixtures("with_plugins")
 def test_plugin():
     assert plugin_loaded("registrydata")
+    assert plugin_loaded("registrydata_pages")
