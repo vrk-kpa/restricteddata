@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[o:avoindata:p:registrydata:r:ckanext-registrydata]
+file_filter = ckanext/registrydata/i18n/<lang>/LC_MESSAGES/ckanext-registrydata.po
+source_file = ckanext/registrydata/i18n/ckanext-registrydata.pot
+source_lang = en
+type        = PO
