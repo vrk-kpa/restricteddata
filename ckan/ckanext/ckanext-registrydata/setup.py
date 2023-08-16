@@ -11,6 +11,7 @@ setup(
             ('**.py', 'python', None),
             ('**.js', 'javascript', None),
             ('**/templates/**.html', 'ckan', None),
+            ('**/templates_pages/**.html', 'ckan', None),
         ],
     }
 )

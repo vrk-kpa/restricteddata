@@ -1,9 +1,11 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.pages.interfaces import IPagesSchema
+from ckan.lib.plugins import DefaultTranslation
 
 
-class RegistrydataPlugin(plugins.SingletonPlugin):
+class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
+    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer)
 
     # IConfigurer
@@ -14,7 +16,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin):
         toolkit.add_resource("assets", "registrydata")
 
 
-class RegistrydataPagesPlugin(plugins.SingletonPlugin):
+class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
+    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(IPagesSchema)
 
@@ -30,6 +33,6 @@ class RegistrydataPagesPlugin(plugins.SingletonPlugin):
             'content_fi': [],
             'content_sv': [],
             'content_en': [],
-            'submenu_order': []
+            #'submenu_order': []
             })
         return schema
