@@ -31,7 +31,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             helpers.scheming_field_only_default_required,
             'add_locale_to_source': helpers.add_locale_to_source,
             'is_boolean_selected': helpers.is_boolean_selected,
-            'scheming_language_text_or_empty': helpers.scheming_language_text_or_empty,
+            'scheming_language_text_or_empty':
+            helpers.scheming_language_text_or_empty,
             'get_lang_prefix': helpers.get_lang_prefix,
             'call_toolkit_function': helpers.call_toolkit_function,
         }
@@ -50,8 +51,10 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'create_fluent_tags': validators.create_fluent_tags,
             'keep_old_value_if_missing': validators.keep_old_value_if_missing,
             'repeating_url': validators.repeating_url,
-            'from_date_is_before_until_date': validators.from_date_is_before_until_date,
-            'convert_to_json_compatible_str_if_str': validators.convert_to_json_compatible_str_if_str,
+            'from_date_is_before_until_date':
+            validators.from_date_is_before_until_date,
+            'convert_to_json_compatible_str_if_str':
+            validators.convert_to_json_compatible_str_if_str,
         }
 
 
@@ -72,7 +75,7 @@ class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'content_fi': [],
             'content_sv': [],
             'content_en': [],
-            #'submenu_order': []
+            # 'submenu_order': []
             })
         return schema
 
