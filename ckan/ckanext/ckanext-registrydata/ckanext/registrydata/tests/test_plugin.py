@@ -50,7 +50,8 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 import pytest
 # import ckanext.registrydata.plugin as plugin
 from ckan.plugins import plugin_loaded
-from ckantoolkit.tests.factories import Dataset, Sysadmin
+from ckan.tests.factories import Dataset, Sysadmin
+from ckan.tests.helpers import call_action
 
 
 @pytest.mark.usefixtures("with_plugins")
@@ -97,3 +98,4 @@ def test_insert_dataset():
             geographical_accuracy=3
         )]
     )
+    call_action('package_show', {'user': user}, id='test-dataset')
