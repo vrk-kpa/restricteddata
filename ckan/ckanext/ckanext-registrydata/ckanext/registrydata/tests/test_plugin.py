@@ -59,7 +59,7 @@ def test_plugin():
     assert plugin_loaded("registrydata_pages")
 
 
-@pytest.mark.usefixtures("with_plugins")
+@pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_insert_minimal_dataset():
     user = Sysadmin()
     Dataset(
