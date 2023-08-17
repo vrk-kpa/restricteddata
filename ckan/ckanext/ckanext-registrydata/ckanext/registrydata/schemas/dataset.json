@@ -14,6 +14,12 @@
       "label": "URL",
       "preset": "dataset_slug",
       "form_placeholder": "eg. my-dataset"
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization",
+      "final": true
     }
   ],
   "resource_fields": [

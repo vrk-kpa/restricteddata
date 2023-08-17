@@ -57,9 +57,7 @@ ckan.site_id = {{ environ('CKAN_SITE_ID') }}
 ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }}
 
 scheming.dataset_schemas = ckanext.registrydata.schemas:dataset.json
-scheming.presets = ckanext.scheming:presets.json
-				   ckanext.fluent:presets.json
-                   ckanext.markdown_editor:presets.json
+# scheming.presets = ckanext.ytp.schemas:presets.json
 # scheming.group_schemas = ckanext.ytp.schemas:group.json
 # scheming.organization_schemas = ckanext.ytp.schemas:organization.json
 
@@ -104,8 +102,6 @@ ckan.harvest.mq.hostname = {{ environ('REDIS_HOST') }}
 ckan.harvest.mq.port = {{ environ('REDIS_PORT') }}
 ckan.harvest.mq.redis_db = {{ environ('REDIS_DB') }}
 
-ckanext.pages.editor = ckeditor
-
 {% if environ('MATOMO_ENABLED') == 'true' %}
 ckanext.matomo.site_id = {{ environ('MATOMO_SITE_ID') }}
 ckanext.matomo.domain = https://{{ environ('MATOMO_DOMAIN') }}/
@@ -115,6 +111,9 @@ ckanext.matomo.ignored_user_agents = docker-healthcheck
 {% endif %}
 
 solr_url = http://{{ environ('SOLR_HOST') }}:{{ environ('SOLR_PORT') }}/{{ environ('SOLR_PATH') }}
+
+ckanext.dcat.rdf.profiles = registrydata_dcat_ap
+ckanext.dcat.translate_keys = False
 
 ckan.tracking_enabled = true
 ckan.max_resource_size = {{ environ('CKAN_MAX_RESOURCE_SIZE') }}
