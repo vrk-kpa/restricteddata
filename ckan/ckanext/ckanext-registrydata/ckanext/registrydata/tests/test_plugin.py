@@ -60,7 +60,7 @@ def test_plugin():
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
-def test_insert_minimal_dataset():
+def test_insert_dataset():
     user = Sysadmin()
     Dataset(
         user=user,
@@ -68,11 +68,32 @@ def test_insert_minimal_dataset():
         title_translated={'fi': 'Test', 'sv': 'Test'},
         notes_translated={'fi': 'Test', 'sv': 'Test'},
         access_rights='non-public',
+        rights_translated={'fi': 'rights', 'sv': 'rights'},
         maintainer='maintainer',
         maintainer_email='maintainer@example.com',
+        maintainer_website='https://example.com',
         license_id='undefined',
         keywords={'fi': 'test', 'sv': 'test'},
+        highvalue='true',
+        external_urls='https://example.com',
+        update_frequency={'fi': 'daily', 'sv': 'daily'},
+        valid_from='2023-01-01',
+        valid_till='2033-01-01',
+        private=False,
         resources=[dict(
-            url='http://example.com'
+            name_translated={'fi': 'Test', 'sv': 'Test'},
+            url='http://example.com',
+            format='test',
+            size=100,
+            rights_translated={'fi': 'rights', 'sv': 'rights'},
+            endpoint_url='https://example.com',
+            private=False,
+            maturity='current',
+            description_translated={'fi': 'Test', 'sv': 'Test'},
+            position_info='WGS84',
+            temporal_granularity={'fi': 'päivä', 'sv': 'dag'},
+            temporal_coverage_from='2023-01-01',
+            temporal_coverage_to='2023-01-01',
+            geographical_accuracy=3
         )]
     )
