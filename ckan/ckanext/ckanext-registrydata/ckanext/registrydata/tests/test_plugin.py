@@ -69,7 +69,7 @@ def test_insert_minimal_dataset():
         notes_translated={'fi': 'Test', 'sv': 'Test'},
         access_rights='non-public',
         maintainer='maintainer',
-        maintainer_email=['maintainer@example.com'],
+        maintainer_email='maintainer@example.com',
         license_id='undefined',
         keywords={'fi': 'test', 'sv': 'test'},
         resources=[dict(
