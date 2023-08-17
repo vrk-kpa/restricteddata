@@ -139,6 +139,9 @@ jobs:
         cd ../ckanext-pages
         pip install -r requirements.txt
         pip install -e .
+        cd ../ckanext-markdown_editor
+        pip install -r requirements.txt
+        pip install -e .
     - name: Run tests
       run: |
         pytest --ckan-ini=ckan/ckanext/ckanext-registrydata/test.ini --cov=ckanext.registrydata --disable-warnings ckan/ckanext/ckanext-registrydata/ckanext/registrydata/tests
