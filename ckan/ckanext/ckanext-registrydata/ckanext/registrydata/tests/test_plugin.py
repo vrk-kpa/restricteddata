@@ -98,4 +98,5 @@ def test_insert_dataset():
             geographical_accuracy=3
         )]
     )
+
     call_action('package_show', {'user': user}, id='test-dataset')
