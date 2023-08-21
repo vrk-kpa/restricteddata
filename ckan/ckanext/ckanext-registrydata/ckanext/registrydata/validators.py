@@ -120,6 +120,46 @@ def repeating_email(key, data, errors, context):
 
 
 @scheming_validator
+def required_languages(field, schema):
+    languages = field.get('required_languages', [])
+
+    def validator(key, data, errors, context):
+        if errors[key]:
+            return
+
+        value = data[key]
+
+        if value is not toolkit.missing:
+            if isinstance(value, str):
+                try:
+                    value = json.loads(value)
+                except ValueError:
+                    errors[key].append(_('Failed to decode JSON string'))
+                    return
+                except UnicodeDecodeError:
+                    errors[key].append(_('Invalid encoding for JSON string'))
+                    return
+            if not isinstance(value, dict):
+                errors[key].append(_('expecting JSON object'))
+                return
+
+            for lang in languages:
+                if value.get(lang, '') == '':
+                    error = _('Required language "%s" missing') % lang
+                    errors[key].append(error)
+            return
+
+        prefix = key[-1] + '-'
+        extras = data.get(key[:-1] + ('__extras',), {})
+
+        for lang in languages:
+            if extras.get(prefix + lang, '') == '':
+                errors[key].append(_('Required language "%s" missing') % lang)
+
+    return validator
+
+
+@scheming_validator
 def only_default_lang_required(field, schema):
     default_lang = ''
     if field and field.get('only_default_lang_required'):

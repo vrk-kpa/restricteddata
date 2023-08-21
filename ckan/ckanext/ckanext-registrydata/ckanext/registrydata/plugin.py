@@ -55,6 +55,7 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             validators.from_date_is_before_until_date,
             'convert_to_json_compatible_str_if_str':
             validators.convert_to_json_compatible_str_if_str,
+            'required_languages': validators.required_languages,
         }
 
 

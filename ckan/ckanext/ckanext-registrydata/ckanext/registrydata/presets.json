@@ -9,7 +9,7 @@
         "form_snippet": "fluent_title.html",
         "display_snippet": "fluent_text.html",
         "error_snippet": "fluent_text.html",
-        "validators": "fluent_text only_default_lang_required override_field_with_default_translation(title)",
+        "validators": "fluent_text required_languages override_field_with_default_translation(title)",
         "output_validators": "fluent_core_translated_output",
         "form_attrs": {
           "data-module": "slug-preview-target"
@@ -22,14 +22,14 @@
         "form_snippet": "fluent_markdown_ex.html",
         "display_snippet": "fluent_markdown.html",
         "error_snippet": "fluent_text.html",
-        "validators": "fluent_text only_default_lang_required ",
+        "validators": "fluent_text required_languages ",
         "output_validators": "fluent_core_translated_output"
       }
     },
     {
       "preset_name": "fluent_vocabulary_with_autocomplete",
       "values":{
-        "validators": "only_default_lang_required fluent_tags create_fluent_tags(example_vocab)",
+        "validators": "required_languages fluent_tags create_fluent_tags(example_vocab)",
         "output_validators": "convert_to_json_compatible_str_if_str fluent_tags_output",
         "form_attrs": {
           "data-module": "autocomplete",
