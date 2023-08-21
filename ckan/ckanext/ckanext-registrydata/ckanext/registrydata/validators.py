@@ -1,15 +1,11 @@
 import json
-import datetime
-import iso8601
 import logging
-import pytz
 
 from ckanext.scheming.validation import scheming_validator
 from ckan.plugins import toolkit
 from . import plugin
 from ckan import model
 from ckan.logic import validators
-import ckan.lib.navl.dictization_functions as dictization_functions
 
 _ = toolkit._
 log = logging.getLogger(__name__)
