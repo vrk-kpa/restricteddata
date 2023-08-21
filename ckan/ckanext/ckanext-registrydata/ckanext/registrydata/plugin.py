@@ -42,8 +42,6 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_validators(self):
         return {
             'repeating_text': validators.repeating_text,
-            'only_default_lang_required':
-            validators.only_default_lang_required,
             'repeating_email': validators.repeating_email,
             'repeating_text_output': validators.repeating_text_output,
             'override_field_with_default_translation':
@@ -51,8 +49,6 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'create_fluent_tags': validators.create_fluent_tags,
             'keep_old_value_if_missing': validators.keep_old_value_if_missing,
             'repeating_url': validators.repeating_url,
-            'from_date_is_before_until_date':
-            validators.from_date_is_before_until_date,
             'convert_to_json_compatible_str_if_str':
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,

@@ -159,45 +159,6 @@ def required_languages(field, schema):
     return validator
 
 
-@scheming_validator
-def only_default_lang_required(field, schema):
-    default_lang = ''
-    if field and field.get('only_default_lang_required'):
-        default_lang = toolkit.config.get('ckan.locale_default', 'en')
-
-    def validator(key, data, errors, context):
-        if errors[key]:
-            return
-
-        value = data[key]
-
-        if value is not toolkit.missing:
-            if isinstance(value, str):
-                try:
-                    value = json.loads(value)
-                except ValueError:
-                    errors[key].append(_('Failed to decode JSON string'))
-                    return
-                except UnicodeDecodeError:
-                    errors[key].append(_('Invalid encoding for JSON string'))
-                    return
-            if not isinstance(value, dict):
-                errors[key].append(_('expecting JSON object'))
-                return
-
-            if field.get('only_default_lang_required') is True and value.get(default_lang, '') == '':
-                errors[key].append(_('Required language "%s" missing') % default_lang)
-            return
-
-        prefix = key[-1] + '-'
-        extras = data.get(key[:-1] + ('__extras',), {})
-
-        if extras.get(prefix + default_lang, '') == '':
-            errors[key].append(_('Required language "%s" missing') % default_lang)
-
-    return validator
-
-
 def override_field_with_default_translation(overridden_field_name):
     @scheming_validator
     def implementation(field, schema):
@@ -304,45 +265,6 @@ def repeating_url(key, data, errors, context):
     url_validator = toolkit.get_validator('url_validator')
     for item in value:
         url_validator(key, {key: item}, errors, context)
-
-
-@scheming_validator
-def from_date_is_before_until_date(field, schema):
-
-    max_date_field = None
-    min_date_field = None
-    if field and field.get('max_date_field'):
-        max_date_field = (field.get('max_date_field'),)
-
-    if field and field.get('min_date_field'):
-        min_date_field = (field.get('min_date_field'),)
-
-    def validator(key, data, errors, context):
-
-        missing = dictization_functions.missing
-        max_date_value = data.get(max_date_field, "")
-        if max_date_field is not None and max_date_value not in ('', missing, None):
-            if not isinstance(max_date_value, datetime.datetime):
-                try:
-                    max_date_value = iso8601.parse_date(max_date_value)
-                except iso8601.ParseError:
-                    log.info("Could not convert %s to datetime" % max_date_value)
-                    pass
-            if data[key] and data[key].replace(tzinfo=pytz.utc) > max_date_value:
-                errors[key].append(_('Start date is after end date'))
-
-        min_date_value = data.get(min_date_field, "")
-        if min_date_field is not None and min_date_value not in ('', missing, None):
-            if not isinstance(min_date_value, datetime.datetime):
-                try:
-                    min_date_value = iso8601.parse_date(min_date_value)
-                except iso8601.ParseError:
-                    log.info("Could not convert %s to datetime" % min_date_value)
-                    pass
-            if data[key] and data[key].replace(tzinfo=pytz.utc) < min_date_value:
-                errors[key].append(_('End date is before start date'))
-
-    return validator
 
 
 def convert_to_json_compatible_str_if_str(value):
