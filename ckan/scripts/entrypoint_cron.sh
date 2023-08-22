@@ -12,6 +12,7 @@ done
 # install extensions (DEV_MODE)
 if [[ "${DEV_MODE}" == "true" ]]; then
   echo "entrypoint_cron - installing extensions because DEV_MODE = 'true' ..."
+  sudo -E ${SCRIPT_DIR}/install_extension_requirements.sh
   sudo -E ${SCRIPT_DIR}/install_extensions.sh
 fi
 
