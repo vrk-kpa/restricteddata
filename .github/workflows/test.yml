@@ -147,3 +147,51 @@ jobs:
       with:
         flags: ckan
 
+  test-cdk:
+    name: test-cdk
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: ${{ github.ref }}/test-cdk
+      cancel-in-progress: true
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install nodejs v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node_cdk_v16-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_cdk_v16-
+
+      - name: install cdk npm packages and verify installation
+        working-directory: cdk
+        run: |
+          npm install
+          $(npm bin)/cdk doctor
+
+      - name: build cdk project
+        working-directory: cdk
+        run: |
+          npm run build
+
+      - name: test cdk project
+        working-directory: cdk
+        run: |
+          npm run test
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          flags: cdk
+
