@@ -315,7 +315,7 @@
       "preset": "date"
     },
     {
-      "field_name": "temporal_coverage_to",
+      "field_name": "temporal_coverage_till",
       "label": "End date",
       "preset": "date"
     },
