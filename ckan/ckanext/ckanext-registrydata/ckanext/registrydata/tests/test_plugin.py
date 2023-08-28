@@ -100,8 +100,7 @@ def test_insert_dataset():
     )
     Dataset(**dataset_fields)
 
-    dataset = call_action('package_show', {'user': user}, id='test-dataset')['result']
+    dataset = call_action('package_show', {'user': user}, id='test-dataset')
 
     for key, value in dataset_fields.items():
         assert dataset[key] == value
-
