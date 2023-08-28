@@ -142,7 +142,7 @@ def test_dataset_with_external_ursl():
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_dataset_with_update_frequency():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['update_frequency'] = {'fi': 'Test', 'sv': 'Test'}
+    dataset_fields['update_frequency'] = {'fi': ['Test'], 'sv': ['Test']}
     Dataset(**dataset_fields)
     dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['update_frequency'] == dataset_fields['update_frequency']
@@ -253,8 +253,8 @@ def test_dataset_with_resource_with_position_info():
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_dataset_with_resource_with_temporal_granularity():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['resources'][0]['temporal_granularity'] = {'fi': 'Test',
-                                                              'sv': 'Test'}
+    dataset_fields['resources'][0]['temporal_granularity'] = {'fi': ['Test'],
+                                                              'sv': ['Test']}
     Dataset(**dataset_fields)
     dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['temporal_granularity'] == dataset_fields['temporal_granularity']
