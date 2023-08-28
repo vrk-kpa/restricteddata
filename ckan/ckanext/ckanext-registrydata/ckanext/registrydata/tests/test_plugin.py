@@ -63,7 +63,7 @@ def test_plugin():
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_insert_dataset():
     user = Sysadmin()
-    Dataset(
+    dataset_fields = dict(
         user=user,
         name='test-dataset',
         title_translated={'fi': 'Test', 'sv': 'Test'},
@@ -98,5 +98,10 @@ def test_insert_dataset():
             geographical_accuracy=3
         )]
     )
+    Dataset(**dataset_fields)
 
-    call_action('package_show', {'user': user}, id='test-dataset')
+    dataset = call_action('package_show', {'user': user}, id='test-dataset')['result']
+
+    for key, value in dataset_fields.items():
+        assert dataset[key] == value
+
