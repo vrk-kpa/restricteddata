@@ -83,7 +83,7 @@ def test_minimal_dataset():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     Dataset(**dataset_fields)
 
-    datasets = call_action('package_search', {}, {'q': ''})
+    datasets = call_action('package_search', {'q': ''})
     assert len(datasets) == 1
     dataset = datasets[0]
 
@@ -108,7 +108,7 @@ def test_dataset_with_rights():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['rights_translated'] = {'fi': 'Test', 'sv': 'Test'}
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['rights_translated'] == dataset_fields['rights_translated']
 
 
@@ -117,7 +117,7 @@ def test_dataset_with_maintainer_website():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['maintainer_website'] = 'http://example.com'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['maintainer_website'] == dataset_fields['maintainer_website']
 
 
@@ -126,7 +126,7 @@ def test_dataset_with_highvalue():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['highvalue'] = True
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['highvalue'] == dataset_fields['highvalue']
 
 
@@ -135,7 +135,7 @@ def test_dataset_with_external_ursl():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['external_urls'] = ['http://example.com', 'https://example.com']
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['external_urls'] == dataset_fields['external_urls']
 
 
@@ -144,7 +144,7 @@ def test_dataset_with_update_frequency():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['update_frequency'] = {'fi': 'Test', 'sv': 'Test'}
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['update_frequency'] == dataset_fields['update_frequency']
 
 
@@ -153,7 +153,7 @@ def test_dataset_with_valid_from():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['valid_from'] = '2023-01-01'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['valid_from'] == dataset_fields['valid_from']
 
 
@@ -162,7 +162,7 @@ def test_dataset_with_valid_till():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['valid_till'] = '2033-01-01'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['valid_till'] == dataset_fields['valid_till']
 
 
@@ -172,7 +172,7 @@ def test_dataset_with_resource_with_name():
     dataset_fields['resources'][0]['name_translated'] = {'fi': 'Test',
                                                          'sv': 'Test'}
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['name_translated'] == dataset_fields['name_translated']
 
 
@@ -181,7 +181,7 @@ def test_dataset_with_resource_with_format():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['format'] = 'CSV'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['format'] == dataset_fields['format']
 
 
@@ -190,7 +190,7 @@ def test_dataset_with_resource_with_size():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['size'] = 31415
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['size'] == dataset_fields['size']
 
 
@@ -200,7 +200,7 @@ def test_dataset_with_resource_with_rights():
     dataset_fields['resources'][0]['rights_translated'] = {'fi': 'Test',
                                                            'sv': 'Test'}
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['rights_translated'] == dataset_fields['rights_translated']
 
 
@@ -212,13 +212,13 @@ def test_dataset_with_resource_with_private():
     Dataset(**dataset_fields)
 
     try:
-        call_action('package_show', {}, {'id': dataset_fields['name']})
+        call_action('package_show', {'id': dataset_fields['name']})
         assert False  # action should throw NotAuthorized
     except toolkit.NotAuthorized:
         pass
 
-    dataset = call_action('package_show', {'user': user},
-                          {'id': dataset_fields['name']})
+    dataset = call_action('package_show',
+                          {'user': user, 'id': dataset_fields['name']})
     assert dataset['private'] == dataset_fields['private']
 
 
@@ -227,7 +227,7 @@ def test_dataset_with_resource_with_maturity():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['maturity'] = 'current'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['maturity'] == dataset_fields['maturity']
 
 
@@ -237,7 +237,7 @@ def test_dataset_with_resource_with_description():
     dataset_fields['resources'][0]['description_translated'] = {'fi': 'Test',
                                                                 'sv': 'Test'}
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['description_translated'] == dataset_fields['description_translated']
 
 
@@ -246,7 +246,7 @@ def test_dataset_with_resource_with_position_info():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['position_info'] = 'WGS84'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['position_info'] == dataset_fields['position_info']
 
 
@@ -256,7 +256,7 @@ def test_dataset_with_resource_with_temporal_granularity():
     dataset_fields['resources'][0]['temporal_granularity'] = {'fi': 'Test',
                                                               'sv': 'Test'}
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['temporal_granularity'] == dataset_fields['temporal_granularity']
 
 
@@ -265,7 +265,7 @@ def test_dataset_with_resource_with_temporal_coverage_from():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['temporal_coverage_from'] = '2023-01-01'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['temporal_coverage_from'] == dataset_fields['temporal_coverage_from']
 
 
@@ -274,7 +274,7 @@ def test_dataset_with_resource_with_temporal_coverage_till():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['temporal_coverage_till'] = '2033-01-01'
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['temporal_coverage_till'] == dataset_fields['temporal_coverage_till']
 
 
@@ -283,5 +283,5 @@ def test_dataset_with_resource_with_geographical_accuracy():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['resources'][0]['geographical_accuracy'] = 5
     Dataset(**dataset_fields)
-    dataset = call_action('package_show', {}, {'id': dataset_fields['name']})
+    dataset = call_action('package_show', {'id': dataset_fields['name']})
     assert dataset['geographical_accuracy'] == dataset_fields['geographical_accuracy']
