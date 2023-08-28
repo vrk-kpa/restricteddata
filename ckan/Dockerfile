@@ -13,6 +13,7 @@ ENV CKAN_DIR=${SRC_DIR}/ckan \
     DATA_DIR=${APP_DIR}/data
 WORKDIR ${APP_DIR}
 COPY pip.conf /etc/pip.conf
+RUN pip install --upgrade pip
 
 
 #
@@ -216,6 +217,14 @@ FROM ckan_build AS production
 
 # Install uwsgitop for stats analyzing
 RUN pip install uwsgitop
+
+# Install extension requirements (order in ascending probability of changes)
+COPY ckanext/ckanext-dcat/requirements.txt ${EXT_DIR}/ckanext-dcat/requirements.txt
+COPY ckanext/ckanext-fluent/requirements.txt ${EXT_DIR}/ckanext-fluent/requirements.txt
+COPY ckanext/ckanext-markdown_editor/requirements.txt ${EXT_DIR}/ckanext-markdown_editor/requirements.txt
+COPY ckanext/ckanext-pages/requirements.txt ${EXT_DIR}/ckanext-pages/requirements.txt
+COPY ckanext/ckanext-registrydata/requirements.txt ${EXT_DIR}/ckanext-registrydata/requirements.txt
+RUN ${SCRIPT_DIR}/install_extension_requirements.sh
 
 # copy extensions
 COPY --from=modules_build ${EXT_DIR} ${EXT_DIR}
