@@ -87,10 +87,10 @@ jobs:
       - detect-changes
     if: ${{ needs.detect-changes.outputs.ckan == 'true' }}
     container:
-      image: ckan/ckan-dev:2.9.9
+      image: ckan/ckan-dev:2.10.1
     services:
       solr:
-        image: ckan/ckan-solr-dev:2.9
+        image: ckan/ckan-solr:2.10-solr9
       postgres:
         image: postgres:12
         env:
@@ -137,6 +137,9 @@ jobs:
         pip install -r requirements.txt
         pip install -e .
         cd ../ckanext-pages
+        pip install -r requirements.txt
+        pip install -e .
+        cd ../ckanext-markdown_editor
         pip install -r requirements.txt
         pip install -e .
     - name: Run tests

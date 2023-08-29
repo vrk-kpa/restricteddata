@@ -4,10 +4,13 @@
   "about_url": "http://github.com/vrk-kpa/registrydata",
   "dataset_fields": [
     {
-      "field_name": "title",
+      "field_name": "title_translated",
       "label": "Title",
-      "preset": "title",
-      "form_placeholder": "eg. My dataset"
+      "preset": "fluent_core_title_translated",
+      "form_languages": ["fi", "en", "sv"],
+      "form_placeholder": "e.g. Finnish names",
+      "required_languages": ["fi", "sv"],
+      "description": "Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. You can edit the URL if you want."
     },
     {
       "field_name": "name",
@@ -16,19 +19,312 @@
       "form_placeholder": "eg. my-dataset"
     },
     {
+      "field_name": "notes_translated",
+      "preset": "fluent_core_markdown_translated",
+      "form_placeholder": "Write a description for the dataset.",
+      "form_languages": ["fi", "en", "sv"],
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "label": "Description",
+      "display_snippet": null,
+      "required_languages": ["fi", "sv"],
+      "description": "Describe the dataset’s contents, collection process, quality and  possible limits, flaws and applications in a comprehensible way. Use as confining terms as possible to make it easier to find and understand the data."
+    },
+    {
       "field_name": "owner_org",
-      "label": "Organization",
+      "label": "Publisher",
       "preset": "dataset_organization",
-      "final": true
+      "description": "Select the dataset publisher (organisation)."
+    },
+    {
+      "field_name": "access_rights",
+      "label": "Collection type",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "non-public",
+          "label": "Non-public"
+        },
+        {
+          "value": "restricted",
+          "label": "Restricted"
+        }
+      ],
+      "required": true
+    },
+    {
+      "field_name": "rights_translated",
+      "label": "Rights",
+      "preset": "fluent_core_markdown_translated",
+      "validators": "fluent_text",
+      "form_placeholder": "Write a rights statement for the resource",
+      "form_languages": ["fi", "en", "sv"],
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "description": "Describe the data clearly and concisely. Use as confining terms as possible to make it easier to find and understand the data."
+    },
+    {
+      "field_name": "maintainer",
+      "label": "Dataset maintainer",
+      "form_placeholder": "e.g. Digital and Population Data Services Agency",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "display_property": "dc:contributor",
+      "required": true,
+      "description": "The dataset maintainer will receive updates about the dataset to the email address specified in this form. We recommend using a general email address instead of the contact information of a single employee. Note that the dataset information can only be managed by registered users with Editor- or Admin-rights in the publishing organisation."
+    },
+    {
+      "field_name": "maintainer_email",
+      "label": "Maintainer email",
+      "preset": "repeating_text",
+      "form_placeholder": "e.g. rekisteridata@dvv.fi",
+      "form_attrs": {
+        "class": "form-control",
+        "data-module": "registrydata_input_multiple",
+        "data-module-linktext": "Add email"
+      },
+      "display_property": "dc:contributor",
+      "display_snippet": "repeating_email.html",
+      "form_snippet": "repeating.html",
+      "validators": "repeating_text repeating_email not_empty",
+      "required": true
+    },
+    {
+      "field_name": "maintainer_website",
+      "label": "Maintainer website",
+      "form_placeholder": "e.g. www.rekisteridata.fi",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "display_property": "dc:contributor",
+      "display_snippet": "link.html"
+    },
+    {
+      "field_name": "license_id",
+      "label": "License",
+      "form_snippet": "license.html",
+      "display_snippet": "license.html",
+      "validators": "not_empty",
+      "required": true,
+      "description": "Select a license that suits your needs. We recommend using CC0 or CC BY 4 -licenses."
+    },
+    {
+      "field_name": "keywords",
+      "label": "Keywords",
+      "form_placeholder": "e.g. names",
+      "form_languages": ["fi", "en", "sv"],
+      "preset": "fluent_vocabulary_with_autocomplete",
+      "validators": "required_languages fluent_tags create_fluent_tags(keywords)",
+      "required_languages": ["fi", "sv"],
+      "form_attrs": {
+        "data-module": "autocomplete",
+        "data-module-tags": "",
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?&vocabulary_id=keywords"
+      },
+      "description": "Keywords help users to find your data. Select at least one keyword in Finnish."
+    },
+    {
+      "field_name": "highvalue",
+      "label": "High value dataset",
+      "preset": "select",
+      "form_snippet": "radio_sysadmin.html",
+      "choices": [
+        {
+          "label": "No",
+          "value": "false"
+        },
+        {
+          "label": "Yes",
+          "value": "true"
+        }
+      ],
+      "default_value": "false",
+      "validators": "ignore_not_sysadmin keep_old_value_if_missing boolean_validator",
+      "description": "You can mark dataset as high value dataset"
+    },
+    {
+      "field_name": "external_urls",
+      "preset": "repeating_text",
+      "label": "Links to additional information",
+      "form_blanks": 1,
+      "display_snippet": "repeating_link.html",
+      "form_snippet": "repeating.html",
+      "form_placeholder": "e.g. www.dvv.fi",
+      "description": "Add links to one or more websites with additional information about the data.",
+      "validators": "repeating_text repeating_url",
+      "form_attrs": {
+        "data-module": "registrydata_input_multiple"
+      }
+    },
+    {
+      "field_name": "update_frequency",
+      "label": "Update frequency",
+      "form_placeholder": "e.g. monthly",
+      "form_languages": ["fi", "en", "sv"],
+      "preset": "fluent_vocabulary_with_autocomplete",
+      "validators": "fluent_tags create_fluent_tags(update_frequency)",
+      "form_attrs": {
+        "data-module": "autocomplete",
+        "data-module-tags": "",
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?&vocabulary_id=update_frequency"
+      },
+      "description": "Describe how often your data is updated"
+    },
+    {
+      "field_name": "valid_from",
+      "label": "Valid from",
+      "preset": "date",
+      "max_date_field": "valid_till"
+    },
+    {
+      "field_name": "valid_till",
+      "label": "Valid till",
+      "preset": "date",
+      "min_date_field": "valid_from"
     }
   ],
   "resource_fields": [
+    {
+      "field_name": "name_translated",
+      "label": "Name",
+      "preset": "fluent_core_translated",
+      "form_languages": ["fi", "en", "sv"],
+      "form_placeholder": "e.g. Most popular Finnish first names 2019",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "description": "Write a short and descriptive name for the data resource. If the data covers a specific time frame, mention that in the name."
+    },
     {
       "field_name": "url",
       "label": "Content",
       "preset": "resource_url_upload",
       "form_placeholder": "Resource URL",
       "upload_label": "Content"
+    },
+    {
+      "field_name": "format",
+      "label": "Format",
+      "preset": "resource_format_autocomplete",
+      "description": "File format of the selected resource."
+    },
+    {
+      "field_name": "size",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "label": "Size",
+      "description": "Size of the added resouce file in bytes. Will be automatically filled when the file is uploaded.",
+      "validators": "ignore_missing int_validator"
+    },
+    {
+      "field_name": "rights_translated",
+      "label": "Rights",
+      "preset": "fluent_core_markdown_translated",
+      "validators": "fluent_text",
+      "form_placeholder": "Write a rights statement for the resource",
+      "form_languages": ["fi", "en", "sv"],
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "description": "Describe the data clearly and concisely. Use as confining terms as possible to make it easier to find and understand the data."
+    },
+    {
+      "field_name": "endpoint_url",
+      "label": "Endpoint URL"
+    },
+    {
+      "field_name": "private",
+      "label": "Distribution visibility",
+      "preset": "select",
+      "form_snippet": "radio.html",
+      "choices": [
+        {
+          "label": "Public",
+          "value": "false"
+        },
+        {
+          "label": "Private",
+          "value": "true"
+        }
+      ],
+      "default_value": "false",
+      "validators": "boolean_validator",
+      "description": "You can set the visibility to private temporarily for example if the distribution is missing some information. Private distributions are visible to all members of the producer-organisation."
+    },
+    {
+      "field_name": "maturity",
+      "label": "Data status",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "current",
+          "label": "Current version"
+        },
+        {
+          "value": "draft",
+          "label": "Draft version"
+        },
+        {
+          "value": "archived",
+          "label": "Archived version"
+        }
+      ],
+      "description": "Define a state for the data. This is recommended especially if your dataset has data resources from multiple years."
+    },
+    {
+      "field_name": "description_translated",
+      "label": "Description",
+      "preset": "fluent_core_markdown_translated",
+      "validators": "fluent_text",
+      "form_placeholder": "Write a description for the resource",
+      "form_languages": ["fi", "en", "sv"],
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "description": "Describe the data clearly and concisely. Use as confining terms as possible to make it easier to find and understand the data."
+    },
+    {
+      "field_name": "position_info",
+      "label": "Coordinate system",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "form_placeholder": "e.g. WGS84 (World Geodetic System 1984)",
+      "description": "If your data includes geographic information, specify the coordinate system it uses."
+    },
+    {
+      "field_name": "temporal_granularity",
+      "label": "Temporal granularity",
+      "form_placeholder": "e.g. a month",
+      "preset": "fluent_vocabulary_with_autocomplete",
+      "validators": "fluent_tags create_fluent_tags(temporal_granularity)",
+      "form_attrs": {
+        "data-module": "autocomplete",
+        "data-module-tags": "",
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?&vocabulary_id=temporal_granularity"
+      },
+      "description": "Select the time frame by which the data is separated. For example, does the resource include data from every week or month."
+    },
+    {
+      "field_name": "temporal_coverage_from",
+      "label": "Start date",
+      "preset": "date"
+    },
+    {
+      "field_name": "temporal_coverage_till",
+      "label": "End date",
+      "preset": "date"
+    },
+    {
+      "field_name": "geographical_accuracy",
+      "label": "Geographical accuracy",
+      "preset": "number",
+      "form_placeholder": "5",
+      "description": "If your data includes geographic information, specify the accuracy in meters"
     }
   ]
 }

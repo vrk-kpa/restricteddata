@@ -1,0 +1,76 @@
+{
+  "scheming_presets_version": 1,
+  "about": "scheming presets for fluent fields",
+  "about_url": "http://github.com/open-data/ckanext-fluent",
+  "presets": [
+    {
+      "preset_name": "fluent_core_title_translated",
+      "values": {
+        "form_snippet": "fluent_title.html",
+        "display_snippet": "fluent_text.html",
+        "error_snippet": "fluent_text.html",
+        "validators": "fluent_text required_languages override_field_with_default_translation(title)",
+        "output_validators": "fluent_core_translated_output",
+        "form_attrs": {
+          "data-module": "slug-preview-target"
+        }
+      }
+    },
+    {
+      "preset_name": "fluent_core_markdown_translated",
+      "values": {
+        "form_snippet": "fluent_markdown_ex.html",
+        "display_snippet": "fluent_markdown.html",
+        "error_snippet": "fluent_text.html",
+        "validators": "fluent_text required_languages ",
+        "output_validators": "fluent_core_translated_output"
+      }
+    },
+    {
+      "preset_name": "fluent_vocabulary_with_autocomplete",
+      "values":{
+        "validators": "required_languages fluent_tags create_fluent_tags(example_vocab)",
+        "output_validators": "convert_to_json_compatible_str_if_str fluent_tags_output",
+        "form_attrs": {
+          "data-module": "autocomplete",
+          "data-module-tags": "",
+          "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?&vocabulary_id=example_vocab"
+        },
+        "display_snippet": "fluent_tag_list.html",
+        "form_snippet": "fluent_tags_with_autocomplete.html",
+        "error_snippet": "fluent_text.html"
+      }
+    },
+    {
+      "preset_name": "resource_format_autocomplete",
+      "values": {
+        "validators": "if_empty_guess_format ignore_missing clean_format upper_if_exists unicode",
+        "form_placeholder": "eg. CSV, XML or JSON",
+        "form_attrs": {
+          "data-module": "autocomplete",
+          "data-module-source": "/api/2/util/resource/format_autocomplete?incomplete=?"
+        }
+      }
+    },
+    {
+      "preset_name": "number",
+      "values": {
+        "form_snippet": "number.html",
+        "display_snippet": "text.html",
+        "validators": "ignore_missing int_validator",
+        "form_attrs": {
+          "class": "form-control"
+        }
+      }
+    },
+    {
+      "preset_name": "repeating_text",
+      "values": {
+        "form_snippet": "repeating_text.html",
+        "display_snippet": "repeating_text.html",
+        "validators": "repeating_text",
+        "output_validators": "repeating_text_output"
+      }
+    }
+  ]
+}

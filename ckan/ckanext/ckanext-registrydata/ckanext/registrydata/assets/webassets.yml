@@ -12,3 +12,12 @@
 #   output: ckanext-registrydata/%(version)s-registrydata.css
 #   contents:
 #     - css/registrydata.css
+
+registrydata-form-js:
+   filter: rjsmin
+   output: ckanext-registrydata/%(version)s-registrydata-form.js
+   contents:
+     - modules/form.js
+   extra:
+     preload:
+       - base/main
