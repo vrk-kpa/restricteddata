@@ -131,6 +131,9 @@ jobs:
     name: Deploy dev
     runs-on: ubuntu-latest
     environment: qa
+    permissions:
+      id-token: write
+      contents: read
     needs:
       - build-and-push
       - commit-new-images
