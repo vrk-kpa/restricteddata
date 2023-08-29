@@ -179,7 +179,7 @@ jobs:
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: ${{ vars.AWS_DEV_DEPLOY_ROLE }}
+          role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
           role-session-name: github-actions
           aws-region: eu-north-1
 
