@@ -132,7 +132,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: qa
     needs:
-      - build-and-push-containers
+      - build-and-push
       - commit-new-images
 
     steps:
