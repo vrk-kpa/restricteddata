@@ -181,7 +181,7 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_DEV_DEPLOY_ROLE }}
           role-session-name: github-actions
-          aws-region: eu-west-1
+          aws-region: eu-north-1
 
       - name: synthesize cdk stacks
         working-directory: cdk
