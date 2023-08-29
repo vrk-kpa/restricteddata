@@ -3,6 +3,8 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { DomainStack } from '../lib/domain-stack';
 import {VpcStack} from "../lib/vpc-stack";
+import {DatabaseStack} from "../lib/database-stack";
+import {KmsKeyStack} from "../lib/kms-key-stack";
 
 const app = new cdk.App();
 
@@ -23,12 +25,53 @@ const VpcStackDev = new VpcStack(app, 'VpcStack-dev', {
     }
 })
 
+
+
+const KmsKeyStackDev = new KmsKeyStack(app, 'KmsKeyStack-dev', {
+    env: {
+        account: devStackProps.account,
+        region: devStackProps.region
+    }
+})
+
+const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
+    env: {
+        account: devStackProps.account,
+        region: devStackProps.region
+    },
+    vpc: VpcStackDev.vpc,
+    multiAz: false,
+    databaseEncryptionKey: KmsKeyStackDev.databaseEncryptionKey,
+    environment: "dev"
+})
+
+
 const VpcStackProd = new VpcStack(app, 'VpcStack-prod', {
     env: {
         account: prodStackProps.account,
         region: prodStackProps.region
     }
 })
+
+const KmsKeyStackProd = new KmsKeyStack(app, 'KmsKeyStack-prod', {
+    env: {
+        account: prodStackProps.account,
+        region: prodStackProps.region
+    }
+})
+
+const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
+    env: {
+        account: prodStackProps.account,
+        region: prodStackProps.region
+    },
+    vpc: VpcStackProd.vpc,
+    multiAz: false,
+    databaseEncryptionKey: KmsKeyStackProd.databaseEncryptionKey,
+    environment: "dev"
+})
+
+
 
 const DomainStackProd = new DomainStack(app, 'DomainStack-prod', {
     env: {
