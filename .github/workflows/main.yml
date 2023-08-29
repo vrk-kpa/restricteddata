@@ -16,7 +16,6 @@ jobs:
   build-and-push:
     name: Build and push containers
     runs-on: ubuntu-latest
-    environment: qa
     needs:
       - build-and-test-containers
     permissions:
@@ -81,3 +80,136 @@ jobs:
             ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
         env:
           REPOSITORY: ${{ vars.REPOSITORY }}
+
+  commit-new-images:
+    name: Commit new image tags
+    runs-on: ubuntu-latest
+    needs:
+      - build-and-test-containers
+      - build-and-push
+    permissions:
+      id-token: write
+      contents: write
+    outputs:
+      sha: ${{ steps.envtemplate.outputs.commit_sha || github.sha }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+
+      - name: Update .env.template to reference new ckan image
+        if: ${{ (needs.build-and-test-containers.outputs.ckan == 'true') }}
+        run: |
+          sed -i.bak -E 's/^(CKAN_IMAGE_TAG[[:blank:]]*=[[:blank:]]*).*/\1\"'"${{ github.sha }}"'\"/' docker/.env.template
+
+      - name: Update .env.template to reference new solr image
+        if: ${{ (needs.build-and-test-containers.outputs.solr == 'true') }}
+        run: |
+          sed -i.bak -E 's/^(SOLR_IMAGE_TAG[[:blank:]]*=[[:blank:]]*).*/\1\"'"${{ github.sha }}"'\"/' docker/.env.template
+
+      - name: Update .env.template to reference new nginx image
+        if: ${{ (needs.build-and-test-containers.outputs.nginx == 'true') }}
+        run: |
+          sed -i.bak -E 's/^(NGINX_IMAGE_TAG[[:blank:]]*=[[:blank:]]*).*/\1\"'"${{ github.sha }}"'\"/' docker/.env.template
+
+      - name: Commit updated .env.template
+        id: envtemplate
+        if: ${{ (needs.build-and-test-containers.outputs.ckan == 'true') ||
+          (needs.build-and-test-containers.outputs.solr == 'true') ||
+          (needs.build-and-test-containers.outputs.nginx == 'true') }}
+        run: |
+          git config user.name "YTP Bot"
+          git config user.email "yhteentoimivuus.kehittajat@gofore.com"
+          git add docker/.env.template
+          git commit -m "[skip ci] .env.template updated by new image tags"
+          git push
+          echo "commit_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+
+  deploy-dev:
+    name: Deploy dev
+    runs-on: ubuntu-latest
+    environment: qa
+    needs:
+      - build-and-push-containers
+      - commit-new-images
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.commit-new-images.outputs.sha }}
+
+      - name: install nodejs v20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node_cdk_v20-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_cdk_v20-
+
+      - name: install cdk npm packages and verify installation
+        working-directory: cdk
+        run: |
+          npm install
+          npx cdk doctor
+
+      - name: build cdk project
+        working-directory: cdk
+        run: |
+          npm run build
+
+      - name: configure environment
+        shell: bash
+        run: |
+          # configure docker
+          cp -f docker/.env.template docker/.env
+          sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
+          sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
+        env:
+          REGISTRY: ${{ vars.REGISTRY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          role-to-assume: ${{ vars.AWS_DEV_DEPLOY_ROLE }}
+          role-session-name: github-actions
+          aws-region: eu-north-1
+
+      - name: synthesize cdk stacks
+        working-directory: cdk
+        run: |
+          npx cdk synth *-dev --quiet >/dev/null 2>&1
+
+      - name: deploy cdk stacks
+        working-directory: cdk
+        run: |
+          npx cdk deploy *-dev --require-approval=never > /tmp/deploy.log 2>&1
+
+      - name: upload log artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy-logs
+          path: /tmp/deploy.log
+
+      - name: Notify Zulip
+        uses: zulip/github-actions-zulip/send-message@v1
+        with:
+          api-key: ${{ secrets.ZULIP_API_KEY }}
+          email: 'avoindata-bot@turina.dvv.fi'
+          organization-url: 'https://turina.dvv.fi'
+          to: 'DGA'
+          type: 'stream'
+          topic: 'Dev Deployments'
+          content: 'Dev deployment succeeded! (${{ github.event.head_commit.message }})'
+
+
+
