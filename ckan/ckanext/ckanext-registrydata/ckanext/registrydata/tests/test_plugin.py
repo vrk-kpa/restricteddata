@@ -49,8 +49,8 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 """
 import pytest
 # import ckanext.registrydata.plugin as plugin
-from ckan.plugins import plugin_loaded, toolkit
-from ckan.tests.factories import Dataset, Sysadmin
+from ckan.plugins import plugin_loaded
+from ckan.tests.factories import Dataset, Sysadmin, Organization, User
 from ckan.tests.helpers import call_action
 
 
@@ -125,7 +125,7 @@ def test_dataset_with_highvalue():
     dataset_fields['highvalue'] = True
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['highvalue'] == dataset_fields['highvalue']
+    assert dataset['highvalue'] == 'true'
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -171,7 +171,8 @@ def test_dataset_with_resource_with_name():
                                                          'sv': 'Test'}
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['name_translated'] == dataset_fields['name_translated']
+    resource = dataset['resources'][0]
+    assert resource['name_translated'] == dataset_fields['resources'][0]['name_translated']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -180,7 +181,8 @@ def test_dataset_with_resource_with_format():
     dataset_fields['resources'][0]['format'] = 'CSV'
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['format'] == dataset_fields['format']
+    resource = dataset['resources'][0]
+    assert resource['format'] == dataset_fields['resources'][0]['format']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -189,7 +191,8 @@ def test_dataset_with_resource_with_size():
     dataset_fields['resources'][0]['size'] = 31415
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['size'] == dataset_fields['size']
+    resource = dataset['resources'][0]
+    assert resource['size'] == dataset_fields['resources'][0]['size']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -199,24 +202,44 @@ def test_dataset_with_resource_with_rights():
                                                            'sv': 'Test'}
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['rights_translated'] == dataset_fields['rights_translated']
+    resource = dataset['resources'][0]
+    assert resource['rights_translated'] == dataset_fields['resources'][0]['rights_translated']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
-def test_dataset_with_resource_with_private():
-    user = Sysadmin()
-    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    author = User()
+    org = Organization(user=author)
+    dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
 
-    try:
-        call_action('package_show', id=d['name'])
-        assert False  # action should throw NotAuthorized
-    except toolkit.NotAuthorized:
-        pass
+    user = User()
+    with app.flask_app.test_request_context():
+        app.flask_app.preprocess_request()
+        public_dataset = call_action('package_show', id=d['name'],
+                                     context={'user': user['name'],
+                                              'ignore_auth': False})
+        assert len(public_dataset['resources']) == 0
 
-    dataset = call_action('package_show', user=user, id=dataset_fields['name'])
-    assert dataset['private'] == dataset_fields['private']
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_dataset_with_resource_with_private(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    author = User()
+    org = Organization(user=author)
+    dataset_fields['owner_org'] = org['id']
+    dataset_fields['resources'][0]['private'] = True
+    d = Dataset(**dataset_fields)
+
+    with app.flask_app.test_request_context():
+        app.flask_app.preprocess_request()
+        dataset = call_action('package_show', id=d['name'],
+                              context={'user': author['name'],
+                                       'ignore_auth': False})
+        resource = dataset['resources'][0]
+        assert resource['private'] == dataset_fields['resources'][0]['private']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -225,7 +248,8 @@ def test_dataset_with_resource_with_maturity():
     dataset_fields['resources'][0]['maturity'] = 'current'
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['maturity'] == dataset_fields['maturity']
+    resource = dataset['resources'][0]
+    assert resource['maturity'] == dataset_fields['resources'][0]['maturity']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -235,7 +259,8 @@ def test_dataset_with_resource_with_description():
                                                                 'sv': 'Test'}
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['description_translated'] == dataset_fields['description_translated']
+    resource = dataset['resources'][0]
+    assert resource['description_translated'] == dataset_fields['resources'][0]['description_translated']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -244,7 +269,8 @@ def test_dataset_with_resource_with_position_info():
     dataset_fields['resources'][0]['position_info'] = 'WGS84'
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['position_info'] == dataset_fields['position_info']
+    resource = dataset['resources'][0]
+    assert resource['position_info'] == dataset_fields['resources'][0]['position_info']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -254,7 +280,8 @@ def test_dataset_with_resource_with_temporal_granularity():
                                                               'sv': ['Test']}
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['temporal_granularity'] == dataset_fields['temporal_granularity']
+    resource = dataset['resources'][0]
+    assert resource['temporal_granularity'] == dataset_fields['resources'][0]['temporal_granularity']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -263,7 +290,8 @@ def test_dataset_with_resource_with_temporal_coverage_from():
     dataset_fields['resources'][0]['temporal_coverage_from'] = '2023-01-01'
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['temporal_coverage_from'] == dataset_fields['temporal_coverage_from']
+    resource = dataset['resources'][0]
+    assert resource['temporal_coverage_from'] == dataset_fields['resources'][0]['temporal_coverage_from']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -272,7 +300,8 @@ def test_dataset_with_resource_with_temporal_coverage_till():
     dataset_fields['resources'][0]['temporal_coverage_till'] = '2033-01-01'
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['temporal_coverage_till'] == dataset_fields['temporal_coverage_till']
+    resource = dataset['resources'][0]
+    assert resource['temporal_coverage_till'] == dataset_fields['resources'][0]['temporal_coverage_till']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -281,4 +310,5 @@ def test_dataset_with_resource_with_geographical_accuracy():
     dataset_fields['resources'][0]['geographical_accuracy'] = 5
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['geographical_accuracy'] == dataset_fields['geographical_accuracy']
+    resource = dataset['resources'][0]
+    assert resource['geographical_accuracy'] == dataset_fields['resources'][0]['geographical_accuracy']
