@@ -179,6 +179,7 @@ ENV DEV_MODE=true
 RUN \
   # install ckan dev requirements
   pip install -r ${SRC_DIR}/ckan/dev-requirements.txt && \
+  pip install pytest-ckan && \
   # enable sudo for ckan user
   apk add --no-cache sudo && \
   addgroup sudo && \
