@@ -4,6 +4,7 @@
 
 **1. Add test instance of Solr to your docker-compose.override.yml**
 
+In the `services` section
 ```yaml
 solr-test:
   image: registrydata/solr:latest
@@ -16,6 +17,11 @@ solr-test:
   volumes:
     - solr_test_data:/opt/solr/server/solr/ckan/data
   restart: unless-stopped
+```
+
+In the `volumes` section (probably need to add it)
+```yaml
+solr_test_data:
 ```
 
 **2. Add configuration to ckanext/ckan/test-core.ini**
