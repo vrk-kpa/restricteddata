@@ -77,7 +77,7 @@ def minimal_dataset_with_one_resource_fields(user):
     )
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins")
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
 def test_minimal_dataset():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     Dataset(**dataset_fields)
