@@ -6,3 +6,6 @@ docker/docker-compose.override.yml
 
 # Local environment
 docker/.env
+
+# CKAN extension unit testing configuration
+ckan/ckanext/ckan

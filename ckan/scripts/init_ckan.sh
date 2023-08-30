@@ -16,6 +16,10 @@ python prerun.py || { echo '[CKAN prerun] FAILED. Exiting...' ; exit 1; }
 echo "Upgrade CKAN database ..."
 ckan -c ${APP_DIR}/production.ini db upgrade
 
+if [[ "${DEV_MODE}" == "true" ]]; then
+  echo "Initializing test database"
+  echo ${DB_CKAN_PASS} | psql -h ${DB_HOST} -U ${DB_CKAN_USER} -c "CREATE DATABASE ckan_test OWNER ${DB_CKAN_USER} ENCODING 'utf-8'"
+fi
 # init ckan extensions
 #echo "init ckan extensions ..."
 
