@@ -79,7 +79,7 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
         for result in results:
             user_name = toolkit.g.user
-            org_id = result.get('organization', {}).get('id', '')
+            org_id = result.get('organization')
             resources = result.get('resources', [])
             allowed_resources = filter_allowed_resources(resources, org_id, user_name)
             result['resources'] = allowed_resources
