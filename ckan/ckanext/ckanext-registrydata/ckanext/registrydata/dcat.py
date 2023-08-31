@@ -1,4 +1,4 @@
-from ckanext.dcat.profiles import EuropeanDCATAP2Profile, RDF, DCT, DCAT, VCARD, Literal, URIRef, BNode
+from ckanext.dcat.profiles import EuropeanDCATAP2Profile, RDF, DCT, DCAT, ADMS, VCARD, Literal, URIRef, BNode
 
 
 class RegistrydataDCATAPProfile(EuropeanDCATAP2Profile):
@@ -39,13 +39,20 @@ class RegistrydataDCATAPProfile(EuropeanDCATAP2Profile):
 
         distributions = list(self.g.subjects(predicate=RDF.type, object=DCAT.Distribution))
         for distribution in distributions:
-            resource_dict = next((r for r in dataset_dict.get('resources', []) if distribution.endswith(r['id'])), None)
+            resource_dict = next((r for r in dataset_dict.get('resources', [])
+                                  if distribution.endswith(r['id'])), None)
+
+            if resource_dict is None:
+                continue
+
             self._add_fluent_text_fields(resource_dict, distribution, [
                 ('name_translated', DCT.title),
                 ('description_translated', DCT.description),
                 ('rights_translated', DCT.rights),
                 ('temporal_granularity', DCAT.temporalResolution),
             ])
+
+            self._add_triple_from_dict(resource_dict, distribution, ADMS.status, 'maturity')
 
         return dataset_dict
 
