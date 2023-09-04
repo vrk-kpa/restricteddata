@@ -48,33 +48,18 @@ To temporary patch the CKAN configuration for the duration of a test you can use
         pass
 """
 import pytest
+
 # import ckanext.registrydata.plugin as plugin
 from ckan.plugins import plugin_loaded
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User
 from ckan.tests.helpers import call_action
+from .utils import minimal_dataset_with_one_resource_fields
 
 
 @pytest.mark.usefixtures("with_plugins")
 def test_plugin():
     assert plugin_loaded("registrydata")
     assert plugin_loaded("registrydata_pages")
-
-
-def minimal_dataset_with_one_resource_fields(user):
-    return dict(
-        user=user,
-        private=False,
-        title_translated={'fi': 'Test', 'sv': 'Test'},
-        notes_translated={'fi': 'Test', 'sv': 'Test'},
-        access_rights='non-public',
-        maintainer='maintainer',
-        maintainer_email=['maintainer@example.com'],
-        license_id='notspecified',
-        keywords={'fi': ['test'], 'sv': ['test']},
-        resources=[dict(
-            url='http://example.com',
-        )]
-    )
 
 
 @pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
