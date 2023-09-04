@@ -9,3 +9,11 @@ docker/.env
 
 # CKAN extension unit testing configuration
 ckan/ckanext/ckan
+
+# Package related things
+**/node_modules
+.npmrc
+
+# Built assets
+**/*.css.map
+assets/src/vendor

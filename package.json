@@ -1,0 +1,39 @@
+{
+  "name": "registrydata",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrk-kpa/registrydata.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vrk-kpa/registrydata/issues"
+  },
+  "readme": "https://github.com/vrk-kpa/registrydata#readme",
+  "scripts": {
+    "build": "gulp localBuild",
+    "watch": "gulp watch",
+    "lint": "gulp lint"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-pro": "^6.4.2",
+    "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
+    "bootstrap": "^5.3.1",
+    "del": "^7.0.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.66.1",
+    "select2": "^4.1.0-rc.0",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard-scss": "^10.0.0",
+    "suomifi-design-tokens": "^5.1.0"
+  }
+}
