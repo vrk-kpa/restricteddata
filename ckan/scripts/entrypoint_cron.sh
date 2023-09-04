@@ -17,7 +17,7 @@ if [[ "${DEV_MODE}" == "true" ]]; then
 fi
 
 # apply templates
-jinja2 ${TEMPLATE_DIR}/production.ini.j2 -o ${APP_DIR}/production.ini
+jinja2 ${TEMPLATE_DIR}/ckan.ini.j2 -o ${APP_DIR}/ckan.ini
 jinja2 ${TEMPLATE_DIR}/who.ini.j2 -o ${APP_DIR}/who.ini
 
 # export environment for cron
