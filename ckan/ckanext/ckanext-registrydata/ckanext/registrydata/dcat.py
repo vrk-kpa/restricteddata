@@ -52,7 +52,23 @@ class RegistrydataDCATAPProfile(EuropeanDCATAP2Profile):
                 ('temporal_granularity', DCAT.temporalResolution),
             ])
 
+            self._add_triple_from_dict(dataset_dict, distribution, DCT.license, 'license_id')
             self._add_triple_from_dict(resource_dict, distribution, ADMS.status, 'maturity')
+            self._add_triple_from_dict(resource_dict, distribution, DCAT.endpointUrl, 'endpoint_url', _type=URIRef)
+            self._add_triple_from_dict(resource_dict, distribution, DCT.conformsTo, 'position_info')
+            self._add_triple_from_dict(resource_dict, distribution, DCAT.spatialResolutionInMeters, 'geographical_accuracy')
+
+            temporal_coverage_from = resource_dict.get('temporal_coverage_from')
+            temporal_coverage_to = resource_dict.get('temporal_coverage_to')
+
+            if temporal_coverage_from or temporal_coverage_to:
+                temporal = BNode()
+                self.g.add((distribution, DCT.temporal, temporal))
+                self.g.add((temporal, RDF.type, DCT.PeriodOfTime))
+                self._add_triple_from_dict(resource_dict, temporal, DCAT.startDate,
+                                           'temporal_coverage_from', date_value=True)
+                self._add_triple_from_dict(resource_dict, temporal, DCAT.endDate,
+                                           'temporal_coverage_till', date_value=True)
 
         return dataset_dict
 

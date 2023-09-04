@@ -205,23 +205,182 @@ def test_dcat_resource_with_minimal_resource(app):
     Dataset(**dataset_fields)
 
     result = fetch_catalog_graph(app).query('''
-        SELECT ?url ?format ?size ?maturity ?rightsFi ?rightsSv
+        SELECT ?url ?format ?size ?license ?maturity ?rightsFi ?rightsSv
         WHERE {
             ?a a dcat:Distribution
             . ?a dcat:accessURL ?url
             . ?a dcterms:format ?format
             . ?a dcat:byteSize ?size
+            . ?a dcterms:license ?license
             . ?a adms:status ?maturity
             . ?a dcterms:rights ?rightsFi FILTER ( lang(?rightsFi) = "fi")
             . ?a dcterms:rights ?rightsSv FILTER ( lang(?rightsSv) = "sv")
         }
         ''')
 
-    [(url, format, size, maturity, rights_fi, rights_sv)] = list(result)
+    [(url, format, size, license, maturity, rights_fi, rights_sv)] = list(result)
 
     assert url == URIRef(resource_fields['url'])
     assert format == Literal(resource_fields['format'])
     assert size == Literal(resource_fields['size'], datatype=XSD.decimal)
+    assert license == Literal(dataset_fields['license_id'])
     assert maturity == Literal(resource_fields['maturity'])
     assert rights_fi == Literal(resource_fields['rights_translated']['fi'], lang='fi')
     assert rights_sv == Literal(resource_fields['rights_translated']['sv'], lang='sv')
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_name(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['name_translated'] = {lang: f'Name {lang}' for lang in ['fi', 'sv', 'en']}
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?nameFi ?nameSv ?nameEn
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcterms:title ?nameFi FILTER ( lang(?nameFi) = "fi")
+            . ?a dcterms:title ?nameSv FILTER ( lang(?nameSv) = "sv")
+            . ?a dcterms:title ?nameEn FILTER ( lang(?nameEn) = "en")
+        }
+        ''')
+
+    [(name_fi, name_sv, name_en)] = list(result)
+
+    assert name_fi == Literal(resource_fields['name_translated']['fi'], lang='fi')
+    assert name_sv == Literal(resource_fields['name_translated']['sv'], lang='sv')
+    assert name_en == Literal(resource_fields['name_translated']['en'], lang='en')
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_endpoint_url(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['endpoint_url'] = 'https://example.com/endpoint'
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?endpointUrl
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcat:endpointUrl ?endpointUrl
+        }
+        ''')
+
+    [(endpoint_url,)] = list(result)
+
+    assert endpoint_url == URIRef(resource_fields['endpoint_url'])
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_description(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['description_translated'] = {lang: f'description {lang}'
+                                                 for lang in ['fi', 'sv', 'en']}
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?descriptionFi ?descriptionSv ?descriptionEn
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcterms:description ?descriptionFi FILTER ( lang(?descriptionFi) = "fi")
+            . ?a dcterms:description ?descriptionSv FILTER ( lang(?descriptionSv) = "sv")
+            . ?a dcterms:description ?descriptionEn FILTER ( lang(?descriptionEn) = "en")
+        }
+        ''')
+
+    [(description_fi, description_sv, description_en)] = list(result)
+
+    assert description_fi == Literal(resource_fields['description_translated']['fi'], lang='fi')
+    assert description_sv == Literal(resource_fields['description_translated']['sv'], lang='sv')
+    assert description_en == Literal(resource_fields['description_translated']['en'], lang='en')
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_position_info(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['position_info'] = 'WGS84'
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?positionInfo
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcterms:conformsTo ?positionInfo
+        }
+        ''')
+
+    [(position_info,)] = list(result)
+
+    assert position_info == Literal(resource_fields['position_info'])
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_temporal_granularity(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['temporal_granularity'] = {lang: [f'temporal_granularity {lang} {x}'
+                                               for x in range(2)] for lang in ['fi', 'sv', 'en']}
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?temporalGranularityFi ?temporalGranularitySv ?temporalGranularityEn
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcat:temporalResolution ?temporalGranularityFi FILTER ( lang(?temporalGranularityFi) = "fi")
+            . ?a dcat:temporalResolution ?temporalGranularitySv FILTER ( lang(?temporalGranularitySv) = "sv")
+            . ?a dcat:temporalResolution ?temporalGranularityEn FILTER ( lang(?temporalGranularityEn) = "en")
+        }
+        ''')
+
+    results = [r for row in result for r in row]
+    for lang, values in resource_fields['temporal_granularity'].items():
+        for value in values:
+            assert Literal(value, lang=lang) in results
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_temporal_coverage(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['temporal_coverage_from'] = '2023-01-01T00:00:00'
+    resource_fields['temporal_coverage_till'] = '2033-01-01T00:00:00'
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?startDate ?endDate
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcterms:temporal ?temporal
+            . ?temporal dcat:startDate ?startDate
+            . ?temporal dcat:endDate ?endDate
+        }
+        ''')
+
+    [(temporal_coverage_from, temporal_coverage_till)] = list(result)
+
+    assert temporal_coverage_from == Literal(resource_fields['temporal_coverage_from'], datatype=XSD.dateTime)
+    assert temporal_coverage_till == Literal(resource_fields['temporal_coverage_till'], datatype=XSD.dateTime)
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_dcat_resource_with_geographical_accuracy(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    resource_fields = dataset_fields['resources'][0]
+    resource_fields['geographical_accuracy'] = 5
+    Dataset(**dataset_fields)
+
+    result = fetch_catalog_graph(app).query('''
+        SELECT ?accuracy
+        WHERE {
+            ?a a dcat:Distribution
+            . ?a dcat:spatialResolutionInMeters ?accuracy
+        }
+        ''')
+
+    [(geographical_accuracy,)] = list(result)
+
+    assert geographical_accuracy == Literal(resource_fields['geographical_accuracy'])
