@@ -48,17 +48,12 @@ To temporary patch the CKAN configuration for the duration of a test you can use
         pass
 """
 import pytest
-import logging
-import rdflib
 
 # import ckanext.registrydata.plugin as plugin
 from ckan.plugins import plugin_loaded
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User
 from ckan.tests.helpers import call_action
 from .utils import minimal_dataset_with_one_resource_fields
-
-
-log = logging.getLogger(__name__)
 
 
 @pytest.mark.usefixtures("with_plugins")
