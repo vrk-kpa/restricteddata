@@ -37,7 +37,7 @@ export class DatabaseStack extends Stack {
             allocatedStorage: 20,
             maxAllocatedStorage: 100,
             vpcSubnets: {
-                subnetType: SubnetType.PRIVATE_ISOLATED
+                subnets: props.vpc.privateSubnets
             },
             securityGroups: [
                 databaseSecurityGroup
