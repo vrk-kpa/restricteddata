@@ -1,7 +1,7 @@
-import { access } from "node:fs";
 import { rm } from "node:fs/promises";
 import gulp from "gulp";
-import { exec } from "child_process";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import cleancss from "gulp-clean-css";
 import gulpStylelint from "@ronilaukkarinen/gulp-stylelint";
@@ -11,6 +11,7 @@ import rename from "gulp-rename";
 
 const { src, watch, dest, parallel, lastRun, series } = gulp;
 const sass = gulpSass(dartSass);
+const promisedExec = promisify(exec);
 
 const rootDir = new URL('./', import.meta.url)
 
@@ -27,11 +28,7 @@ const paths = {
   ckanPublic: "ckan/ckanext/ckanext-registrydata/ckanext/registrydata/public/"
 };
 
-// Check if the file exists in the current directory.
-access(new URL(paths.src.fontawesome, rootDir), (err) => {
-  paths.src.fontawesome = "node_modules/@fortawesome/fontawesome-free/";
-});
-
+// Delete any previously generated assets
 export async function clean() {
   const removables = [
     new URL(paths.ckanAssets + 'css/', rootDir),
@@ -51,20 +48,17 @@ export async function clean() {
   await Promise.all(promises);
 };
 
+// Rebuild ckan webassets to see your changes as webassets are generated only once and cached
 const rebuildCkanWebassets = async () => {
   // Fetch docker container name with the subcommand $(docker ps -f "name=ckan-1" --format {{.Names}})
   // and run ckan asset build within the found container to update webassets for easier development
-  return exec('docker exec $(docker ps -f "name=ckan-1" --format {{.Names}}) ckan asset build', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`${stdout}`);
-  });
+  const { stdout } = await promisedExec('docker exec $(docker ps -f "name=ckan-1" --format {{.Names}}) ckan asset build')
+  console.log(`   [rebuildCkanWebassets]: ${stdout}`.trimEnd());
 }
 
-export const lint = () => {
-  return src(paths.src.scss + "**/*.scss", { since: lastRun(lint) })
+// Lint scss
+export const lintStyles = () => {
+  return src(paths.src.scss + "**/*.scss", { since: lastRun(lintStyles) })
     .pipe(gulpStylelint({
       fix: true,
       failAfterError: true,
@@ -115,35 +109,43 @@ const images = () => {
     .pipe(dest(paths.ckanPublic + "images"))
 };
 
+// Copy fonts
 const fonts = () => {
   return src(paths.src.fonts + "**/*", { since: lastRun(fonts) })
     .pipe(dest(paths.ckanPublic + "fonts"))
 };
 
+// Copy src javascript
 const javascript = () => {
   return src([paths.src.javascript + "**/*"], { since: lastRun(javascript) })
     .pipe(dest(paths.ckanAssets + "javascript"))
 };
 
-const libs = () => {
-  let nodeLibs = ['select2']
-  const libPaths = nodeLibs.map((libName) => {
-    return "node_modules/" + libName + "/**/*";
-  })
-  return src(libPaths, { base: "./node_modules/" }, { since: lastRun(libs) })
-    .pipe(dest(paths.ckanAssets + "vendor/"))
-}
-const copyFontawesome = () => {
-  return src(paths.src.fontawesome + "/**/*")
-    .pipe(dest(paths.ckanPublic + "/vendor/@fortawesome/fontawesome"))
+const copyFontawesomeCss = () => {
+  return src(paths.src.fontawesome + "css/all.css", { since: lastRun(copyFontawesomeCss), allowEmpty: true })
+    .pipe(dest(paths.ckanPublic + "/vendor/@fortawesome/fontawesome/css/"))
 }
 
+const copyFontawesomeFonts = () => {
+  return src(paths.src.fontawesome + "webfonts/*", { since: lastRun(copyFontawesomeFonts) })
+    .pipe(dest(paths.ckanPublic + "/vendor/@fortawesome/fontawesome/webfonts/"))
+}
+
+const copyFontawesome = parallel(copyFontawesomeCss, copyFontawesomeFonts)
+
+// Lint things (scss, js, etc)
+export const lint = parallel(lintStyles)
+
+// Simplified build (default export for CI)
+export const build = parallel(ckanSass, javascript, images, fonts, fontsCss, copyFontawesome);
+
+// Add linting and rebuilding ckan webassets when building locally
+export const localBuild = series(lint, build, rebuildCkanWebassets);
+
+// Watch for any file changes in the assets/src folder (javascript, css, images, fonts) and rebuild the assets
 function watchFiles() {
   watch(paths.src.src + "**/*", { ignoreInitial: false }, localBuild);
 }
 export { watchFiles as watch }
-
-export const build = parallel(ckanSass, javascript, libs, images, fonts, fontsCss, copyFontawesome);
-export const localBuild = series(lint, build, rebuildCkanWebassets);
 
 export default build
