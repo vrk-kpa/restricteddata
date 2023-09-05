@@ -188,8 +188,10 @@ jobs:
 
       - name: synthesize cdk stacks
         working-directory: cdk
+        shell: bash
         run: |
-          npx cdk synth *-dev --quiet >/dev/null 2>&1
+          npx cdk doctor
+          npx cdk synth *-dev 
 
       - name: deploy cdk stacks
         working-directory: cdk
@@ -197,7 +199,6 @@ jobs:
           npx cdk deploy *-dev --require-approval=never > /tmp/deploy.log
 
       - name: upload log artifacts
-        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: deploy-logs
