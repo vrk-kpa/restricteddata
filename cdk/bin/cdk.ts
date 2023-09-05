@@ -5,6 +5,7 @@ import { DomainStack } from '../lib/domain-stack';
 import {VpcStack} from "../lib/vpc-stack";
 import {DatabaseStack} from "../lib/database-stack";
 import {KmsKeyStack} from "../lib/kms-key-stack";
+import {LambdaStack} from "../lib/lambda-stack"
 
 const app = new cdk.App();
 
@@ -17,6 +18,8 @@ const devStackProps = {
     account: '332833619545',
     region: 'eu-north-1'
 }
+
+// Dev
 
 const VpcStackDev = new VpcStack(app, 'VpcStack-dev', {
     env: {
@@ -45,6 +48,18 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
     environment: "dev"
 })
 
+const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  environment: "dev",
+  ckanInstance: DatabaseStackDev.ckanInstance,
+  ckanAdminCredentials: DatabaseStackDev.ckanAdminCredentials,
+  vpc: VpcStackDev.vpc
+})
+
+// Production
 
 const VpcStackProd = new VpcStack(app, 'VpcStack-prod', {
     env: {
@@ -80,3 +95,14 @@ const DomainStackProd = new DomainStack(app, 'DomainStack-prod', {
     },
 
 });
+
+const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  environment: "prod",
+  ckanInstance: DatabaseStackProd.ckanInstance,
+  ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
+  vpc: VpcStackProd.vpc
+})
