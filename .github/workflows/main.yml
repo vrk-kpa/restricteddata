@@ -180,7 +180,7 @@ jobs:
           REPOSITORY: ${{ vars.REPOSITORY }}
 
       - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
           role-session-name: github-actions
@@ -188,10 +188,9 @@ jobs:
 
       - name: synthesize cdk stacks
         working-directory: cdk
-        shell: bash
         run: |
           npx cdk doctor
-          npx cdk synth *-dev 
+          npx cdk synth --all 
 
       - name: deploy cdk stacks
         working-directory: cdk
