@@ -194,7 +194,7 @@ jobs:
       - name: deploy cdk stacks
         working-directory: cdk
         run: |
-          npx cdk deploy *-dev --require-approval=never > /tmp/deploy.log 2>&1
+          npx cdk deploy *-dev --require-approval=never > /tmp/deploy.log
 
       - name: upload log artifacts
         if: failure()
