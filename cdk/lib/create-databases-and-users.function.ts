@@ -6,12 +6,13 @@ import { knex } from 'knex';
 
 
 const {
+  REGION,
   CKAN_SECRET,
   ADMIN_SECRET } = process.env
 
 export const handler: Handler = async (event, context) => {
 
-  const secretsManagerClient = new SecretsManagerClient({region: "eu-west-1"})
+  const secretsManagerClient = new SecretsManagerClient({region: REGION})
   const command = new GetSecretValueCommand({
     SecretId: ADMIN_SECRET
   })

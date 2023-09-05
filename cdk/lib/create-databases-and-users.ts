@@ -3,7 +3,6 @@ import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
 import {aws_ec2, aws_rds} from "aws-cdk-lib";
 import {CreateDatabasesAndUsersProps} from "./create-databases-and-users-props";
 import {Trigger, TriggerFunction} from "aws-cdk-lib/triggers";
-import {Key} from "aws-cdk-lib/aws-kms";
 import {ISecret} from "aws-cdk-lib/aws-secretsmanager";
 
 
@@ -13,18 +12,14 @@ export class CreateDatabasesAndUsers extends Construct {
   constructor(scope: Construct, id: string, props: CreateDatabasesAndUsersProps) {
     super(scope, id);
 
-    const encryptionKey = Key.fromLookup(this, 'EncryptionKey', {
-      aliasName: `alias/secrets-key-${props.environment}`
-    })
-
     this.ckanSecret = new aws_rds.DatabaseSecret(this, "ckanSecret", {
       username: "ckan",
-      encryptionKey: encryptionKey
+      encryptionKey: props.databaseSecretsEncryptionKey
     })
 
     const ckanAdminSecret = props.ckanAdminCredentials.secret
 
-    if (ckanAdminSecret?.secretName !== undefined) {
+    if (ckanAdminSecret?.secretName !== undefined && props.env?.region !== undefined) {
 
       const secGroup = new aws_ec2.SecurityGroup(this, 'LambdaSecurityGroup', {
         vpc: props.vpc
@@ -32,6 +27,7 @@ export class CreateDatabasesAndUsers extends Construct {
 
       const createDatabasesAndUsersFunction = new NodejsFunction(this, 'function', {
         environment: {
+          REGION: props.env.region,
           ADMIN_SECRET: ckanAdminSecret.secretName,
           CKAN_SECRET: this.ckanSecret.secretName,
         },
@@ -52,7 +48,7 @@ export class CreateDatabasesAndUsers extends Construct {
 
       this.ckanSecret.grantRead(createDatabasesAndUsersFunction)
       
-      encryptionKey.grantDecrypt(createDatabasesAndUsersFunction)
+      props.databaseSecretsEncryptionKey.grantDecrypt(createDatabasesAndUsersFunction)
 
       createDatabasesAndUsersFunction.connections.allowTo(props.ckanInstance, aws_ec2.Port.tcp(5432))
 

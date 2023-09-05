@@ -3,6 +3,8 @@ import {Construct} from "constructs";
 
 export class KmsKeyStack extends Stack {
     readonly databaseEncryptionKey: aws_kms.IKey;
+    readonly databaseSecretsEncryptionKey: aws_kms.IKey;
+  
     constructor(scope: Construct, id: string, props: StackProps) {
         super(scope, id, props);
 
@@ -10,6 +12,9 @@ export class KmsKeyStack extends Stack {
 
         })
 
+        this.databaseSecretsEncryptionKey = new aws_kms.Key(this, 'databaseSecretsEncryptionKey', {
+
+        })
     }
 
 }
