@@ -144,18 +144,18 @@ jobs:
         with:
           ref: ${{ needs.commit-new-images.outputs.sha }}
 
-      - name: install nodejs v20
+      - name: install nodejs v18
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: cache node_modules
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node_cdk_v20-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node_cdk_v18-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node_cdk_v20-
+            ${{ runner.os }}-node_cdk_v18-
 
       - name: install cdk npm packages and verify installation
         working-directory: cdk
@@ -168,28 +168,27 @@ jobs:
         run: |
           npm run build
 
-      - name: configure environment
-        shell: bash
-        run: |
-          # configure docker
-          cp -f docker/.env.template docker/.env
-          sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
-          sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
-        env:
-          REGISTRY: ${{ vars.REGISTRY }}
-          REPOSITORY: ${{ vars.REPOSITORY }}
+      #- name: configure environment
+      #  shell: bash
+      #  run: |
+      #    # configure docker
+      #    cp -f docker/.env.template docker/.env
+      #    sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
+      #    sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
+      #  env:
+      #    REGISTRY: ${{ secrets.REGISTRY }}
+      #    REPOSITORY: ${{ vars.REPOSITORY }}
 
-      - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
-          role-session-name: github-actions
-          aws-region: eu-north-1
+      #- name: configure AWS credentials
+      #  uses: aws-actions/configure-aws-credentials@v3
+      #  with:
+      #    role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
+      #    role-session-name: github-actions
+      #    aws-region: eu-north-1
 
       - name: synthesize cdk stacks
         working-directory: cdk
         run: |
-          npx cdk doctor
           npx cdk synth --all 
 
       - name: deploy cdk stacks
