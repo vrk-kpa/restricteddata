@@ -57,7 +57,7 @@ const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
   ckanInstance: DatabaseStackDev.ckanInstance,
   ckanAdminCredentials: DatabaseStackDev.ckanAdminCredentials,
   vpc: VpcStackDev.vpc,
-  databaseSecretsEncryptionKey: KmsKeyStackDev.databaseSecretsEncryptionKey
+  secretsEncryptionKey: KmsKeyStackDev.secretsEncryptionKey
 })
 
 // Production
@@ -106,5 +106,5 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
   ckanInstance: DatabaseStackProd.ckanInstance,
   ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
   vpc: VpcStackProd.vpc,
-  databaseSecretsEncryptionKey: KmsKeyStackProd.databaseSecretsEncryptionKey
+  secretsEncryptionKey: KmsKeyStackProd.secretsEncryptionKey
 })

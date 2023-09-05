@@ -14,7 +14,7 @@ export class CreateDatabasesAndUsers extends Construct {
 
     this.ckanSecret = new aws_rds.DatabaseSecret(this, "ckanSecret", {
       username: "ckan",
-      encryptionKey: props.databaseSecretsEncryptionKey
+      encryptionKey: props.secretsEncryptionKey
     })
 
     const ckanAdminSecret = props.ckanAdminCredentials.secret
@@ -48,7 +48,7 @@ export class CreateDatabasesAndUsers extends Construct {
 
       this.ckanSecret.grantRead(createDatabasesAndUsersFunction)
       
-      props.databaseSecretsEncryptionKey.grantDecrypt(createDatabasesAndUsersFunction)
+      props.secretsEncryptionKey.grantDecrypt(createDatabasesAndUsersFunction)
 
       createDatabasesAndUsersFunction.connections.allowTo(props.ckanInstance, aws_ec2.Port.tcp(5432))
 

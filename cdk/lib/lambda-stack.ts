@@ -15,7 +15,7 @@ export class LambdaStack extends Stack {
       ckanAdminCredentials: props.ckanAdminCredentials,
       vpc: props.vpc,
       environment: props.environment,
-      databaseSecretsEncryptionKey: props.databaseSecretsEncryptionKey
+      secretsEncryptionKey: props.secretsEncryptionKey
     })
 
     this.ckanCredentials = Credentials.fromSecret(createDatabases.ckanSecret);
