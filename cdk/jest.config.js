@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: 'node',
-  roots: ['<rootDir>/test'],
+  roots: ['<rootDir>/test', '<rootDir>/lib'],
   testMatch: ['**/*.test.ts'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
@@ -9,5 +9,6 @@ module.exports = {
     '/node_modules/'
   ],
   collectCoverage: true,
-  coverageDirectory: 'coverage'
+  coverageDirectory: 'coverage',
+  collectCoverageFrom: ['lib/**/*.{ts,tsx}']
 };
