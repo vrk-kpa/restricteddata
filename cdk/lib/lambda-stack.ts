@@ -12,7 +12,7 @@ export class LambdaStack extends Stack {
     super(scope, id, props);
 
     const secretsEncryptionKey = Key.fromLookup(this, 'EncryptionKey', {
-      aliasName: 'secrets-encryption-key'
+      aliasName: `secrets-encryption-key-${props.environment}`
     })
 
     const createDatabases = new CreateDatabasesAndUsers(this, 'create-databases-and-users', {
