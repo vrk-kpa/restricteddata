@@ -47,7 +47,7 @@ export class CreateDatabasesAndUsers extends Construct {
       })
 
       this.ckanSecret.grantRead(createDatabasesAndUsersFunction)
-      
+      ckanAdminSecret.grantRead(createDatabasesAndUsersFunction)
       props.secretsEncryptionKey.grantDecrypt(createDatabasesAndUsersFunction)
 
       createDatabasesAndUsersFunction.connections.allowTo(props.ckanInstance, aws_ec2.Port.tcp(5432))
