@@ -1,13 +1,14 @@
-import { rm } from "node:fs/promises";
+
 import gulp from "gulp";
 import { exec } from "node:child_process";
+import { rm } from "node:fs/promises";
 import { promisify } from "node:util";
-import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
-import cleancss from "gulp-clean-css";
-import gulpStylelint from "@ronilaukkarinen/gulp-stylelint";
 import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
+import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
+import cleancss from "gulp-clean-css";
 import rename from "gulp-rename";
+import gulpStylelint from "@ronilaukkarinen/gulp-stylelint";
 
 const { src, watch, dest, parallel, lastRun, series } = gulp;
 const sass = gulpSass(dartSass);
