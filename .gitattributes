@@ -21,7 +21,10 @@ crontab text eol=lf
 *.png binary
 *.jpg binary
 *.gif binary
+*.svg binary
 *.ttf binary
+*.woff binary
+*.woff2 binary
 *.swf binary
 *.zip binary
 *.sqlite binary
