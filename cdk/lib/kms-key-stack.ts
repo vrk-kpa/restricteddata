@@ -9,7 +9,7 @@ export class KmsKeyStack extends Stack {
         super(scope, id, props);
 
         this.databaseEncryptionKey = new aws_kms.Key(this, 'databaseEncryptionKey', {
-
+            alias: `database-encryption-key-${props.environment}`
         })
 
         const secretsEncryptionKey = new aws_kms.Key(this, 'secretsEncryptionKey', {

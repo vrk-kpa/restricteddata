@@ -5,6 +5,7 @@ import * as rds from 'aws-cdk-lib/aws-rds';
 import {DatabaseStackProps} from "./database-stack-props";
 import {Credentials} from "aws-cdk-lib/aws-rds";
 import {InstanceType, SubnetType} from "aws-cdk-lib/aws-ec2";
+import {Key} from "aws-cdk-lib/aws-kms";
 
 export class DatabaseStack extends Stack {
     readonly ckanAdminCredentials: rds.Credentials;
@@ -23,9 +24,13 @@ export class DatabaseStack extends Stack {
             vpc: props.vpc
         })
 
+        const encryptionKey = Key.fromLookup(this, 'EncryptionKey', {
+            aliasName: `database-encryption-key-${props.environment}`
+        })
+
         const databaseSecret = new aws_rds.DatabaseSecret(this,'databaseAdminSecret', {
             username: "databaseAdmin",
-            encryptionKey: props.databaseEncryptionKey
+            encryptionKey: encryptionKey
         });
 
         this.ckanAdminCredentials = Credentials.fromSecret(databaseSecret);
