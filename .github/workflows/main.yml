@@ -163,10 +163,10 @@ jobs:
           npm install
           npx cdk doctor
 
-      - name: build cdk project
-        working-directory: cdk
-        run: |
-          npm run build
+      #- name: build cdk project
+      #  working-directory: cdk
+      #  run: |
+      #    npm run build
 
       - name: configure environment
         shell: bash
@@ -176,11 +176,11 @@ jobs:
           sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
           sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
         env:
-          REGISTRY: ${{ vars.REGISTRY }}
+          REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
 
       - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1-node16
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
           role-session-name: github-actions

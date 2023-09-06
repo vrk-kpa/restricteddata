@@ -6,6 +6,7 @@ import {VpcStack} from "../lib/vpc-stack";
 import {DatabaseStack} from "../lib/database-stack";
 import {KmsKeyStack} from "../lib/kms-key-stack";
 import {LambdaStack} from "../lib/lambda-stack"
+import {LoadBalancerStack} from "../lib/load-balancer-stack";
 
 const app = new cdk.App();
 
@@ -42,10 +43,19 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
         account: devStackProps.account,
         region: devStackProps.region
     },
+    environment: "dev",
     vpc: VpcStackDev.vpc,
     multiAz: false,
-    databaseEncryptionKey: KmsKeyStackDev.databaseEncryptionKey,
-    environment: "dev"
+    databaseEncryptionKey: KmsKeyStackDev.databaseEncryptionKey
+})
+
+const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev', {
+    env: {
+        account: devStackProps.account,
+        region: devStackProps.region
+    },
+    environment: "dev",
+    vpc: VpcStackDev.vpc
 })
 
 const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
@@ -61,6 +71,7 @@ const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
 })
 
 // Production
+
 
 const VpcStackProd = new VpcStack(app, 'VpcStack-prod', {
     env: {
@@ -81,10 +92,11 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
         account: prodStackProps.account,
         region: prodStackProps.region
     },
+    environment: "prod",
     vpc: VpcStackProd.vpc,
     multiAz: false,
     databaseEncryptionKey: KmsKeyStackProd.databaseEncryptionKey,
-    environment: "dev"
+
 })
 
 
