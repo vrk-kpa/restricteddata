@@ -144,18 +144,18 @@ jobs:
         with:
           ref: ${{ needs.commit-new-images.outputs.sha }}
 
-      - name: install nodejs v18
+      - name: install nodejs v20
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: cache node_modules
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node_cdk_v18-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node_cdk_v20-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node_cdk_v18-
+            ${{ runner.os }}-node_cdk_v20-
 
       - name: install cdk npm packages and verify installation
         working-directory: cdk
@@ -163,40 +163,41 @@ jobs:
           npm install
           npx cdk doctor
 
-      - name: build cdk project
-        working-directory: cdk
-        run: |
-          npm run build
-
-      #- name: configure environment
-      #  shell: bash
+      #- name: build cdk project
+      #  working-directory: cdk
       #  run: |
-      #    # configure docker
-      #    cp -f docker/.env.template docker/.env
-      #    sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
-      #    sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
-      #  env:
-      #    REGISTRY: ${{ secrets.REGISTRY }}
-      #    REPOSITORY: ${{ vars.REPOSITORY }}
+      #    npm run build
 
-      #- name: configure AWS credentials
-      #  uses: aws-actions/configure-aws-credentials@v3
-      #  with:
-      #    role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
-      #    role-session-name: github-actions
-      #    aws-region: eu-north-1
+      - name: configure environment
+        shell: bash
+        run: |
+          # configure docker
+          cp -f docker/.env.template docker/.env
+          sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
+          sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
+          role-session-name: github-actions
+          aws-region: eu-north-1
 
       - name: synthesize cdk stacks
         working-directory: cdk
         run: |
-          npx cdk synth --all 
+          npx cdk synth *-dev --quiet >/dev/null 2>&1
 
       - name: deploy cdk stacks
         working-directory: cdk
         run: |
-          npx cdk deploy *-dev --require-approval=never > /tmp/deploy.log
+          npx cdk deploy *-dev --require-approval=never > /tmp/deploy.log 2>&1
 
       - name: upload log artifacts
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: deploy-logs
