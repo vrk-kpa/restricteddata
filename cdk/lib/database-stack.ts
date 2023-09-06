@@ -1,11 +1,15 @@
 import {aws_ec2, aws_rds, Stack} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import * as ssm from 'aws-cdk-lib/aws-ssm';
+import * as rds from 'aws-cdk-lib/aws-rds';
 import {DatabaseStackProps} from "./database-stack-props";
 import {Credentials} from "aws-cdk-lib/aws-rds";
 import {InstanceType, SubnetType} from "aws-cdk-lib/aws-ec2";
 
 export class DatabaseStack extends Stack {
+    readonly ckanAdminCredentials: rds.Credentials;
+    readonly ckanInstance: rds.IDatabaseInstance;
+  
     constructor(scope: Construct, id: string, props: DatabaseStackProps) {
         super(scope, id, props);
 
@@ -24,12 +28,12 @@ export class DatabaseStack extends Stack {
             encryptionKey: props.databaseEncryptionKey
         });
 
-        const databaseCredentials = Credentials.fromSecret(databaseSecret);
+        this.ckanAdminCredentials = Credentials.fromSecret(databaseSecret);
 
 
-        const databaseInstance = new aws_rds.DatabaseInstance(this, 'databaseInstance', {
+        this.ckanInstance = new aws_rds.DatabaseInstance(this, 'databaseInstance', {
             engine: aws_rds.DatabaseInstanceEngine.POSTGRES,
-            credentials: databaseCredentials,
+            credentials: this.ckanAdminCredentials,
             vpc: props.vpc,
             port: 5432,
             instanceType: new InstanceType(pDatabaseInstanceType.stringValue),
