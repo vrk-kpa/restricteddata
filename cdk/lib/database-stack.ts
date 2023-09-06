@@ -25,7 +25,7 @@ export class DatabaseStack extends Stack {
         })
 
         const encryptionKey = Key.fromLookup(this, 'EncryptionKey', {
-            aliasName: `database-encryption-key-${props.environment}`
+            aliasName: `alias/database-encryption-key-${props.environment}`
         })
 
         const databaseSecret = new aws_rds.DatabaseSecret(this,'databaseAdminSecret', {
