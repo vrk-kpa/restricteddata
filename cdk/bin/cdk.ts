@@ -35,7 +35,9 @@ const KmsKeyStackDev = new KmsKeyStack(app, 'KmsKeyStack-dev', {
     env: {
         account: devStackProps.account,
         region: devStackProps.region
-    }
+    },
+    environment: "dev",
+    vpc: VpcStackDev.vpc,
 })
 
 const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
@@ -67,7 +69,6 @@ const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
   ckanInstance: DatabaseStackDev.ckanInstance,
   ckanAdminCredentials: DatabaseStackDev.ckanAdminCredentials,
   vpc: VpcStackDev.vpc,
-  secretsEncryptionKey: KmsKeyStackDev.secretsEncryptionKey
 })
 
 // Production
@@ -84,7 +85,9 @@ const KmsKeyStackProd = new KmsKeyStack(app, 'KmsKeyStack-prod', {
     env: {
         account: prodStackProps.account,
         region: prodStackProps.region
-    }
+    },
+    environment: "prod",
+    vpc: VpcStackProd.vpc,
 })
 
 const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
@@ -118,5 +121,4 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
   ckanInstance: DatabaseStackProd.ckanInstance,
   ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
   vpc: VpcStackProd.vpc,
-  secretsEncryptionKey: KmsKeyStackProd.secretsEncryptionKey
 })
