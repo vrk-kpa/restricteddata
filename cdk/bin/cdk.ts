@@ -47,8 +47,7 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
     },
     environment: "dev",
     vpc: VpcStackDev.vpc,
-    multiAz: false,
-    databaseEncryptionKey: KmsKeyStackDev.databaseEncryptionKey
+    multiAz: false
 })
 
 const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev', {
@@ -97,8 +96,7 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
     },
     environment: "prod",
     vpc: VpcStackProd.vpc,
-    multiAz: false,
-    databaseEncryptionKey: KmsKeyStackProd.databaseEncryptionKey,
+    multiAz: false
 
 })
 
