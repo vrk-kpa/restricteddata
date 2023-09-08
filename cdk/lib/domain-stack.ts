@@ -14,6 +14,7 @@ export class DomainStack extends cdk.Stack {
     if (props.crossAccountId) {
       const role = new aws_iam.Role(this, 'Route53CrossDelegateRole', {
         assumedBy: new aws_iam.AccountPrincipal(props.crossAccountId),
+        roleName: "Route53CrossDelegateRole"
       })
 
       publicZone.grantDelegation(role)

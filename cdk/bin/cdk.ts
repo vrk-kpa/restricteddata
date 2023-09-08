@@ -88,7 +88,7 @@ const SubDomainStackDev = new SubDomainStack(app, 'SubDomainStack-dev', {
     },
     prodAccountId: prodStackProps.account,
     loadBalancer: LoadBalancerStackDev.loadBalancer,
-    recordName: "dev"
+    subDomainName: "dev"
 })
 
 
@@ -140,13 +140,4 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
   ckanInstance: DatabaseStackProd.ckanInstance,
   ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
   vpc: VpcStackProd.vpc,
-})
-
-const SubDomainStackProd = new SubDomainStack(app, 'SubDomainStack-prod', {
-    env: {
-        account: prodStackProps.account,
-        region: prodStackProps.region,
-    },
-    loadBalancer: LoadBalancerStackProd.loadBalancer,
-    recordName: "www"
 })
