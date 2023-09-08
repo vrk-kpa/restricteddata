@@ -4,7 +4,8 @@ import {DomainStack} from '../lib/domain-stack';
 
 test("Hosted zone created", () => {
     const app = new cdk.App();
-    const stack = new DomainStack(app, 'DomainStack-test');
+    const stack = new DomainStack(app, 'DomainStack-test', {
+    });
 
     const template = Template.fromStack(stack);
 
