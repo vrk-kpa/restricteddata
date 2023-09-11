@@ -154,8 +154,8 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
 
 const CertificateStackProd = new CertificateStack(app, 'CertificateStack-prod', {
   env: {
-    account: devStackProps.account,
-    region: devStackProps.region,
+    account: prodStackProps.account,
+    region: prodStackProps.region,
   },
   zone: DomainStackProd.publicZone
 })
