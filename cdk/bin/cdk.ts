@@ -9,6 +9,7 @@ import {LambdaStack} from "../lib/lambda-stack"
 import {LoadBalancerStack} from "../lib/load-balancer-stack";
 import {SubDomainStack} from "../lib/sub-domain-stack";
 import {BackupStack} from "../lib/backup-stack";
+import {CertificateStack} from "../lib/certificate-stack";
 
 const app = new cdk.App();
 
@@ -105,6 +106,14 @@ const SubDomainStackDev = new SubDomainStack(app, 'SubDomainStack-dev', {
     subDomainName: "dev"
 })
 
+const CertificateStackDev = new CertificateStack(app, 'CertificateStack-dev', {
+    env: {
+        account: devStackProps.account,
+        region: devStackProps.region,
+    },
+    zone: SubDomainStackDev.subZone
+})
+
 
 // Production
 
@@ -167,4 +176,12 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
   ckanInstance: DatabaseStackProd.ckanInstance,
   ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
   vpc: VpcStackProd.vpc,
+})
+
+const CertificateStackProd = new CertificateStack(app, 'CertificateStack-prod', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  zone: DomainStackProd.publicZone
 })
