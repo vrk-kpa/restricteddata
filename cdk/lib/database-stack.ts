@@ -6,6 +6,7 @@ import {DatabaseStackProps} from "./database-stack-props";
 import {Credentials} from "aws-cdk-lib/aws-rds";
 import {InstanceType, SubnetType} from "aws-cdk-lib/aws-ec2";
 import {Key} from "aws-cdk-lib/aws-kms";
+import * as bak from "aws-cdk-lib/aws-backup";
 
 export class DatabaseStack extends Stack {
     readonly ckanAdminCredentials: rds.Credentials;
@@ -54,5 +55,12 @@ export class DatabaseStack extends Stack {
 
         })
 
+        if (props.backups && props.backupPlan ) {
+            props.backupPlan.addSelection('backupPlanDatabaseSelection', {
+                resources: [
+                    bak.BackupResource.fromRdsDatabaseInstance(this.ckanInstance)
+                ]
+            });
+        }
     }
 }
