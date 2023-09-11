@@ -8,6 +8,7 @@ import {KmsKeyStack} from "../lib/kms-key-stack";
 import {LambdaStack} from "../lib/lambda-stack"
 import {LoadBalancerStack} from "../lib/load-balancer-stack";
 import {SubDomainStack} from "../lib/sub-domain-stack";
+import {BackupStack} from "../lib/backup-stack";
 
 const app = new cdk.App();
 
@@ -91,6 +92,17 @@ const SubDomainStackDev = new SubDomainStack(app, 'SubDomainStack-dev', {
     subDomainName: "dev"
 })
 
+const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
+    env: {
+        account: devStackProps.account,
+        region: devStackProps.region,
+    },
+    vpc: VpcStackDev.vpc,
+    environment: "dev",
+    importVault: false,
+    backups: true
+})
+
 
 // Production
 
@@ -140,4 +152,15 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
   ckanInstance: DatabaseStackProd.ckanInstance,
   ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
   vpc: VpcStackProd.vpc,
+})
+
+const BackupStackProd = new BackupStack(app, 'BackupStack-prod', {
+    env: {
+        account: prodStackProps.account,
+        region: prodStackProps.region,
+    },
+    vpc: VpcStackProd.vpc,
+    environment: "prod",
+    importVault: false,
+    backups: true
 })
