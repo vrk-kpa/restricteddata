@@ -4,11 +4,11 @@ import {aws_iam, aws_route53} from "aws-cdk-lib";
 import {DomainStackProps} from "./domain-stack-props";
 
 export class DomainStack extends cdk.Stack {
+  readonly publicZone: aws_route53.PublicHostedZone;
   constructor(scope: Construct, id: string, props: DomainStackProps) {
-
     super(scope, id, props);
 
-    const publicZone = new aws_route53.PublicHostedZone(this, "HostedZone", {
+    this.publicZone = new aws_route53.PublicHostedZone(this, "HostedZone", {
       zoneName: "rekisteridata.fi",
     })
     if (props.crossAccountId) {
@@ -17,7 +17,7 @@ export class DomainStack extends cdk.Stack {
         roleName: "Route53CrossDelegateRole"
       })
 
-      publicZone.grantDelegation(role)
+      this.publicZone.grantDelegation(role)
     }
   }
 }
