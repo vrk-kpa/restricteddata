@@ -1,4 +1,4 @@
-import {aws_ec2, aws_rds, Stack} from "aws-cdk-lib";
+import {aws_ec2, aws_elasticache, aws_rds, Stack} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as rds from 'aws-cdk-lib/aws-rds';
@@ -11,7 +11,7 @@ import * as bak from "aws-cdk-lib/aws-backup";
 export class DatabaseStack extends Stack {
     readonly ckanAdminCredentials: rds.Credentials;
     readonly ckanInstance: rds.IDatabaseInstance;
-  
+
     constructor(scope: Construct, id: string, props: DatabaseStackProps) {
         super(scope, id, props);
 
@@ -62,5 +62,29 @@ export class DatabaseStack extends Stack {
                 ]
             });
         }
+
+        const redisSubnets = props.vpc.selectSubnets({
+          subnets: props.vpc.privateSubnets
+        });
+
+        const redisSubnetGroup = new aws_elasticache.CfnSubnetGroup(this, 'redisSubnetGroup', {
+          subnetIds: redisSubnets.subnetIds,
+          description: "Private subnets for redis cluster"
+        })
+
+        const redisSecurityGroup = new aws_ec2.SecurityGroup(this, 'RedisSecurityGroup', {
+          vpc: props.vpc
+        })
+
+        const redisCluster = new aws_elasticache.CfnCacheCluster(this, 'RedisCluster', {
+          cacheNodeType: props.cacheNodeType,
+          engine: "redis",
+          engineVersion: "6.x",
+          numCacheNodes: props.numCacheNodes,
+          cacheSubnetGroupName: redisSubnetGroup.ref,
+          port: 6379,
+          preferredMaintenanceWindow: 'sun:23:00-mon:01:30',
+          vpcSecurityGroupIds: [redisSecurityGroup.securityGroupId],
+      })
     }
 }

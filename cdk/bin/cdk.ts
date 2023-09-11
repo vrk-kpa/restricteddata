@@ -73,7 +73,9 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
     vpc: VpcStackDev.vpc,
     multiAz: false,
     backups: true,
-    backupPlan: BackupStackDev.backupPlan
+    backupPlan: BackupStackDev.backupPlan,
+    cacheNodeType: 'cache.t3.micro',
+    numCacheNodes: 1
 })
 
 const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev', {
@@ -154,8 +156,9 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
     vpc: VpcStackProd.vpc,
     multiAz: false,
     backups: true,
-    backupPlan: BackupStackProd.backupPlan
-
+    backupPlan: BackupStackProd.backupPlan,
+    cacheNodeType: 'cache.t3.micro',
+    numCacheNodes: 1
 })
 
 const LoadBalancerStackProd = new LoadBalancerStack(app, 'LoadBalancerStack-prod', {

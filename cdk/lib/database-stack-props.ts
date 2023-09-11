@@ -5,4 +5,7 @@ export interface DatabaseStackProps extends CommonStackProps {
     multiAz: boolean;
     backups: boolean;
     backupPlan: aws_backup.BackupPlan;
+    cacheNodeType: string;
+    numCacheNodes: number;
 }
+
