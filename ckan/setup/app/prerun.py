@@ -25,7 +25,7 @@ import json
 
 import time
 
-ckan_ini = os.environ.get('CKAN_INI', '/srv/app/production.ini')
+ckan_ini = os.environ.get('CKAN_INI', '/srv/app/ckan.ini')
 
 RETRY = 5
 
@@ -75,7 +75,7 @@ def check_solr_connection(retry=None):
     search_url = '{url}/schema/name?wt=json'.format(url=url)
 
 
- 
+
     try:
         if not username:
             connection = urllib.request.urlopen(search_url)
@@ -97,7 +97,7 @@ def check_solr_connection(retry=None):
         else:
             print('[prerun] Succesfully connected to solr, but CKAN schema not found')
             sys.exit(1)
-           
+
 def init_db():
 
     print('[prerun] Start init_db...')

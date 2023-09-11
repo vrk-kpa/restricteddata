@@ -1,7 +1,7 @@
 {% import 'macros/form.html' as form %}
 {% import 'scheming/macros/form.html' as form_custom %}
 
-{% asset "ytp_resources/ytp_select2_js" %}
+{% asset "registrydata/rd_select2_tags_js" %}
 
 {% set languages = h.fluent_form_languages(field, entity_type, object_type, schema) %}
 
@@ -23,7 +23,7 @@
     value=data[field.field_name + '-' + lang]
     or ','.join(data.get(field.field_name, {}).get(lang, [])),
     error=errors[field.field_name + '-' + lang],
-    classes=['control-full', 'label-on-top', 'ytp-select2'],
+    classes=['control-full', 'label-on-top', 'rd_select2-tags'],
     attrs=attrs_with_locale,
     is_required=h.scheming_field_only_default_required(field, lang),
     description=description

@@ -21,4 +21,22 @@ jobs:
       - name: Run ruff
         run: |
           ruff check --format=github ckan
-          
+
+  stylelint:
+    name: stylelint
+    runs-on: ubuntu-latest
+    container: node:20
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          cat <<EOT >> .npmrc
+          @fortawesome:registry=https://npm.fontawesome.com/
+          //npm.fontawesome.com/:_authToken=$NPM_TOKEN
+          EOT
+          npm ci
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: run stylelint
+        run: npx stylelint "src/scss" -f github
+        working-directory: ./assets

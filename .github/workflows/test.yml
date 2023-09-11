@@ -19,6 +19,9 @@ on:
       environment:
         description: "Changes in docker environment"
         value: ${{ jobs.detect-changes.outputs.environment }}
+      assets:
+        description: "Change in assets"
+        value: ${{ jobs.detect-changes.outputs.assets }}
 
 jobs:
   detect-changes:
@@ -53,7 +56,7 @@ jobs:
             submodules: recursive
             build-frontend: true
             name: ckan
-            build-container: ${{ needs.detect-changes.outputs.ckan == 'true' }}
+            build-container: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true') }}
 
     steps:
       - name: checkout
@@ -65,6 +68,38 @@ jobs:
       - name: setup docker buildx
         if: ${{ matrix.build-container == true }}
         uses: docker/setup-buildx-action@v2
+
+      - name: configure NPM credentials
+        if: ${{ matrix.build-frontend == true && matrix.build-container == true }}
+        run: |
+          cat <<EOT >> .npmrc
+          @fortawesome:registry=https://npm.fontawesome.com/
+          //npm.fontawesome.com/:_authToken=$NPM_TOKEN
+          EOT
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: install nodejs v20
+        if: ${{ matrix.build-frontend == true && matrix.build-container == true }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-node_v20-
+
+      - name: install npm packages
+        if: ${{ matrix.build-frontend == true && matrix.build-container == true }}
+        run: npm ci
+
+      - name: build frontend with gulp
+        if: ${{ matrix.build-frontend == true && matrix.build-container == true }}
+        run: npx gulp
 
       - name: build images
         if: ${{ matrix.build-container == true }}

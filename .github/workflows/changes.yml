@@ -15,6 +15,9 @@ on:
       environment:
         description: "Changes in docker environment"
         value: ${{ jobs.changes_in_containers.outputs.environment }}
+      assets:
+        description: "Changes in frontend assets"
+        value: ${{ jobs.changes_in_containers.outputs.assets }}
 
 jobs:
   changes_in_containers:
@@ -24,6 +27,7 @@ jobs:
       nginx: ${{ steps.filter.outputs.nginx }}
       solr: ${{ steps.filter.outputs.solr }}
       environment: ${{ steps.filter.outputs.environment }}
+      assets: ${{ steps.filter.outputs.assets }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -44,3 +48,4 @@ jobs:
             solr: docker/solr/**
             nginx: docker/nginx/**
             environment: docker/*
+            assets: assets/**

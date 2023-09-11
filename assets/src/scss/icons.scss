@@ -1,0 +1,17 @@
+.icon {
+  &.chevron-right {
+    background-image: url("../images/chevron-right.svg");
+  }
+
+  &.group {
+    background-image: url("../images/icon-group.svg");
+  }
+
+  &.suomifi {
+    background-image: url("../images/icon-suomifi.svg");
+  }
+
+  &.web-service {
+    background-image: url("../images/icon-web-service.svg");
+  }
+}
