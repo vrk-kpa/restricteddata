@@ -1,15 +1,23 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import {aws_route53} from "aws-cdk-lib";
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import {aws_iam, aws_route53} from "aws-cdk-lib";
+import {DomainStackProps} from "./domain-stack-props";
 
 export class DomainStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: DomainStackProps) {
+
     super(scope, id, props);
 
-    new aws_route53.PublicHostedZone(this, "HostedZone", {
-      zoneName: "rekisteridata.fi"
+    const publicZone = new aws_route53.PublicHostedZone(this, "HostedZone", {
+      zoneName: "rekisteridata.fi",
     })
+    if (props.crossAccountId) {
+      const role = new aws_iam.Role(this, 'Route53CrossDelegateRole', {
+        assumedBy: new aws_iam.AccountPrincipal(props.crossAccountId),
+        roleName: "Route53CrossDelegateRole"
+      })
 
+      publicZone.grantDelegation(role)
+    }
   }
 }

@@ -7,6 +7,7 @@ import {DatabaseStack} from "../lib/database-stack";
 import {KmsKeyStack} from "../lib/kms-key-stack";
 import {LambdaStack} from "../lib/lambda-stack"
 import {LoadBalancerStack} from "../lib/load-balancer-stack";
+import {SubDomainStack} from "../lib/sub-domain-stack";
 
 const app = new cdk.App();
 
@@ -19,6 +20,16 @@ const devStackProps = {
     account: '332833619545',
     region: 'eu-north-1'
 }
+
+// Common
+
+const DomainStackProd = new DomainStack(app, 'DomainStack-prod', {
+    env: {
+        account: prodStackProps.account,
+        region: prodStackProps.region
+    },
+    crossAccountId: devStackProps.account
+});
 
 // Dev
 
@@ -70,6 +81,17 @@ const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
   vpc: VpcStackDev.vpc,
 })
 
+const SubDomainStackDev = new SubDomainStack(app, 'SubDomainStack-dev', {
+    env: {
+        account: devStackProps.account,
+        region: devStackProps.region,
+    },
+    prodAccountId: prodStackProps.account,
+    loadBalancer: LoadBalancerStackDev.loadBalancer,
+    subDomainName: "dev"
+})
+
+
 // Production
 
 
@@ -100,15 +122,14 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
 
 })
 
-
-
-const DomainStackProd = new DomainStack(app, 'DomainStack-prod', {
+const LoadBalancerStackProd = new LoadBalancerStack(app, 'LoadBalancerStack-prod', {
     env: {
         account: prodStackProps.account,
         region: prodStackProps.region
     },
-
-});
+    environment: "prod",
+    vpc: VpcStackProd.vpc
+})
 
 const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
   env: {
