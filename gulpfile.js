@@ -84,7 +84,7 @@ const fontsCss = () => {
     .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded' }).on('error', sass.logError))
     .pipe(cleancss({ keepBreaks: false }))
     .pipe(rename('fonts.css'))
-    .pipe(dest(paths.ckanPublic + "css"))
+    .pipe(dest(paths.ckanPublic + "fonts"))
 };
 
 // Optimize images
@@ -124,12 +124,12 @@ const javascript = () => {
 
 const copyFontawesomeCss = () => {
   return src(paths.src.fontawesome + "css/all.css", { since: lastRun(copyFontawesomeCss), allowEmpty: true })
-    .pipe(dest(paths.ckanPublic + "/vendor/@fortawesome/fontawesome/css/"))
+    .pipe(dest(paths.ckanAssets + "/vendor/fontawesome/css/"))
 }
 
 const copyFontawesomeFonts = () => {
   return src(paths.src.fontawesome + "webfonts/*", { since: lastRun(copyFontawesomeFonts) })
-    .pipe(dest(paths.ckanPublic + "/vendor/@fortawesome/fontawesome/webfonts/"))
+    .pipe(dest(paths.ckanPublic + "/vendor/fontawesome/webfonts/"))
 }
 
 const copyFontawesome = parallel(copyFontawesomeCss, copyFontawesomeFonts)

@@ -1,0 +1,13 @@
+@use "variables";
+
+@mixin bold {
+  font-weight: variables.$font-weight-bold;
+}
+
+@mixin small {
+  font-size: variables.$font-size-sm;
+}
+
+@mixin lead {
+  font-size: variables.$font-size-lg;
+}

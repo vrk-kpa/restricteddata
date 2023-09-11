@@ -1,0 +1,17 @@
+@use "suomifi-design-tokens/dist/tokens";
+
+// File paths for url()s
+$font-path: "../../../fonts";
+$image-path: "../../../images";
+$vendor-path: "../../../vendor";
+
+// Colors
+$registrydata-primary: tokens.$fi-color-success-dark1;
+$registrydata-secondary: tokens.$fi-color-success-secondary;
+$suomifi-primary: tokens.$fi-color-brand-base;
+
+// Text
+$font-size-lg: 22px;
+$font-size-default: 18px;
+$font-size-sm: 16px;
+$font-weight-bold: 600;

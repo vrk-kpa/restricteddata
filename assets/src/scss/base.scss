@@ -1,0 +1,85 @@
+@use "suomifi-design-tokens/dist/tokens";
+@use "mixins";
+
+%body-text {
+  @include tokens.fi-text-body-text;
+}
+
+body,
+p {
+  @extend %body-text;
+
+  .bold,
+  b {
+    @include mixins.bold;
+  }
+
+  .small,
+  small {
+    @include mixins.small;
+  }
+
+  .lead {
+    @extend %body-text;
+    @include mixins.lead;
+  }
+}
+
+body,
+.main {
+  background: tokens.$fi-color-depth-light3;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: inherit;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  @include tokens.fi-text-heading1;
+}
+
+h2 {
+  @include tokens.fi-text-heading2;
+}
+
+h3 {
+  @include tokens.fi-text-heading3;
+}
+
+h4 {
+  @include tokens.fi-text-heading4;
+}
+
+h5 {
+  @include tokens.fi-text-heading5;
+}
+
+a {
+  color: tokens.$fi-color-highlight-base;
+
+  &:hover,
+  &:focus {
+    color: tokens.$fi-color-highlight-base;
+  }
+}
+
+.form-control,
+textarea {
+  color: tokens.$fi-color-black-base;
+}
+
+.form-control[readonly] {
+  color: tokens.$fi-color-depth-dark2;
+}
+
+::selection {
+  background: tokens.$fi-color-brand-base;
+  color: tokens.$fi-color-white-base;
+  text-shadow: none;
+}
