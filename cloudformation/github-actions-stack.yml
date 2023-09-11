@@ -62,6 +62,20 @@ Resources:
               - Effect: Allow
                 Action: "ecr:GetAuthorizationToken"
                 Resource: "*"
+        - PolicyName: cfn-access
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "cloudformation:*"
+                Resource: "*"
+        - PolicyName: sts-cdk-assume-permission
+          PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: Allow
+                  Action: "sts:AssumeRole"
+                  Resource: !Sub "arn:aws:iam::${AWS::AccountId}:role/cdk-*"
 
   BuildRole:
     Type: AWS::IAM::Role
