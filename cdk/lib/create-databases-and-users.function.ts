@@ -45,7 +45,8 @@ export const handler: Handler = async (event, context) => {
       password: credObj.password,
       host: credObj.host,
       port: credObj.port,
-      database: "postgres"
+      database: "postgres",
+      ssl: true
     }
   })
 
