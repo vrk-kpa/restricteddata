@@ -22,12 +22,6 @@ form-js:
      preload:
        - base/main
 
-fontawesome:
-  output: vendor/%(version)s_fontawesome-pro.css
-  filters: cssrewrite
-  contents:
-    - vendor/fontawesome/css/all.css
-
 rd_select2_tags_js:
   output: registrydata/%(version)s_rd_select2_tags.js
   filters: rjsmin
