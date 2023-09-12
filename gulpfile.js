@@ -7,6 +7,7 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import cleancss from "gulp-clean-css";
+import concat from "gulp-concat";
 import rename from "gulp-rename";
 import gulpStylelint from "@ronilaukkarinen/gulp-stylelint";
 
@@ -74,7 +75,7 @@ const ckanSass = () => {
   return src(paths.src.scss + "ckan/**/*.scss", { sourcemaps: true, since: lastRun(ckanSass) })
     .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }).on('error', sass.logError))
     .pipe(cleancss({ keepBreaks: false }))
-    .pipe(rename('registrydata.css'))
+    .pipe(concat('registrydata.css'))
     .pipe(dest(paths.ckanAssets + "css", { sourcemaps: './maps' }))
 };
 
