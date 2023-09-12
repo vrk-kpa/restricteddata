@@ -124,7 +124,7 @@ const javascript = () => {
 
 const copyFontawesomeCss = () => {
   return src(paths.src.fontawesome + "css/all.css", { since: lastRun(copyFontawesomeCss), allowEmpty: true })
-    .pipe(dest(paths.ckanAssets + "/vendor/fontawesome/css/"))
+    .pipe(dest(paths.ckanPublic + "/vendor/fontawesome/css/"))
 }
 
 const copyFontawesomeFonts = () => {
