@@ -152,8 +152,12 @@ COPY data ${DATA_DIR}_base
 COPY templates ${TEMPLATE_DIR}
 COPY supervisor ${SUPERV_DIR}
 COPY cron ${CRON_DIR}
-#COPY src/ckan/patches ${SRC_DIR}/ckan/patches
+COPY src/ckan/patches ${SRC_DIR}/ckan/patches
 COPY src/ckan/ckan-uwsgi.ini ${APP_DIR}
+
+# apply patches
+RUN cd ${SRC_DIR}/ckan && \
+    patch --strip=1 --input=patches/remove-ckan-fontawesome.patch
 
 RUN \
   # Make scripts executable
