@@ -2,5 +2,8 @@
   "extends": [
     "stylelint-config-standard-scss"
   ],
-  "fix": true
+  "fix": true,
+  "rules": {
+    "no-descending-specificity": null
+  }
 }
