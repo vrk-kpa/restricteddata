@@ -27,10 +27,7 @@ export class SubDomainStack extends Stack {
             parentHostedZoneName: "rekisteridata.fi"
         })
 
-        const rootRecord = new aws_route53.ARecord(this, 'subDomainRecord', {
-            zone: this.subZone,
-            target: aws_route53.RecordTarget.fromAlias(new aws_route53_targets.LoadBalancerTarget(props.loadBalancer))
-        })
+
 
     }
 

@@ -8,9 +8,9 @@ export interface EnvProps {
   CKAN_IMAGE_TAG: string;
 }
 
-export function getRepositoryArn(stack: Stack, registryURI: string, repository: string) {
+export function getRepositoryArn(stack: Stack, repositoryURI: string, registry: string) {
 
-  const parsedRepository = registryURI.match(/(\d{12})\.dkr\.ecr.(.*)\.amazonaws\.com/)
+  const parsedRepository = repositoryURI.match(/(\d{12})\.dkr\.ecr.(.*)\.amazonaws\.com/)
 
   if (parsedRepository) {
     const account = parsedRepository[0]
@@ -20,9 +20,18 @@ export function getRepositoryArn(stack: Stack, registryURI: string, repository: 
       region: region,
       resource: "repository",
       service: "ecr",
-      resourceName: repository
+      resourceName: registry
     })
   }
 
   return ""
+}
+
+
+export function parseEnv(key: string): string {
+  let val = process.env[key];
+  if (val == null) {
+    throw new Error(`parseEnv error: ${key} is undefined or null!`);
+  }
+  return val;
 }
