@@ -41,6 +41,7 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             helpers.scheming_language_text_or_empty,
             'get_lang_prefix': helpers.get_lang_prefix,
             'call_toolkit_function': helpers.call_toolkit_function,
+            'get_site_name': helpers.get_site_name
         }
 
     # IValidators:

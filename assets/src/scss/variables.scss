@@ -6,12 +6,24 @@ $image-path: "../../../images";
 $vendor-path: "../../../vendor";
 
 // Colors
-$registrydata-primary: tokens.$fi-color-success-dark1;
-$registrydata-secondary: tokens.$fi-color-success-secondary;
-$suomifi-primary: tokens.$fi-color-brand-base;
+$color-primary: tokens.$fi-color-highlight-light2; // #D5E4F6
+$color-link-text: tokens.$fi-color-highlight-base; // #2A6EBB
+$color-white: tokens.$fi-color-white-base; // #fff
+$color-black: tokens.$fi-color-black-base; // #000
+$color-text-primary: $color-black;
+$color-text-secondary: tokens.$fi-color-depth-dark1; // #5F686D
+$color-border: tokens.$fi-color-depth-base; // #A5ADB1
+$color-text-disabled: $color-border;
+$color-text-placeholder: tokens.$fi-color-depth-dark2; // #6D787E
+$color-background: tokens.$fi-color-depth-light3; // #F7F7F8
+$color-suomifi: tokens.$fi-color-brand-base; // #00357a
+$color-button-primary: tokens.$fi-gradient-highlight-base-to-highlight-dark1; // linear-gradient(to top, #2A6EBB, #235A9A)
+$color-button-primary-hover: tokens.$fi-gradient-highlight-light1-to-highlight-base; // linear-gradient(to top, #2E78CC, #2A6EBB)
 
 // Text
 $font-size-lg: 22px;
 $font-size-default: 18px;
 $font-size-sm: 16px;
+$font-size-xs: 14px;
+$font-size-xxs: 12px;
 $font-weight-bold: 600;

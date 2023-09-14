@@ -16,6 +16,17 @@ const promisedExec = promisify(exec);
 
 const rootDir = new URL('./', import.meta.url)
 
+const formatter = (results) => {
+  for (const result of results) {
+    if (result.errored) {
+      for (const warning of result.warnings) {
+        console.error(`[${warning.severity.toUpperCase()}: '${warning.rule}'] in ${result.source}:${warning.line} - ${warning.text}`);
+      }
+    }
+  };
+  return '';
+}
+
 const paths = {
   src: {
     src: "assets/src/",
@@ -52,26 +63,30 @@ export async function clean() {
 // Rebuild ckan webassets to see your changes as webassets are generated only once and cached
 const rebuildCkanWebassets = async () => {
   // Fetch docker container name with the subcommand $(docker ps -f "name=ckan-1" --format {{.Names}})
-  // and run ckan asset build within the found container to update webassets for easier development
-  const { stdout } = await promisedExec('docker exec $(docker ps -f "name=ckan-1" --format {{.Names}}) ckan asset build')
-  console.log(`   [rebuildCkanWebassets]: ${stdout}`.trimEnd());
+  const container_name = (await promisedExec('docker ps -f "name=ckan-1" --format {{.Names}}')).stdout.trim();
+  // run ckan asset clean within the found container to wipe webassets cache
+  // await promisedExec(`docker exec ${container_name} ckan asset clean`);
+  // run ckan asset build within the found container to update webassets
+  // const build = (await promisedExec(`docker exec ${container_name} ckan asset build`)).stdout.trim();
+
+  // simple deletion of webassets folder seems to be the fastest and most reliable method...
+  const delete_out = (await promisedExec(`docker exec ${container_name} rm -rf data/webassets`));
+  console.log(`   [rebuildCkanWebassets]: deleted data/webassets from ${container_name}`);
 }
 
 // Lint scss
 export const lintStyles = () => {
-  return src(paths.src.scss + "**/*.scss", { since: lastRun(lintStyles) })
+  return src(paths.src.scss + "**/*.scss")
     .pipe(gulpStylelint({
-      fix: true,
-      failAfterError: true,
       reporters: [
-        { formatter: 'verbose', console: true }
+        { formatter: formatter, console: true }
       ]
     }))
 };
 
 // Preprocess our ckan sass
 const ckanSass = () => {
-  return src(paths.src.scss + "ckan/**/*.scss", { sourcemaps: true, since: lastRun(ckanSass) })
+  return src(paths.src.scss + "ckan/**/*.scss", { sourcemaps: true })
     .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }).on('error', sass.logError))
     .pipe(cleancss({ keepBreaks: false }))
     .pipe(rename('registrydata.css'))
@@ -118,7 +133,7 @@ const fonts = () => {
 
 // Copy src javascript
 const javascript = () => {
-  return src([paths.src.javascript + "**/*"], { since: lastRun(javascript) })
+  return src([paths.src.javascript + "**/*"])
     .pipe(dest(paths.ckanAssets + "javascript"))
 };
 

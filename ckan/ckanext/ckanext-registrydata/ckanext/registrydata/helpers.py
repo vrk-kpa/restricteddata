@@ -70,3 +70,6 @@ def get_lang_prefix():
 def call_toolkit_function(fn, args, kwargs):
     return getattr(toolkit, fn)(*args, **kwargs)
 
+
+def get_site_name():
+    return toolkit.config.get('ckanext.registrydata.site_name')

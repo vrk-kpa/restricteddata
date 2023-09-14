@@ -1,33 +1,51 @@
 @use "suomifi-design-tokens/dist/tokens";
-@use "mixins";
+@use "variables" as rd;
 
 %body-text {
   @include tokens.fi-text-body-text;
+
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-style: normal;
 }
 
 body,
 p {
   @extend %body-text;
-
-  .bold,
-  b {
-    @include mixins.bold;
-  }
-
-  .small,
-  small {
-    @include mixins.small;
-  }
-
-  .lead {
-    @extend %body-text;
-    @include mixins.lead;
-  }
 }
 
+%bold,
+.bold,
+b {
+  font-weight: rd.$font-weight-bold;
+}
+
+%small,
+.small,
+small {
+  font-weight: rd.$font-weight-bold;
+}
+
+%lead,
+.lead {
+  font-size: rd.$font-size-lg;
+}
+
+select.form-control,
+input.form-control,
+.dropdown-menu,
+::placeholder {
+  font-size: rd.$font-size-sm;
+}
+
+::placeholder {
+  color: rd.$color-text-placeholder;
+}
+
+
 body,
-.main {
-  background: tokens.$fi-color-depth-light3;
+body div.main,
+body div[role="main"] div.main {
+  background: rd.$color-background;
 }
 
 h1,
@@ -37,7 +55,7 @@ h4,
 h5,
 h6 {
   color: inherit;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
 }
 
 h1 {
@@ -61,25 +79,39 @@ h5 {
 }
 
 a {
-  color: tokens.$fi-color-highlight-base;
+  color: rd.$color-link-text;
 
   &:hover,
   &:focus {
-    color: tokens.$fi-color-highlight-base;
+    color: rd.$color-link-text;
   }
 }
 
 .form-control,
 textarea {
-  color: tokens.$fi-color-black-base;
+  color: rd.$color-black;
 }
 
 .form-control[readonly] {
-  color: tokens.$fi-color-depth-dark2;
+  color: rd.$color-text-disabled;
+}
+
+.btn.btn-primary {
+  background: rd.$color-button-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 8px;
+  border-radius: 2px;
+
+  &:hover {
+    background: rd.$color-button-primary-hover;
+  }
 }
 
 ::selection {
-  background: tokens.$fi-color-brand-base;
-  color: tokens.$fi-color-white-base;
+  background: rd.$color-suomifi;
+  color: rd.$color-white;
   text-shadow: none;
 }

@@ -1,19 +1,35 @@
-@use "variables";
+@use "variables" as rd;
 
 .icon {
+  background-repeat: no-repeat;
+
   &.chevron-right {
-    background-image: url(variables.$image-path + "/chevron-right.svg");
+    background-image: url(rd.$image-path + "/icon-chevron-right.svg");
+    min-width: 16px;
+    min-height: 16px;
   }
 
   &.group {
-    background-image: url(variables.$image-path + "/icon-group.svg");
+    background-image: url(rd.$image-path + "/icon-group.svg");
+    min-width: 56px;
+    min-height: 46px;
   }
 
   &.suomifi {
-    background-image: url(variables.$image-path + "/icon-suomifi.svg");
+    background-image: url(rd.$image-path + "/icon-suomifi.svg");
+    min-width: 32px;
+    min-height: 32px;
   }
 
   &.web-service {
-    background-image: url(variables.$image-path + "/icon-web-service.svg");
+    background-image: url(rd.$image-path + "/icon-web-service.svg");
+    min-width: 56px;
+    min-height: 52px;
+  }
+
+  &.login {
+    background-image: url(rd.$image-path + "/icon-login.svg");
+    min-width: 16px;
+    min-height: 16px;
   }
 }
