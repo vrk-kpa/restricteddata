@@ -53,7 +53,7 @@
         flex-grow: 1;
         input {
           height: 40px;
-          radius: 2px;
+          border-radius: 2px;
           &::placeholder {
             font-style: italic;
           }
@@ -209,6 +209,7 @@ ul.news-items {
 }
 .chevron-link {
   &::before {
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
     font-family: "Font Awesome 6 Pro";
     font-weight: var(--fa-style, 900);
     content: "\f054";
