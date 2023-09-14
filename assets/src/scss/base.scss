@@ -44,6 +44,9 @@ h1 {
   @include tokens.fi-text-heading1;
 }
 
+h1.hero {
+  @include tokens.fi-text-heading1-hero;
+}
 h2 {
   @include tokens.fi-text-heading2;
 }
@@ -69,6 +72,14 @@ a {
   }
 }
 
+input[type=submit], input[type=button] {
+  background: linear-gradient(360deg, tokens.$fi-color-highlight-dark1 0%, tokens.$fi-color-highlight-base 97.12%);
+  color: tokens.$fi-color-white-base;
+  font-size: 14px;
+  padding: 10px 20px 10px 20px;
+  border: none;
+  border-radius: 2px;
+}
 .form-control,
 textarea {
   color: tokens.$fi-color-black-base;

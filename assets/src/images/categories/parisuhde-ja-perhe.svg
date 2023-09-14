@@ -1,0 +1,17 @@
+<svg width="60" height="64" viewBox="0 0 60 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Parisuhde ja perhe">
+<path id="Fill 528" fill-rule="evenodd" clip-rule="evenodd" d="M30 2C27.794 2 26 3.794 26 6C26 8.206 27.794 10 30 10C32.206 10 34 8.206 34 6C34 3.794 32.206 2 30 2ZM30 12C26.691 12 24 9.309 24 6C24 2.691 26.691 0 30 0C33.309 0 36 2.691 36 6C36 9.309 33.309 12 30 12Z" fill="#003479"/>
+<path id="Fill 529" fill-rule="evenodd" clip-rule="evenodd" d="M48 64H50V46H48V64Z" fill="#A5ADB1"/>
+<path id="Fill 530" fill-rule="evenodd" clip-rule="evenodd" d="M49 10C47.346 10 46 11.346 46 13C46 14.654 47.346 16 49 16C50.654 16 52 14.654 52 13C52 11.346 50.654 10 49 10ZM49 18C46.243 18 44 15.757 44 13C44 10.243 46.243 8 49 8C51.757 8 54 10.243 54 13C54 15.757 51.757 18 49 18Z" fill="#A5ADB1"/>
+<path id="Fill 531" fill-rule="evenodd" clip-rule="evenodd" d="M44 64H42V44H40V42H44V64Z" fill="#A5ADB1"/>
+<path id="Fill 532" fill-rule="evenodd" clip-rule="evenodd" d="M56 64H54V42H58V26C58 23.794 56.206 22 54 22H44V20H54C57.309 20 60 22.691 60 26V44H56V64Z" fill="#A5ADB1"/>
+<g id="Group 3">
+<path id="Fill 529 Copy" fill-rule="evenodd" clip-rule="evenodd" d="M12 64H10V52H12V64Z" fill="#A5ADB1"/>
+<path id="Fill 530 Copy" fill-rule="evenodd" clip-rule="evenodd" d="M11 22C12.654 22 14 23.346 14 25C14 26.654 12.654 28 11 28C9.346 28 8 26.654 8 25C8 23.346 9.346 22 11 22ZM11 30C13.757 30 16 27.757 16 25C16 22.243 13.757 20 11 20C8.243 20 6 22.243 6 25C6 27.757 8.243 30 11 30Z" fill="#A5ADB1"/>
+<path id="Fill 531 Copy" fill-rule="evenodd" clip-rule="evenodd" d="M18 64V50H20V48H16V64" fill="#A5ADB1"/>
+<path id="Fill 532 Copy" fill-rule="evenodd" clip-rule="evenodd" d="M6 64V48H2V38C2 35.794 3.794 34 6 34H16V32H6C2.691 32 0 34.691 0 38V50H4V64" fill="#A5ADB1"/>
+</g>
+<path id="Fill 539" fill-rule="evenodd" clip-rule="evenodd" d="M38 64H36V38H40V21C40 18.243 37.757 16 35 16H25C22.243 16 20 18.243 20 21V38H24V64H22V40H18V21C18 17.14 21.14 14 25 14H35C38.86 14 42 17.14 42 21V40H38V64Z" fill="#003479"/>
+<path id="Fill 540" fill-rule="evenodd" clip-rule="evenodd" d="M29 64H31V42H29V64Z" fill="#A5ADB1"/>
+</g>
+</svg>
