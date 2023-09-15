@@ -16,8 +16,8 @@ export function getRepositoryArn(stack: Stack, registry: string, repository: str
     throw new Error(`Invalid repository URI: ${registry} is not valid`)
   }
 
-  const account = parsedRegistry[0]
-  const region = parsedRegistry[1]
+  const account = parsedRegistry[1]
+  const region = parsedRegistry[2]
   return Stack.of(stack).formatArn({
     account: account,
     region: region,
