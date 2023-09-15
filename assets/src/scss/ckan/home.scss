@@ -1,0 +1,220 @@
+@use "suomifi-design-tokens/dist/tokens";
+@use "../variables";
+
+.homepage .hero {
+  background: variables.$registrydata-primary;
+  color: tokens.$fi-color-brand-base;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+
+  h1.hero {
+    padding: 0;
+    margin: 0;
+  }
+  .hero-stats {
+    width: 100%;
+    max-width: 1110px;
+    display: flex;
+    justify-content: center;
+    gap: 268px;
+    font-weight: 600;
+    text-align: center;
+
+    .hero-stats-count {
+      display: block;
+      font-size: 28px;
+    }
+    .hero-stats-unit {
+      display: block;
+      font-size: 18px;
+    }
+  }
+  .hero-search {
+    width: 100%;
+    max-width: 740px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 20px;
+    gap: 10px;
+
+    form {
+      background: rgba(tokens.$fi-color-brand-base, 20%);
+      padding: 10px;
+      max-width: 740px;
+      display: flex;
+      gap: 20px;
+
+      .search {
+        position: relative;
+        flex-grow: 1;
+        input {
+          height: 40px;
+          border-radius: 2px;
+          &::placeholder {
+            font-style: italic;
+          }
+        }
+
+        i {
+          font-size: 16px;
+          color: tokens.$fi-color-depth-dark1;
+          position: absolute;
+          right: 12px;
+          top: 12px;
+        }
+      }
+
+      [type=submit] {
+        height: 40px;
+        width: 65px;
+      }
+    }
+    a {
+      text-align: right;
+    }
+  }
+}
+.homepage section {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  &.data-sources {
+    background-color: rgba(variables.$registrydata-primary, 0.3);
+  }
+  &.open-data {
+    background-color: tokens.$fi-color-brand-base;
+    h2 {
+      color: tokens.$fi-color-white-base;
+    }
+    .rd-card .icon .icon-oval-background {
+      background-color: tokens.$fi-color-highlight-light3;
+    }
+  }
+}
+
+ul.category-grid {
+  width: 100%;
+  max-width: 1110px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 40px 0;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+
+  li {
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .category-icon {
+      width: 64px;
+      height: 64px;
+      object-fit: scale-down;
+    }
+    .category-title {
+      text-align: center;
+      font-weight: 600;
+    }
+    .category-badge {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      padding: 1px 8px 3px 8px;
+      border-radius: 56px;
+      background: tokens.$fi-color-depth-light2;
+      color: tokens.$fi-color-black-light1;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: 1px;
+    }
+  }
+}
+.rd-cards {
+  width: 100%;
+  max-width: 1110px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .rd-card {
+    width: 48%;
+    max-width: 500px;
+    height: 110px;
+    background-color: tokens.$fi-color-white-base;
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px 1px rgba(tokens.$fi-color-black-base, 20%);
+    border-radius: 4px;
+
+    .icon {
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .icon-oval-background {
+        width: 120px;
+        height: 180px;
+        background-color: variables.$registrydata-secondary;
+        border-radius: 0 100% 100% 0;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
+ul.news-items {
+  display: flex;
+  li {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 260px;
+    gap: 10px;
+
+    &:not(:last-child):not(:only-child) {
+      border-right: 1px solid tokens.$fi-color-depth-base;
+    }
+    .news-title {
+      flex-grow: 1;
+    }
+    .news-badge {
+      width: fit-content;
+      font-weight: 600;
+      line-height: 24px;
+      padding: 2px 10px;
+      border-radius: 14px;
+      background: tokens.$fi-color-black-base;
+      color: tokens.$fi-color-white-base;
+    }
+  }
+}
+.chevron-link {
+  &::before {
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+    font-family: "Font Awesome 6 Pro";
+    font-weight: var(--fa-style, 900);
+    content: "\f054";
+    color: tokens.$fi-color-accent-base;
+    margin-right: 5px;
+    font-size: 14px;
+  }
+}

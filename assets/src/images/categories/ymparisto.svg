@@ -1,0 +1,15 @@
+<svg width="64" height="56" viewBox="0 0 64 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2">
+<path id="Fill 574" fill-rule="evenodd" clip-rule="evenodd" d="M51.963 2.037C46.125 2.456 42 6.336 42 9C42 10.458 43.542 12 45 12C47.664 12 51.544 7.875 51.963 2.037ZM45 14C42.43 14 40 11.57 40 9C40 4.838 45.679 0 53 0H54V1C54 8.321 49.162 14 45 14Z" fill="#003479"/>
+<path id="Fill 575" fill-rule="evenodd" clip-rule="evenodd" d="M22.037 10.037C22.456 15.875 26.336 20 29 20C30.458 20 32 18.458 32 17C32 14.336 27.875 10.456 22.037 10.037ZM29 22C24.838 22 20 16.321 20 9V8H21C28.321 8 34 12.838 34 17C34 19.57 31.57 22 29 22Z" fill="#003479"/>
+<path id="Fill 576" fill-rule="evenodd" clip-rule="evenodd" d="M36 30H38V9H36V30Z" fill="#003479"/>
+<path id="Fill 577" fill-rule="evenodd" clip-rule="evenodd" d="M38 20H36C36 16.625 38.199 14.387 38.293 14.293L44.293 8.29297L45.707 9.70697L39.707 15.707C39.693 15.722 38 17.474 38 20Z" fill="#003479"/>
+<path id="Fill 578" fill-rule="evenodd" clip-rule="evenodd" d="M38 28H36C36 25.444 34.31 23.724 34.293 23.707L28.293 17.707L29.707 16.293L35.707 22.293C35.801 22.387 38 24.625 38 28Z" fill="#003479"/>
+<path id="Fill 579" fill-rule="evenodd" clip-rule="evenodd" d="M52 40H50C50 35.038 44.168 31 37 31C33.118 31 29.257 32.398 26.671 34.741L25.329 33.259C28.316 30.552 32.57 29 37 29C45.271 29 52 33.935 52 40Z" fill="#003479"/>
+<path id="Fill 580" fill-rule="evenodd" clip-rule="evenodd" d="M29 46H27C27 43.794 28.794 42 31 42H42C43.103 42 44 41.103 44 40C44 38.897 43.103 38 42 38H32.824L21.824 34H13V32H22.176L33.176 36H42C44.206 36 46 37.794 46 40C46 42.206 44.206 44 42 44H31C29.897 44 29 44.897 29 46Z" fill="#A5ADB1"/>
+<path id="Fill 581" fill-rule="evenodd" clip-rule="evenodd" d="M37.244 56H34.829L17.829 50H14V48H18.171L35.171 54H36.756L61.386 41.192C61.66 40.878 62 40.349 62 40C62 38.943 61.177 38.076 60.138 38.005L44.298 42.955L43.702 41.045L60 36C62.206 36 64 37.794 64 40C64 41.371 62.841 42.573 62.708 42.706L62.461 42.887L37.244 56Z" fill="#A5ADB1"/>
+<path id="Fill 582" fill-rule="evenodd" clip-rule="evenodd" d="M8 48H10V46H8V48Z" fill="#A5ADB1"/>
+<path id="Fill 583" fill-rule="evenodd" clip-rule="evenodd" d="M4 48H6V46H4V48Z" fill="#A5ADB1"/>
+<path id="Fill 584" fill-rule="evenodd" clip-rule="evenodd" d="M12 52H0V50H12V32H0V30H12C13.103 30 14 30.897 14 32V50C14 51.103 13.103 52 12 52Z" fill="#A5ADB1"/>
+</g>
+</svg>
