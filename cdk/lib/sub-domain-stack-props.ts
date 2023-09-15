@@ -4,5 +4,4 @@ import {ApplicationLoadBalancer} from "aws-cdk-lib/aws-elasticloadbalancingv2";
 export interface SubDomainStackProps extends StackProps {
     prodAccountId: string;
     subDomainName: string;
-    loadBalancer: ApplicationLoadBalancer;
 }
