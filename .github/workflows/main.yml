@@ -109,7 +109,7 @@ jobs:
             ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:${{ github.sha }}
             ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
         env:
-          REPOSITORY: ${{ vars.REPOSITORY }}
+          REPOSITORY: ${{ secrets.REPOSITORY }}
 
   commit-new-images:
     name: Commit new image tags
