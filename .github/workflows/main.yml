@@ -205,8 +205,8 @@ jobs:
           sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
           sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
         env:
-          REGISTRY: ${{ secrets.REGISTRY }}
-          REPOSITORY: ${{ vars.REPOSITORY }}
+          REGISTRY: ${{ vars.REGISTRY }}
+          REPOSITORY: ${{ secrets.REPOSITORY }}
 
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
