@@ -12,19 +12,20 @@ export function getRepositoryArn(stack: Stack, repositoryURI: string, registry: 
 
   const parsedRepository = repositoryURI.match(/(\d{12})\.dkr\.ecr.(.*)\.amazonaws\.com/)
 
-  if (parsedRepository) {
-    const account = parsedRepository[0]
-    const region = parsedRepository[1]
-    return Stack.of(stack).formatArn({
-      account: account,
-      region: region,
-      resource: "repository",
-      service: "ecr",
-      resourceName: registry
-    })
+  if (parsedRepository === null) {
+    throw new Error(`Invalid repository URI: ${repositoryURI} is not valid`)
   }
 
-  return ""
+  const account = parsedRepository[0]
+  const region = parsedRepository[1]
+  return Stack.of(stack).formatArn({
+    account: account,
+    region: region,
+    resource: "repository",
+    service: "ecr",
+    resourceName: registry
+  })
+
 }
 
 
