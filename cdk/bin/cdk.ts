@@ -178,7 +178,7 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
   loadBalancer: LoadBalancerStackDev.loadBalancer,
   zone: SubDomainStackDev.subZone,
   taskDef: {
-    taskCpu: 512,
+    taskCpu: 256,
     taskMem: 512,
     taskMinCapacity: 1,
     taskMaxCapacity: 1
