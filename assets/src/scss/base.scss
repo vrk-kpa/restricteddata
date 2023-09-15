@@ -72,13 +72,58 @@ a {
   }
 }
 
-input[type=submit], input[type=button] {
+.page-heading {
+  margin-bottom: 13px;
+}
+
+input[type=submit].form-control, input[type=button].form-control {
   background: linear-gradient(360deg, tokens.$fi-color-highlight-dark1 0%, tokens.$fi-color-highlight-base 97.12%);
   color: tokens.$fi-color-white-base;
   font-size: 14px;
   padding: 10px 20px 10px 20px;
   border: none;
   border-radius: 2px;
+}
+input[type=text].form-control {
+  height: 40px;
+  border-radius: 2px;
+  &::placeholder {
+    font-style: italic;
+  }
+}
+.select-wrapper {
+  position: relative;
+  select {
+    @include tokens.fi-text-body-text-small;
+    background: tokens.$fi-color-white-base;
+    border: 1px solid tokens.$fi-color-black-light1;
+    border-radius: 2px;
+    padding: 8px 10px;
+  }
+  &::after {
+    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+    font-family: "Font Awesome 6 Pro";
+    font-weight: var(--fa-style, 900);
+    content: "\f0d7";
+    color: tokens.$fi-color-depth-dark1;
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+}
+.search-input-container {
+  position: relative;
+  button {
+    i {
+      font-size: 16px;
+    }
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 12px;
+    top: 6px;
+  }
 }
 .form-control,
 textarea {
@@ -87,6 +132,11 @@ textarea {
 
 .form-control[readonly] {
   color: tokens.$fi-color-depth-dark2;
+}
+
+.form-control:focus {
+  background: tokens.$fi-color-white-base;
+  box-shadow: 0 0 10px tokens.$fi-color-highlight-base;
 }
 
 ::selection {
