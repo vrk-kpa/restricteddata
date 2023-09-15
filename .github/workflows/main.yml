@@ -109,7 +109,7 @@ jobs:
             ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:${{ github.sha }}
             ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
         env:
-          REPOSITORY: ${{ secrets.REPOSITORY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
 
   commit-new-images:
     name: Commit new image tags
@@ -205,8 +205,8 @@ jobs:
           sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
           sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
         env:
-          REGISTRY: ${{ vars.REGISTRY }}
-          REPOSITORY: ${{ secrets.REPOSITORY }}
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
 
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3

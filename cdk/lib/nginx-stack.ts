@@ -22,7 +22,7 @@ export class NginxStack extends Stack {
     });
 
     const nginxRepo = aws_ecr.Repository.fromRepositoryArn(this, 'nginxRepo',
-      getRepositoryArn(this, props.envProps.REPOSITORY, props.envProps.REGISTRY + '/nginx'));
+      getRepositoryArn(this, props.envProps.REGISTRY, props.envProps.REPOSITORY + '/nginx'));
 
 
     const nginxTaskDefinition = new aws_ecs.FargateTaskDefinition(this, "nginxTaskDef", {

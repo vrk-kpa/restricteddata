@@ -8,22 +8,22 @@ export interface EnvProps {
   CKAN_IMAGE_TAG: string;
 }
 
-export function getRepositoryArn(stack: Stack, repositoryURI: string, registry: string) {
+export function getRepositoryArn(stack: Stack, registry: string, repository: string) {
 
-  const parsedRepository = repositoryURI.match(/(\d{12})\.dkr\.ecr.(.*)\.amazonaws\.com/)
+  const parsedRegistry = registry.match(/(\d{12})\.dkr\.ecr.(.*)\.amazonaws\.com/)
 
-  if (parsedRepository === null) {
-    throw new Error(`Invalid repository URI: ${repositoryURI} is not valid`)
+  if (parsedRegistry === null) {
+    throw new Error(`Invalid repository URI: ${registry} is not valid`)
   }
 
-  const account = parsedRepository[0]
-  const region = parsedRepository[1]
+  const account = parsedRegistry[0]
+  const region = parsedRegistry[1]
   return Stack.of(stack).formatArn({
     account: account,
     region: region,
     resource: "repository",
     service: "ecr",
-    resourceName: registry
+    resourceName: repository
   })
 
 }
