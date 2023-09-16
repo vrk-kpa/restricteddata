@@ -1,0 +1,103 @@
+<div role="main">
+  <div class="main hero">
+    <h1 class="hero">Suomen kaikki suojattu data data yhdestä paikasta</h1>
+    <div class="hero-stats">
+      {% set statistics = h.get_site_statistics() %}
+      <div>
+        <span class="hero-stats-count">{{ statistics.dataset_count }}</span>
+        <span class="hero-stats-unit">{{ _('datasets') }}</span>
+      </div>
+      <div>
+        <span class="hero-stats-count">{{ statistics.organization_count }}</span>
+        <span class="hero-stats-unit">{{ _('organizations') }}</span>
+      </div>
+    </div>
+    <div class="hero-search">
+      <form>
+        <div class="search">
+          <input class="form-control search" placeholder="{{ _('Type what you are searching for')}}">
+          <i class="fa-light fa-search"></i>
+        </div>
+        <input type="submit" value="{{ _('Search')}}">
+      </form>
+      {# Advanced search not implemented yet <a>{{ _('Use advanced search') }}</a> #}
+    </div>
+  </div>
+
+  <section>
+    <h2>{{ _('Registrydata categories') }}</h2>
+    <ul class="category-grid">
+      {% for group in h.groups_available() %}
+        <li>
+          <img class="category-icon" src="{{ group.image_display_url }}">
+          <span class="category-title">{{ group.title }}</span>
+          <span class="category-badge">{{ group.package_count }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="data-sources">
+    <h2>{{ _('Registrydata data sources') }}</h2>
+
+    <div class="rd-cards">
+      <div class="rd-card">
+        <div class="icon">
+          <div class="icon-oval-background">
+            <img src="/images/datasets.svg">
+          </div>
+        </div>
+        <div class="content">
+          <h3>{{ _('Datasets') }}</h3>
+          <a class="chevron-link" href="{{ h.url_for('dataset.search') }}">{{ _('Browse datasets') }}</a>
+        </div>
+      </div>
+
+      <div class="rd-card">
+        <div class="icon">
+          <div class="icon-oval-background">
+            <img src="/images/organizations.svg">
+          </div>
+        </div>
+        <div class="content">
+          <h3>{{ _('Organizations') }}</h3>
+          <a class="chevron-link" href="{{ h.url_for('organization.index') }}">{{ _('Browse organizations') }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="open-data">
+    <h2>{{ _('All Finnish open data from one place') }}</h2>
+
+    <div class="rd-cards">
+      <div class="rd-card">
+        <div class="icon">
+          <div class="icon-oval-background">
+            <img src="/images/suomifi-logo.svg">
+          </div>
+        </div>
+        <div class="content">
+          <h3>{{ _('Suomi.fi open data') }}</h3>
+          <a class="chevron-link" href="https://avoindata.fi">{{ _('Navigate to site') }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ajankohtaista</h2>
+    <ul class="news-items">
+      {% for news in h.get_homepage_news() %}
+      <li>
+        <span class="news-published">{{ _('Published') }} {{ news.published | datetimeformat('d.m.y') }}</span>
+        <a class="news-title" href="{{ news.url }}"><h3>{{ news.title[h.lang()] or news.title.fi }}</h3></a>
+        {% for tag in news.tags %}
+          <span class="news-badge">{{ tag.name[h.lang()] or tag.name.fi }}</span>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
+    <a class="chevron-link" href="https://palveluhallinta.suomi.fi/{{ h.lang() }}/ajankohtaista/uutiset/">{{ _('Browse all news and disruption notices') }}</a>
+  </section>
+</div>

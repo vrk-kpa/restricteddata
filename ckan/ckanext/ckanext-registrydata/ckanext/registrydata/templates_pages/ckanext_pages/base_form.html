@@ -27,9 +27,9 @@
     </div>
     <textarea id="field-content-ck" name="content_en" placeholder="{{_('My content')}}" data-module="ckedit" style="height:400px" data-module-site_url="{{ h.dump_json(h.url_for('/', locale='default', qualified=true)) }}"> {{ data.content_en }}</textarea>
   {% else %}
-    {{ form.markdown('content', id='field-content-fi', label=_('Content') + ' ' + _('FI'), placeholder=_('Enter content here'), value=data.content_fi, error=errors.content) }}
-    {{ form.markdown('content', id='field-content-sv', label=_('Content') + ' ' + _('SV'), placeholder=_('Enter content here'), value=data.content_sv, error=errors.content) }}
-    {{ form.markdown('content', id='field-content-en', label=_('Content') + ' ' + _('EN'), placeholder=_('Enter content here'), value=data.content_en, error=errors.content) }}
+    {{ form.markdown('content_fi', id='field-content-fi', label=_('Content') + ' ' + _('FI'), placeholder=_('Enter content here'), value=data.content_fi, error=errors.content) }}
+    {{ form.markdown('content_sv', id='field-content-sv', label=_('Content') + ' ' + _('SV'), placeholder=_('Enter content here'), value=data.content_sv, error=errors.content) }}
+    {{ form.markdown('content_en', id='field-content-en', label=_('Content') + ' ' + _('EN'), placeholder=_('Enter content here'), value=data.content_en, error=errors.content) }}
   {% endif %}
   {#
     {{ form.select('submenu_order', label=_('Submenu Order'), options=[{'value': '', 'text': _('Not in menu')}, {'value': '1', 'text': '1'}, {'value': '2', 'text': '2'}, {'value': '3', 'text': '3'}, {'value': '4', 'text': '4'}, {'value': '5', 'text': '5'}, {'value': '6', 'text': '6'}], selected=data.submenu_order, error=errors.submenu_order) }}

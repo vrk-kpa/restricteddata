@@ -1,0 +1,16 @@
+<svg width="64" height="50" viewBox="0 0 64 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Oikeudet ja velvollisuudet">
+<path id="Fill 154" fill-rule="evenodd" clip-rule="evenodd" d="M46 26H54V8H46V26ZM44 28H56V6H44V28Z" fill="#003479"/>
+<path id="Fill 155" fill-rule="evenodd" clip-rule="evenodd" d="M56 34H44C41.794 34 40 32.206 40 30C40 27.794 41.794 26 44 26V28C42.897 28 42 28.897 42 30C42 31.103 42.897 32 44 32H56C57.103 32 58 31.103 58 30C58 28.897 57.103 28 56 28V26C58.206 26 60 27.794 60 30C60 32.206 58.206 34 56 34Z" fill="#003479"/>
+<path id="Fill 156" fill-rule="evenodd" clip-rule="evenodd" d="M56 8V6C57.103 6 58 5.103 58 4C58 2.897 57.103 2 56 2H44C42.897 2 42 2.897 42 4C42 5.103 42.897 6 44 6V8C41.794 8 40 6.206 40 4C40 1.794 41.794 0 44 0H56C58.206 0 60 1.794 60 4C60 6.206 58.206 8 56 8Z" fill="#003479"/>
+<path id="Fill 163" fill-rule="evenodd" clip-rule="evenodd" d="M45 16H41.764L39.764 15H10V13H40.236L42.236 14H45V16Z" fill="#003479"/>
+<path id="Fill 164" fill-rule="evenodd" clip-rule="evenodd" d="M40.236 21H10V19H39.764L41.764 18H45V20H42.236L40.236 21Z" fill="#003479"/>
+<path id="Fill 165" fill-rule="evenodd" clip-rule="evenodd" d="M6 13C3.794 13 2 14.794 2 17C2 19.206 3.794 21 6 21C8.206 21 10 19.206 10 17C10 14.794 8.206 13 6 13ZM6 23C2.691 23 0 20.309 0 17C0 13.691 2.691 11 6 11C9.309 11 12 13.691 12 17C12 20.309 9.309 23 6 23Z" fill="#003479"/>
+<path id="Fill 169" fill-rule="evenodd" clip-rule="evenodd" d="M62 43H60V41C60 40.448 59.552 40 59 40H41C40.448 40 40 40.448 40 41V43H38V41C38 39.346 39.346 38 41 38H59C60.654 38 62 39.346 62 41V43Z" fill="#A5ADB1"/>
+<path id="Fill 170" fill-rule="evenodd" clip-rule="evenodd" d="M39 44C38.448 44 38 44.448 38 45V47C38 47.552 38.448 48 39 48H61C61.552 48 62 47.552 62 47V45C62 44.448 61.552 44 61 44H39ZM61 50H39C37.346 50 36 48.654 36 47V45C36 43.346 37.346 42 39 42H61C62.654 42 64 43.346 64 45V47C64 48.654 62.654 50 61 50Z" fill="#A5ADB1"/>
+<path id="Fill 171" fill-rule="evenodd" clip-rule="evenodd" d="M0 50H39V48H0V50Z" fill="#A5ADB1"/>
+<path id="Fill 172" fill-rule="evenodd" clip-rule="evenodd" d="M49 14H51V12H49V14Z" fill="#A5ADB1"/>
+<path id="Fill 173" fill-rule="evenodd" clip-rule="evenodd" d="M49 18H51V16H49V18Z" fill="#A5ADB1"/>
+<path id="Fill 174" fill-rule="evenodd" clip-rule="evenodd" d="M49 22H51V20H49V22Z" fill="#A5ADB1"/>
+</g>
+</svg>

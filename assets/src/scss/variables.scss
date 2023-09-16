@@ -7,11 +7,11 @@ $vendor-path: "../../../vendor";
 
 // Colors
 $color-primary: tokens.$fi-color-highlight-light2; // #D5E4F6
+$color-secondary: tokens.$fi-color-depth-dark1; // #5F686D
 $color-link-text: tokens.$fi-color-highlight-base; // #2A6EBB
 $color-white: tokens.$fi-color-white-base; // #fff
 $color-black: tokens.$fi-color-black-base; // #000
 $color-text-primary: $color-black;
-$color-text-secondary: tokens.$fi-color-depth-dark1; // #5F686D
 $color-border: tokens.$fi-color-depth-base; // #A5ADB1
 $color-text-disabled: $color-border;
 $color-text-placeholder: tokens.$fi-color-depth-dark2; // #6D787E

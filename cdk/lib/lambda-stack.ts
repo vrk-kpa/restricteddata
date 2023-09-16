@@ -17,6 +17,7 @@ export class LambdaStack extends Stack {
 
     const createDatabases = new CreateDatabasesAndUsers(this, 'create-databases-and-users', {
       env: props.env,
+      envProps: props.envProps,
       ckanInstance: props.ckanInstance,
       ckanAdminCredentials: props.ckanAdminCredentials,
       vpc: props.vpc,

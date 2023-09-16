@@ -1,0 +1,22 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Kulttuuri ja vapaa-aika">
+<path id="Fill 99" fill-rule="evenodd" clip-rule="evenodd" d="M22 61H24V41H22V61Z" fill="#A5ADB1"/>
+<path id="Fill 100" fill-rule="evenodd" clip-rule="evenodd" d="M28 63H30V41H28V63Z" fill="#A5ADB1"/>
+<path id="Fill 101" fill-rule="evenodd" clip-rule="evenodd" d="M34 63H36V41H34V63Z" fill="#A5ADB1"/>
+<path id="Fill 102" fill-rule="evenodd" clip-rule="evenodd" d="M40 61H42V41H40V61Z" fill="#A5ADB1"/>
+<path id="Fill 103" fill-rule="evenodd" clip-rule="evenodd" d="M20 31C17.794 31 16 29.206 16 27C16 24.794 17.794 23 20 23V25C18.897 25 18 25.897 18 27C18 28.103 18.897 29 20 29C21.103 29 22 28.103 22 27H24C24 29.206 22.206 31 20 31Z" fill="#003479"/>
+<path id="Fill 104" fill-rule="evenodd" clip-rule="evenodd" d="M44 31C41.794 31 40 29.206 40 27H42C42 28.103 42.897 29 44 29C45.103 29 46 28.103 46 27C46 25.897 45.103 25 44 25V23C46.206 23 48 24.794 48 27C48 29.206 46.206 31 44 31Z" fill="#003479"/>
+<path id="Fill 105" fill-rule="evenodd" clip-rule="evenodd" d="M20 25H44V23H20V25Z" fill="#003479"/>
+<path id="Fill 106" fill-rule="evenodd" clip-rule="evenodd" d="M20 21H44V19H20V21Z" fill="#003479"/>
+<path id="Fill 107" fill-rule="evenodd" clip-rule="evenodd" d="M42 37H40C40 34.794 41.794 33 44 33V35C42.897 35 42 35.897 42 37Z" fill="#003479"/>
+<path id="Fill 108" fill-rule="evenodd" clip-rule="evenodd" d="M24 37H22C22 35.897 21.103 35 20 35V33C22.206 33 24 34.794 24 37Z" fill="#003479"/>
+<path id="Fill 109" fill-rule="evenodd" clip-rule="evenodd" d="M36 37H34C34 35.897 33.103 35 32 35C30.897 35 30 35.897 30 37H28C28 34.794 29.794 33 32 33C34.206 33 36 34.794 36 37Z" fill="#003479"/>
+<path id="Fill 110" fill-rule="evenodd" clip-rule="evenodd" d="M20 39H44V37H20V39Z" fill="#003479"/>
+<path id="Fill 111" fill-rule="evenodd" clip-rule="evenodd" d="M30 29H34V27H30V29Z" fill="#003479"/>
+<path id="Fill 112" fill-rule="evenodd" clip-rule="evenodd" d="M28 31H26C26 28.794 27.794 27 30 27V29C28.897 29 28 29.897 28 31Z" fill="#003479"/>
+<path id="Fill 113" fill-rule="evenodd" clip-rule="evenodd" d="M38 31H36C36 29.897 35.103 29 34 29V27C36.206 27 38 28.794 38 31Z" fill="#003479"/>
+<path id="Fill 114" fill-rule="evenodd" clip-rule="evenodd" d="M31 34H33V28H31V34Z" fill="#003479"/>
+<path id="Fill 115" fill-rule="evenodd" clip-rule="evenodd" d="M32 2C15.458 2 2 15.458 2 32C2 48.542 15.458 62 32 62C48.542 62 62 48.542 62 32C62 15.458 48.542 2 32 2ZM32 64C14.355 64 0 49.645 0 32C0 14.355 14.355 0 32 0C49.645 0 64 14.355 64 32C64 49.645 49.645 64 32 64Z" fill="#A5ADB1"/>
+<path id="Fill 116" fill-rule="evenodd" clip-rule="evenodd" d="M16.404 52.805C9.792 47.841 6 40.258 6 32C6 17.663 17.664 6 32 6C46.336 6 58 17.663 58 32C58 40.256 54.209 47.838 47.601 52.802L46.399 51.202C52.501 46.62 56 39.621 56 32C56 18.767 45.233 8 32 8C18.767 8 8 18.767 8 32C8 39.623 11.501 46.623 17.605 51.205L16.404 52.805Z" fill="#A5ADB1"/>
+</g>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="64" height="60" viewBox="0 0 64 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Asuminen ja muttaminen">
+<path id="Fill 35" fill-rule="evenodd" clip-rule="evenodd" d="M46 60H4V16H6V58H44V50H46V60Z" fill="#A5ADB1"/>
+<path id="Fill 36" fill-rule="evenodd" clip-rule="evenodd" d="M44 24H46V16H44V24Z" fill="#A5ADB1"/>
+<path id="Fill 37" fill-rule="evenodd" clip-rule="evenodd" d="M25 5C25.153 5 25.307 5.035 25.447 5.105L48 16.382V13.618L25 2.118L2 13.618V16.382L24.553 5.105C24.693 5.035 24.847 5 25 5ZM49 19C48.847 19 48.694 18.965 48.553 18.895L25 7.118L1.447 18.895C1.137 19.049 0.769 19.033 0.474 18.851C0.18 18.668 0 18.347 0 18V13C0 12.621 0.214 12.275 0.553 12.105L24.553 0.105C24.834 -0.035 25.166 -0.035 25.447 0.105L49.447 12.105C49.786 12.275 50 12.621 50 13V18C50 18.347 49.82 18.668 49.526 18.851C49.365 18.95 49.183 19 49 19Z" fill="#A5ADB1"/>
+<path id="Fill 38" fill-rule="evenodd" clip-rule="evenodd" d="M25 17C22.794 17 21 18.794 21 21C21 23.206 22.794 25 25 25C27.206 25 29 23.206 29 21C29 18.794 27.206 17 25 17ZM25 27C21.691 27 19 24.309 19 21C19 17.691 21.691 15 25 15C28.309 15 31 17.691 31 21C31 24.309 28.309 27 25 27Z" fill="#003479"/>
+<path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M33 37H17V58H15V37V35H35V37V58H33V37Z" fill="#003479"/>
+<path id="Fill 42" fill-rule="evenodd" clip-rule="evenodd" d="M10 9H8V0H14V7H12V2H10V9Z" fill="#A5ADB1"/>
+<path id="Fill 43" fill-rule="evenodd" clip-rule="evenodd" d="M0 60H50V58H0V60Z" fill="#A5ADB1"/>
+<path id="Fill 44" fill-rule="evenodd" clip-rule="evenodd" d="M45 60H64V58H45V60Z" fill="#A5ADB1"/>
+<path id="Fill 45" fill-rule="evenodd" clip-rule="evenodd" d="M29 49H31V47H29V49Z" fill="#A5ADB1"/>
+<path id="Fill 46" fill-rule="evenodd" clip-rule="evenodd" d="M51 59H53V33H51V59Z" fill="#A5ADB1"/>
+<path id="Fill 47" fill-rule="evenodd" clip-rule="evenodd" d="M52 27C46.486 27 42 31.486 42 37C42 42.514 46.486 47 52 47C57.514 47 62 42.514 62 37C62 31.486 57.514 27 52 27ZM52 49C45.383 49 40 43.617 40 37C40 30.383 45.383 25 52 25C58.617 25 64 30.383 64 37C64 43.617 58.617 49 52 49Z" fill="#A5ADB1"/>
+<path id="Fill 48" fill-rule="evenodd" clip-rule="evenodd" d="M51.293 40.707L45.293 34.707L46.707 33.293L52.707 39.293L51.293 40.707Z" fill="#A5ADB1"/>
+<path id="Fill 49" fill-rule="evenodd" clip-rule="evenodd" d="M52.707 44.707L51.293 43.293L57.293 37.293L58.707 38.707L52.707 44.707Z" fill="#A5ADB1"/>
+</g>
+</svg>

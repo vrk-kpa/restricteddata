@@ -1,0 +1,82 @@
+// vendor
+@use "suomifi-design-tokens/dist/tokens";
+
+footer.site-footer {
+  border-top: 4px solid tokens.$fi-color-brand-base;
+
+  background: tokens.$fi-color-white-base;
+  padding: 0;
+  
+  .footer {
+    padding: 30px 40px 50px 40px;
+    font-weight: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .container {
+      max-width: 1110px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      flex-grow: 1;
+      gap: 30px;
+    }
+  }
+  .primary.footer {
+    border-top: 1px solid tokens.$fi-color-depth-light1;
+    padding-top: 40px;
+    padding-bottom: 0;
+
+    .container {
+      gap: 40px;
+    }
+    .suomifi-dvv {
+      display: flex;
+
+      img {
+        border-right: 1px solid tokens.$fi-color-depth-base;
+        padding: 11px 20px 11px 0;
+      }
+      span {
+        padding-left: 20px;
+      }
+    }
+
+    .footer-links {
+      padding-bottom: 20px;      
+
+      .navbar {
+        padding: 0;
+        justify-content: start;
+        gap: 40px;
+
+        a {
+          color: tokens.$fi-color-highlight-base;
+        }
+      }
+    }
+  }
+  .secondary.footer {
+    color: tokens.$fi-color-white-base;
+    background: tokens.$fi-color-brand-base;
+    .social-links {
+      display: flex;
+      padding-bottom: 25px;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 30px;
+      border-bottom: 1px solid tokens.$fi-color-white-base;
+
+      i {
+        font-size: 24px;
+        width: 24px;
+        vertical-align: bottom;
+      }
+      a {
+        white-space: nowrap;
+      }
+    }
+  }
+}

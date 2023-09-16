@@ -1,7 +1,9 @@
 import {StackProps} from "aws-cdk-lib";
 import {IVpc} from "aws-cdk-lib/aws-ec2";
+import {EnvProps} from "./env-props";
 
 export interface CommonStackProps extends StackProps {
-    environment: string;
-    vpc: IVpc;
+  envProps: EnvProps;
+  environment: string;
+  vpc: IVpc;
 }
