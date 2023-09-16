@@ -1,6 +1,7 @@
 {% set dataset_type = h.default_package_type() %}
 {% set site_title = h.get_site_name() %}
 {% set search_placeholder = _('Search from ' + site_title) %}
+{% set current_lang = h.get_lang_prefix() %}
 
 {% block header_wrapper %}
 <header class="masthead">
@@ -10,25 +11,28 @@
   {% endif %}
   {% endblock %}
   <div class="container top">
-    {% block header_logo %}
+    {% block header_top %}
     <div class="site-title">
+      {% block header_logo %}
       <a class="logo" href="{{ h.url_for('home.index') }}">
         <img src="{{ h.url_for_static_or_external('/images/icon-suomifi.svg') }}" alt="{{ _('Suomi.fi logo') }}"
           title="{{ site_title }}" />
       </a>
       <a href="{{ h.url_for('home.index') }}">{{ site_title }}</a>
+      {% endblock %}
     </div>
-    {% endblock %}
     <div class="search-bar">
       {% block header_site_search %}
-      <form class="d-flex site-search" action="{% url_for dataset_type ~ '.search' %}" method="get">
-        <label class="d-none" for="field-sitewide-search">
-          {% block header_site_search_label %}
-          {{ search_placeholder }}
-          {% endblock %}</label>
-        <input id="field-sitewide-search" class="form-control" type="text" name="q"
-          placeholder="{{ search_placeholder }}" aria-label="{{ search_placeholder }}" />
-        <button class="btn" type="submit" aria-label="{{ _('Submit') }}"><i class="fa fa-search"></i></button>
+      <form class="site-search simple-input" action="{% url_for dataset_type ~ '.search' %}" method="get">
+        <div class="field">
+          <label class="d-none" for="field-sitewide-search">
+            {% block header_site_search_label %}
+            {{ search_placeholder }}
+            {% endblock %}</label>
+          <input id="field-sitewide-search" class="form-control" type="text" name="q"
+            placeholder="{{ search_placeholder }}" aria-label="{{ search_placeholder }}" />
+          <button class="btn-search" type="submit" aria-label="{{ _('Submit') }}"><i class="fa fa-search"></i></button>
+        </div>
       </form>
       {% endblock %}
     </div>
@@ -49,7 +53,7 @@
         <ul class="list-unstyled">
           {% block header_account_notlogged %}
           <li>
-             <a href="{{ h.url_for('user.login') }}" class="btn btn-primary" title="{{ _('Log out') }}">
+            <a href="{{ h.url_for('user.login') }}" class="btn btn-primary" title="{{ _('Log in') }}">
               <i class="icon login"></i>
               <span class="text">{{ _('Log in') }}</span>
             </a>
@@ -64,77 +68,44 @@
       </nav>
       {% endif %}
     </div>
-    {#
-    <div class="menu">
-      <button id="menu-dropdown" type="button" class="btn btn-default dropdown-toggle" type="button"
-        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-bars fa-2x"></i>
-        <span class="text">{{ _('Menu'|upper) }}</span>
-      </button>
-      {% block header_account_container_content %}
-      {% if c.userobj %}
-      <div class="account avatar authed" data-module="me" data-me="{{ c.userobj.id }}">
-        <ul class="list-unstyled d-none">
-          {% block header_account_logged %} {% if c.userobj.sysadmin %}
-          <li>
-            <a href="{{ h.url_for('admin.index') }}" title="{{ _('Sysadmin settings') }}">
-              <i class="fa fa-gavel" aria-hidden="true"></i>
-              <span class="text">{{ _('Admin') }}</span>
-            </a>
-          </li>
-          {% endif %}
-
-          {% block header_dashboard %}
-          <li>
-            <a href="{{ h.url_for('dashboard.datasets') }}" title="{{ _('View dashboard') }}">
-              <i class="fa fa-tachometer" aria-hidden="true"></i>
-              <span class="text">{{ _('Dashboard') }}</span>
-            </a>
-          </li>
-          {% endblock %}
-          {% block header_account_settings_link %}
-          <li>
-            <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Profile settings') }}">
-              <i class="fa fa-cog" aria-hidden="true"></i>
-              <span class="text">{{ _('Profile settings') }}</span>
-            </a>
-          </li>
-          {% endblock %} {% endblock %}
-        </ul>
-      </div>
-      {% endif %} {% endblock %}
-    </div>
-    #}
+    {% endblock %}
   </div>
   <hr>
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container bottom">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-toggle"
-      aria-controls="main-navigation-toggle" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="fa fa-bars text-white"></span>
-    </button>
+    {% block header_bottom %}
+    <nav class="navbar navbar-expand-lg">
+      {% block header_site_navigation %}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation-toggle"
+        aria-controls="main-navigation-toggle" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
 
-    <div class="main-navbar collapse navbar-collapse" id="main-navigation-toggle">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        {% block header_site_navigation %}
-        {% block header_site_navigation_tabs %}
-        {% set org_type = h.default_group_type('organization') %}
-        {% set group_type = h.default_group_type('group') %}
+      <div class="main-navbar collapse navbar-collapse" id="main-navigation-toggle">
+        <ul class="navbar-nav">
+          {% block header_site_navigation_tabs %}
+          {% set org_type = h.default_group_type('organization') %}
+          {% set group_type = h.default_group_type('group') %}
 
-        {{ h.build_nav_main(
-          (dataset_type ~ '.search', h.humanize_entity_type('package', dataset_type, 'main nav') or _('Datasets'),
-          ["dataset", "resource"]),
-          (org_type ~ '.index',
-          h.humanize_entity_type('organization', org_type, 'main nav') or _('Organizations'), ['organization']),
-          (group_type ~ '.index',
-          h.humanize_entity_type('group', group_type, 'main nav') or _('Groups'), ['group']),
-          ('home.about', _('About')) ) }}
-        {% endblock %}
-      </ul>
-
+          {{ h.build_nav_main(
+            (dataset_type ~ '.search', h.humanize_entity_type('package', dataset_type, 'main nav') or _('Datasets'),
+            ["dataset", "resource"]),
+            (org_type ~ '.index',
+            h.humanize_entity_type('organization', org_type, 'main nav') or _('Organizations'), ['organization']),
+            (group_type ~ '.index',
+            h.humanize_entity_type('group', group_type, 'main nav') or _('Groups'), ['group']),
+          ) }}
+          {% endblock %}
+        </ul>
+      </div>
+      <a class="link-button external"
+        href="{{ h.url_for_static_or_external('https://avoindata.fi', locale=current_lang, qualified=true) }}"
+        target="_blank">
+        {{ _('Suomi.fi-avoindata') }}
+      </a>
       {% endblock %}
-
-    </div>
-  </nav>
+    </nav>
+    {% endblock %}
+  </div>
 </header>
 {% endblock %}

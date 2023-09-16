@@ -7,6 +7,7 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import cleancss from "gulp-clean-css";
+import concat from "gulp-concat";
 import rename from "gulp-rename";
 import gulpStylelint from "@ronilaukkarinen/gulp-stylelint";
 
@@ -89,7 +90,7 @@ const ckanSass = () => {
   return src(paths.src.scss + "ckan/**/*.scss", { sourcemaps: true })
     .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }).on('error', sass.logError))
     .pipe(cleancss({ keepBreaks: false }))
-    .pipe(rename('registrydata.css'))
+    .pipe(concat('registrydata.css'))
     .pipe(dest(paths.ckanAssets + "css", { sourcemaps: './maps' }))
 };
 
@@ -138,7 +139,8 @@ const javascript = () => {
 };
 
 const copyFontawesomeCss = () => {
-  return src(paths.src.fontawesome + "css/all.css", { since: lastRun(copyFontawesomeCss), allowEmpty: true })
+  return src([paths.src.fontawesome + "css/all.css", paths.src.fontawesome + "css/sharp-regular.css", paths.src.fontawesome + "css/sharp-solid.css"], { since: lastRun(copyFontawesomeCss), allowEmpty: true })
+    .pipe(concat('all.css'))
     .pipe(dest(paths.ckanPublic + "/vendor/fontawesome/css/"))
 }
 

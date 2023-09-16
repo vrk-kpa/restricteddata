@@ -110,6 +110,54 @@ textarea {
   }
 }
 
+.simple-input .field {
+  width: 100%;
+  input {
+    padding-right: 40px;
+  }
+
+  .btn-search {
+    top: 0;
+    right: 0;
+    font-size: rd.$font-size-sm;
+    margin-top: 0;
+    height: 40px;
+    width: auto;
+
+    &>i {
+      padding: 0 12px;
+    }
+  }
+}
+
+a.link-button {
+  color: rd.$color-link-text;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-shadow: none;
+  display: flex;
+  line-height: 20px;
+  font-weight: rd.$font-weight-bold;
+  letter-spacing: 0.4px;
+  font-size: rd.$font-size-xs;
+  text-decoration: none;
+
+  &.external {
+    &::before {
+      font: var(--fa-font-sharp-regular);
+      font-size: 16px;
+      align-self: center;
+      margin-right: 8px;
+      content: "\f08e"
+    }
+  }
+
+  &:hover {
+    border: 1px solid rd.$color-border;
+  }
+}
+
 ::selection {
   background: rd.$color-suomifi;
   color: rd.$color-white;
