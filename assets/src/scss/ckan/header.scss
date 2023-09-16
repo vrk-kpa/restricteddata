@@ -1,4 +1,4 @@
-@use "../../variables" as rd;
+@use "../variables" as rd;
 
 %dropdown-toggle {
   padding: 6px 12px;
@@ -55,7 +55,7 @@ header.masthead {
 
       button.btn {
         >i {
-          color: rd.$color-text-secondary;
+          color: rd.$color-secondary;
         }
       }
     }

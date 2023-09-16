@@ -1,9 +1,9 @@
 @use "suomifi-design-tokens/dist/tokens";
-@use "../variables";
+@use "../variables" as rd;
 
 .homepage .hero {
-  background: variables.$registrydata-primary;
-  color: tokens.$fi-color-brand-base;
+  background: rd.$color-primary;
+  color: rd.$color-suomifi;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,7 @@
     gap: 10px;
 
     form {
-      background: rgba(tokens.$fi-color-brand-base, 20%);
+      background: rgba(rd.$color-suomifi, 20%);
       padding: 10px;
       max-width: 740px;
       display: flex;
@@ -61,7 +61,7 @@
 
         i {
           font-size: 16px;
-          color: tokens.$fi-color-depth-dark1;
+          color: rd.$color-text-secondary;
           position: absolute;
           right: 12px;
           top: 12px;
@@ -86,15 +86,15 @@
   gap: 40px;
 
   &.data-sources {
-    background-color: rgba(variables.$registrydata-primary, 0.3);
+    background-color: rgba(rd.$color-primary, 0.3);
   }
   &.open-data {
-    background-color: tokens.$fi-color-brand-base;
+    background-color: rd.$color-suomifi;
     h2 {
-      color: tokens.$fi-color-white-base;
+      color: rd.$color-white;
     }
     .rd-card .icon .icon-oval-background {
-      background-color: tokens.$fi-color-highlight-light3;
+      background-color: rd.$color-secondary;
     }
   }
 }
@@ -150,11 +150,11 @@ ul.category-grid {
     width: 48%;
     max-width: 500px;
     height: 110px;
-    background-color: tokens.$fi-color-white-base;
+    background-color: rd.$color-white;
     display: flex;
     gap: 20px;
     overflow: hidden;
-    box-shadow: 0px 2px 4px 1px rgba(tokens.$fi-color-black-base, 20%);
+    box-shadow: 0px 2px 4px 1px rgba(rd.$color-black, 20%);
     border-radius: 4px;
 
     .icon {
@@ -165,7 +165,7 @@ ul.category-grid {
       .icon-oval-background {
         width: 120px;
         height: 180px;
-        background-color: variables.$registrydata-secondary;
+        background-color: rd.$color-secondary;
         border-radius: 0 100% 100% 0;
         position: relative;
         display: flex;
@@ -191,7 +191,7 @@ ul.news-items {
     gap: 10px;
 
     &:not(:last-child):not(:only-child) {
-      border-right: 1px solid tokens.$fi-color-depth-base;
+      border-right: 1px solid rd.$color-border;
     }
     .news-title {
       flex-grow: 1;
@@ -202,8 +202,8 @@ ul.news-items {
       line-height: 24px;
       padding: 2px 10px;
       border-radius: 14px;
-      background: tokens.$fi-color-black-base;
-      color: tokens.$fi-color-white-base;
+      background: rd.$color-black;
+      color: rd.$color-white;
     }
   }
 }
@@ -213,7 +213,7 @@ ul.news-items {
     font-family: "Font Awesome 6 Pro";
     font-weight: var(--fa-style, 900);
     content: "\f054";
-    color: tokens.$fi-color-accent-base;
+    color: rd.$color-accent;
     margin-right: 5px;
     font-size: 14px;
   }
