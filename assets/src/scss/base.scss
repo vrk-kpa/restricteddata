@@ -88,18 +88,63 @@ a {
   }
 }
 
+.page-heading {
+  margin-bottom: 13px;
+}
+
 input[type=submit],
 input[type=button] {
-  background: rd.$color-button-primary;
-  color: rd.$color-white;
-  font-size: rd.$font-size-xs;
-  font-weight: rd.$font-weight-bold;
-  padding: 10px 20px 10px 20px;
-  border: none;
-  border-radius: 2px;
+  &.form-control {
+    background: rd.$color-button-primary;
+    color: rd.$color-white;
+    font-size: rd.$font-size-xs;
+    font-weight: rd.$font-weight-bold;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    border-radius: 2px;
 
-  &:hover {
-    background: rd.$color-button-primary-hover;
+    &:hover {
+      background: rd.$color-button-primary-hover;
+    }
+  }
+}
+input[type=text].form-control {
+  height: 40px;
+  border-radius: 2px;
+  &::placeholder {
+    font-style: italic;
+  }
+}
+.select-wrapper {
+  position: relative;
+  select {
+    @include tokens.fi-text-body-text-small;
+    background: tokens.$fi-color-white-base;
+    border: 1px solid tokens.$fi-color-black-light1;
+    border-radius: 2px;
+    padding: 8px 10px;
+  }
+  &::after {
+    font: var(--fa-font-solid);
+    content: "\f0d7";
+    color: rd.$color-text-secondary;
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+}
+.search-input-container {
+  position: relative;
+  button {
+    i {
+      font-size: 16px;
+    }
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 12px;
+    top: 6px;
   }
 }
 
@@ -110,6 +155,11 @@ textarea {
 
 .form-control[readonly] {
   color: rd.$color-text-disabled;
+}
+
+.form-control:focus {
+  background: rd.$color-white;
+  box-shadow: 0 0 10px rd.$color-link-text;
 }
 
 .btn.btn-primary {
@@ -179,4 +229,8 @@ a.link-button {
   background: rd.$color-suomifi;
   color: rd.$color-white;
   text-shadow: none;
+}
+
+.primary>.module>.module-content {
+  padding-top: 0;
 }

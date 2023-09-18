@@ -48,8 +48,7 @@
       display: flex;
       gap: 20px;
 
-      .search {
-        position: relative;
+      .search-input-container {
         flex-grow: 1;
         input {
           height: 40px;
