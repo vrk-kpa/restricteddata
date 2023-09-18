@@ -1,33 +1,48 @@
 @use "suomifi-design-tokens/dist/tokens";
-@use "mixins";
+@use "variables" as rd;
 
 %body-text {
   @include tokens.fi-text-body-text;
+
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-style: normal;
 }
 
 body,
 p {
   @extend %body-text;
-
-  .bold,
-  b {
-    @include mixins.bold;
-  }
-
-  .small,
-  small {
-    @include mixins.small;
-  }
-
-  .lead {
-    @extend %body-text;
-    @include mixins.lead;
-  }
 }
 
-body,
-.main {
-  background: tokens.$fi-color-depth-light3;
+%bold,
+.bold,
+b {
+  font-weight: rd.$font-weight-bold;
+}
+
+%small,
+.small,
+small {
+  font-weight: rd.$font-weight-bold;
+}
+
+%lead,
+.lead {
+  font-size: rd.$font-size-lg;
+}
+
+select.form-control,
+input.form-control,
+.dropdown-menu,
+::placeholder {
+  font-size: rd.$font-size-sm;
+}
+
+::placeholder {
+  color: rd.$color-text-placeholder;
+}
+
+div.main:not(.hero) {
+  background: rd.$color-background;
 }
 
 h1,
@@ -37,7 +52,7 @@ h4,
 h5,
 h6 {
   color: inherit;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
 }
 
 h1 {
@@ -47,6 +62,7 @@ h1 {
 h1.hero {
   @include tokens.fi-text-heading1-hero;
 }
+
 h2 {
   @include tokens.fi-text-heading2;
 }
@@ -64,11 +80,11 @@ h5 {
 }
 
 a {
-  color: tokens.$fi-color-highlight-base;
+  color: rd.$color-link-text;
 
   &:hover,
   &:focus {
-    color: tokens.$fi-color-highlight-base;
+    color: rd.$color-link-text;
   }
 }
 
@@ -76,13 +92,21 @@ a {
   margin-bottom: 13px;
 }
 
-input[type=submit].form-control, input[type=button].form-control {
-  background: linear-gradient(360deg, tokens.$fi-color-highlight-dark1 0%, tokens.$fi-color-highlight-base 97.12%);
-  color: tokens.$fi-color-white-base;
-  font-size: 14px;
-  padding: 10px 20px 10px 20px;
-  border: none;
-  border-radius: 2px;
+input[type=submit],
+input[type=button] {
+  &.form-control {
+    background: rd.$color-button-primary;
+    color: rd.$color-white;
+    font-size: rd.$font-size-xs;
+    font-weight: rd.$font-weight-bold;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    border-radius: 2px;
+
+    &:hover {
+      background: rd.$color-button-primary-hover;
+    }
+  }
 }
 input[type=text].form-control {
   height: 40px;
@@ -101,11 +125,9 @@ input[type=text].form-control {
     padding: 8px 10px;
   }
   &::after {
-    /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-    font-family: "Font Awesome 6 Pro";
-    font-weight: var(--fa-style, 900);
+    font: var(--fa-font-solid);
     content: "\f0d7";
-    color: tokens.$fi-color-depth-dark1;
+    color: rd.$color-text-secondary;
     font-size: 18px;
     position: absolute;
     right: 10px;
@@ -125,26 +147,90 @@ input[type=text].form-control {
     top: 6px;
   }
 }
+
 .form-control,
 textarea {
-  color: tokens.$fi-color-black-base;
+  color: rd.$color-black;
 }
 
 .form-control[readonly] {
-  color: tokens.$fi-color-depth-dark2;
+  color: rd.$color-text-disabled;
 }
 
 .form-control:focus {
-  background: tokens.$fi-color-white-base;
-  box-shadow: 0 0 10px tokens.$fi-color-highlight-base;
+  background: rd.$color-white;
+  box-shadow: 0 0 10px rd.$color-link-text;
+}
+
+.btn.btn-primary {
+  background: rd.$color-button-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 8px;
+  border-radius: 2px;
+
+  &:hover {
+    background: rd.$color-button-primary-hover;
+  }
+}
+
+.simple-input .field {
+  width: 100%;
+
+  input {
+    padding-right: 40px;
+  }
+
+  .btn-search {
+    top: 0;
+    right: 0;
+    font-size: rd.$font-size-sm;
+    margin-top: 0;
+    height: 40px;
+    width: auto;
+
+    &>i {
+      padding: 0 12px;
+    }
+  }
+}
+
+a.link-button {
+  color: rd.$color-link-text;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-shadow: none;
+  display: flex;
+  line-height: 20px;
+  font-weight: rd.$font-weight-bold;
+  letter-spacing: 0.4px;
+  font-size: rd.$font-size-xs;
+  text-decoration: none;
+
+  &.external {
+    &::before {
+      font: var(--fa-font-sharp-regular);
+      font-size: 16px;
+      align-self: center;
+      margin-right: 8px;
+      content: "\f08e"
+    }
+  }
+
+  &:hover {
+    border: 1px solid rd.$color-border;
+  }
 }
 
 ::selection {
-  background: tokens.$fi-color-brand-base;
-  color: tokens.$fi-color-white-base;
+  background: rd.$color-suomifi;
+  color: rd.$color-white;
   text-shadow: none;
 }
 
-.primary > .module > .module-content {
+.primary>.module>.module-content {
   padding-top: 0;
 }

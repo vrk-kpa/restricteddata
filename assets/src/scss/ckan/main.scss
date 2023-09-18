@@ -5,8 +5,8 @@
 @use "../icons";
 @use "../fonts";
 @use "../base";
-
-@use "home.scss";
-@use "footer.scss";
-@use "datasets.scss";
-@use "organizations.scss";
+@use "header";
+@use "home";
+@use "footer";
+@use "datasets";
+@use "organizations";

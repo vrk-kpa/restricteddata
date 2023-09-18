@@ -1,12 +1,11 @@
-// vendor
-@use "suomifi-design-tokens/dist/tokens";
+@use "../variables" as rd;
 
 footer.site-footer {
-  border-top: 4px solid tokens.$fi-color-brand-base;
+  border-top: 4px solid rd.$color-suomifi;
 
-  background: tokens.$fi-color-white-base;
+  background: rd.$color-white;
   padding: 0;
-  
+
   .footer {
     padding: 30px 40px 50px 40px;
     font-weight: 400px;
@@ -14,7 +13,7 @@ footer.site-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .container {
       max-width: 1110px;
       display: flex;
@@ -25,7 +24,6 @@ footer.site-footer {
     }
   }
   .primary.footer {
-    border-top: 1px solid tokens.$fi-color-depth-light1;
     padding-top: 40px;
     padding-bottom: 0;
 
@@ -36,7 +34,7 @@ footer.site-footer {
       display: flex;
 
       img {
-        border-right: 1px solid tokens.$fi-color-depth-base;
+        border-right: 1px solid rd.$color-border;
         padding: 11px 20px 11px 0;
       }
       span {
@@ -45,7 +43,7 @@ footer.site-footer {
     }
 
     .footer-links {
-      padding-bottom: 20px;      
+      padding-bottom: 20px;
 
       .navbar {
         padding: 0;
@@ -53,21 +51,21 @@ footer.site-footer {
         gap: 40px;
 
         a {
-          color: tokens.$fi-color-highlight-base;
+          color: rd.$color-link-text;
         }
       }
     }
   }
   .secondary.footer {
-    color: tokens.$fi-color-white-base;
-    background: tokens.$fi-color-brand-base;
+    color: rd.$color-white;
+    background: rd.$color-suomifi;
     .social-links {
       display: flex;
       padding-bottom: 25px;
       justify-content: flex-end;
       align-items: flex-start;
       gap: 30px;
-      border-bottom: 1px solid tokens.$fi-color-white-base;
+      border-bottom: 1px solid rd.$color-white;
 
       i {
         font-size: 24px;

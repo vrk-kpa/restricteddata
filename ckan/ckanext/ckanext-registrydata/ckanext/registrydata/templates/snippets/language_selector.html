@@ -1,0 +1,22 @@
+{% set current_lang = h.get_lang_prefix() %}
+{% set languages = { 'fi': 'Suomeksi',
+                     'sv': 'På svenska',
+                     'en': 'In English' } %}
+
+
+<div class="btn-group lang-select">
+  <button id="language-select-dropdown" type="button" class="btn btn-default dropdown-toggle" type="button"
+    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="d-block d-md-none">{{ current_lang|upper }}</span>
+    <span class="d-none d-md-block">{{ _(languages.get(current_lang)) }} ({{ current_lang|upper }})</span>
+    <i class="fa chevron-toggle"></i>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="language-select-dropdown">
+    {% for locale in h.get_available_locales() %}
+    <li {% if locale.language == current_lang %}class="active" {% endif %}>
+      <a class="dropdown-item" href="{% url_for h.current_url(), locale=locale.short_name %}">
+        {{ _(languages.get(locale.language, locale.english_name)) }} ({{ locale.language|upper }})</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

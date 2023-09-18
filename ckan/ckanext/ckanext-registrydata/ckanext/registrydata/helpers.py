@@ -133,3 +133,7 @@ def get_homepage_news(count=4, cache_duration=timedelta(days=1), language=None):
         news = [n for n in news if language in n.get('title', {}) and language in n.get('content', {})]
 
     return news[:count]
+
+
+def get_site_name():
+    return toolkit.config.get('ckanext.registrydata.site_name')
