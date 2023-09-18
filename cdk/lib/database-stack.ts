@@ -11,6 +11,9 @@ import * as bak from "aws-cdk-lib/aws-backup";
 export class DatabaseStack extends Stack {
     readonly ckanAdminCredentials: rds.Credentials;
     readonly ckanInstance: rds.IDatabaseInstance;
+    readonly databaseSecurityGroup: aws_ec2.ISecurityGroup;
+    readonly redisSecurityGroup: aws_ec2.ISecurityGroup;
+    readonly redisCluster: aws_elasticache.CfnCacheCluster;
 
     constructor(scope: Construct, id: string, props: DatabaseStackProps) {
         super(scope, id, props);
@@ -21,7 +24,7 @@ export class DatabaseStack extends Stack {
 
 
 
-        const databaseSecurityGroup = new aws_ec2.SecurityGroup(this, 'databaseSecurityGroup', {
+        this.databaseSecurityGroup = new aws_ec2.SecurityGroup(this, 'databaseSecurityGroup', {
             vpc: props.vpc
         })
 
@@ -50,7 +53,7 @@ export class DatabaseStack extends Stack {
                 subnets: props.vpc.privateSubnets
             },
             securityGroups: [
-                databaseSecurityGroup
+                this.databaseSecurityGroup
             ]
 
         })
@@ -72,11 +75,11 @@ export class DatabaseStack extends Stack {
           description: "Private subnets for redis cluster"
         })
 
-        const redisSecurityGroup = new aws_ec2.SecurityGroup(this, 'RedisSecurityGroup', {
+        this.redisSecurityGroup = new aws_ec2.SecurityGroup(this, 'RedisSecurityGroup', {
           vpc: props.vpc
         })
 
-        const redisCluster = new aws_elasticache.CfnCacheCluster(this, 'RedisCluster', {
+        this.redisCluster = new aws_elasticache.CfnCacheCluster(this, 'RedisCluster', {
           cacheNodeType: props.cacheNodeType,
           engine: "redis",
           engineVersion: "6.x",
@@ -84,7 +87,7 @@ export class DatabaseStack extends Stack {
           cacheSubnetGroupName: redisSubnetGroup.ref,
           port: 6379,
           preferredMaintenanceWindow: 'sun:23:00-mon:01:30',
-          vpcSecurityGroupIds: [redisSecurityGroup.securityGroupId],
+          vpcSecurityGroupIds: [this.redisSecurityGroup.securityGroupId],
       })
     }
 }
