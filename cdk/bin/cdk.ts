@@ -16,6 +16,7 @@ import {EcsClusterStack} from "../lib/ecs-cluster-stack";
 import {NginxStack} from "../lib/nginx-stack";
 import {SolrStack} from "../lib/solr-stack";
 import {FileSystemStack} from "../lib/filesystem-stack";
+import {CkanStack} from "../lib/ckan-stack";
 
 const app = new cdk.App();
 
@@ -216,6 +217,32 @@ const SolrStackDev = new SolrStack(app, 'SolrStack-dev', {
   },
   vpc: VpcStackDev.vpc,
   fileSystem: FileSystemStackDev.solrFs
+})
+
+const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  envProps: envProps,
+  environment: devStackProps.environment,
+  ckanInstance: DatabaseStackDev.ckanInstance,
+  ckanInstanceCredentials: LambdaStackDev.ckanCredentials,
+  cluster: EcsClusterStackDev.cluster,
+  databaseSecurityGroup: DatabaseStackDev.databaseSecurityGroup,
+  domainName: devStackProps.domainName,
+  namespace: EcsClusterStackDev.namespace,
+  redisCluster: DatabaseStackDev.redisCluster,
+  redisSecurityGroup: DatabaseStackDev.redisSecurityGroup,
+  secondaryDomainName: devStackProps.secondaryDomainName,
+  taskDef: {
+    taskCpu: 256,
+    taskMem: 1024,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  },
+  vpc: VpcStackDev.vpc
+
 })
 
 
