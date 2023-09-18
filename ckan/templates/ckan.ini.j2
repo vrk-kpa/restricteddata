@@ -26,7 +26,7 @@ beaker.session.secret = {{ environ('CKAN_BEAKER_SESSION_SECRET') }}
 #beaker.session.secure = True
 beaker.session.httponly = True
 beaker.session.type = ext:database
-beaker.session.url = postgresql://{{ environ('DB_CKAN_USER') }}:{{ environ('DB_CKAN_PASS') }}@{{ environ('DB_HOST') }}/{{ environ('DB_CKAN') }}
+beaker.session.url = postgresql://{{ environ('DB_CKAN_USER') }}:{{ environ('DB_CKAN_PASS') }}@{{ environ('DB_CKAN_HOST') }}/{{ environ('DB_CKAN') }}
 
 app_instance_uuid = {{ environ('CKAN_APP_INSTANCE_UUID') }}
 
@@ -34,7 +34,7 @@ who.config_file = %(here)s/who.ini
 who.log_level = warning
 who.log_file = %(cache_dir)s/who_log.ini
 
-sqlalchemy.url = postgresql://{{ environ('DB_CKAN_USER') }}:{{ environ('DB_CKAN_PASS') }}@{{ environ('DB_HOST') }}/{{ environ('DB_CKAN') }}
+sqlalchemy.url = postgresql://{{ environ('DB_CKAN_USER') }}:{{ environ('DB_CKAN_PASS') }}@{{ environ('DB_CKAN_HOST') }}/{{ environ('DB_CKAN') }}
 ckan.site_url = {{ environ('SITE_PROTOCOL') }}://{{ environ('DOMAIN_NAME') }}
 ckan.site_url_internally = {{ environ('SITE_PROTOCOL') }}://{{ environ('DOMAIN_NAME') }}/
 

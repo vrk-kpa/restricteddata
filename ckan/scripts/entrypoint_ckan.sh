@@ -4,11 +4,11 @@ set -e
 echo "entrypoint_ckan ..."
 
 # set env vars for base image prerun.py script
-export CKAN_SQLALCHEMY_URL="postgresql://${DB_CKAN_USER}:${DB_CKAN_PASS}@${DB_HOST}/${DB_CKAN}"
+export CKAN_SQLALCHEMY_URL="postgresql://${DB_CKAN_USER}:${DB_CKAN_PASS}@${DB_CKAN_HOST}/${DB_CKAN}"
 export CKAN_SOLR_URL="http://${SOLR_HOST}:${SOLR_PORT}/${SOLR_PATH}"
-export CKAN_SYSADMIN_NAME="${SYSADMIN_USER}"
-export CKAN_SYSADMIN_PASSWORD="${SYSADMIN_PASS}"
-export CKAN_SYSADMIN_EMAIL="${SYSADMIN_EMAIL}"
+export CKAN_SYSADMIN_NAME="${CKAN_SYSADMIN_USER}"
+export CKAN_SYSADMIN_PASSWORD="${CKAN_SYSADMIN_PASS}"
+export CKAN_SYSADMIN_EMAIL="${CKAN_SYSADMIN_EMAIL}"
 
 # install extensions (DEV_MODE)
 if [[ "${DEV_MODE}" == "true" ]]; then
