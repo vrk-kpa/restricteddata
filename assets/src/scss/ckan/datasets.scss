@@ -1,0 +1,156 @@
+@use "suomifi-design-tokens/dist/tokens";
+
+.toolbar .breadcrumb {
+  @include tokens.fi-text-body-text-small;
+  a {
+    color: tokens.$fi-color-brand-base;
+  }
+  .active a {
+    color: tokens.$fi-color-depth-dark1;
+    font-weight: normal;
+  }
+  li:not(:first-child)::before {
+    content: ">"
+  }
+}
+.main .wrapper {
+  &::before {
+    border: none;
+  }
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+.secondary {
+  .filters-heading {
+    background: tokens.$fi-color-brand-base;
+    color: tokens.$fi-color-white-base;
+    padding: 30px 20px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .filters {
+    background-color: tokens.$fi-color-white-base;
+    border: 1px solid tokens.$fi-color-depth-light1;
+
+    .module-heading {
+      @include tokens.fi-text-heading5;
+      border: none;
+      background: transparent;
+      margin-top: 40px;
+
+      i {
+        display: none;
+      }
+    }
+
+    .module-footer {
+      display: none;
+    }
+    
+    .module-content.empty {
+      @include tokens.fi-text-body-text-small;
+      padding-top: 0;
+    }
+    .nav-item {
+      &:hover {
+        background: transparent;
+      }
+      &:last-child {
+        border: none;
+      }
+      &:not(:last-child) {
+        border-bottom: 1px solid tokens.$fi-color-depth-light1;
+      }
+      a {
+        @include tokens.fi-text-body-text-small;
+        color: tokens.$fi-color-highlight-base;
+
+        .hidden.separator {
+          display: none;
+        }
+        .item-count {
+          background: transparent;
+          border: none;
+          border-radius: none;
+          font: inherit;
+          color: inherit;
+          padding: 0;
+
+          &::before {
+            content: "(";
+          }
+          &::after {
+            content: ")";
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-form {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border: 0;
+}
+.search-results-header {
+  background: tokens.$fi-color-white-base;
+  border: 1px solid tokens.$fi-color-depth-base;
+  border-bottom-color: tokens.$fi-color-depth-light1;
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .search-result-count {
+    margin: 0;
+  }
+
+  .control-order-by {
+    margin: 0;
+    float: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    label {
+      @include tokens.fi-text-body-semi-bold-small;
+    }
+  }
+}
+
+.dataset-list {
+  background: tokens.$fi-color-white-base;
+  border: 1px solid tokens.$fi-color-depth-base;
+  border-top: none;
+
+  .dataset-item {
+    padding: 20px;
+    .dataset-content {
+      .dataset-heading {
+        font-size: inherit;
+        a {
+          color: tokens.$fi-color-brand-base;
+        }
+      } 
+    }
+    .dataset-resources {
+      display: flex;
+      justify-content: end;
+
+      .badge {
+        text-transform: uppercase;
+        padding: 10px 20px;
+        background: transparent;
+        border-radius: 2px;
+        border: 1px solid tokens.$fi-color-depth-base;
+        color: tokens.$fi-color-depth-dark1;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.4px;
+      }
+    }
+  }
+}

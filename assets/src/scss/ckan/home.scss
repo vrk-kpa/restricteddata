@@ -48,27 +48,11 @@
       display: flex;
       gap: 20px;
 
-      .search {
-        position: relative;
+      .search-input-container {
         flex-grow: 1;
-        input {
-          height: 40px;
-          border-radius: 2px;
-          &::placeholder {
-            font-style: italic;
-          }
-        }
-
-        i {
-          font-size: 16px;
-          color: tokens.$fi-color-depth-dark1;
-          position: absolute;
-          right: 12px;
-          top: 12px;
-        }
       }
 
-      [type=submit] {
+      input[type=submit] {
         height: 40px;
         width: 65px;
       }
