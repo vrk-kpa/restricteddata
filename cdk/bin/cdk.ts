@@ -210,7 +210,7 @@ const SolrStackDev = new SolrStack(app, 'SolrStack-dev', {
   namespace: EcsClusterStackDev.namespace,
   taskDef: {
     taskCpu: 256,
-    taskMem: 512,
+    taskMem: 1024,
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
