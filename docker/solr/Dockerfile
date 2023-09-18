@@ -1,6 +1,6 @@
 FROM solr:9.0.0
 
-# switch from solr to root user
+# switch from solr to root user 
 USER root
 
 # upgrade system
