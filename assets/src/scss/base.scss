@@ -144,3 +144,7 @@ textarea {
   color: tokens.$fi-color-white-base;
   text-shadow: none;
 }
+
+.primary > .module > .module-content {
+  padding-top: 0;
+}
