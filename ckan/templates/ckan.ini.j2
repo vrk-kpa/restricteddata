@@ -94,9 +94,6 @@ ckan.cache_expires = 90
 {% endif %}
 
 
-email_to = {{ environ('SMTP_TO') }}
-error_email_from = {{ environ('SMTP_FROM_ERROR') }}
-
 smtp.server = {{ environ('SMTP_HOST') }}:{{ environ('SMTP_PORT') }}
 smtp.user = {{ environ('SMTP_USERNAME') }}
 smtp.password = {{ environ('SMTP_PASS') }}
