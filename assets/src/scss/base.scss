@@ -89,6 +89,7 @@ a {
 }
 
 .page-heading {
+  padding: 0;
   margin-bottom: 13px;
 }
 
@@ -233,4 +234,38 @@ a.link-button {
 
 .primary>.module>.module-content {
   padding-top: 0;
+}
+
+.page-header {
+  border: none;
+
+ .nav-tabs {
+    border: none;
+    li {
+      a {
+        @include tokens.fi-text-body-text-small;
+        color: tokens.$fi-color-brand-base;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        transition: none;
+
+        &:hover {
+          border: none;
+          background: transparent;
+          color: tokens.$fi-color-brand-base;
+          isolation: auto;
+        }
+
+        i {
+          display: none;
+        }
+      }
+      &.active a {
+        background: transparent;
+        border: none;
+        border-bottom: 4px solid tokens.$fi-color-brand-base;
+      }
+    }
+  }
 }

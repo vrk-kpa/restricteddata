@@ -3,11 +3,14 @@
 .toolbar .breadcrumb {
   @include tokens.fi-text-body-text-small;
   a {
-    color: tokens.$fi-color-brand-base;
+    color: tokens.$fi-color-highlight-base;
   }
   .active a {
     color: tokens.$fi-color-depth-dark1;
     font-weight: normal;
+  }
+  li:first-child {
+    padding-left: 0;
   }
   li:not(:first-child)::before {
     content: ">"
@@ -86,6 +89,15 @@
           }
         }
       }
+      &.active a {
+        color: tokens.$fi-color-highlight-base;
+        background: transparent;
+        text-weight: bold;
+        &::before {
+          content: "";
+          border: none;
+        }
+      }
     }
   }
 }
@@ -96,6 +108,20 @@
   border: 0;
   .search-input-container {
     margin-bottom: 15px;
+  }
+ 
+  .filter-list {
+    margin-bottom: 10px;
+    
+    .pill {
+        width: fit-content;
+        font-weight: 600;
+        line-height: 24px;
+        padding: 2px 10px;
+        border-radius: 14px;
+        background: tokens.$fi-color-brand-base;
+        color: tokens.$fi-color-white-base;
+    }
   }
 }
 .search-results-header {
@@ -134,7 +160,7 @@
       .dataset-heading {
         font-size: inherit;
         a {
-          color: tokens.$fi-color-brand-base;
+          color: tokens.$fi-color-highlight-base;
         }
       } 
     }
