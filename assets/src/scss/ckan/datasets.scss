@@ -94,6 +94,9 @@
   padding-bottom: 0;
   margin-bottom: 0;
   border: 0;
+  .search-input-container {
+    margin-bottom: 15px;
+  }
 }
 .search-results-header {
   background: tokens.$fi-color-white-base;
