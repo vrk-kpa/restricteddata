@@ -92,7 +92,7 @@
       &.active a {
         color: tokens.$fi-color-highlight-base;
         background: transparent;
-        text-weight: bold;
+        font-weight: bold;
         &::before {
           content: "";
           border: none;
