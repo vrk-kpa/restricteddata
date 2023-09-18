@@ -111,7 +111,7 @@ export class CkanStack extends Stack {
       CKAN_BEAKER_SESSION_SECRET: aws_ecs.Secret.fromSecretsManager(beakerSecret),
       CKAN_APP_INSTANCE_UUID: aws_ecs.Secret.fromSecretsManager(appUUIDSecret),
       // .env
-      DB_CKAN_PASS: aws_ecs.Secret.fromSecretsManager(props.ckanInstanceCredentials.secret!, 'db_ckan_pass'),
+      DB_CKAN_PASS: aws_ecs.Secret.fromSecretsManager(props.ckanInstanceCredentials.secret!, 'password'),
       SMTP_USERNAME: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'username'),
       SMTP_PASS: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'password'),
       CKAN_SYSADMIN_PASSWORD: aws_ecs.Secret.fromSecretsManager(ckanSysAdminSecret),
