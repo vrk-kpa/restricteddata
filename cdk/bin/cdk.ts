@@ -14,6 +14,8 @@ import {CertificateStack} from "../lib/certificate-stack";
 import {EnvProps, parseEnv} from "../lib/env-props";
 import {EcsClusterStack} from "../lib/ecs-cluster-stack";
 import {NginxStack} from "../lib/nginx-stack";
+import {SolrStack} from "../lib/solr-stack";
+import {FileSystemStack} from "../lib/filesystem-stack";
 
 const app = new cdk.App();
 
@@ -159,6 +161,17 @@ const EcsClusterStackDev = new EcsClusterStack(app, 'EcsClusterStack-dev', {
   vpc: VpcStackDev.vpc
 })
 
+const FileSystemStackDev = new FileSystemStack(app, 'FilesystemStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  envProps: envProps,
+  environment: devStackProps.environment,
+  vpc: VpcStackDev.vpc
+})
+
+
 const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
   env: {
     account: devStackProps.account,
@@ -185,6 +198,26 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
   }
 
 })
+
+const SolrStackDev = new SolrStack(app, 'SolrStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  envProps: envProps,
+  environment: devStackProps.environment,
+  cluster: EcsClusterStackDev.cluster,
+  namespace: EcsClusterStackDev.namespace,
+  taskDef: {
+    taskCpu: 256,
+    taskMem: 512,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  },
+  vpc: VpcStackDev.vpc,
+  fileSystem: FileSystemStackDev.solrFs
+})
+
 
 // Production
 
