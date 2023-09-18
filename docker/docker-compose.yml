@@ -2,8 +2,6 @@ version: "3.8"
 
 x-env-ckan: &env-ckan
   CKAN_IMAGE_TAG: ${CKAN_IMAGE_TAG}
-  CKAN_HOST: ${CKAN_HOST}
-  CKAN_PORT: ${CKAN_PORT}
   REDIS_HOST: ${REDIS_HOST}
   REDIS_PORT: ${REDIS_PORT}
   REDIS_DB: ${REDIS_DB}
