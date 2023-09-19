@@ -94,7 +94,7 @@ const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
   envProps: envProps,
   vpc: VpcStackDev.vpc,
   environment: devStackProps.environment,
-  importVault: false,
+  importVault: true,
   backups: true
 })
 
