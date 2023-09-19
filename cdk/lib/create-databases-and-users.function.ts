@@ -34,7 +34,7 @@ export const handler: Handler = async (event, context) => {
       body: 'Configured credentials not found in secrets.'
     }
   }
-  
+
   const credObj = JSON.parse(credentials)
   const ckanCredentialObj = JSON.parse(ckanCredentials)
 
@@ -84,6 +84,17 @@ export const handler: Handler = async (event, context) => {
         ckanUser: ckanCredentialObj.username
       });
     console.log("Created database ckan")
+  } catch (err) {
+    if (err && typeof err === 'object') {
+      console.log(err.toString().replace(/PASSWORD\s(.*;)/, "***"))
+    }
+  }
+
+  try {
+    await client.raw("GRANT ALL ON SCHEMA PUBLIC to :ckanUser:; ", {
+      ckanUser: ckanCredentialObj.username
+    });
+    console.log("Granted all on schema public to ckan")
   } catch (err) {
     if (err && typeof err === 'object') {
       console.log(err.toString().replace(/PASSWORD\s(.*;)/, "***"))
