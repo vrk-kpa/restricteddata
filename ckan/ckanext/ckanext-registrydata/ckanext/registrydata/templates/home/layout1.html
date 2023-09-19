@@ -3,14 +3,14 @@
     <h1 class="hero">Suomen kaikki suojattu data data yhdestä paikasta</h1>
     <div class="hero-stats">
       {% set statistics = h.get_site_statistics() %}
-      <div>
+      <a href="{{ h.url_for('dataset.search') }}">
         <span class="hero-stats-count">{{ statistics.dataset_count }}</span>
         <span class="hero-stats-unit">{{ _('datasets') }}</span>
-      </div>
-      <div>
+      </a>
+      <a href="{{ h.url_for('organization.index') }}">
         <span class="hero-stats-count">{{ statistics.organization_count }}</span>
         <span class="hero-stats-unit">{{ _('organizations') }}</span>
-      </div>
+      </a>
     </div>
     <div class="hero-search">
       <form>
@@ -29,9 +29,11 @@
     <ul class="category-grid">
       {% for group in h.get_homepage_groups() %}
         <li>
-          <img class="category-icon" src="{{ group.image_display_url }}">
-          <span class="category-title">{{ group.title }}</span>
-          <span class="category-badge">{{ group.package_count }}</span>
+          <a href="{{ h.url_for('group.read', id=group.name) }}">
+            <img class="category-icon" src="{{ group.image_display_url }}">
+            <span class="category-title">{{ group.title }}</span>
+            <span class="category-badge">{{ group.package_count }}</span>
+          </a>
         </li>
       {% endfor %}
     </ul>

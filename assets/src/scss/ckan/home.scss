@@ -22,6 +22,10 @@
     font-weight: 600;
     text-align: center;
 
+    a {
+      color: rd.$color-suomifi;
+    }
+
     .hero-stats-count {
       display: block;
       font-size: 28px;
@@ -93,12 +97,17 @@ ul.category-grid {
   flex-wrap: wrap;
   list-style: none;
 
-  li {
+  li a {
     width: 130px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    color: rd.$color-black;
+
+    &:hover {
+      text-decoration: none;
+    }
 
     .category-icon {
       width: 64px;
