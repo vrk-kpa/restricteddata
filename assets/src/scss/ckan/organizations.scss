@@ -1,15 +1,15 @@
-@use "suomifi-design-tokens/dist/tokens";
+@use "../variables" as rd;
 
 .secondary > .module {
-  background-color: tokens.$fi-color-white-base;
-  border: 1px solid tokens.$fi-color-depth-light1;
+  background-color: rd.$color-white;
+  border: 1px solid rd.$color-border-light;
   .module-heading {
     display: none;
   }
 }
 .organization-list {
-  background: tokens.$fi-color-white-base;
-  border: 1px solid tokens.$fi-color-depth-base;
+  background-color: rd.$color-white;
+  border: 1px solid rd.$color-border-light;
   border-top: none;
 
   .organization-item {
@@ -18,7 +18,7 @@
       .organization-heading {
         font-size: inherit;
         a {
-          color: tokens.$fi-color-highlight-base;
+          color: rd.$color-link-text;
         }
       } 
     }

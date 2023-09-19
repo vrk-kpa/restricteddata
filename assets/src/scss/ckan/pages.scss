@@ -1,0 +1,7 @@
+@use "../variables" as rd;
+
+.ckanext-pages-content {
+    background-color: rd.$color-white;
+    border: 1px solid rd.$color-border;
+    padding: 20px;
+}
