@@ -1,6 +1,6 @@
 <div role="main">
   <div class="main hero">
-    <h1 class="hero">Suomen kaikki suojattu data data yhdestä paikasta</h1>
+    <h1 class="hero">{{ _('All finnish restricted data from one place') }}</h1>
     <div class="hero-stats">
       {% set statistics = h.get_site_statistics() %}
       <a href="{{ h.url_for('dataset.search') }}">
