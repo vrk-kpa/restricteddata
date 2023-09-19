@@ -14,6 +14,7 @@ $color-black: tokens.$fi-color-black-base; // #000
 $color-text-primary: $color-black;
 $color-text-secondary: tokens.$fi-color-depth-dark1; // #5F686D
 $color-border: tokens.$fi-color-depth-base; // #A5ADB1
+$color-border-light: tokens.$fi-color-depth-light1; // #C8CDD0
 $color-text-disabled: $color-border;
 $color-text-placeholder: tokens.$fi-color-depth-dark2; // #6D787E
 $color-background: tokens.$fi-color-depth-light3; // #F7F7F8
@@ -21,6 +22,9 @@ $color-suomifi: tokens.$fi-color-brand-base; // #00357A
 $color-accent: tokens.$fi-color-accent-base; // #E86A1B
 $color-button-primary: tokens.$fi-gradient-highlight-base-to-highlight-dark1; // linear-gradient(to top, #2A6EBB, #235A9A)
 $color-button-primary-hover: tokens.$fi-gradient-highlight-light1-to-highlight-base; // linear-gradient(to top, #2E78CC, #2A6EBB)
+$color-primary-highlight: tokens.$fi-color-highlight-light3;
+$color-badge: tokens.$fi-color-depth-light2;
+$color-badge-text: tokens.$fi-color-black-light1;
 
 // Text
 $font-size-lg: 22px;

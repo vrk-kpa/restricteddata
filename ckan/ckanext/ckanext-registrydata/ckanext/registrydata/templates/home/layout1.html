@@ -27,7 +27,7 @@
   <section>
     <h2>{{ _('Registrydata categories') }}</h2>
     <ul class="category-grid">
-      {% for group in h.groups_available() %}
+      {% for group in h.get_homepage_groups() %}
         <li>
           <img class="category-icon" src="{{ group.image_display_url }}">
           <span class="category-title">{{ group.title }}</span>

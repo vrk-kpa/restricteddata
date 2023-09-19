@@ -132,7 +132,7 @@ input[type=text].form-control {
     font-size: 18px;
     position: absolute;
     right: 10px;
-    top: 5px;
+    top: calc(50% - 9px);
   }
 }
 .search-input-container {
