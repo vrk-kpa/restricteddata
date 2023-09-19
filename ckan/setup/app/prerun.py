@@ -80,10 +80,10 @@ def check_solr_connection(retry=None):
         if not username:
             connection = urllib.request.urlopen(search_url, timeout=20)
         else:
-            request = urllib.request.Request(search_url, timeout=20)
+            request = urllib.request.Request(search_url)
             base64string = base64.b64encode(bytes('%s:%s' % (username, password),'ascii'))
             request.add_header("Authorization", "Basic %s" % base64string.decode('utf-8'))
-            connection = urllib.request.urlopen(request)
+            connection = urllib.request.urlopen(request, timeout=20)
     except urllib.error.URLError:
         print('[prerun] Unable to connect to solr...try again in a while.')
         import time
