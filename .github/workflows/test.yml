@@ -54,7 +54,7 @@ jobs:
           - dockerfile: ./ckan/Dockerfile
             context: ./ckan
             submodules: recursive
-            build-frontend: false # Don't build frontend until fontawesome problems has been fixed
+            build-frontend: true
             name: ckan
             build-container: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true') }}
 
@@ -84,9 +84,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: cache node_modules
         uses: actions/cache@v3
+        id: cache-node_modules
         with:
           path: ~/.npm
           key: ${{ runner.os }}-build-node_v20-${{ hashFiles('**/package-lock.json') }}
@@ -94,7 +96,7 @@ jobs:
             ${{ runner.os }}-build-node_v20-
 
       - name: install npm packages
-        if: ${{ matrix.build-frontend == true && matrix.build-container == true }}
+        if: ${{ matrix.build-frontend == true && matrix.build-container == true && steps.cache-node_modules.outputs.cache-hit != 'true' }}
         run: npm ci
 
       - name: build frontend with gulp
