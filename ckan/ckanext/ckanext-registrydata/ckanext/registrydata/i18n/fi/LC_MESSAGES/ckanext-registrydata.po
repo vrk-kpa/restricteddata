@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-19 09:58+0000\n"
+"POT-Creation-Date: 2023-09-19 10:41+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
 "Last-Translator: Teemu Erkkola <teemu.erkkola@iki.fi>, 2023\n"
 "Language-Team: Finnish (https://app.transifex.com/avoindata/teams/7979/fi/)\n"
@@ -167,18 +167,22 @@ msgid "Home"
 msgstr ""
 
 #: ckanext/registrydata/templates/header.html:92
-#: ckanext/registrydata/templates/home/layout1.html:51
+#: ckanext/registrydata/templates/home/layout1.html:53
 #: ckanext/registrydata/templates/package/search.html:11
 msgid "Datasets"
 msgstr "Tietoaineistot"
 
 #: ckanext/registrydata/templates/header.html:95
-#: ckanext/registrydata/templates/home/layout1.html:63
+#: ckanext/registrydata/templates/home/layout1.html:65
 msgid "Organizations"
 msgstr "Tuottajat"
 
 #: ckanext/registrydata/templates/header.html:103
 msgid "Suomi.fi-avoindata"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:3
+msgid "All finnish protected data from one place"
 msgstr ""
 
 #: ckanext/registrydata/templates/home/layout1.html:8
@@ -201,35 +205,35 @@ msgstr ""
 msgid "Registrydata categories"
 msgstr "Suojatun datan kategoriat"
 
-#: ckanext/registrydata/templates/home/layout1.html:41
+#: ckanext/registrydata/templates/home/layout1.html:43
 msgid "Registrydata data sources"
 msgstr "Suojatun datan tietolähteet"
 
-#: ckanext/registrydata/templates/home/layout1.html:52
+#: ckanext/registrydata/templates/home/layout1.html:54
 msgid "Browse datasets"
 msgstr "Siirry tietoaineistoihin"
 
-#: ckanext/registrydata/templates/home/layout1.html:64
+#: ckanext/registrydata/templates/home/layout1.html:66
 msgid "Browse organizations"
 msgstr "Siirry tuottajiin"
 
-#: ckanext/registrydata/templates/home/layout1.html:71
+#: ckanext/registrydata/templates/home/layout1.html:73
 msgid "All Finnish open data from one place"
 msgstr "Suomen kaikki avoin data yhdestä paikasta"
 
-#: ckanext/registrydata/templates/home/layout1.html:81
+#: ckanext/registrydata/templates/home/layout1.html:83
 msgid "Suomi.fi open data"
 msgstr "Suomi.fi-avoindata"
 
-#: ckanext/registrydata/templates/home/layout1.html:82
+#: ckanext/registrydata/templates/home/layout1.html:84
 msgid "Navigate to site"
 msgstr "Siirry palveluun"
 
-#: ckanext/registrydata/templates/home/layout1.html:93
+#: ckanext/registrydata/templates/home/layout1.html:95
 msgid "Published"
 msgstr "Julkaistu"
 
-#: ckanext/registrydata/templates/home/layout1.html:101
+#: ckanext/registrydata/templates/home/layout1.html:103
 msgid "Browse all news and disruption notices"
 msgstr "Katso kaikki uutiset ja häiriötiedotteet"
 
@@ -242,6 +246,19 @@ msgstr "Rajaukset"
 #: ckanext/registrydata/templates/package/search.html:58
 msgid "Filter search"
 msgstr "Rajaa hakua"
+
+#: ckanext/registrydata/templates/organization/snippets/helper.html:16
+msgid ""
+"On this page you can find all the public administration organisations that "
+"have described their data resources to the Suojattudata service."
+msgstr ""
+"Tältä sivulta löydät kaikki julkishallinnon organisaatiot, jotka ovat "
+"kuvailleet tietovarantonsa Suojattudata-palveluun."
+
+#: ckanext/registrydata/templates/organization/snippets/helper.html:21
+msgid "Select the organisation whose dataset descriptions you want to view."
+msgstr ""
+"Valitse organisaatio, jonka tietoaineistojen kuvauksia haluat tarkastella."
 
 #: ckanext/registrydata/templates/organization/snippets/organization_item.html:8
 msgid "View {organization_name}"
