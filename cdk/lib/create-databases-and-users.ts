@@ -14,8 +14,7 @@ export class CreateDatabasesAndUsers extends Construct {
 
     this.ckanSecret = new aws_rds.DatabaseSecret(this, "ckanSecret", {
       username: "ckan",
-      encryptionKey: props.secretsEncryptionKey,
-      excludeCharacters: "%"
+      encryptionKey: props.secretsEncryptionKey
     })
 
     const ckanAdminSecret = props.ckanAdminCredentials.secret
