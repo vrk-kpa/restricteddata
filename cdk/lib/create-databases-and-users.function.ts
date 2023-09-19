@@ -89,7 +89,7 @@ export const handler: Handler = async (event, context) => {
       console.log(err.toString().replace(/PASSWORD\s(.*;)/, "***"))
     }
   }
-  
+
   const ckanClient = knex({
     client: 'pg',
     connection: {

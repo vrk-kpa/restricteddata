@@ -96,15 +96,24 @@ export class CkanStack extends Stack {
     })
 
     const beakerSecret = new aws_secretsmanager.Secret(this, 'beakerSecret', {
-      encryptionKey: secretEncryptionKey
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
     })
 
     const appUUIDSecret = new aws_secretsmanager.Secret(this, 'appUUIDSecret', {
-      encryptionKey: secretEncryptionKey
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
     })
 
     const ckanSysAdminSecret = new aws_secretsmanager.Secret(this, 'ckanSysAdminSecret', {
-      encryptionKey: secretEncryptionKey
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
     })
 
     const ckanContainerSecrets: { [key: string]: aws_ecs.Secret; } = {
