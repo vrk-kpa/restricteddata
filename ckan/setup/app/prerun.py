@@ -78,9 +78,9 @@ def check_solr_connection(retry=None):
 
     try:
         if not username:
-            connection = urllib.request.urlopen(search_url)
+            connection = urllib.request.urlopen(search_url, timeout=20)
         else:
-            request = urllib.request.Request(search_url)
+            request = urllib.request.Request(search_url, timeout=20)
             base64string = base64.b64encode(bytes('%s:%s' % (username, password),'ascii'))
             request.add_header("Authorization", "Basic %s" % base64string.decode('utf-8'))
             connection = urllib.request.urlopen(request)
