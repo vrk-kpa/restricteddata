@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-19 10:41+0000\n"
+"POT-Creation-Date: 2023-09-19 12:04+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
 "Last-Translator: Teemu Erkkola <teemu.erkkola@iki.fi>, 2023\n"
 "Language-Team: Finnish (https://app.transifex.com/avoindata/teams/7979/fi/)\n"
@@ -182,8 +182,8 @@ msgid "Suomi.fi-avoindata"
 msgstr ""
 
 #: ckanext/registrydata/templates/home/layout1.html:3
-msgid "All finnish protected data from one place"
-msgstr ""
+msgid "All finnish restricted data from one place"
+msgstr "Suomen kaikki suojattu data yhdestä paikasta"
 
 #: ckanext/registrydata/templates/home/layout1.html:8
 msgid "datasets"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-19 10:41+0000\n"
+"POT-Creation-Date: 2023-09-19 12:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,7 +169,7 @@ msgid "Suomi.fi-avoindata"
 msgstr ""
 
 #: ckanext/registrydata/templates/home/layout1.html:3
-msgid "All finnish protected data from one place"
+msgid "All finnish restricted data from one place"
 msgstr ""
 
 #: ckanext/registrydata/templates/home/layout1.html:8
