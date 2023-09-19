@@ -6,15 +6,16 @@
 # 
 # Translators:
 # Eetu Mansikkamäki <eetu.mansikkamaki@gofore.com>, 2023
+# Teemu Erkkola <teemu.erkkola@iki.fi>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-15 19:39+0000\n"
+"POT-Creation-Date: 2023-09-19 09:01+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
-"Last-Translator: Eetu Mansikkamäki <eetu.mansikkamaki@gofore.com>, 2023\n"
+"Last-Translator: Teemu Erkkola <teemu.erkkola@iki.fi>, 2023\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/avoindata/teams/7979/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,15 +25,267 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ckanext/registrydata/translations.py:8
-msgid "URL"
+msgid "eg. Page Title"
 msgstr ""
 
 #: ckanext/registrydata/translations.py:9
-msgid "Publish Date"
+msgid "URL"
 msgstr ""
 
 #: ckanext/registrydata/translations.py:10
+msgid "Publish Date"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:11
 msgid "Header Order"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:12
+msgid "Not in Menu"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:13
+msgid "Are you sure you want to delete this Page?"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:44
+msgid "expecting list of strings"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:53
+#, python-format
+msgid "invalid encoding for \"%s\" value"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:57
+#, python-format
+msgid "invalid type for repeating text: %r"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:110
+#: ckanext/registrydata/validators.py:258
+msgid "expecting a list"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:133
+#: ckanext/registrydata/validators.py:175
+msgid "Failed to decode JSON string"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:136
+#: ckanext/registrydata/validators.py:178
+msgid "Invalid encoding for JSON string"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:139
+#: ckanext/registrydata/validators.py:181
+msgid "expecting JSON object"
+msgstr ""
+
+#: ckanext/registrydata/validators.py:144
+#: ckanext/registrydata/validators.py:153
+#, python-format
+msgid "Required language \"%s\" missing"
+msgstr ""
+
+#: ckanext/registrydata/assets/modules/form.js:83
+#: ckanext/registrydata/templates/snippets/search_form.html:39
+msgid "Remove"
+msgstr ""
+
+#: ckanext/registrydata/templates/footer.html:6
+msgid "The service is being developed by"
+msgstr ""
+
+#: ckanext/registrydata/templates/footer.html:6
+msgid "the Digital and Population Data Services Agency"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:18
+msgid "Suomi.fi logo"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:34
+msgid "Submit"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:45
+msgid "View profile"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:47
+#: ckanext/registrydata/templates/header.html:48
+msgid "Log out"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:52
+msgid "Account"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:56
+#: ckanext/registrydata/templates/header.html:58
+msgid "Log in"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:91
+#: ckanext/registrydata/templates/snippets/home_breadcrumb_item.html:2
+msgid "Home"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:92
+#: ckanext/registrydata/templates/home/layout1.html:51
+#: ckanext/registrydata/templates/package/search.html:11
+msgid "Datasets"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:95
+#: ckanext/registrydata/templates/home/layout1.html:63
+msgid "Organizations"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:103
+msgid "Suomi.fi-avoindata"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:8
+msgid "datasets"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:12
+msgid "organizations"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:18
+msgid "Type what you are searching for"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:21
+msgid "Search"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:28
+msgid "Registrydata categories"
+msgstr "Categories"
+
+#: ckanext/registrydata/templates/home/layout1.html:41
+msgid "Registrydata data sources"
+msgstr "Data sources"
+
+#: ckanext/registrydata/templates/home/layout1.html:52
+msgid "Browse datasets"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:64
+msgid "Browse organizations"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:71
+msgid "All Finnish open data from one place"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:81
+msgid "Suomi.fi open data"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:82
+msgid "Navigate to site"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:93
+msgid "Published"
+msgstr ""
+
+#: ckanext/registrydata/templates/home/layout1.html:101
+msgid "Browse all news and disruption notices"
+msgstr ""
+
+#: ckanext/registrydata/templates/organization/read.html:11
+#: ckanext/registrydata/templates/package/search.html:24
+msgid "Filters"
+msgstr ""
+
+#: ckanext/registrydata/templates/organization/read.html:16
+#: ckanext/registrydata/templates/package/search.html:58
+msgid "Filter search"
+msgstr ""
+
+#: ckanext/registrydata/templates/organization/snippets/organization_item.html:8
+msgid "View {organization_name}"
+msgstr ""
+
+#: ckanext/registrydata/templates/organization/snippets/organization_item.html:18
+msgid "{num} Dataset"
+msgid_plural "{num} Datasets"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/organization/snippets/organization_item.html:20
+msgid "0 Datasets"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:34
+msgid "Relevance"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:35
+#: ckanext/registrydata/templates/snippets/search_form.html:4
+msgid "Name Ascending"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:36
+#: ckanext/registrydata/templates/snippets/search_form.html:4
+msgid "Name Descending"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:37
+msgid "Last Modified"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:38
+msgid "Popular"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:40
+#: ckanext/registrydata/templates/snippets/search_form.html:3
+msgid "Search datasets..."
+msgstr ""
+
+#: ckanext/registrydata/templates/scheming/macros/form.html:45
+msgid "This field is required"
+msgstr ""
+
+#: ckanext/registrydata/templates/scheming/macros/form.html:45
+msgid "Custom"
+msgstr ""
+
+#: ckanext/registrydata/templates/scheming/macros/form.html:110
+#, python-format
+msgid ""
+"You can use <a href=\"#markdown\" title=\"Markdown quick reference\" data-"
+"target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-"
+"html=\"true\">Markdown formatting</a> here"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_form.html:44
+msgid "Filter Results"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_form.html:62
+msgid "Order by"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_form.html:73
+msgid "Go"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_form.html:82
+msgid "<p class=\"extra\">Please try another search.</p>"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_form.html:88
+msgid ""
+"<p id=\"search-error\"><strong>There was an error while searching.</strong> "
+"Please try again.</p>"
 msgstr ""
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:4
@@ -42,50 +295,50 @@ msgid "Title"
 msgstr ""
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:4
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:12
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:19
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:31
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:11
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:18
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:30
 msgid "FI"
 msgstr "in Finnish"
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:5
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:13
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:23
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:32
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:12
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:22
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:31
 msgid "SV"
 msgstr "in Swedish"
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:6
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:14
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:27
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:33
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:13
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:26
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:32
 msgid "EN"
 msgstr "in English"
 
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:11
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:12
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:13
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:14
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:19
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:23
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:27
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:18
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:22
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:26
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:30
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:31
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:32
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:33
 msgid "Content"
 msgstr ""
 
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:11
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:12
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:13
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:14
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:30
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:31
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:32
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:33
 msgid "Enter content here"
 msgstr ""
 
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:21
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:25
-#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:29
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:20
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:24
+#: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:28
 msgid "My content"
 msgstr ""
 
@@ -97,11 +350,23 @@ msgstr ""
 msgid "This page currently has no content"
 msgstr ""
 
-#: ckanext/registrydata/templates_pages/ckanext_pages/pages_list.html:7
-#: ckanext/registrydata/templates_pages/ckanext_pages/pages_list.html:9
+#: ckanext/registrydata/templates_pages/ckanext_pages/pages_list.html:6
 msgid "Add page"
 msgstr ""
 
-#: ckanext/registrydata/templates_pages/ckanext_pages/pages_list.html:16
+#: ckanext/registrydata/templates_pages/ckanext_pages/pages_list.html:12
+#: ckanext/registrydata/templates_pages/ckanext_pages/snippets/pages_list.html:4
 msgid "Pages"
+msgstr ""
+
+#: ckanext/registrydata/templates_pages/ckanext_pages/snippets/pages_list.html:4
+msgid "Blog"
+msgstr ""
+
+#: ckanext/registrydata/templates_pages/ckanext_pages/snippets/pages_list.html:27
+msgid "There are currently no blog articles here"
+msgstr ""
+
+#: ckanext/registrydata/templates_pages/ckanext_pages/snippets/pages_list.html:29
+msgid "There are currently no pages here"
 msgstr ""
