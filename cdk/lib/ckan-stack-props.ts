@@ -1,6 +1,6 @@
 import {EcsStackProps} from "./ecs-stack-props";
 import {CfnCacheCluster} from "aws-cdk-lib/aws-elasticache";
-import {aws_ec2, aws_rds} from "aws-cdk-lib";
+import {aws_ec2, aws_ecs, aws_rds} from "aws-cdk-lib";
 
 export interface CkanStackProps extends EcsStackProps {
   domainName: string,
@@ -9,5 +9,6 @@ export interface CkanStackProps extends EcsStackProps {
   redisSecurityGroup: aws_ec2.ISecurityGroup,
   ckanInstance: aws_rds.IDatabaseInstance,
   ckanInstanceCredentials: aws_rds.Credentials
-  databaseSecurityGroup: aws_ec2.ISecurityGroup
+  databaseSecurityGroup: aws_ec2.ISecurityGroup,
+  solrService: aws_ecs.FargateService
 }

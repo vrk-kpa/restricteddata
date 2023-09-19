@@ -6,6 +6,7 @@ import {EcsStackProps} from "./ecs-stack-props";
 import {getRepositoryArn} from "./env-props";
 
 export class SolrStack extends Stack {
+  readonly solrService: aws_ecs.FargateService;
   constructor(scope: Construct, id: string, props: EcsStackProps) {
     super(scope, id, props);
 
@@ -74,7 +75,7 @@ export class SolrStack extends Stack {
       sourceVolume: 'solr_data',
     });
 
-    const solrService = new aws_ecs.FargateService(this, 'solrService', {
+    this.solrService = new aws_ecs.FargateService(this, 'solrService', {
       platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
       cluster: props.cluster,
       taskDefinition: solrTaskDef,
@@ -94,11 +95,11 @@ export class SolrStack extends Stack {
     if (props.fileSystem){
       // not sure if needed
       //solrService.connections.allowFrom(props.fileSystem, aws_ec2.Port.tcp(2049), 'EFS connection (solr)');
-      solrService.connections.allowTo(props.fileSystem, aws_ec2.Port.tcp(2049), 'EFS connection (solr)');
+      this.solrService.connections.allowTo(props.fileSystem, aws_ec2.Port.tcp(2049), 'EFS connection (solr)');
     }
 
 
-    const solrServiceAsg = solrService.autoScaleTaskCount({
+    const solrServiceAsg = this.solrService.autoScaleTaskCount({
       minCapacity: props.taskDef.taskMinCapacity,
       maxCapacity: props.taskDef.taskMaxCapacity,
     });
