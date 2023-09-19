@@ -54,7 +54,7 @@ jobs:
           - dockerfile: ./ckan/Dockerfile
             context: ./ckan
             submodules: recursive
-            build-frontend: true
+            build-frontend: false # Don't build frontend until fontawesome problems has been fixed
             name: ckan
             build-container: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true') }}
 
