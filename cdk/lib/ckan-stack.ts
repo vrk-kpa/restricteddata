@@ -65,6 +65,7 @@ export class CkanStack extends Stack {
       CKAN_EXT_LOG_LEVEL: 'INFO',
 
       // .env
+      CKAN_IMAGE_TAG: props.envProps.CKAN_IMAGE_TAG,
       REDIS_HOST: props.redisCluster.getAtt('RedisEndpoint.Address').toString(),
       REDIS_PORT: props.redisCluster.getAtt('RedisEndpoint.Port').toString(),
       REDIS_DB: '0',
