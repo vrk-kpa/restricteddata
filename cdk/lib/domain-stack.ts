@@ -24,7 +24,7 @@ export class DomainStack extends cdk.Stack {
       })
 
       this.publicZone.grantDelegation(role)
-      this.publicZone.grantDelegation(role)
+      this.newPublicZone.grantDelegation(role)
     }
   }
 }
