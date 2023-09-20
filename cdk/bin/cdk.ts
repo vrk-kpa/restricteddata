@@ -149,7 +149,8 @@ const CertificateStackDev = new CertificateStack(app, 'CertificateStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  zone: SubDomainStackDev.subZone
+  zone: SubDomainStackDev.subZone,
+  newZone: SubDomainStackDev.newSubZone
 })
 
 const EcsClusterStackDev = new EcsClusterStack(app, 'EcsClusterStack-dev', {
@@ -322,5 +323,6 @@ const CertificateStackProd = new CertificateStack(app, 'CertificateStack-prod', 
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  zone: DomainStackProd.publicZone
+  zone: DomainStackProd.publicZone,
+  newZone: DomainStackProd.newPublicZone
 })
