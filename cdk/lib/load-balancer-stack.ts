@@ -13,6 +13,8 @@ export class LoadBalancerStack extends Stack {
             vpc: props.vpc,
         })
 
+        secGroup.addIngressRule(aws_ec2.Peer.anyIpv4(), aws_ec2.Port.tcp(443), "HTTPS from anywhere")
+
         this.loadBalancer = new ApplicationLoadBalancer(this, 'LoadBalancer', {
             vpc: props.vpc,
             internetFacing: true,
