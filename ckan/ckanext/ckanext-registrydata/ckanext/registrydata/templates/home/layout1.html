@@ -92,7 +92,7 @@
     <ul class="news-items">
       {% for news in h.get_homepage_news() %}
       <li>
-        <span class="news-published">{{ _('Published') }} {{ news.published | datetimeformat('d.m.y') }}</span>
+        <span class="news-published">{{ _('Published') }} {{ news.published | datetimeformat('d.M.y') }}</span>
         <a class="news-title" href="{{ news.url }}"><h3>{{ news.title[h.lang()] or news.title.fi }}</h3></a>
         {% for tag in news.tags %}
           <span class="news-badge">{{ tag.name[h.lang()] or tag.name.fi }}</span>
