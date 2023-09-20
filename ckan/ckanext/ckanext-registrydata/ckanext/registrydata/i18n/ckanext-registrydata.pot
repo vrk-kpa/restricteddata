@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-19 12:04+0000\n"
+"POT-Creation-Date: 2023-09-20 06:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,31 +42,12 @@ msgstr ""
 msgid "Are you sure you want to delete this Page?"
 msgstr ""
 
+#: ckanext/registrydata/templates/package/search.html:34
 #: ckanext/registrydata/translations.py:16
-msgid "{number} dataset found for \"{query}\""
-msgstr ""
-
-#: ckanext/registrydata/translations.py:17
-msgid "{number} datasets found for \"{query}\""
-msgstr ""
-
-#: ckanext/registrydata/translations.py:18
-msgid "No datasets found for \"{query}\""
+msgid "Relevance"
 msgstr ""
 
 #: ckanext/registrydata/translations.py:19
-msgid "{number} dataset found"
-msgstr ""
-
-#: ckanext/registrydata/translations.py:20
-msgid "{number} datasets found"
-msgstr ""
-
-#: ckanext/registrydata/translations.py:21
-msgid "No datasets found"
-msgstr ""
-
-#: ckanext/registrydata/translations.py:24
 msgid "Username or Email"
 msgstr ""
 
@@ -258,10 +239,6 @@ msgstr[1] ""
 msgid "0 Datasets"
 msgstr ""
 
-#: ckanext/registrydata/templates/package/search.html:34
-msgid "Relevance"
-msgstr ""
-
 #: ckanext/registrydata/templates/package/search.html:35
 #: ckanext/registrydata/templates/snippets/search_form.html:4
 msgid "Name Ascending"
@@ -321,6 +298,66 @@ msgstr ""
 msgid ""
 "<p id=\"search-error\"><strong>There was an error while searching.</strong> "
 "Please try again.</p>"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:15
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:16
+msgid "No datasets found for \"{query}\""
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:17
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:18
+msgid "No datasets found"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:21
+msgid "{number} group found for \"{query}\""
+msgid_plural "{number} groups found for \"{query}\""
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:22
+msgid "No groups found for \"{query}\""
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:23
+msgid "{number} group found"
+msgid_plural "{number} groups found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:24
+msgid "No groups found"
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:27
+msgid "{number} organization found for \"{query}\""
+msgid_plural "{number} organizations found for \"{query}\""
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:28
+msgid "No organizations found for \"{query}\""
+msgstr ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:29
+msgid "{number} organization found"
+msgid_plural "{number} organizations found"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/registrydata/templates/snippets/search_result_text.html:30
+msgid "No organizations found"
 msgstr ""
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:4
