@@ -187,6 +187,7 @@ export class CkanStack extends Stack {
     ckanService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckan)');
     ckanService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckan)');
     ckanService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckan)')
+    ckanService.connections.allowFrom(props.nginxService.service, aws_ec2.Port.tcp(80), 'HTTP connection (ckan)' )
 
     const ckanServiceAsg = ckanService.autoScaleTaskCount({
       minCapacity: props.taskDef.taskMinCapacity,

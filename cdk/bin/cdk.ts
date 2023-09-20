@@ -235,6 +235,7 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   redisCluster: DatabaseStackDev.redisCluster,
   redisSecurityGroup: DatabaseStackDev.redisSecurityGroup,
   solrService: SolrStackDev.solrService,
+  nginxService: NginxStackDev.nginxService,
   secondaryDomainName: devStackProps.secondaryDomainName,
   taskDef: {
     taskCpu: 256,
