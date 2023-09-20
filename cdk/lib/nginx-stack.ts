@@ -13,7 +13,7 @@ import {NginxStackProps} from "./nginx-stack-props";
 
 
 export class NginxStack extends Stack {
-
+  readonly nginxService: aws_ecs_patterns.ApplicationLoadBalancedFargateService;
   constructor(scope: Construct, id: string, props: NginxStackProps) {
     super(scope, id, props);
 
@@ -72,7 +72,7 @@ export class NginxStack extends Stack {
     });
 
 
-    const nginxService = new aws_ecs_patterns.ApplicationLoadBalancedFargateService(this, 'nginxService', {
+    this.nginxService = new aws_ecs_patterns.ApplicationLoadBalancedFargateService(this, 'nginxService', {
       cluster: props.cluster,
       cloudMapOptions: {
         cloudMapNamespace: props.namespace,
@@ -95,14 +95,14 @@ export class NginxStack extends Stack {
     });
 
 
-    nginxService.targetGroup.configureHealthCheck({
+    this.nginxService.targetGroup.configureHealthCheck({
       path: '/health',
       healthyHttpCodes: '200',
     });
 
-    nginxService.targetGroup.setAttribute('deregistration_delay.timeout_seconds', '60');
+    this.nginxService.targetGroup.setAttribute('deregistration_delay.timeout_seconds', '60');
 
-    const nginxServiceAsg = nginxService.service.autoScaleTaskCount({
+    const nginxServiceAsg = this.nginxService.service.autoScaleTaskCount({
       minCapacity: props.taskDef.taskMinCapacity,
       maxCapacity: props.taskDef.taskMaxCapacity,
     });
