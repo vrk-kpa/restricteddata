@@ -55,11 +55,15 @@ default_categories = [
     },
     {
         "approval_status": "approved",
-        "description": "Vaalit ja äänestäminen, politiikka, hallinto ja päätöksenteko, vieraanvaraisuus ja lahjat, julkisen sektorin data, sanastot",
+        "description": "Vaalit ja äänestäminen, politiikka, hallinto ja päätöksenteko, \
+            vieraanvaraisuus ja lahjat, julkisen sektorin data, sanastot",
         "description_translated": {
-            "fi": "Vaalit ja äänestäminen, politiikka, hallinto ja päätöksenteko, vieraanvaraisuus ja lahjat, julkisen sektorin data, sanastot",
-            "en": "Elections and voting, politics, government and decision-making, hospitality and gifts, public sector data, glossaries",
-            "sv": "Val och omröstning, politik, regering och beslutsfattande, gästfrihet och gåvor, offentlig sektors data, ordförråd"
+            "fi": "Vaalit ja äänestäminen, politiikka, hallinto ja päätöksenteko, vieraanvaraisuus ja lahjat, \
+             julkisen sektorin data, sanastot",
+            "en": "Elections and voting, politics, government and decision-making, \
+             hospitality and gifts, public sector data, glossaries",
+            "sv": "Val och omröstning, politik, regering och beslutsfattande, \
+            gästfrihet och gåvor, offentlig sektors data, ordförråd"
         },
         "display_name": "Hallinto ja julkinen sektori",
         "image_url": image_path + "/hallinto-ja-julkinen-sektori.svg",
@@ -75,11 +79,15 @@ default_categories = [
     },
     {
         "approval_status": "approved",
-        "description": "Ulkopolitiikka, kansainväliset järjestöt ja sopimukset, konfliktit ja rauha, asevoimat",
+        "description": "Ulkopolitiikka, kansainväliset järjestöt ja sopimukset, \
+            konfliktit ja rauha, asevoimat",
         "description_translated": {
-            "en": "Foreign policy, international organisations and agreements, conflicts and peace, military forces",
-            "fi": "Ulkopolitiikka, kansainväliset järjestöt ja sopimukset, konfliktit ja rauha, asevoimat",
-            "sv": "Utrikespolitik, internationella organisationer och avtal, konflikter och fred, väpnade styrkor"
+            "en": "Foreign policy, international organisations and agreements, \
+            conflicts and peace, military forces",
+            "fi": "Ulkopolitiikka, kansainväliset järjestöt ja sopimukset, \
+            konfliktit ja rauha, asevoimat",
+            "sv": "Utrikespolitik, internationella organisationer och avtal, \
+            konflikter och fred, väpnade styrkor"
         },
         "display_name": "Kansainväliset asiat",
         "image_url": image_path + "/kansainvaliset-asiat.svg",
@@ -156,11 +164,15 @@ default_categories = [
     },
     {
         "approval_status": "approved",
-        "description": "Maatalous, metsätalous, kalastus ja kaikki niihin liittyvä politiikka, sääntely, ohjeistukset, toiminta, jne. Elintarvikkeet ja elintarviketeknologia",
+        "description": "Maatalous, metsätalous, kalastus ja kaikki niihin liittyvä politiikka, \
+            sääntely, ohjeistukset, toiminta, jne. Elintarvikkeet ja elintarviketeknologia",
         "description_translated": {
-            "fi": "Maatalous, metsätalous, kalastus ja kaikki niihin liittyvä politiikka, sääntely, ohjeistukset, toiminta, jne. Elintarvikkeet ja elintarviketeknologia",
-            "en": "Agriculture, forestry, fishery and politics, regulations, instructions, actions etc. related to those. Food products and food technology",
-            "sv": "Jordbruk, skogsbruk, fiskeri och alla politiker, reglering, anvisningar, verksamheter och andra samhörande saker. Livsmedelsprodukter och livsmedelsteknik"
+            "fi": "Maatalous, metsätalous, kalastus ja kaikki niihin liittyvä politiikka, sääntely, \
+            ohjeistukset, toiminta, jne. Elintarvikkeet ja elintarviketeknologia",
+            "en": "Agriculture, forestry, fishery and politics, regulations, instructions, \
+            actions etc. related to those. Food products and food technology",
+            "sv": "Jordbruk, skogsbruk, fiskeri och alla politiker, reglering, anvisningar, \
+            verksamheter och andra samhörande saker. Livsmedelsprodukter och livsmedelsteknik"
         },
         "display_name": "Maatalous, kalastus, metsätalous ja elintarvikkeet",
         "image_url": image_path + "/maatalous-kalastus-metsatalous-ja-elintarvikkeet.svg",
@@ -236,11 +248,15 @@ default_categories = [
     },
     {
         "approval_status": "approved",
-        "description": "Talouspolitiikka, verotus, rahoitus ja investoinnit, kulutus, kauppa ja kauppapolitiikka, tariffit, elinkeinot ja yritykset",
+        "description": "Talouspolitiikka, verotus, rahoitus ja investoinnit, kulutus, \
+            kauppa ja kauppapolitiikka, tariffit, elinkeinot ja yritykset",
         "description_translated": {
-            "fi": "Talouspolitiikka, verotus, rahoitus ja investoinnit, kulutus, kauppa ja kauppapolitiikka, tariffit, elinkeinot ja yritykset",
-            "en": "Economic policy, taxation, financing and investments, consumption, trade and trade policy, tariffs, business",
-            "sv": "Ekonomisk politik, beskattning, finansiering och investeringar, handel och handelspolitik, tariffer, näringar och företag"
+            "fi": "Talouspolitiikka, verotus, rahoitus ja investoinnit, kulutus, \
+            kauppa ja kauppapolitiikka, tariffit, elinkeinot ja yritykset",
+            "en": "Economic policy, taxation, financing and investments, consumption, \
+            trade and trade policy, tariffs, business",
+            "sv": "Ekonomisk politik, beskattning, finansiering och investeringar, \
+            handel och handelspolitik, tariffer, näringar och företag"
         },
         "display_name": "Talous ja rahoitus",
         "image_url": image_path + "/talous-ja-rahoitus.svg",
@@ -357,7 +373,7 @@ def create(context, dryrun):
                     res = get_action(u'group_create')({'ignore_auth': True, 'user': site_user['name']},
                                                         category)
                     click.secho('Category [' + res.get('name', '') + '] created', fg='green')
-            except ValidationError as e:
+            except ValidationError:
                 click.secho('Group [' + category['name'] +
                             '] already exists, skipping')
 
@@ -391,7 +407,7 @@ def delete(context, dryrun, purge):
                             get_action(u'group_delete')({'ignore_auth': True, 'user': site_user['name']},
                                                     data_dict)
                             click.secho('Category [' + found.get('name') + '] deleted', fg='green')
-            except logic.NotFound as e:
+            except logic.NotFound:
                 click.secho('Category not found, skipping')
 
     click.secho("delete_default_categories - DONE", fg="green")
