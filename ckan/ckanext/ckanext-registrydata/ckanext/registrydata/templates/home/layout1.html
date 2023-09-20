@@ -31,7 +31,7 @@
         <li>
           <a href="{{ h.url_for('group.read', id=group.name) }}">
             <img class="category-icon" src="{{ group.image_display_url }}">
-            <span class="category-title">{{ group.title }}</span>
+            <span class="category-title">{{ h.get_translated(group, 'title') }}</span>
             <span class="category-badge">{{ group.package_count }}</span>
           </a>
         </li>
