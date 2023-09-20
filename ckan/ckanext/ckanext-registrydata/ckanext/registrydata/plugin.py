@@ -7,6 +7,7 @@ from ckan.logic import NotFound
 from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
 from flask import has_request_context
+from ckanext.registrydata.cli import cli
 
 from . import helpers, validators
 
@@ -21,6 +22,7 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.IClick)
 
     # IConfigurer
 
@@ -111,6 +113,12 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         data_dict['num_resources'] = len(allowed_resources)
 
         return data_dict
+
+    # IClick
+
+    def get_commands(self):
+        return cli.get_commands()
+
 
 
 class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
