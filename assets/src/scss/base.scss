@@ -222,10 +222,11 @@ textarea {
   }
 }
 
-a.link-button {
+.link-button {
   color: rd.$color-link-text;
+  border: 1px solid rd.$color-link-text;
+  background: transparent;
   padding: 10px 20px;
-  border: 1px solid transparent;
   border-radius: 2px;
   box-shadow: none;
   display: flex;
@@ -234,19 +235,26 @@ a.link-button {
   letter-spacing: 0.4px;
   font-size: rd.$font-size-xs;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.borderless {
+    border: 1px solid transparent;
+  }
 
   &.external {
     &::before {
       font: var(--fa-font-sharp-regular);
       font-size: 16px;
       align-self: center;
-      margin-right: 8px;
       content: "\f08e"
     }
   }
 
   &:hover {
     border: 1px solid rd.$color-border;
+    background: rd.$color-button-secondary-hover;
   }
 }
 
@@ -293,5 +301,23 @@ a.link-button {
         border-bottom: 4px solid tokens.$fi-color-brand-base;
       }
     }
+  }
+}
+
+.multiple-values {
+  .multiple-value-group+.multiple-value-group {
+    margin-top: 10px;
+  }
+
+  &+button {
+    margin-top: 10px;
+  }
+}
+
+.removable-input-container {
+  display: flex;
+
+  button {
+    height: 40px;
   }
 }
