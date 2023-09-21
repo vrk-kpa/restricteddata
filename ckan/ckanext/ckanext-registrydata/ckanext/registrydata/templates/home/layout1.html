@@ -3,11 +3,11 @@
     <h1 class="hero">{{ _('All finnish restricted data from one place') }}</h1>
     <div class="hero-stats">
       {% set statistics = h.get_site_statistics() %}
-      <a href="{{ h.url_for('dataset.search') }}">
+      <a href="{{ h.url_for('dataset.search') }}" aria-label="{{ _('show all datasets') }}">
         <span class="hero-stats-count">{{ statistics.dataset_count }}</span>
         <span class="hero-stats-unit">{{ _('datasets') }}</span>
       </a>
-      <a href="{{ h.url_for('organization.index') }}">
+      <a href="{{ h.url_for('organization.index') }}" aria-label="{{ _('show all organizations') }}">
         <span class="hero-stats-count">{{ statistics.organization_count }}</span>
         <span class="hero-stats-unit">{{ _('organizations') }}</span>
       </a>
@@ -28,7 +28,7 @@
     <ul class="category-grid">
       {% for group in h.get_homepage_groups() %}
         <li>
-          <a href="{{ h.url_for('group.read', id=group.name) }}">
+          <a href="{{ h.url_for('group.read', id=group.name) }}" aria-label="{{ _('show group') }} {{ h.get_translated(group, 'title') }}">
             <img class="category-icon" src="{{ group.image_display_url }}">
             <span class="category-title">{{ h.get_translated(group, 'title') }}</span>
             <span class="category-badge">{{ group.package_count }}</span>
@@ -80,7 +80,7 @@
         </div>
         <div class="content">
           <h3>{{ _('Suomi.fi open data') }}</h3>
-          <a class="chevron-link" href="https://avoindata.fi">{{ _('Navigate to site') }}</a>
+          <a class="chevron-link" href="https://avoindata.fi" aria-label="{{ _('navigate to Suomi.fi open data') }}">{{ _('Navigate to site') }}</a>
         </div>
       </div>
     </div>
@@ -90,9 +90,12 @@
     <h2>Ajankohtaista</h2>
     <ul class="news-items">
       {% for news in h.get_homepage_news() %}
+      {% set title = news.title[h.lang()] or news.title.fi %}
+      {% set published = news.published | datetimeformat('d.M.y') %}
+      {% set url = news.url[h.lang()] or news.url.fi %}
       <li>
-        <span class="news-published">{{ _('Published') }} {{ news.published | datetimeformat('d.M.y') }}</span>
-        <a class="news-title" href="{{ news.url[h.lang()] or news.url.fi }}"><h3>{{ news.title[h.lang()] or news.title.fi }}</h3></a>
+        <span class="news-published">{{ _('Published') }} {{ published }}</span>
+        <a class="news-title" href="{{ url }}" aria-label="{{ _('open news item') }} {{ title }}"><h3>{{ title }}</h3></a>
         {% for tag in news.tags %}
           <span class="news-badge">{{ tag.name[h.lang()] or tag.name.fi }}</span>
         {% endfor %}

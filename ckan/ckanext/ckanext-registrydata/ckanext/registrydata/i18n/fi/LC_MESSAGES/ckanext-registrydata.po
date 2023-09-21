@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-21 07:54+0000\n"
+"POT-Creation-Date: 2023-09-21 09:22+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
 "Last-Translator: Teemu Erkkola <teemu.erkkola@iki.fi>, 2023\n"
 "Language-Team: Finnish (https://app.transifex.com/avoindata/teams/7979/fi/)\n"
@@ -112,6 +112,14 @@ msgstr "Verkkopalvelun kehittämisestä vastaa"
 msgid "the Digital and Population Data Services Agency"
 msgstr "Digi- ja väestötietovirasto"
 
+#: ckanext/registrydata/templates/full_width_page.html:6
+msgid "Skip to main content"
+msgstr ""
+
+#: ckanext/registrydata/templates/full_width_page.html:36
+msgid "Breadcrumb"
+msgstr ""
+
 #: ckanext/registrydata/templates/header.html:3
 msgid "Search from this site"
 msgstr "Hae tältä sivustolta"
@@ -156,6 +164,7 @@ msgstr "Tietoaineistot"
 #: ckanext/registrydata/templates/header.html:95
 #: ckanext/registrydata/templates/home/layout1.html:64
 #: ckanext/registrydata/templates/organization/index.html:4
+#: ckanext/registrydata/templates/package/base.html:16
 msgid "Organizations"
 msgstr "Tuottajat"
 
@@ -167,9 +176,17 @@ msgstr ""
 msgid "All finnish restricted data from one place"
 msgstr "Suomen kaikki suojattu data yhdestä paikasta"
 
+#: ckanext/registrydata/templates/home/layout1.html:6
+msgid "show all datasets"
+msgstr "näytä kaikki tietoaineistot"
+
 #: ckanext/registrydata/templates/home/layout1.html:8
 msgid "datasets"
 msgstr "tietoaineistoa"
+
+#: ckanext/registrydata/templates/home/layout1.html:10
+msgid "show all organizations"
+msgstr "näytä kaikki tuottajat"
 
 #: ckanext/registrydata/templates/home/layout1.html:12
 msgid "organizations"
@@ -182,6 +199,10 @@ msgstr "Kirjoita mitä olet etsimässä"
 #: ckanext/registrydata/templates/home/layout1.html:27
 msgid "Registrydata categories"
 msgstr "Suojatun datan kategoriat"
+
+#: ckanext/registrydata/templates/home/layout1.html:31
+msgid "show group"
+msgstr "näytä kategoria"
 
 #: ckanext/registrydata/templates/home/layout1.html:42
 msgid "Registrydata data sources"
@@ -204,14 +225,22 @@ msgid "Suomi.fi open data"
 msgstr "Suomi.fi-avoindata"
 
 #: ckanext/registrydata/templates/home/layout1.html:83
+msgid "navigate to Suomi.fi open data"
+msgstr "siirry Suomi.fi avoin dataan"
+
+#: ckanext/registrydata/templates/home/layout1.html:83
 msgid "Navigate to site"
 msgstr "Siirry palveluun"
 
-#: ckanext/registrydata/templates/home/layout1.html:94
+#: ckanext/registrydata/templates/home/layout1.html:97
 msgid "Published"
 msgstr "Julkaistu"
 
-#: ckanext/registrydata/templates/home/layout1.html:102
+#: ckanext/registrydata/templates/home/layout1.html:98
+msgid "open news item"
+msgstr "avaa uutinen"
+
+#: ckanext/registrydata/templates/home/layout1.html:105
 msgid "Browse all news and disruption notices"
 msgstr "Katso kaikki uutiset ja häiriötiedotteet"
 
@@ -256,6 +285,26 @@ msgstr[1] "{num} tietoaineistoa"
 msgid "0 Datasets"
 msgstr "0 tietoaineistoa"
 
+#: ckanext/registrydata/templates/package/base.html:24
+msgid "Create Dataset"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:14
+msgid "Draft"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:17
+msgid "Deleted"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:42
+msgid "Keywords"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:48
+msgid "Categories"
+msgstr ""
+
 #: ckanext/registrydata/templates/package/search.html:35
 #: ckanext/registrydata/templates/snippets/search_form.html:4
 msgid "Name Ascending"
@@ -278,6 +327,69 @@ msgstr ""
 #: ckanext/registrydata/templates/snippets/search_form.html:3
 msgid "Search datasets..."
 msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:2
+msgid "Additional Info"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:8
+msgid "Source"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:23
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:28
+msgid "Author"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:35
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:40
+msgid "Maintainer"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:47
+msgid "Version"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:54
+msgid "State"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:60
+msgid "Last Updated"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/additional_info.html:68
+msgid "Created"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/categories.html:26
+msgid "Show more categories"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/categories.html:28
+msgid "Show more"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/categories.html:36
+msgid "Edit categories"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:35
+msgid "Preview"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:42
+msgid "Download"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:44
+msgid "Open"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:50
+#: ckanext/registrydata/templates_pages/ckanext_pages/page.html:15
+msgid "Edit"
+msgstr "Muokkaa"
 
 #: ckanext/registrydata/templates/scheming/macros/form.html:45
 msgid "This field is required"
@@ -430,10 +542,6 @@ msgstr ""
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:28
 msgid "My content"
 msgstr ""
-
-#: ckanext/registrydata/templates_pages/ckanext_pages/page.html:15
-msgid "Edit"
-msgstr "Muokkaa"
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/page.html:30
 msgid "This page currently has no content"
