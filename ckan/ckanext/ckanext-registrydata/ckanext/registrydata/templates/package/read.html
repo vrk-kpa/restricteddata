@@ -1,0 +1,56 @@
+{% ckan_extends %}
+{% import 'macros/layout.html' as layout %}
+
+{% block banner %}
+{% snippet 'package/snippets/dataset_state_banner.html', pkg=pkg %}
+{% endblock %}
+
+{% block primary_content_inner %}
+{% block package_description %}
+<h1>
+  {% block page_heading %}
+  {{ h.dataset_display_name(pkg) }}
+  {% if pkg.state.startswith('draft') %}
+  [{{ _('Draft') }}]
+  {% endif %}
+  {% if pkg.state == 'deleted' %}
+  [{{ _('Deleted') }}]
+  {% endif %}
+  {% endblock %}
+</h1>
+{% block package_notes %}
+{% if pkg.notes %}
+<div class="notes embedded-content">
+  {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+</div>
+{% endif %}
+{% endblock %}
+{% endblock %}
+
+<div class="row">
+  <section class="col-8 main-content">
+    {% block package_resources %}
+    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+    {% endblock %}
+    {% block package_additional_info %}
+    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+    {% endblock %}
+  </section>
+
+  <aside class="col-4 sidebar">
+    {% block package_tags %}
+    {{ layout.moduleBoxHeader(_('Keywords')) }}
+    {% snippet 'package/snippets/tags.html', tags=pkg.get('keywords', {}), field='keywords', pkg=pkg %}
+    {{ layout.moduleBoxFooter() }}
+    {% endblock %}
+
+    {% block categories %}
+    {{ layout.moduleBoxHeader(_('Categories')) }}
+    {% snippet 'package/snippets/categories.html', categories=pkg.get('groups', {}), pkg=pkg %}
+    {{ layout.moduleBoxFooter() }}
+    {% endblock %}
+  </aside>
+</div>
+
+
+{% endblock %}

@@ -22,7 +22,7 @@ b {
 %small,
 .small,
 small {
-  font-weight: rd.$font-weight-bold;
+  font-size: rd.$font-size-sm;
 }
 
 %lead,
@@ -109,15 +109,19 @@ input[type=button] {
     }
   }
 }
+
 input[type=text].form-control {
   height: 40px;
   border-radius: 2px;
+
   &::placeholder {
     font-style: italic;
   }
 }
+
 .select-wrapper {
   position: relative;
+
   select {
     @include tokens.fi-text-body-text-small;
     background: tokens.$fi-color-white-base;
@@ -125,6 +129,7 @@ input[type=text].form-control {
     border-radius: 2px;
     padding: 8px 30px 8px 10px;
   }
+
   &::after {
     font: var(--fa-font-solid);
     content: "\f0d7";
@@ -135,12 +140,15 @@ input[type=text].form-control {
     top: calc(50% - 9px);
   }
 }
+
 .search-input-container {
   position: relative;
+
   button {
     i {
       font-size: 16px;
     }
+
     background: transparent;
     border: none;
     position: absolute;
@@ -175,6 +183,21 @@ textarea {
 
   &:hover {
     background: rd.$color-button-primary-hover;
+  }
+}
+
+.btn.btn-secondary {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 8px;
+  border-radius: 2px;
+
+  &:hover {
+    color: inherit;
+    background: rd.$color-button-secondary-hover;
   }
 }
 
@@ -240,8 +263,9 @@ a.link-button {
 .page-header {
   border: none;
 
- .nav-tabs {
+  .nav-tabs {
     border: none;
+
     li {
       a {
         @include tokens.fi-text-body-text-small;
@@ -262,6 +286,7 @@ a.link-button {
           display: none;
         }
       }
+
       &.active a {
         background: transparent;
         border: none;

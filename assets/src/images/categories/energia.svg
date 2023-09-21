@@ -1,8 +1,7 @@
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <style>.cls-1{fill:none;}.cls-2{fill:#003479;}.cls-3{fill:#444;}</style>
 </defs>
-<title>Asset 3</title>
 <g id="Energia">
 <rect id="bounding-box" class="cls-1" width="64" height="64"/>
 <rect class="cls-2" x="37" y="42.036" width="2" height="5.112" transform="translate(-20.553 46.564) rotate(-51.492)"/>

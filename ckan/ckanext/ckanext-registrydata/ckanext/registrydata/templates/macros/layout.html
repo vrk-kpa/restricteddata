@@ -1,0 +1,13 @@
+{% import 'macros/form.html' as form %}
+
+{# Custom module wrapper box - Header and Footer used together #}
+{%- macro moduleBoxHeader(title) -%}
+  <section class="module">
+    <h3 class="module-heading">{{ title }}</h3>
+    <div class="module-content">
+{%- endmacro -%}
+
+{%- macro moduleBoxFooter() -%}
+    </div>
+  </section>
+{%- endmacro -%}
