@@ -282,6 +282,11 @@
 
     .additional-info {
       font-size: rd.$font-size-xs;
+
+      .dataset-details,
+      p {
+        font-size: rd.$font-size-xs;
+      }
     }
   }
 
