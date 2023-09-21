@@ -30,9 +30,9 @@ const devStackProps = {
   account: '332833619545',
   region: 'eu-north-1',
   environment: "dev",
-  domainName: "dev.rekisteridata.fi",
+  domainName: "dev.suojattudata.fi",
   secondaryDomainName: "dev.suojattudata.suomi.fi",
-  fqdn: "rekisteridata.fi",
+  fqdn: "suojattudata.fi",
   secondaryFqdn: "suomi.fi"
 }
 
@@ -183,7 +183,7 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
   environment: devStackProps.environment,
   vpc: VpcStackDev.vpc,
   allowRobots: "false",
-  certificate: CertificateStackDev.certificate,
+  certificate: CertificateStackDev.newCertificate,
   cluster: EcsClusterStackDev.cluster,
   namespace: EcsClusterStackDev.namespace,
   domainName: devStackProps.domainName,
