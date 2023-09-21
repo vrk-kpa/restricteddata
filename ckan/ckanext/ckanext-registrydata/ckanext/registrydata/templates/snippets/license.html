@@ -1,0 +1,11 @@
+{% ckan_extends %}
+
+{% block license_title %}
+<h3 class="module-heading">{{ _('License') }}</h3>
+{% endblock %}
+
+{% block license %}
+{% if pkg_dict.get('license_id', '') != 'notspecified' %}
+{{super()}}
+{% endif %}
+{% endblock %}

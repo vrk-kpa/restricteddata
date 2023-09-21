@@ -1,4 +1,5 @@
 {% ckan_extends %}
+
 {% import 'macros/layout.html' as layout %}
 
 {% block banner %}
@@ -10,27 +11,18 @@
 <h1>
   {% block page_heading %}
   {{ h.dataset_display_name(pkg) }}
-  {% if pkg.state.startswith('draft') %}
-  [{{ _('Draft') }}]
-  {% endif %}
-  {% if pkg.state == 'deleted' %}
-  [{{ _('Deleted') }}]
-  {% endif %}
   {% endblock %}
 </h1>
 {% block package_notes %}
-{% if pkg.notes %}
-<div class="notes embedded-content">
-  {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-</div>
-{% endif %}
+{{ super() }}
 {% endblock %}
 {% endblock %}
 
 <div class="row">
   <section class="col-8 main-content">
     {% block package_resources %}
-    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources,
+      can_edit=h.check_access('package_update', {'id':pkg.id }) %}
     {% endblock %}
     {% block package_additional_info %}
     {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
@@ -38,6 +30,7 @@
   </section>
 
   <aside class="col-4 sidebar">
+    {% block secondary_content %}
     {% block package_tags %}
     {{ layout.moduleBoxHeader(_('Keywords')) }}
     {% snippet 'package/snippets/tags.html', tags=pkg.get('keywords', {}), field='keywords', pkg=pkg %}
@@ -49,8 +42,15 @@
     {% snippet 'package/snippets/categories.html', categories=pkg.get('groups', {}), pkg=pkg %}
     {{ layout.moduleBoxFooter() }}
     {% endblock %}
+
+    {% block package_license %}
+    {{ super() }}
+    {% endblock %}
+
+    {% block package_social %}
+    {{ super() }}
+    {% endblock %}
+    {% endblock %}
   </aside>
 </div>
-
-
 {% endblock %}

@@ -276,6 +276,10 @@
           font-weight: rd.$font-weight-bold;
         }
 
+        a+a {
+          margin-left: 10px;
+        }
+
         margin-left: auto;
       }
     }
@@ -307,6 +311,13 @@
 
     h3 {
       font-size: rd.$font-size-sm;
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     a {
