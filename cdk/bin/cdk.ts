@@ -24,7 +24,7 @@ const prodStackProps = {
   account: '157248445006',
   region: 'eu-north-1',
   environment: "prod",
-  domainName: "www.suojattudata.fi",
+  domainName: "suojattudata.fi",
   secondaryDomainName: "suojattudata.suomi.fi",
   fqdn: "suojattudata.fi",
   secondaryFqdn: "suomi.fi"
