@@ -1,6 +1,7 @@
 from typing import List, Dict, Any
 
 import logging
+import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.logic import NotFound
@@ -8,6 +9,7 @@ from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
 from flask import has_request_context
 from ckanext.registrydata.cli import cli
+from collections import OrderedDict
 
 from . import helpers, validators
 
@@ -23,6 +25,7 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IClick)
+    plugins.implements(plugins.IFacets)
 
     # IConfigurer
 
@@ -114,11 +117,39 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
         return data_dict
 
+    def before_dataset_index(self, pkg_dict):
+        # Map keywords to vocab_keywords_{lang}
+        translated_vocabs = ['keywords']
+        languages = ['fi', 'sv', 'en']
+        for prop_key in translated_vocabs:
+            prop_json = pkg_dict.get(prop_key)
+            # Add only if not already there
+            if not prop_json:
+                continue
+            prop_value = json.loads(prop_json)
+            # Add for each language
+            for language in languages:
+                if prop_value.get(language):
+                    pkg_dict['vocab_%s_%s' % (prop_key, language)] = [tag.lower() for tag in prop_value[language]]
+
+        return pkg_dict
+
     # IClick
 
     def get_commands(self):
         return cli.get_commands()
 
+    # IFacets
+
+    def dataset_facets(self, facets_dict, package_type):
+        lang = helpers.get_lang_prefix()
+        facets_dict = OrderedDict([
+            ('groups', toolkit._('Datasets')),
+            ('vocab_keywords_' + lang, toolkit._('Tags')),
+            ('res_format', toolkit._('Format')),
+            ('license_id', toolkit._('License'))
+        ])
+        return facets_dict
 
 
 class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
