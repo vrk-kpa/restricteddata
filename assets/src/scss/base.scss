@@ -123,7 +123,7 @@ input[type=text].form-control {
     background: tokens.$fi-color-white-base;
     border: 1px solid tokens.$fi-color-black-light1;
     border-radius: 2px;
-    padding: 8px 10px;
+    padding: 8px 30px 8px 10px;
   }
   &::after {
     font: var(--fa-font-solid);
