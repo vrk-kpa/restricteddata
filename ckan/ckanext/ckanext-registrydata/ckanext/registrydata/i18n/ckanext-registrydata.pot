@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 06:51+0000\n"
+"POT-Creation-Date: 2023-09-21 07:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,13 +135,14 @@ msgid "Home"
 msgstr ""
 
 #: ckanext/registrydata/templates/header.html:92
-#: ckanext/registrydata/templates/home/layout1.html:53
+#: ckanext/registrydata/templates/home/layout1.html:52
 #: ckanext/registrydata/templates/package/search.html:11
 msgid "Datasets"
 msgstr ""
 
 #: ckanext/registrydata/templates/header.html:95
-#: ckanext/registrydata/templates/home/layout1.html:65
+#: ckanext/registrydata/templates/home/layout1.html:64
+#: ckanext/registrydata/templates/organization/index.html:4
 msgid "Organizations"
 msgstr ""
 
@@ -165,44 +166,44 @@ msgstr ""
 msgid "Type what you are searching for"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:21
-msgid "Search"
-msgstr ""
-
-#: ckanext/registrydata/templates/home/layout1.html:28
+#: ckanext/registrydata/templates/home/layout1.html:27
 msgid "Registrydata categories"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:43
+#: ckanext/registrydata/templates/home/layout1.html:42
 msgid "Registrydata data sources"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:54
+#: ckanext/registrydata/templates/home/layout1.html:53
 msgid "Browse datasets"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:66
+#: ckanext/registrydata/templates/home/layout1.html:65
 msgid "Browse organizations"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:73
+#: ckanext/registrydata/templates/home/layout1.html:72
 msgid "All Finnish open data from one place"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:83
+#: ckanext/registrydata/templates/home/layout1.html:82
 msgid "Suomi.fi open data"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:84
+#: ckanext/registrydata/templates/home/layout1.html:83
 msgid "Navigate to site"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:95
+#: ckanext/registrydata/templates/home/layout1.html:94
 msgid "Published"
 msgstr ""
 
-#: ckanext/registrydata/templates/home/layout1.html:103
+#: ckanext/registrydata/templates/home/layout1.html:102
 msgid "Browse all news and disruption notices"
+msgstr ""
+
+#: ckanext/registrydata/templates/organization/index.html:8
+msgid "Organization search"
 msgstr ""
 
 #: ckanext/registrydata/templates/organization/read.html:11
