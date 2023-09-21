@@ -42,6 +42,7 @@ export class CkanStack extends Stack {
     const ckanPluginsDefault: string[] = [
       'fluent',
       'scheming_datasets',
+      'scheming_groups',
     ];
 
     const ckanPlugins: string[] = [
@@ -96,15 +97,24 @@ export class CkanStack extends Stack {
     })
 
     const beakerSecret = new aws_secretsmanager.Secret(this, 'beakerSecret', {
-      encryptionKey: secretEncryptionKey
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
     })
 
     const appUUIDSecret = new aws_secretsmanager.Secret(this, 'appUUIDSecret', {
-      encryptionKey: secretEncryptionKey
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
     })
 
     const ckanSysAdminSecret = new aws_secretsmanager.Secret(this, 'ckanSysAdminSecret', {
-      encryptionKey: secretEncryptionKey
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
     })
 
     const ckanContainerSecrets: { [key: string]: aws_ecs.Secret; } = {
@@ -178,6 +188,7 @@ export class CkanStack extends Stack {
     ckanService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckan)');
     ckanService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckan)');
     ckanService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckan)')
+    ckanService.connections.allowFrom(props.nginxService.service, aws_ec2.Port.tcp(5000), 'HTTP connection (ckan)' )
 
     const ckanServiceAsg = ckanService.autoScaleTaskCount({
       minCapacity: props.taskDef.taskMinCapacity,

@@ -94,7 +94,7 @@ const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
   envProps: envProps,
   vpc: VpcStackDev.vpc,
   environment: devStackProps.environment,
-  importVault: false,
+  importVault: true,
   backups: true
 })
 
@@ -149,7 +149,8 @@ const CertificateStackDev = new CertificateStack(app, 'CertificateStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  zone: SubDomainStackDev.subZone
+  zone: SubDomainStackDev.subZone,
+  newZone: SubDomainStackDev.newSubZone
 })
 
 const EcsClusterStackDev = new EcsClusterStack(app, 'EcsClusterStack-dev', {
@@ -235,6 +236,7 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   redisCluster: DatabaseStackDev.redisCluster,
   redisSecurityGroup: DatabaseStackDev.redisSecurityGroup,
   solrService: SolrStackDev.solrService,
+  nginxService: NginxStackDev.nginxService,
   secondaryDomainName: devStackProps.secondaryDomainName,
   taskDef: {
     taskCpu: 256,
@@ -321,5 +323,6 @@ const CertificateStackProd = new CertificateStack(app, 'CertificateStack-prod', 
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  zone: DomainStackProd.publicZone
+  zone: DomainStackProd.publicZone,
+  newZone: DomainStackProd.newPublicZone
 })

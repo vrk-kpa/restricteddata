@@ -90,8 +90,20 @@ export const handler: Handler = async (event, context) => {
     }
   }
 
+  const ckanClient = knex({
+    client: 'pg',
+    connection: {
+      user: credObj.username,
+      password: credObj.password,
+      host: credObj.host,
+      port: credObj.port,
+      database: "ckan",
+      ssl: true
+    }
+  })
+
   try {
-    await client.raw("GRANT ALL ON SCHEMA PUBLIC to :ckanUser:; ", {
+    await ckanClient.raw("GRANT ALL ON SCHEMA public to :ckanUser:; ", {
       ckanUser: ckanCredentialObj.username
     });
     console.log("Granted all on schema public to ckan")

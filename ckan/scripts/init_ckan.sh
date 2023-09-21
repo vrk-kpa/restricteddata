@@ -26,5 +26,8 @@ fi
 # init ckan extension databases
 #echo "init ckan extension databases ..."
 
+echo "Create default registrydata categories ..."
+ckan -c ${APP_DIR}/ckan.ini registrydata create-default-categories
+
 # set init flag to done
 echo "$CKAN_IMAGE_TAG" > ${DATA_DIR}/.init-done

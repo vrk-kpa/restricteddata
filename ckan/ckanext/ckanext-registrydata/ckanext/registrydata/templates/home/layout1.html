@@ -1,16 +1,16 @@
 <div role="main">
   <div class="main hero">
-    <h1 class="hero">Suomen kaikki suojattu data data yhdestä paikasta</h1>
+    <h1 class="hero">{{ _('All finnish restricted data from one place') }}</h1>
     <div class="hero-stats">
       {% set statistics = h.get_site_statistics() %}
-      <div>
+      <a href="{{ h.url_for('dataset.search') }}">
         <span class="hero-stats-count">{{ statistics.dataset_count }}</span>
         <span class="hero-stats-unit">{{ _('datasets') }}</span>
-      </div>
-      <div>
+      </a>
+      <a href="{{ h.url_for('organization.index') }}">
         <span class="hero-stats-count">{{ statistics.organization_count }}</span>
         <span class="hero-stats-unit">{{ _('organizations') }}</span>
-      </div>
+      </a>
     </div>
     <div class="hero-search">
       <form>
@@ -29,9 +29,11 @@
     <ul class="category-grid">
       {% for group in h.get_homepage_groups() %}
         <li>
-          <img class="category-icon" src="{{ group.image_display_url }}">
-          <span class="category-title">{{ group.title }}</span>
-          <span class="category-badge">{{ group.package_count }}</span>
+          <a href="{{ h.url_for('group.read', id=group.name) }}">
+            <img class="category-icon" src="{{ group.image_display_url }}">
+            <span class="category-title">{{ h.get_translated(group, 'title') }}</span>
+            <span class="category-badge">{{ group.package_count }}</span>
+          </a>
         </li>
       {% endfor %}
     </ul>
@@ -90,7 +92,7 @@
     <ul class="news-items">
       {% for news in h.get_homepage_news() %}
       <li>
-        <span class="news-published">{{ _('Published') }} {{ news.published | datetimeformat('d.m.y') }}</span>
+        <span class="news-published">{{ _('Published') }} {{ news.published | datetimeformat('d.M.y') }}</span>
         <a class="news-title" href="{{ news.url }}"><h3>{{ news.title[h.lang()] or news.title.fi }}</h3></a>
         {% for tag in news.tags %}
           <span class="news-badge">{{ tag.name[h.lang()] or tag.name.fi }}</span>
