@@ -16,8 +16,10 @@
 {% set url = url or h.url_for(url_action, id=pkg.name, resource_id=res.id) %}
 
 <li class="resource-item" data-id="{{ res.id }}">
+  {% block resource_item_format_icon %}
   <span class="resource-item__icon format-label" property="dc:format"
     data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+  {% endblock %}
   {% block resource_item_title %}
   <a class="resource-item__title heading" href="{{ url }}" title="{{ res.name or res.description }}">
     {{ h.resource_display_name(res) | truncate(50) }}
@@ -35,7 +37,11 @@
       {{ _('Preview')|upper }}
     </a>
     {% endif %}
-
+    {% if can_edit %}
+    <a href="{{ h.url_for(pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id) }}">
+      {{ _('Edit')|upper }}
+    </a>
+    {% endif %}
     {% if res.url and h.is_url(res.url) %}
     <a class="resource-url-analytics" href="{{ res.url }}" target="_blank" rel="noreferrer">
       {% if res.has_views or res.url_type == 'upload' %}
@@ -43,11 +49,6 @@
       {% else %}
       {{ _('Open')|upper }}
       {% endif %}
-    </a>
-    {% endif %}
-    {% if can_edit %}
-    <a class="" href="{{ h.url_for(pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id) }}">
-      {{ _('Edit')|upper }}
     </a>
     {% endif %}
     {% endblock %}
