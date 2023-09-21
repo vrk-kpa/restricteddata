@@ -66,12 +66,26 @@ jobs:
       - name: synthesize cdk stacks
         working-directory: cdk
         run: |
-          npx cdk synth *-prod --quiet >/dev/null 2>&1
+          npx cdk synth *-prod --quiet > /tmp/synth.log 2>&1
+
+      - name: upload syth log artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: synth-logs
+          path: /tmp/synth.log
 
       - name: deploy cdk stacks
         working-directory: cdk
         run: |
-          npx cdk deploy *-prod --require-approval=never >/dev/null 2>&1
+          npx cdk deploy *-prod --require-approval=never > /tmp/deploy.log 2>&1
+
+      - name: upload deploy log artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy-logs
+          path: /tmp/deploy.log
 
       - name: Notify Zulip
         uses: zulip/github-actions-zulip/send-message@v1
