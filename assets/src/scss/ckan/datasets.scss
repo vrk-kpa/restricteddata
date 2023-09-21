@@ -71,7 +71,7 @@
 
     .nav-item {
       &:hover {
-        background: transparent;
+        background: rd.$color-secondary;
       }
 
       &:last-child {
@@ -105,6 +105,10 @@
           &::after {
             content: ")";
           }
+        }
+
+        &:hover {
+          background: transparent;
         }
       }
 
@@ -229,6 +233,22 @@
     padding: 0;
   }
 
+  .module-resource {
+    margin-top: 50px;
+    margin-bottom: 80px;
+    border-bottom: none;
+  }
+
+  h2.additional-info {
+    &+table {
+      font-size: rd.$font-size-xs;
+
+      p {
+        font-size: rd.$font-size-xs;
+      }
+    }
+  }
+
   .main-content {
     font-size: rd.$font-size-sm;
 
@@ -295,6 +315,8 @@
   }
 
   .sidebar {
+    padding-left: 30px;
+
     .module {
       margin-bottom: 50px;
 

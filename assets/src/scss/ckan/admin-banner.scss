@@ -28,7 +28,11 @@
   }
 
   a+a {
-    margin-left: 10px;
+    margin-left: 12px;
+  }
+
+  & .btn.btn-primary {
+    color: rd.$color-white;
   }
 
   &.private-or-draft-dataset {
