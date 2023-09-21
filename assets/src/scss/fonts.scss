@@ -11,3 +11,25 @@
     url(rd.$font-path + '/source-sans-pro-v21-latin-regular.woff') format('woff'), /* Modern Browsers */
     url(rd.$font-path + '/source-sans-pro-v21-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
 }
+/* source-sans-pro-300 - latin */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src:
+    local(''),
+    url(rd.$font-path + '/source-sans-pro-v21-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+    url(rd.$font-path + '/source-sans-pro-v21-latin-300.woff') format('woff'), /* Modern Browsers */
+    url(rd.$font-path + '/source-sans-pro-v21-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+/* source-sans-pro-600 - latin */
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src:
+    local(''),
+    url(rd.$font-path + '/source-sans-pro-v21-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+    url(rd.$font-path + '/source-sans-pro-v21-latin-600.woff') format('woff'), /* Modern Browsers */
+    url(rd.$font-path + '/source-sans-pro-v21-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+}
