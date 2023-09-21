@@ -23,7 +23,11 @@ const app = new cdk.App();
 const prodStackProps = {
   account: '157248445006',
   region: 'eu-north-1',
-  environment: "prod"
+  environment: "prod",
+  domainName: "www.suojattudata.fi",
+  secondaryDomainName: "suojattudata.suomi.fi",
+  fqdn: "suojattudata.fi",
+  secondaryFqdn: "suomi.fi"
 }
 
 const devStackProps = {
@@ -325,4 +329,99 @@ const CertificateStackProd = new CertificateStack(app, 'CertificateStack-prod', 
   },
   zone: DomainStackProd.publicZone,
   newZone: DomainStackProd.newPublicZone
+})
+
+
+const EcsClusterStackProd = new EcsClusterStack(app, 'EcsClusterStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  envProps: envProps,
+  environment: prodStackProps.environment,
+  vpc: VpcStackProd.vpc
+})
+
+const FileSystemStackProd = new FileSystemStack(app, 'FilesystemStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  envProps: envProps,
+  environment: prodStackProps.environment,
+  vpc: VpcStackProd.vpc
+})
+
+
+const NginxStackProd = new NginxStack(app, 'NginxStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  envProps: envProps,
+  environment: prodStackProps.environment,
+  vpc: VpcStackProd.vpc,
+  allowRobots: "false",
+  certificate: CertificateStackProd.newCertificate,
+  cluster: EcsClusterStackProd.cluster,
+  namespace: EcsClusterStackProd.namespace,
+  domainName: prodStackProps.domainName,
+  fqdn: prodStackProps.fqdn,
+  secondaryDomainName: prodStackProps.secondaryDomainName,
+  secondaryFqdn: prodStackProps.secondaryFqdn,
+  loadBalancer: LoadBalancerStackProd.loadBalancer,
+  zone: DomainStackProd.newPublicZone,
+  taskDef: {
+    taskCpu: 256,
+    taskMem: 512,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  }
+
+})
+
+const SolrStackProd = new SolrStack(app, 'SolrStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  envProps: envProps,
+  environment: prodStackProps.environment,
+  cluster: EcsClusterStackProd.cluster,
+  namespace: EcsClusterStackProd.namespace,
+  taskDef: {
+    taskCpu: 256,
+    taskMem: 1024,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  },
+  vpc: VpcStackProd.vpc,
+  fileSystem: FileSystemStackProd.solrFs
+})
+
+const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  envProps: envProps,
+  environment: prodStackProps.environment,
+  ckanInstance: DatabaseStackProd.ckanInstance,
+  ckanInstanceCredentials: LambdaStackProd.ckanCredentials,
+  cluster: EcsClusterStackProd.cluster,
+  databaseSecurityGroup: DatabaseStackProd.databaseSecurityGroup,
+  domainName: prodStackProps.domainName,
+  namespace: EcsClusterStackProd.namespace,
+  redisCluster: DatabaseStackProd.redisCluster,
+  redisSecurityGroup: DatabaseStackProd.redisSecurityGroup,
+  solrService: SolrStackProd.solrService,
+  nginxService: NginxStackProd.nginxService,
+  secondaryDomainName: prodStackProps.secondaryDomainName,
+  taskDef: {
+    taskCpu: 256,
+    taskMem: 1024,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  },
+  vpc: VpcStackProd.vpc
 })
