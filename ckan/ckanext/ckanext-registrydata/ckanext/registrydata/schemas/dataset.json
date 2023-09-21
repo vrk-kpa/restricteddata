@@ -114,6 +114,7 @@
     {
       "field_name": "keywords",
       "label": "Keywords",
+      "display_snippet": null,
       "form_placeholder": "e.g. names",
       "form_languages": ["fi", "en", "sv"],
       "preset": "fluent_vocabulary_with_autocomplete",

@@ -1,0 +1,65 @@
+@use "../variables" as rd;
+@use "suomifi-design-tokens/dist/tokens";
+
+.admin-banner {
+  margin-top: 12px;
+  display: flex;
+  margin-bottom: 12px;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 12px;
+
+  span {
+    color: rd.$color-white;
+    line-height: 24px;
+    font-size: rd.$font-size-sm;
+  }
+
+  a {
+    margin: 0;
+    display: block;
+    margin-left: auto;
+    color: rd.$color-suomifi;
+    letter-spacing: 0.4px;
+    line-height: 20px;
+    border: 1px solid rd.$color-suomifi;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+
+  a+a {
+    margin-left: 10px;
+  }
+
+  &.private-or-draft-dataset {
+    background: rd.$color-suomifi;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+
+    img {
+      height: 20px;
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    a {
+      color: rd.$color-white;
+      border: 1px solid rd.$color-white;
+    }
+
+    .btn.btn-secondary {
+      color: rd.$color-white;
+    }
+  }
+
+  &.deleted-dataset {
+    background: rd.$color-alert;
+
+    .btn.btn-secondary {
+      color: rd.$color-white;
+    }
+  }
+}
