@@ -191,7 +191,7 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
   secondaryDomainName: devStackProps.secondaryDomainName,
   secondaryFqdn: devStackProps.secondaryFqdn,
   loadBalancer: LoadBalancerStackDev.loadBalancer,
-  zone: SubDomainStackDev.subZone,
+  zone: SubDomainStackDev.newSubZone,
   taskDef: {
     taskCpu: 256,
     taskMem: 512,
