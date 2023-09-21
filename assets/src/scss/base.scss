@@ -255,6 +255,7 @@ textarea {
   &:hover {
     border: 1px solid rd.$color-border;
     background: rd.$color-button-secondary-hover;
+    text-decoration: none;
   }
 }
 
