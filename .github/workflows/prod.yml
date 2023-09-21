@@ -14,6 +14,7 @@ jobs:
   deploy-prod:
     name: deploy-prod
     runs-on: ubuntu-latest
+    environment: prod
     timeout-minutes: 60
     concurrency:
       group: ${{ github.ref }}/deploy-prod
