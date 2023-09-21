@@ -3,7 +3,7 @@
  * linkText - Text/Translation-key that should be used for add-button
  * linkIcon - Fontawesome icon-class for i-element that is added before linkText inside add button
  *          - Set false, if you don't want to show icon
- * 
+ *
  * Examples
  *
  *   // <input name="example" data-module="registrydata_input_multiple" data-module-link-text="{{ _("Add link") }}" data-module-link-icon="fa-globe" />
@@ -29,7 +29,7 @@ ckan.module("registrydata_input_multiple", function ($) {
         }
         /** Create addLink after inputs */
         var $addLink = $(`
-          <button type="button" class="add-input-button suomifi-button-secondary">${module.options.linkicon !== false ? `<i class="fa ${module.options.linkicon}"></i>` : ''}
+          <button type="button" class="link-button">${module.options.linkicon !== false ? `<i class="fa ${module.options.linkicon}"></i>` : ''}
             ${addLinkText}
           </button>
         `);
@@ -83,7 +83,7 @@ ckan.module("registrydata_input_multiple", function ($) {
       var removeLinkText = this._("Remove");
       // The remove link with the icon
       var removeLink = $(`
-        <button type="button" class="suomifi-button-secondary-noborder"><i class="far fa-trash"></i>
+        <button type="button" class="link-button borderless"><i class="far fa-trash"></i>
           ${removeLinkText}
         </button>
       `);
