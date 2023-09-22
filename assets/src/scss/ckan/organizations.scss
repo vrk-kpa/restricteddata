@@ -1,12 +1,5 @@
 @use "../variables" as rd;
 
-.secondary > .module {
-  background-color: rd.$color-white;
-  border: 1px solid rd.$color-border-light;
-  .module-heading {
-    display: none;
-  }
-}
 .organization-list {
   background-color: rd.$color-white;
   border: 1px solid rd.$color-border-light;

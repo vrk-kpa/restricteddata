@@ -5,7 +5,9 @@
 @use "../icons";
 @use "../fonts";
 @use "../base";
+@use "../input";
 
+@use "common";
 @use "header";
 @use "footer";
 @use "home";
@@ -15,3 +17,5 @@
 @use "admin-banner";
 @use "tags";
 @use "categories";
+@use "search";
+
