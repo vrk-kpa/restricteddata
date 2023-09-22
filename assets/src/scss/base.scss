@@ -179,7 +179,7 @@ textarea {
   padding: 10px 20px;
   gap: 8px;
   border-radius: 2px;
-  line-height: 1.0;
+  height: 40px;
 
   &:hover {
     background: rd.$color-button-primary-hover;
@@ -194,6 +194,7 @@ textarea {
   padding: 10px 20px;
   gap: 8px;
   border-radius: 2px;
+  height: 40px;
 
   &:hover {
     color: inherit;
@@ -320,4 +321,11 @@ textarea {
   button {
     height: 40px;
   }
+}
+
+/* Required to be able to use FDT and scroll the long pages (i.e. templates) */
+/* stylelint-disable-next-line selector-id-pattern */
+#flDebug,
+#flDebug * {
+  overflow-y: auto;
 }
