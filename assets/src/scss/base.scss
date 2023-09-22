@@ -1,6 +1,16 @@
 @use "suomifi-design-tokens/dist/tokens";
 @use "variables" as rd;
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  & > .main , & > .homepage {
+    flex-grow: 1;
+  }
+}
+
 %body-text {
   @include tokens.fi-text-body-text;
 
