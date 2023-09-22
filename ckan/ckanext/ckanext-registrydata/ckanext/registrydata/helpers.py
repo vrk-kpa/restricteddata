@@ -135,10 +135,6 @@ def get_homepage_news(count=4, cache_duration=timedelta(days=1), language=None):
     return news[:count]
 
 
-def get_site_name():
-    return toolkit.config.get('ckanext.registrydata.site_name')
-
-
 def get_homepage_groups():
     return toolkit.get_action('group_list')({}, {
         'all_fields': True,
