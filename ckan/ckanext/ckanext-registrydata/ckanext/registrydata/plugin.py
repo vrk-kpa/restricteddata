@@ -47,7 +47,6 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_lang_prefix': helpers.get_lang_prefix,
             'call_toolkit_function': helpers.call_toolkit_function,
             'get_homepage_news': helpers.get_homepage_news,
-            'get_site_name': helpers.get_site_name,
             'get_homepage_groups': helpers.get_homepage_groups,
         }
 
