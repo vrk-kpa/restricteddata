@@ -65,10 +65,10 @@ scheming.group_schemas = ckanext.registrydata.schemas:group.json
 # scheming.organization_schemas = ckanext.registrydata.schemas:organization.json
 
 ckan.site_title = Suojattu data
-ckan.site_logo =
+ckan.site_logo = {% if environ('DEV_MODE') == 'true' %} /images/logo-suojattudata-dev.svg {% else %} /images/logo-suojattudata.svg {% endif %}
 ckan.site_description =
 
-ckan.favicon = /images/logo/favicon.ico
+ckan.favicon = /images/favicon.ico
 ckan.gravatar_default = identicon
 
 ckan.locale_default = fi
