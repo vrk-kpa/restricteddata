@@ -1,0 +1,96 @@
+@use "../variables" as rd;
+@use "suomifi-design-tokens/dist/tokens";
+
+.main {
+  &:not(.hero) {
+    background: rd.$color-background;
+  }
+  .wrapper {
+    box-shadow: none;
+
+    &::before {
+      border: none;
+    }
+
+    &:not(.dataset-container) {
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+.primary>.module>.module-content {
+  padding-top: 0;
+}
+
+.secondary > .module {
+  background-color: rd.$color-white;
+  border: 1px solid rd.$color-border-light;
+  .module-heading {
+    display: none;
+  }
+}
+
+.page-heading {
+  padding: 0;
+  margin-bottom: 13px;
+}
+
+.page-header {
+  border: none;
+
+  .nav-tabs {
+    border: none;
+
+    li {
+      a {
+        @include tokens.fi-text-body-text-small;
+        color: tokens.$fi-color-brand-base;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        transition: none;
+
+        &:hover {
+          border: none;
+          background: transparent;
+          color: tokens.$fi-color-brand-base;
+          isolation: auto;
+        }
+
+        i {
+          display: none;
+        }
+      }
+
+      &.active a {
+        background: transparent;
+        border: none;
+        border-bottom: 4px solid tokens.$fi-color-brand-base;
+      }
+    }
+  }
+}
+
+.toolbar .breadcrumb {
+  @include tokens.fi-text-body-text-small;
+
+  a {
+    color: rd.$color-link-text;
+  }
+
+  .active a {
+    color: rd.$color-text-secondary;
+    font-weight: normal;
+  }
+
+  li:first-child {
+    padding-left: 0;
+  }
+
+  li:not(:first-child)::before {
+    content: ">"
+  }
+}
+

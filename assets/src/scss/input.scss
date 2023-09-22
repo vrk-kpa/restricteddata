@@ -1,89 +1,6 @@
 @use "suomifi-design-tokens/dist/tokens";
 @use "variables" as rd;
 
-%body-text {
-  @include tokens.fi-text-body-text;
-
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-style: normal;
-}
-
-body,
-p {
-  @extend %body-text;
-}
-
-%bold,
-.bold,
-b {
-  font-weight: rd.$font-weight-bold;
-}
-
-%small,
-.small,
-small {
-  font-size: rd.$font-size-sm;
-}
-
-%lead,
-.lead {
-  font-size: rd.$font-size-lg;
-}
-
-select.form-control,
-input.form-control,
-.dropdown-menu,
-::placeholder {
-  font-size: rd.$font-size-sm;
-}
-
-::placeholder {
-  color: rd.$color-text-placeholder;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: inherit;
-  text-rendering: optimizelegibility;
-}
-
-h1 {
-  @include tokens.fi-text-heading1;
-}
-
-h1.hero {
-  @include tokens.fi-text-heading1-hero;
-}
-
-h2 {
-  @include tokens.fi-text-heading2;
-}
-
-h3 {
-  @include tokens.fi-text-heading3;
-}
-
-h4 {
-  @include tokens.fi-text-heading4;
-}
-
-h5 {
-  @include tokens.fi-text-heading5;
-}
-
-a {
-  color: rd.$color-link-text;
-
-  &:hover,
-  &:focus {
-    color: rd.$color-link-text;
-  }
-}
-
 input[type=submit],
 input[type=button] {
   &.form-control {
@@ -154,7 +71,7 @@ textarea {
   padding: 10px 20px;
   gap: 8px;
   border-radius: 2px;
-  height: 40px;
+  line-height: 1.0;
 
   &:hover {
     background: rd.$color-button-primary-hover;
@@ -169,7 +86,6 @@ textarea {
   padding: 10px 20px;
   gap: 8px;
   border-radius: 2px;
-  height: 40px;
 
   &:hover {
     color: inherit;
@@ -231,7 +147,6 @@ textarea {
   &:hover {
     border: 1px solid rd.$color-border;
     background: rd.$color-button-secondary-hover;
-    text-decoration: none;
   }
 }
 
@@ -257,11 +172,4 @@ textarea {
   button {
     height: 40px;
   }
-}
-
-/* Required to be able to use FDT and scroll the long pages (i.e. templates) */
-/* stylelint-disable-next-line selector-id-pattern */
-#flDebug,
-#flDebug * {
-  overflow-y: auto;
 }
