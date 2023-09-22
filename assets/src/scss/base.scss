@@ -156,8 +156,7 @@ textarea {
   box-shadow: 0 0 10px rd.$color-link-text;
 }
 
-.btn.btn-primary {
-  background: rd.$color-button-primary;
+.btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,25 +164,23 @@ textarea {
   gap: 8px;
   border-radius: 2px;
   height: 40px;
+  width: fit-content;
+  
+  &.btn-primary {
+    background: rd.$color-button-primary;
 
-  &:hover {
-    background: rd.$color-button-primary-hover;
+    &:hover {
+      background: rd.$color-button-primary-hover;
+    }
   }
-}
 
-.btn.btn-secondary {
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  gap: 8px;
-  border-radius: 2px;
-  height: 40px;
+  &.btn-secondary {
+    background: transparent;
 
-  &:hover {
-    color: inherit;
-    background: rd.$color-button-secondary-hover;
+    &:hover {
+      color: inherit;
+      background: rd.$color-button-secondary-hover;
+    }
   }
 }
 
