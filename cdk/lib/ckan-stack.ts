@@ -86,6 +86,7 @@ export class CkanStack extends Stack {
       SMTP_PORT: '587',
       CKAN_SYSADMIN_NAME: pSysadminUser.stringValue,
       CKAN_SYSADMIN_EMAIL: pSysadminEmail.stringValue,
+      DEPLOY_ENVIRONMENT: props.environment,
     }
 
     const smtpSecrets = aws_secretsmanager.Secret.fromSecretNameV2(this, 'smtpSecrets',
