@@ -25,18 +25,36 @@ jobs:
   stylelint:
     name: stylelint
     runs-on: ubuntu-latest
-    container: node:20
     steps:
       - uses: actions/checkout@v3
-      - name: Install Dependencies
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: cache node_modules
+        uses: actions/cache@v3
+        id: cache-node_modules
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-node_v20-
+
+      - name: Authenticate npm registry
+        if: ${{ steps.cache-node_modules.outputs.cache-hit != 'true' }}
         run: |
           cat <<EOT >> .npmrc
           @fortawesome:registry=https://npm.fontawesome.com/
           //npm.fontawesome.com/:_authToken=$NPM_TOKEN
           EOT
-          npm ci
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: install npm packages
+        if: ${{ steps.cache-node_modules.outputs.cache-hit != 'true' }}
+        run: npm ci
+
       - name: run stylelint
         run: npx stylelint "src/scss" -f github
         working-directory: ./assets
