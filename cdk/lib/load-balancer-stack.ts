@@ -1,6 +1,6 @@
 import {aws_ec2, aws_s3, Duration, Stack} from "aws-cdk-lib";
 import {Construct} from "constructs";
-import {ApplicationLoadBalancer} from "aws-cdk-lib/aws-elasticloadbalancingv2";
+import {ApplicationLoadBalancer, ApplicationProtocol} from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import {CommonStackProps} from "./common-stack-props";
 import {BucketEncryption} from "aws-cdk-lib/aws-s3";
 
@@ -22,6 +22,11 @@ export class LoadBalancerStack extends Stack {
         subnets: props.vpc.publicSubnets
       },
       securityGroup: secGroup
+    })
+
+    this.loadBalancer.addRedirect({
+      sourceProtocol: ApplicationProtocol.HTTP,
+      targetProtocol: ApplicationProtocol.HTTPS
     })
 
     const logBucket = new aws_s3.Bucket(this, 'logBucket', {
