@@ -43,3 +43,8 @@ updates:
   open-pull-requests-limit: 10
   registries:
   - npm-registry-npm-fontawesome-com
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    # Check for updates to GitHub Actions every week
+    interval: "weekly"
