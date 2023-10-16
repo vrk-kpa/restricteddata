@@ -18,7 +18,7 @@
     {% call form_custom.input(
     field.field_name + '-' + lang,
     id='field-' + field.field_name + '-' + lang,
-    label=_(field.label) + ' ' + _(lang),
+    label=_(field.label) + ' ' + _(lang|upper),
     placeholder=h.scheming_language_text(field.form_placeholder),
     value=data[field.field_name + '-' + lang]
     or ','.join(data.get(field.field_name, {}).get(lang, [])),
