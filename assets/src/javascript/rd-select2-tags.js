@@ -1,5 +1,3 @@
-// Flips '* label' into 'label *'
-
 (function ($, window) {
   $(() => {
     $('input[data-module="autocomplete"]').each(function (index, element) {
