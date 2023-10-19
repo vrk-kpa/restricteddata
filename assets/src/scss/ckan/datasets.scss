@@ -3,7 +3,7 @@
 
 .dataset-list {
   background: rd.$color-white;
-  border: 1px solid rd.$color-border;
+  border: rd.$border;
 
   #dataset-search-form+& {
     border-top: none;
@@ -50,7 +50,7 @@
   margin-left: 0;
   margin-right: 0;
   background-color: rd.$color-white;
-  border: 1px solid rd.$color-border-light;
+  border: rd.$border-light;
   border-radius: 2px;
   padding: 20px;
 
@@ -92,7 +92,7 @@
       padding: 0;
       margin: 10px;
       align-items: center;
-      border-top: 1px solid rd.$color-border;
+      border-top: rd.$border;
       border-radius: 0;
       font-size: rd.$font-size-sm;
 

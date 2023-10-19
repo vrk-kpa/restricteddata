@@ -10,7 +10,9 @@
       "form_languages": ["fi", "en", "sv"],
       "form_placeholder": "e.g. Finnish names",
       "required_languages": ["fi", "sv"],
-      "description": "Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. You can edit the URL if you want."
+      "description": "Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. You can edit the URL if you want.",
+      "group_title": "Dataset title",
+      "group_description": "* Required field"
     },
     {
       "field_name": "name",

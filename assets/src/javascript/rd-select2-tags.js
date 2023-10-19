@@ -1,40 +1,47 @@
-$(window).on("load", function() {
-  $('input[data-module="autocomplete"]').each(function(index, element) {
-    if (element.value.length > 0 && element.value.split(',').length > 0) {
-      element.value.split(',')
-        .forEach(function(tag) {
-          tag = { container: element.id, id: tag, text: tag};
-          var container = $(element).siblings(".rd-select2-tags-container");
+// Flips '* label' into 'label *'
 
-          if (!container || container.length === 0) {
-            $(element).after('<div class="rd-select2-tags-container"></div>');
-            container = $(element).siblings(".rd-select2-tags-container");
-          }
+(function ($, window) {
+  $(() => {
+    $('input[data-module="autocomplete"]').each(function (index, element) {
+      console.log(index)
+      console.log(element.value)
+      if (element.value.length > 0 && element.value.split(',').length > 0) {
+        element.value.split(',')
+          .forEach(function (tag) {
+            console.log(tag)
+            tag = { container: element.id, id: tag, text: tag };
+            var container = $(element).siblings(".rd-select2-tags-container");
 
-          createTag(tag, container);
-        });
-    }
-  });
+            if (!container || container.length === 0) {
+              $(element).after('<div class="rd-select2-tags-container"></div>');
+              container = $(element).siblings(".rd-select2-tags-container");
+            }
 
-  $('select[data-module="autocomplete"].rd-badges').each(function(index, element) {
+            createTag(tag, container);
+          });
+      }
+    })
+  })
+
+  $('select[data-module="autocomplete"].rd-badges').each(function (index, element) {
     if (element.selectedOptions.length > 0) {
       for (var i = 0; i < element.selectedOptions.length; i++) {
-          var tag = element.selectedOptions[i];
-          tag = { container: element.id, id: tag.label, text: tag.label};
-          var container = $(element).siblings(".rd-select2-tags-container");
+        var tag = element.selectedOptions[i];
+        tag = { container: element.id, id: tag.label, text: tag.label };
+        var container = $(element).siblings(".rd-select2-tags-container");
 
-          if (!container || container.length === 0) {
-            $(element).after('<div class="rd-select2-tags-container"></div>');
-            container = $(element).siblings(".rd-select2-tags-container");
-          }
-
-          createTag(tag, container);
+        if (!container || container.length === 0) {
+          $(element).after('<div class="rd-select2-tags-container"></div>');
+          container = $(element).siblings(".rd-select2-tags-container");
         }
+
+        createTag(tag, container);
+      }
     }
   });
 
   $('input[data-module="autocomplete"]')
-    .on("change", function(e) {
+    .on("change", function (e) {
       if (e.added) {
         var tag = e.added;
         tag.container = this.id;
@@ -48,14 +55,14 @@ $(window).on("load", function() {
         createTag(tag, container);
 
         // single select components remove previous element, eg format selector
-        if (e.removed ){
+        if (e.removed) {
           removeTag(e.removed, container);
         }
       }
     });
 
-    $('select[data-module="autocomplete"].rd-badges')
-    .on("change", function(e) {
+  $('select[data-module="autocomplete"].rd-badges')
+    .on("change", function (e) {
       if (e.added) {
         var tag = e.added;
         tag.container = this.id;
@@ -69,20 +76,20 @@ $(window).on("load", function() {
         createTag(tag, container);
       }
     });
-});
+})(this.jQuery, this);
 
-var createTag = function(tag, container) {
+var createTag = function (tag, container) {
   container.append(`
-    <span class="rd-pill badge badge-pill" data-tag-id="${tag.id}" data-container-id="${tag.container}">
+    <span class="suomifi-chip badge rounded-pill" data-tag-id="${tag.id}" data-container-id="${tag.container}">
       <span class="truncate-text">${escapeHTML(tag.text)}</span>
       <i class="fal fa-times"></i>
     </span>`);
 
-  container.find("span:last-child").on("click", function(e) {
+  container.find("span:last-child").on("click", function (e) {
     // badge is the clicked custom tag (pill/badge/chip/whatever) below the select2 field
-    var badge = $(e.target).hasClass("rd-pill")
+    var badge = $(e.target).hasClass("suomifi-chip")
       ? $(e.target)
-      : $(e.target).parents(".rd-pill");
+      : $(e.target).parents(".suomifi-chip");
 
     // contains the list of select2 (the data of the original hidden select2 tags)
     var data = $("#" + badge.data().containerId).select2("data");
@@ -93,7 +100,7 @@ var createTag = function(tag, container) {
       // filter out the removed tag from the original hidden select2 tags
       $("#" + badge.data().containerId).select2(
         "data",
-        data.filter(pill => pill.text != badge.data().tagId)
+        data.filter(chip => chip.text != badge.data().tagId)
       );
     }
 
@@ -110,7 +117,7 @@ var createTag = function(tag, container) {
   });
 };
 
-let removeTag = function(tag, container) {
+let removeTag = function (tag, container) {
   container.find(`[data-tag-id="${tag.id}"]`).remove();
 };
 

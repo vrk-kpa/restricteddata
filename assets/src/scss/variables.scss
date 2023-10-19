@@ -22,12 +22,13 @@ $color-suomifi: tokens.$fi-color-brand-base; // #00357A
 $color-accent: tokens.$fi-color-accent-base; // #E86A1B
 $color-button-primary: tokens.$fi-gradient-highlight-base-to-highlight-dark1; // linear-gradient(to top, #2A6EBB, #235A9A)
 $color-button-primary-hover: tokens.$fi-gradient-highlight-light1-to-highlight-base; // linear-gradient(to top, #2E78CC, #2A6EBB)
-$color-button-secondary-hover: linear-gradient(to top, transparent 0%, rgba(255,255,255,0.085) 100%); // linear-gradient(to top, )
+$color-button-secondary-hover: linear-gradient(to top,transparent 0,rgba(0, 0, 0, 3%) 120%);
 $color-tag-hover: tokens.$fi-color-highlight-light1; // #2e78cc
 $color-primary-highlight: tokens.$fi-color-highlight-light3; // #eaf2fa
 $color-badge: tokens.$fi-color-depth-light2; // #ecedee
 $color-badge-text: tokens.$fi-color-black-light1; // #949494
 $color-alert: tokens.$fi-color-alert-base; // #c33932
+$color-input-border: tokens.$fi-color-black-light1; // #949494
 
 // Text
 $font-size-lg: 22px;
@@ -36,3 +37,8 @@ $font-size-sm: 16px;
 $font-size-xs: 14px;
 $font-size-xxs: 12px;
 $font-weight-bold: 600;
+
+// Borders
+$border: 1px solid $color-border;
+$border-light: 1px solid $color-border-light;
+$border-dark: 1px solid $color-input-border;

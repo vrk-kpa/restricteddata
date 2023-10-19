@@ -24,7 +24,7 @@
       or errors[field.field_name],
       attrs=field.form_attrs or {},
       classes=['no-editor-info', 'label-on-top'],
-      is_required=h.scheming_field_only_default_required(field, lang),
+      is_required=lang in field.required_languages,
       description=description
       ) %}
       {%- snippet 'scheming/form_snippets/fluent_help_text.html',

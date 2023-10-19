@@ -29,7 +29,7 @@ ckan.module("registrydata_input_multiple", function ($) {
         }
         /** Create addLink after inputs */
         var $addLink = $(`
-          <button type="button" class="link-button">${module.options.linkicon !== false ? `<i class="fa ${module.options.linkicon}"></i>` : ''}
+          <button type="button" class="btn-link">${module.options.linkicon !== false ? `<i class="fa ${module.options.linkicon}"></i>` : ''}
             ${addLinkText}
           </button>
         `);
@@ -83,7 +83,7 @@ ckan.module("registrydata_input_multiple", function ($) {
       var removeLinkText = this._("Remove");
       // The remove link with the icon
       var removeLink = $(`
-        <button type="button" class="link-button borderless"><i class="far fa-trash"></i>
+        <button type="button" class="btn-link borderless"><i class="far fa-trash"></i>
           ${removeLinkText}
         </button>
       `);
@@ -103,4 +103,3 @@ ckan.module("registrydata_input_multiple", function ($) {
     }
   };
 });
-

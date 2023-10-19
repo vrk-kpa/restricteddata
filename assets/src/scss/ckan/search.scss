@@ -27,7 +27,7 @@
 
 .search-results-header {
   background: rd.$color-white;
-  border: 1px solid rd.$color-border;
+  border: rd.$border;
   border-bottom-color: rd.$color-border-light;
   padding: 25px 20px;
   display: flex;
@@ -78,7 +78,7 @@
 
   .filters {
     background-color: rd.$color-white;
-    border: 1px solid rd.$color-border-light;
+    border: rd.$border-light;
 
     .module-heading {
       @include tokens.fi-text-heading5;
@@ -110,7 +110,7 @@
       }
 
       &:not(:last-child) {
-        border-bottom: 1px solid rd.$color-border-light;
+        border-bottom: rd.$border-light;
       }
 
       a {
@@ -156,4 +156,3 @@
     }
   }
 }
-

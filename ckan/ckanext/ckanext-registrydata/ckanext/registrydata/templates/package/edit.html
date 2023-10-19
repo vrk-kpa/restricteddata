@@ -1,0 +1,26 @@
+{% ckan_extends %}
+
+{% block banner %}
+  <header class="page-header">
+    {% if self.content_action() | trim %}
+      <div class="content_action">
+        {% block content_action %}
+          {% link_for
+          h.humanize_entity_type('package', pkg.type, 'view label') or
+          _('Close without saving'), named_route=pkg.type ~ '.read', id=pkg.name, class_='btn btn-link borderless'
+          %}
+        {% endblock content_action %}
+      </div>
+    {% endif %}
+
+    <ul class="nav nav-tabs">
+      {% block content_primary_nav %}
+        {{ h.build_nav_icon(pkg.type ~ '.edit', _('Edit metadata') , id=pkg.name) }}
+        {{ h.build_nav_icon(pkg.type ~ '.resources', _('Resources') , id=pkg.name) }}
+        {% if h.check_config_permission('allow_dataset_collaborators') and h.check_access('package_collaborator_create', {'id': pkg_dict.id}) %}
+          {{ h.build_nav_icon(pkg.type ~ '.collaborators_read', _('Collaborators') , id=pkg.name) }}
+        {% endif %}
+      {% endblock content_primary_nav %}
+    </ul>
+  </header>
+{% endblock banner %}

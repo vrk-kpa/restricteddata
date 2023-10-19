@@ -24,7 +24,7 @@ footer.site-footer {
     }
   }
   .primary.footer {
-    border-top: 1px solid rd.$color-border-light;
+    border-top: rd.$border-light;
     padding-top: 40px;
     padding-bottom: 0;
 
@@ -35,7 +35,7 @@ footer.site-footer {
       display: flex;
 
       img {
-        border-right: 1px solid rd.$color-border;
+        border-right: rd.$border;
         padding: 11px 20px 11px 0;
       }
       span {

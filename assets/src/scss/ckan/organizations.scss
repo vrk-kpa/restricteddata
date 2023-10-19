@@ -2,7 +2,7 @@
 
 .organization-list {
   background-color: rd.$color-white;
-  border: 1px solid rd.$color-border-light;
+  border: rd.$border-light;
   border-top: none;
 
   .organization-item {
@@ -13,8 +13,7 @@
         a {
           color: rd.$color-link-text;
         }
-      } 
+      }
     }
   }
 }
-

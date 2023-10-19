@@ -12,7 +12,8 @@
         "validators": "fluent_text required_languages override_field_with_default_translation(title)",
         "output_validators": "fluent_core_translated_output",
         "form_attrs": {
-          "data-module": "slug-preview-target"
+          "data-module": "slug-preview-target",
+          "class": "form-control slug-preview-target"
         }
       }
     },
@@ -28,7 +29,7 @@
     },
     {
       "preset_name": "fluent_vocabulary_with_autocomplete",
-      "values":{
+      "values": {
         "validators": "required_languages fluent_tags create_fluent_tags(example_vocab)",
         "output_validators": "convert_to_json_compatible_str_if_str fluent_tags_output",
         "form_attrs": {

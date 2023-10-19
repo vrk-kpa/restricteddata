@@ -5,6 +5,7 @@
   &:not(.hero) {
     background: rd.$color-background;
   }
+
   .wrapper {
     box-shadow: none;
 
@@ -24,9 +25,10 @@
   padding-top: 0;
 }
 
-.secondary > .module {
+.secondary>.module {
   background-color: rd.$color-white;
-  border: 1px solid rd.$color-border-light;
+  border: rd.$border-light;
+
   .module-heading {
     display: none;
   }
@@ -41,16 +43,22 @@
   border: none;
 
   .nav-tabs {
-    border: none;
+    float: none;
+    background-color: rd.$color-white;
+    border: rd.$border-light;
+    height: fit-content;
+    margin-top: 0px;
 
     li {
       a {
-        @include tokens.fi-text-body-text-small;
         color: tokens.$fi-color-brand-base;
-        margin: 0;
+        padding: 6px 0;
+        margin: 0 20px;
         border: none;
         border-radius: 0;
         transition: none;
+        line-height: 27px;
+        /* 150% */
 
         &:hover {
           border: none;
@@ -68,7 +76,42 @@
         background: transparent;
         border: none;
         border-bottom: 4px solid tokens.$fi-color-brand-base;
+        font-weight: rd.$font-weight-bold;
       }
+    }
+  }
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  .content_action {
+    float: none;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 12px;
+    width: fit-content;
+    margin-bottom: 12px;
+
+    span {
+      color: rd.$color-white;
+      line-height: 24px;
+      font-size: rd.$font-size-sm;
+    }
+
+    a {
+      margin: 0;
+      display: block;
+      margin-left: auto;
+      color: rd.$color-suomifi;
+      letter-spacing: 0.4px;
+      line-height: 20px;
+      border: 1px solid rd.$color-suomifi;
+      border-radius: 2px;
+      text-decoration: none;
+    }
+
+    a+a {
+      margin-left: 12px;
     }
   }
 }
@@ -98,4 +141,55 @@
 .page_primary_action {
   display: flex;
   justify-content: end;
+}
+
+.control-required {
+  color: rd.$color-text-primary;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.rd-group-title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.rd-group-title:first-of-type {
+  margin-top: 0;
+}
+
+.rd-group-description {
+  font-family: "Source Sans Pro Regular", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.field-description-text {
+  @include tokens.fi-text-body-text-small;
+  margin-bottom: 10px;
+}
+
+.form-actions {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .btn.btn-primary {
+      margin-left: auto;
+    }
+  }
+
+  .action-info {
+    margin-top: 20px;
+    margin-left: auto;
+  }
 }
