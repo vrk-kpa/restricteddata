@@ -61,7 +61,7 @@ jobs:
     steps:
       - name: checkout
         if: ${{ matrix.build-container == true }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: ${{ matrix.submodules }}
 
@@ -146,7 +146,7 @@ jobs:
       PGPASSWORD: postgres
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - name: Create Database
@@ -199,7 +199,7 @@ jobs:
       contents: read
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: install nodejs v20
         uses: actions/setup-node@v3
