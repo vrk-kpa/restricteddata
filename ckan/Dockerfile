@@ -157,7 +157,8 @@ COPY src/ckan/ckan-uwsgi.ini ${APP_DIR}
 
 # apply patches
 RUN cd ${SRC_DIR}/ckan && \
-    patch --strip=1 --input=patches/remove-ckan-fontawesome.patch
+    patch --strip=1 --input=patches/remove-ckan-fontawesome.patch && \
+    patch --strip=1 --input=patches/fix_user_reset_password.patch
 
 RUN \
   # Make scripts executable
