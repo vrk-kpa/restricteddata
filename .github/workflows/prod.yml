@@ -23,7 +23,7 @@ jobs:
       contents: read
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: install nodejs v20
         uses: actions/setup-node@v3
@@ -57,7 +57,7 @@ jobs:
           REPOSITORY: ${{ vars.REPOSITORY }}
 
       - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v4.0.1
         with:
           role-to-assume: ${{ secrets.AWS_PROD_DEPLOY_ROLE }}
           role-session-name: github-actions
