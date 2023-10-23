@@ -52,7 +52,7 @@
   background-color: rd.$color-white;
   border: rd.$border-light;
   border-radius: 2px;
-  padding: 20px;
+  padding: 0;
 
   .module-content {
     padding: 0;
@@ -64,18 +64,9 @@
     border-bottom: none;
   }
 
-  h2.additional-info {
-    &+table {
-      font-size: rd.$font-size-xs;
-
-      p {
-        font-size: rd.$font-size-xs;
-      }
-    }
-  }
-
   .main-content {
     font-size: rd.$font-size-sm;
+    padding: 20px 30px;
 
     section {
       margin-top: 50px;
@@ -118,7 +109,15 @@
 
       &__actions {
         a {
-          font-weight: rd.$font-weight-bold;
+          border-radius: 2px;
+          border: 1px solid rd.$color-link-text;
+          background: rd.$color-white; 
+          padding: 10px 20px;
+          font-size: rd.$font-size-xs;
+
+          i {
+            margin-left: 8px;
+          }
         }
 
         a+a {
@@ -129,21 +128,25 @@
       }
     }
 
-    .additional-info {
-      font-size: rd.$font-size-xs;
+    .admin-banner {
+      padding: 0;
+      margin: 0;
+    }
 
-      .dataset-details,
-      p {
-        font-size: rd.$font-size-xs;
-      }
+    /* unstyled maintainer email list */
+    .additional-info table ol {
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
   }
 
   .sidebar {
-    padding-left: 30px;
+    padding: 20px 50px 20px 30px;
+    border-right: rd.$border;
 
     .module {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
 
       .module-heading {
         padding: 0 0 15px 0;
@@ -166,13 +169,8 @@
       flex-wrap: wrap;
       gap: 15px;
     }
-
-    a {
-      font-weight: rd.$font-weight-bold;
-
-      &:hover {
-        text-decoration-line: underline;
-      }
+    .license .module-content {
+      font-size: rd.$font-size-xs;
     }
   }
 }

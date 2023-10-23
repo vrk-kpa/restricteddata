@@ -193,3 +193,26 @@
     margin-left: auto;
   }
 }
+
+.table {
+  --bs-table-bg: #{rd.$color-background};
+  --bs-table-striped-bg: #{rd.$color-white};
+  --bs-table-striped-color: #{rd.$color-black};
+  border-color: rd.$color-border;
+
+  tr {
+    border: rd.$border-light;
+  }
+  td, th {
+    padding: 10px;
+    border: none;
+    font-size: rd.$font-size-sm;
+    font-weight: rd.$font-weight-normal;
+  }
+  td:first-child, th:first-child {
+    padding-left: 20px;
+  }
+  td:last-child, th:last-child {
+    padding-right: 20px;
+  }
+}
