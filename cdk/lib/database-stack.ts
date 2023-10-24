@@ -1,4 +1,4 @@
-import {aws_ec2, aws_elasticache, aws_rds, Stack} from "aws-cdk-lib";
+import {aws_ec2, aws_elasticache, aws_rds, aws_secretsmanager, Stack} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as rds from 'aws-cdk-lib/aws-rds';
@@ -11,6 +11,7 @@ import * as bak from "aws-cdk-lib/aws-backup";
 export class DatabaseStack extends Stack {
     readonly ckanAdminCredentials: rds.Credentials;
     readonly ckanInstance: rds.IDatabaseInstance;
+    readonly ckanSysAdminSecret: aws_secretsmanager.Secret;
     readonly databaseSecurityGroup: aws_ec2.ISecurityGroup;
     readonly redisSecurityGroup: aws_ec2.ISecurityGroup;
     readonly redisCluster: aws_elasticache.CfnCacheCluster;
@@ -32,9 +33,13 @@ export class DatabaseStack extends Stack {
             aliasName: `alias/database-encryption-key-${props.environment}`
         })
 
+        const secretEncryptionKey = Key.fromLookup(this, 'SecretsEncryptionKey', {
+            aliasName: `alias/secrets-encryption-key-${props.environment}`
+        })
+
         const databaseSecret = new aws_rds.DatabaseSecret(this,'databaseAdminSecret', {
             username: "databaseAdmin",
-            encryptionKey: encryptionKey
+            encryptionKey: secretEncryptionKey
         });
 
         this.ckanAdminCredentials = Credentials.fromSecret(databaseSecret);
@@ -54,8 +59,8 @@ export class DatabaseStack extends Stack {
             },
             securityGroups: [
                 this.databaseSecurityGroup
-            ]
-
+            ],
+            storageEncryptionKey: encryptionKey
         })
 
         if (props.backups && props.backupPlan ) {
@@ -88,6 +93,13 @@ export class DatabaseStack extends Stack {
           port: 6379,
           preferredMaintenanceWindow: 'sun:23:00-mon:01:30',
           vpcSecurityGroupIds: [this.redisSecurityGroup.securityGroupId],
+      })
+
+      this.ckanSysAdminSecret = new aws_secretsmanager.Secret(this, 'ckanSysAdminSecret', {
+        encryptionKey: secretEncryptionKey,
+        generateSecretString: {
+          excludeCharacters: "%"
+        }
       })
     }
 }
