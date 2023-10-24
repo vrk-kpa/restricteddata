@@ -10,6 +10,6 @@ test("Hosted zone created", () => {
     const template = Template.fromStack(stack);
 
     template.hasResourceProperties('AWS::Route53::HostedZone', {
-        Name: "rekisteridata.fi."
+        Name: "suojattudata.suomi.fi."
     })
 })

@@ -10,7 +10,7 @@ export class DomainStack extends cdk.Stack {
     super(scope, id, props);
 
     this.publicZone = new aws_route53.PublicHostedZone(this, "HostedZone", {
-      zoneName: "rekisteridata.fi",
+      zoneName: "suojattudata.suomi.fi",
     })
 
     this.newPublicZone = new aws_route53.PublicHostedZone(this, "NewPublicHostedZone", {

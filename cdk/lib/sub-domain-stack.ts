@@ -8,9 +8,9 @@ export class SubDomainStack extends Stack {
     constructor(scope: Construct, id: string, props: SubDomainStackProps) {
         super(scope, id, props);
 
-        this.subZone = new aws_route53.PublicHostedZone(this, 'SubZone', {
-            zoneName: props.subDomainName + ".rekisteridata.fi"
-        })
+        //this.subZone = new aws_route53.PublicHostedZone(this, 'SubZone', {
+        //    zoneName: props.subDomainName + ".suojattudata.suomi.fi"
+        //})
 
         this.newSubZone = new aws_route53.PublicHostedZone(this, 'NewSubZone', {
           zoneName: props.subDomainName + ".suojattudata.fi"
@@ -26,11 +26,11 @@ export class SubDomainStack extends Stack {
 
         const delegationRole = aws_iam.Role.fromRoleArn(this, 'delegationRole', delegationRoleArn)
 
-        new aws_route53.CrossAccountZoneDelegationRecord(this, 'delegate', {
-            delegatedZone: this.subZone,
-            delegationRole: delegationRole,
-            parentHostedZoneName: "rekisteridata.fi"
-        })
+        //new aws_route53.CrossAccountZoneDelegationRecord(this, 'delegate', {
+        //    delegatedZone: this.subZone,
+        //    delegationRole: delegationRole,
+        //    parentHostedZoneName: "suojattudata.suomi.fi"
+        //})
 
         new aws_route53.CrossAccountZoneDelegationRecord(this, 'newDelegate', {
           delegatedZone: this.newSubZone,
