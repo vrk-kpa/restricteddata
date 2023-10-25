@@ -26,6 +26,7 @@ input[type=button] {
 
 input[type=text],
 input[type=date],
+input[type=number],
 select {
   &.form-control {
     @include tokens.fi-text-body-text-small;
@@ -94,6 +95,11 @@ textarea.form-control {
 
 .controls {
   .select2-container {
+    &.form-control {
+      padding: 0;
+      border: none;
+    }
+
     .select2-default {
       color: rd.$color-text-placeholder !important;
     }
@@ -236,6 +242,7 @@ textarea.form-control {
 textarea {
   color: rd.$color-black;
 }
+
 .form-control:default,
 .form-control::placeholder {
   color: rd.$color-text-placeholder;

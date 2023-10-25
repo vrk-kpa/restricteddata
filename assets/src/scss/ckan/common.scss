@@ -183,12 +183,15 @@
 
     a {
       margin: 0;
-      color: rd.$color-suomifi;
       letter-spacing: 0.4px;
       line-height: 20px;
       border: 1px solid rd.$color-suomifi;
       border-radius: 2px;
       text-decoration: none;
+    }
+
+    .btn.btn-default {
+      color: rd.$color-suomifi;
     }
 
     a+a {
@@ -270,11 +273,15 @@
 .form-actions {
   margin-top: 60px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   overflow: unset;
   height: fit-content;
+  justify-content: space-between;
+  gap: 20px;
 
   div {
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 20px;
