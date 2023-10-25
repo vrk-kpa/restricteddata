@@ -1,36 +1,115 @@
 @use "../variables" as rd;
 @use "suomifi-design-tokens/dist/tokens";
 
+.row {
+  --bs-gutter-x: 0;
+}
+
+.wrapper {
+  box-shadow: none;
+}
+
+.rd-group-divider {
+  margin: 0;
+}
+
 .main {
+  padding: 20px 0 60px 0;
+
   &:not(.hero) {
     background: rd.$color-background;
   }
 
   .wrapper {
+    display: flex;
+    flex-direction: row;
     box-shadow: none;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
 
     &::before {
+      content: none;
       border: none;
     }
+  }
 
-    &:not(.dataset-container) {
-      border: none;
-      border-radius: 0;
-      background-color: transparent;
+  .primary {
+    flex: 1 0;
+  }
+
+  .secondary {
+    flex: 0 0 auto;
+  }
+}
+
+.primary {
+  .module {
+    .module-content {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .primary-content-container {
+    &::before {
+      content: none;
+    }
+
+    margin-left: 0;
+    margin-right: 0;
+    background-color: rd.$color-white;
+    border: rd.$border-light;
+    border-radius: 2px;
+    padding: 20px 30px;
+
+    .module-content {
+      padding: 0;
     }
   }
 }
 
-.primary>.module>.module-content {
-  padding-top: 0;
-}
+.secondary {
+  &>.module {
 
-.secondary>.module {
-  background-color: rd.$color-white;
-  border: rd.$border-light;
+    .module-heading {
+      padding: 0 0 15px 0;
+      border: none;
+      background: transparent;
+    }
 
-  .module-heading {
-    display: none;
+    .module-content {
+      padding: 0;
+    }
+  }
+
+  h3 {
+    font-size: rd.$font-size-sm;
+  }
+
+  .socials {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  a {
+    font-weight: rd.$font-weight-bold;
+
+    &:hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  &.secondary-content-container {
+    background-color: rd.$color-white;
+    border: rd.$border-light;
+    margin-right: -1px;
+
+    &>.module {
+      padding: 20px 20px 10px 20px;
+    }
   }
 }
 
@@ -39,13 +118,18 @@
   margin-bottom: 13px;
 }
 
-.page-header {
+.page-header,
+.content-header {
   border: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   .nav-tabs {
     float: none;
     background-color: rd.$color-white;
     border: rd.$border-light;
+    width: 100%;
     height: fit-content;
     margin-top: 0px;
 
@@ -84,13 +168,12 @@
   /* stylelint-disable-next-line selector-class-pattern */
   .content_action {
     float: none;
-    margin-left: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 6px 12px;
-    width: fit-content;
-    margin-bottom: 12px;
+    width: 100%;
+    gap: 10px;
+    justify-content: flex-end;
 
     span {
       color: rd.$color-white;
@@ -100,8 +183,6 @@
 
     a {
       margin: 0;
-      display: block;
-      margin-left: auto;
       color: rd.$color-suomifi;
       letter-spacing: 0.4px;
       line-height: 20px;
@@ -116,24 +197,37 @@
   }
 }
 
-.toolbar .breadcrumb {
-  @include tokens.fi-text-body-text-small;
+.page-header {
+  justify-content: flex-start;
+  align-content: stretch;
+}
 
-  a {
-    color: rd.$color-link-text;
-  }
+.content-header {
+  justify-content: flex-end;
+}
 
-  .active a {
-    color: rd.$color-text-secondary;
-    font-weight: normal;
-  }
+.toolbar {
+  margin-bottom: 30px;
 
-  li:first-child {
-    padding-left: 0;
-  }
+  .breadcrumb {
+    @include tokens.fi-text-body-text-small;
 
-  li:not(:first-child)::before {
-    content: ">"
+    a {
+      color: rd.$color-link-text;
+    }
+
+    .active a {
+      color: rd.$color-text-secondary;
+      font-weight: normal;
+    }
+
+    li:first-child {
+      padding-left: 0;
+    }
+
+    li:not(:first-child)::before {
+      content: ">"
+    }
   }
 }
 
@@ -177,6 +271,8 @@
   margin-top: 60px;
   display: flex;
   flex-direction: column;
+  overflow: unset;
+  height: fit-content;
 
   div {
     display: flex;

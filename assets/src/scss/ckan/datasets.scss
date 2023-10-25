@@ -42,22 +42,7 @@
   }
 }
 
-.dataset-container {
-  &::before {
-    content: none;
-  }
-
-  margin-left: 0;
-  margin-right: 0;
-  background-color: rd.$color-white;
-  border: rd.$border-light;
-  border-radius: 2px;
-  padding: 20px;
-
-  .module-content {
-    padding: 0;
-  }
-
+.primary-content-container {
   .module-resource {
     margin-top: 50px;
     margin-bottom: 80px;
@@ -138,41 +123,91 @@
       }
     }
   }
+}
 
-  .sidebar {
-    padding-left: 30px;
+// Stages
+// Builds form stages out of an ordered list. The following CSS uses tag
+// selectors on the .active class to prevent the styles bleeding into the
+// anchor element which can also have an active class.
+.stages {
+  counter-reset: stage;
+  overflow: hidden;
 
-    .module {
-      margin-bottom: 50px;
+  :after {
+    content: none;
+  }
 
-      .module-heading {
-        padding: 0 0 15px 0;
-        border: none;
-        background: transparent;
-      }
+  li {
+    line-height: 27px;
+    counter-increment: stage;
+    width: 100%;
+    float: none;
+    padding: 10px 0;
+    background: none;
 
-      .module-content {
-        padding: 0;
+    &:before {
+      content: counter(stage);
+      display: inline-block;
+      width: 27px;
+      height: 27px;
+      margin-right: 5px;
+      font-weight: 700;
+      text-align: center;
+      color: rd.$color-text-primary;
+      border: 1px solid rd.$color-text-primary;
+      background: none;
+      border-radius: 14px;
+    }
+
+    &.active:before,
+    &.complete:before {
+      color: rd.$color-white;
+      background: rd.$color-success;
+      border: none;
+    }
+
+    &:after {
+      content: none;
+      border: none;
+    }
+
+    .highlight {
+      padding-left: 35px;
+    }
+
+    &.active,
+    &.complete,
+    &.uncomplete {
+      background: none;
+
+      .highlight {
+        color: rd.$color-text-primary;
+        background: none;
       }
     }
 
-    h3 {
-      font-size: rd.$font-size-sm;
-    }
-
-    .socials {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    a {
-      font-weight: rd.$font-weight-bold;
-
-      &:hover {
-        text-decoration-line: underline;
+    &.active {
+      .highlight {
+        font-weight: rd.$font-weight-bold;
+        background: none;
       }
+    }
+
+    &.last {
+      right: 0;
+    }
+
+    &:not(:first-of-type)::after {
+      left: 12px;
+      top: -5px;
+      content: " ";
+      height: 10px;
+      width: 1px;
+      position: absolute;
+      border: none;
+      margin: 0;
+      border-left: 1px solid #c8cdd0;
+      pointer-events: none;
     }
   }
 }

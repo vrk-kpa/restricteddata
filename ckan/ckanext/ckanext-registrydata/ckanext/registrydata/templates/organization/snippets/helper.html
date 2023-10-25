@@ -7,21 +7,13 @@
 
   {% snippet "organization/snippets/helper.html", group_type=group_type %}
 
-  #}
+#}
 
-
-<div class="module module-narrow module-shallow">
-  <div class="module-content">
-    <p>
-      {% trans %}
-      On this page you can find all the public administration organisations that have described their data resources to the Suojattudata service.
-      {% endtrans %}
-    </p>
-    <p>
-      {% trans %}
-      Select the organisation whose dataset descriptions you want to view.
-      {% endtrans %}
-    </p>
-
+<div class="filters">
+  <div class="module module-narrow module-shallow">
+    <div class="module-content">
+      <p>{%- trans -%} On this page you can find all the public administration organisations that have described their data resources to the Suojattudata service. {%- endtrans -%}</p>
+      <p>{%- trans -%} Select the organisation whose dataset descriptions you want to view. {%- endtrans -%}</p>
+    </div>
   </div>
 </div>

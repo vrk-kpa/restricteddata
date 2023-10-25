@@ -1,11 +1,15 @@
-{% extends "full_width_page.html" %}
+{% ckan_extends %}
 
 {% set pkg = pkg_dict %}
 {% set dataset_type = dataset_type or pkg.type or 'dataset' %}
 
-{% block breadcrumb_content_selected %} class="active"{% endblock %}
+{% block breadcrumb_content_selected %}
+  class="active"
+{% endblock breadcrumb_content_selected %}
 
-{% block subtitle %}{{ _(dataset_type.title()) }}{% endblock %}
+{% block subtitle %}
+  {{ _(dataset_type.title() ) }}
+{% endblock subtitle %}
 
 {% block breadcrumb_content %}
   {% if pkg %}
@@ -18,9 +22,14 @@
     {% else %}
       <li>{% link_for _(dataset_type.title()), named_route=dataset_type ~ '.search' %}</li>
     {% endif %}
-    <li{{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), named_route=pkg.type ~ '.read', id=pkg.name %}</li>
+    <li {{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), named_route=pkg.type ~ '.read', id=pkg.name %}
+    </li>
   {% else %}
     <li>{% link_for _(dataset_type.title()), named_route=dataset_type ~ '.search' %}</li>
-    <li class="active"><a href="">{{ h.humanize_entity_type('package', dataset_type, 'create label') or _('Create Dataset') }}</a></li>
+    <li class="active">
+      <a href="">{{ h.humanize_entity_type('package', dataset_type, 'create label') or _('Create Dataset') }}</a>
+    </li>
   {% endif %}
-{% endblock %}
+{% endblock breadcrumb_content %}
+
+{%- block secondary_container_class -%}secondary-content-container{%- endblock secondary_container_class -%}

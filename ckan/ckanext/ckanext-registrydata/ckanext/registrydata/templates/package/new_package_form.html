@@ -2,7 +2,7 @@
 
 {% block save_button_text %}
   {% if form_style != 'edit' %}
-    {{ super() }}
+    {{ _('Next') }} <i class="fal fa-long-arrow-right"></i>
   {% else %}
     {{ h.humanize_entity_type('package', pkg_dict.type, 'update label') or _('Update') }}
   {% endif %}

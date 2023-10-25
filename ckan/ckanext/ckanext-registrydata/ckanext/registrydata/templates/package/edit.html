@@ -1,7 +1,20 @@
 {% ckan_extends %}
 
-{% block banner %}
+{% block pre_primary %}
   <header class="page-header">
+    <ul class="nav nav-tabs">
+      {{ h.build_nav_icon(pkg.type ~ '.edit', _('Edit metadata') , id=pkg.name) }}
+      {{ h.build_nav_icon(pkg.type ~ '.resources', _('Resources') , id=pkg.name) }}
+      {% if h.check_config_permission('allow_dataset_collaborators') and h.check_access('package_collaborator_create', {'id': pkg_dict.id}) %}
+        {{ h.build_nav_icon(pkg.type ~ '.collaborators_read', _('Collaborators') , id=pkg.name) }}
+      {% endif %}
+    </ul>
+  </header>
+{% endblock pre_primary %}
+
+{%- block primary_container_class -%}primary-content-container{%- endblock primary_container_class -%}
+
+  {% block content_primary_nav %}
     {% if self.content_action() | trim %}
       <div class="content_action">
         {% block content_action %}
@@ -12,15 +25,7 @@
         {% endblock content_action %}
       </div>
     {% endif %}
+  {% endblock content_primary_nav %}
 
-    <ul class="nav nav-tabs">
-      {% block content_primary_nav %}
-        {{ h.build_nav_icon(pkg.type ~ '.edit', _('Edit metadata') , id=pkg.name) }}
-        {{ h.build_nav_icon(pkg.type ~ '.resources', _('Resources') , id=pkg.name) }}
-        {% if h.check_config_permission('allow_dataset_collaborators') and h.check_access('package_collaborator_create', {'id': pkg_dict.id}) %}
-          {{ h.build_nav_icon(pkg.type ~ '.collaborators_read', _('Collaborators') , id=pkg.name) }}
-        {% endif %}
-      {% endblock content_primary_nav %}
-    </ul>
-  </header>
-{% endblock banner %}
+{% block secondary %}
+{% endblock secondary %}
