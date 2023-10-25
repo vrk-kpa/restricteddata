@@ -1,31 +1,71 @@
 {% ckan_extends %}
 
-{% block banner %}
-<div class="admin-banner">
-  {% block resource_actions_inner %}
-  {% block action_manage %}
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-  {% link_for _('Manage'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-secondary' %}
-  {% endif %}
-  {% endblock action_manage %}
-  {% if res.url and h.is_url(res.url) %}
-  <a class="btn btn-primary resource-url-analytics" href="{{ res.url }}">
-    {% if res.resource_type in ('listing', 'service') %}
-    <i class="fa fa-eye"></i> {{ _('View') }}
-    {% elif  res.resource_type == 'api' %}
-    <i class="fa fa-key"></i> {{ _('API Endpoint') }}
-    {% elif not res.has_views and not res.url_type == 'upload' %}
-    <i class="fa fa-external-link"></i> {{ _('Go to resource') }}
-    {% else %}
-    <i class="fa fa-arrow-circle-down"></i> {{ _('Download') }}
-    {% endif %}
-  </a>
-  {% block download_resource_button %}
-  {% endblock %}
-  {% endif %}
-  {% endblock %}
-</div>
+{% block content_header %}{% link_for _('Dataset'), named_route=pkg.type ~ '.read', id=pkg.id, icon='arrow-left-long fa-light', class_="back-link" %}{% endblock %}
+{% block pre_primary %}{% endblock %}
+
+{% block primary_content %}
+  <div class="row">
+    <aside class="col-4 sidebar">
+    {% block resources_list %}
+      {% snippet "package/snippets/resources.html", pkg=pkg, active=res.id %}
+    {% endblock %}
+    </aside>
+
+    <section class="col-8 main-content">
+      {% block banner %}
+      <div class="admin-banner">
+        {% block resource_actions_inner %}
+        {% block action_manage %}
+        {% if h.check_access('package_update', {'id':pkg.id }) %}
+        {% link_for _('Edit'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-secondary' %}
+        {% endif %}
+        {% endblock action_manage %}
+        {% if res.url and h.is_url(res.url) %}
+        <a class="btn btn-secondary resource-url-analytics" href="{{ res.url }}">
+          {% if res.resource_type in ('listing', 'service') %}
+          {{ _('View') }}
+          {% elif  res.resource_type == 'api' %}
+          {{ _('API Endpoint') }}
+          {% elif not res.has_views and not res.url_type == 'upload' %}
+          {{ _('Open') }}
+          {% else %}
+          {{ _('Download') }}
+          {% endif %}
+        </a>
+        {% block download_resource_button %}
+        {% endblock %}
+        {% endif %}
+        {% endblock %}
+      </div>
+      {% endblock %}
+      {% block resource %}{{ super() }}{% endblock %}
+      {% block resource_additional_information %}{{ super() }}{% endblock %}
+    </section>
+
+  </div>
+{% endblock %}
+
+{% block resource_read_title %}
+  <span class="resource-heading-dataset">{{ h.dataset_display_name(pkg) }}</span>
+  {{ super() }}
 {% endblock %}
 
 {% block resource_actions %}
 {% endblock %}
+
+{% block resource_view_content %}
+  <div class="resource-view">
+    {% if resource_views %}
+        {% for resource_view in resource_views %}
+          {% if resource_view == current_resource_view %}
+            {% snippet 'package/snippets/resource_view.html',
+               resource_view=resource_view,
+               resource=resource,
+               package=package
+             %}
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
+{% block resource_read_url %}{% endblock %}
