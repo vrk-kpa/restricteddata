@@ -29,11 +29,11 @@ jobs:
       environment: ${{ steps.filter.outputs.environment }}
       assets: ${{ steps.filter.outputs.assets }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
           fetch-depth: 0
-      - uses: nrwl/nx-set-shas@v3
+      - uses: nrwl/nx-set-shas@v4
         id: last_successful_commit
         with:
           main-branch-name: 'main'
