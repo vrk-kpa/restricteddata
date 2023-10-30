@@ -1,0 +1,45 @@
+{% ckan_extends %}
+
+{% block pre_primary %}
+  {% if self.page_heading() | trim %}
+    <div>
+      <h1 class="page-heading">
+        {% block page_heading %}
+          {{ _("Edit resource") }}
+        {% endblock page_heading %}
+      </h1>
+    </div>
+  {% endif %}
+  {% if self.content_primary_nav() | trim %}
+    <header class="page-header">
+      <ul class="nav nav-tabs">
+        {% block content_primary_nav %}
+          <li class="active">{{ h.nav_link(_('Edit resource') , pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id) }}</li>
+          {% block inner_primary_nav %}
+          {% endblock inner_primary_nav %}
+          {{ h.build_nav_icon(pkg.type ~ '_resource.views', _('Views') , id=pkg.name, resource_id=res.id) }}
+        {% endblock content_primary_nav %}
+      </ul>
+    </header>
+  {% endif %}
+{% endblock pre_primary %}
+
+{%- block primary_container_class -%}
+  primary-content-container
+{%- endblock primary_container_class -%}
+
+{% block content_action %}
+  {% if res %}
+    {% link_for _('Close without saving'), named_route=pkg.type ~ '_resource.read', id=pkg.name, resource_id=res.id, class_='btn btn-default' %}
+  {% else %}
+    {% link_for _('Close without saving'), named_route=pkg.type ~ '.resources', id=pkg.name, class_='btn btn-default' %}
+  {% endif %}
+{% endblock content_action %}
+
+{% block primary_content_inner %}
+  {% block form %}
+  {% endblock form %}
+{% endblock primary_content_inner %}
+
+{% block secondary %}
+{% endblock secondary %}

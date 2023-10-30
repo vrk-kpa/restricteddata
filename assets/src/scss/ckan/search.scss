@@ -68,6 +68,9 @@
 }
 
 .secondary {
+  display: flex;
+  flex-direction: column;
+
   .filters-heading {
     background: rd.$color-suomifi;
     color: rd.$color-white;
@@ -79,12 +82,16 @@
   .filters {
     background-color: rd.$color-white;
     border: rd.$border-light;
+    flex-grow: 2;
+
+    .module {
+      margin-top: 40px;
+    }
 
     .module-heading {
       @include tokens.fi-text-heading5;
       border: none;
       background: transparent;
-      margin-top: 40px;
 
       i {
         display: none;

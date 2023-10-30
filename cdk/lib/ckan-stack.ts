@@ -111,12 +111,7 @@ export class CkanStack extends Stack {
       }
     })
 
-    const ckanSysAdminSecret = new aws_secretsmanager.Secret(this, 'ckanSysAdminSecret', {
-      encryptionKey: secretEncryptionKey,
-      generateSecretString: {
-        excludeCharacters: "%"
-      }
-    })
+
 
     const ckanContainerSecrets: { [key: string]: aws_ecs.Secret; } = {
       // .env.ckan
@@ -126,7 +121,7 @@ export class CkanStack extends Stack {
       DB_CKAN_PASS: aws_ecs.Secret.fromSecretsManager(props.ckanInstanceCredentials.secret!, 'password'),
       SMTP_USERNAME: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'username'),
       SMTP_PASS: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'password'),
-      CKAN_SYSADMIN_PASSWORD: aws_ecs.Secret.fromSecretsManager(ckanSysAdminSecret),
+      CKAN_SYSADMIN_PASSWORD: aws_ecs.Secret.fromSecretsManager(props.ckanSysAdminSecret),
     };
 
     ckanTaskDefinition.addToExecutionRolePolicy(new PolicyStatement({
