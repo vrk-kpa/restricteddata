@@ -1,5 +1,6 @@
 @use "suomifi-design-tokens/dist/tokens";
 @use "variables" as rd;
+@use "mixins" as rd-mixins;
 
 body {
   min-height: 100vh;
@@ -95,86 +96,21 @@ a {
   width: fit-content;
 
   &.btn-primary {
-    background: rd.$color-button-primary;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    gap: 8px;
-    border-radius: 2px;
-    line-height: 1.0;
-
-    &:hover {
-      background: rd.$color-button-primary-hover;
-    }
+    @include rd-mixins.btn-primary;
   }
 
   &.btn-secondary,
   &.btn-default {
-    color: rd.$color-link-text;
-    border-color: rd.$color-link-text;
-    background-color: transparent;
-    background-image: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    gap: 8px;
-    border-radius: 2px;
-
-    &:hover {
-      color: rd.$color-link-text;
-      background: rd.$color-button-secondary-hover !important;
-    }
-
-    &.show-filters,
-    &.hide-filters {
-      display: none;
-    }
+    @include rd-mixins.btn-secondary;
   }
 }
 
 .btn-link {
-  color: rd.$color-link-text;
-  border: 1px solid rd.$color-link-text;
-  background: transparent;
-  padding: 10px 20px;
-  border-radius: 2px;
-  box-shadow: none;
-  display: flex;
-  line-height: 20px;
-  font-weight: rd.$font-weight-bold;
-  letter-spacing: 0.4px;
-  font-size: rd.$font-size-xs;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  &.external {
-    &::before {
-      font: var(--fa-font-sharp-regular);
-      font-size: 16px;
-      align-self: center;
-      content: "\f08e"
-    }
-  }
-
-  &:hover {
-    color: rd.$color-link-text;
-    border: rd.$border;
-    border-color: rd.$color-link-text;
-    background: rd.$color-button-secondary-hover;
-    text-decoration: none;
-  }
+  @include rd-mixins.btn-link;
 }
 
 .borderless {
-  border: 1px solid transparent;
-
-  &:hover {
-    background: rd.$color-button-secondary-hover;
-  }
+  @include rd-mixins.borderless;
 }
 
 ::selection {

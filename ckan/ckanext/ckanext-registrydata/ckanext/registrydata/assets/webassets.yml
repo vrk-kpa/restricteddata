@@ -18,21 +18,33 @@ form-js:
    output: registrydata/%(version)s-registrydata-form.js
    contents:
      - modules/form.js
+   extra:
+     preload:
+       - base/main
 
 resource-reorder-js:
    filter: rjsmin
    output: registrydata/%(version)s-registrydata-resource-reorder.js
    contents:
      - modules/rd-resource-reorder.js
+   extra:
+     preload:
+       - base/main
 
 rd-select2-tags-js:
   output: registrydata/%(version)s-rd-select2-tags.js
   filters: rjsmin
+  extra:
+    preload:
+      - base/main
   contents:
     - javascript/rd-select2-tags.js
 
 rd-slug-preview-js:
   output: registrydata/%(version)s-rd-slug-preview.js
   filters: rjsmin
+  extra:
+    preload:
+      - base/main
   contents:
     - javascript/rd-slug-preview.js

@@ -1,5 +1,6 @@
 @use "suomifi-design-tokens/dist/tokens";
 @use "variables" as rd;
+@use "mixins" as rd-mixins;
 
 label {
   &:after {
@@ -27,6 +28,7 @@ input[type=button] {
 input[type=text],
 input[type=date],
 input[type=number],
+input[type=url],
 select {
   &.form-control {
     @include tokens.fi-text-body-text-small;
@@ -340,5 +342,23 @@ fieldset.radios {
   label {
     @include tokens.fi-text-body-text-small;
     margin-right: 30px;
+  }
+}
+
+.resource-upload-field {
+
+  #field-resource-url {
+    width: calc(100% - 104px);
+  }
+
+  .btn-remove-url {
+    @include rd-mixins.btn-link;
+    @include rd-mixins.borderless;
+    right: 0;
+    margin-top: 10px;
+
+    &::before {
+      @include rd-mixins.delete;
+    }
   }
 }

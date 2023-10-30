@@ -1,4 +1,5 @@
 @use "../variables" as rd;
+@use "../mixins" as rd-mixins;
 @use "suomifi-design-tokens/dist/tokens";
 
 .dataset-list {
@@ -107,20 +108,11 @@
       }
 
       &__actions {
+        display: flex;
+        gap: 10px;
+
         a {
-          border-radius: 2px;
-          border: 1px solid rd.$color-link-text;
-          background: rd.$color-white;
-          padding: 10px 20px;
-          font-size: rd.$font-size-xs;
-
-          i {
-            margin-left: 8px;
-          }
-        }
-
-        a+a {
-          margin-left: 10px;
+          @include rd-mixins.btn-link;
         }
 
         margin-left: auto;
@@ -163,7 +155,7 @@
       font-weight: 700;
       text-align: center;
       color: rd.$color-text-primary;
-      border: 1px solid rd.$color-text-primary;
+      border: rd.$border-dark;
       background: none;
       border-radius: 14px;
     }
