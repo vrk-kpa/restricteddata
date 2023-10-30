@@ -42,40 +42,38 @@
   }
 }
 
-.primary-content-container {
-  .module-resource {
+.main-content {
+  font-size: rd.$font-size-sm;
+  padding: 20px 0px;
+
+  h3 {
+    margin-bottom: 20px;
+  }
+  section {
     margin-top: 50px;
     margin-bottom: 80px;
-    border-bottom: none;
+
   }
 
-  h2.additional-info {
-    &+table {
-      font-size: rd.$font-size-xs;
-
-      p {
-        font-size: rd.$font-size-xs;
-      }
-    }
+  .admin-banner {
+    padding: 0;
+    margin: 0;
   }
 
-  .main-content {
-    font-size: rd.$font-size-sm;
+  /* unstyled maintainer email list */
+  .additional-info table ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
 
-    section {
-      margin-top: 50px;
-      margin-bottom: 80px;
-
-      h2,
-      h3 {
-        margin-bottom: 20px;
-      }
-    }
-
+#dataset-resources {
+  .resource-list {
+    margin: 0;
     .resource-item {
       display: flex;
-      padding: 0;
-      margin: 10px;
+      padding: 5px 0;
       align-items: center;
       border-top: rd.$border;
       border-radius: 0;
@@ -86,12 +84,12 @@
       }
 
       &:last-child {
-        border-bottom: 1px solid #c8cdd0;
+        border-bottom: rd.$border;
       }
 
       & .format-label {
         position: static;
-        margin: 0;
+        margin: 0 0 0 -14px;
       }
 
       & .heading {
@@ -103,7 +101,15 @@
 
       &__actions {
         a {
-          font-weight: rd.$font-weight-bold;
+          border-radius: 2px;
+          border: 1px solid rd.$color-link-text;
+          background: rd.$color-white; 
+          padding: 10px 20px;
+          font-size: rd.$font-size-xs;
+
+          i {
+            margin-left: 8px;
+          }
         }
 
         a+a {
@@ -113,18 +119,13 @@
         margin-left: auto;
       }
     }
-
-    .additional-info {
-      font-size: rd.$font-size-xs;
-
-      .dataset-details,
-      p {
-        font-size: rd.$font-size-xs;
-      }
-    }
   }
 }
 
+.sidebar {
+  padding: 20px 50px 20px 30px;
+  border-right: rd.$border;
+}
 // Stages
 // Builds form stages out of an ordered list. The following CSS uses tag
 // selectors on the .active class to prevent the styles bleeding into the
@@ -184,6 +185,20 @@
         color: rd.$color-text-primary;
         background: none;
       }
+    }
+
+    h3 {
+      font-size: rd.$font-size-sm;
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .license .module-content {
+      font-size: rd.$font-size-xs;
     }
 
     &.active {

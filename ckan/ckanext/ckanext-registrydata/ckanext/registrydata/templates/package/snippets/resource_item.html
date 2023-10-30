@@ -34,20 +34,20 @@
     {% block resource_item_explore_links %}
     {% if res.has_views %}
     <a href="{{ url }}">
-      {{ _('Preview')|upper }}
+      {{ _('Preview') }}
     </a>
     {% endif %}
     {% if can_edit %}
     <a href="{{ h.url_for(pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id) }}">
-      {{ _('Edit')|upper }}
+      {{ _('Edit') }}
     </a>
     {% endif %}
     {% if res.url and h.is_url(res.url) %}
     <a class="resource-url-analytics" href="{{ res.url }}" target="_blank" rel="noreferrer">
       {% if res.has_views or res.url_type == 'upload' %}
-      {{ _('Download')|upper }}
+      {{ _('Download') }}
       {% else %}
-      {{ _('Open')|upper }}
+      {{ _('Navigate') }} <i class="fa-light fa-arrow-up-right-from-square"></i>
       {% endif %}
     </a>
     {% endif %}

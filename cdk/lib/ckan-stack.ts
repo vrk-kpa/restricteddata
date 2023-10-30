@@ -50,7 +50,8 @@ export class CkanStack extends Stack {
       "registrydata_pages",
       "pages",
       "markdown_editor",
-      "registrydata"
+      "registrydata",
+      "activity"
     ]
 
     const ckanContainerEnv: {[key: string]: string} = {

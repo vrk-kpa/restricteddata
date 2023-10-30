@@ -2,6 +2,15 @@
 
 {% import 'macros/layout.html' as layout %}
 
+{% block content_header %}
+<header class="page-header">
+  <ul class="nav nav-tabs">
+    <li class="active">{% link_for _('Dataset'), named_route=dataset_type ~ '.read', id=pkg.name %}</li>
+    <li>{% link_for _('Categories'), named_route=dataset_type ~ '.groups', id=pkg.name %}</li>
+    <li>{% link_for _('Activity'), named_route=dataset_type ~ '.activity', id=pkg.name %}</li>
+</header>
+{% endblock %}
+
 {% block pre_primary %}
   {% snippet 'package/snippets/dataset_state_banner.html', pkg=pkg %}
 {% endblock pre_primary %}
@@ -15,45 +24,52 @@
 
 {%- block primary_container_class -%}primary-content-container{%- endblock primary_container_class -%}
 
-  {% block secondary_content %}
-    {% block package_tags %}
-      {{ layout.moduleBoxHeader(_('Keywords') ) }}
-      {% snippet 'package/snippets/tags.html', tags=pkg.get('keywords', {}), field='keywords', pkg=pkg %}
+{% block secondary_content %}
+  {% block package_tags %}
+    {{ layout.moduleBoxHeader(_('Keywords') ) }}
+    {% snippet 'package/snippets/tags.html', tags=pkg.get('keywords', {}), field='keywords', pkg=pkg %}
+    {{ layout.moduleBoxFooter() }}
+  {% endblock package_tags %}
+
+  {% block categories %}
+    {{ layout.moduleBoxHeader(_('Categories') ) }}
+    {% snippet 'package/snippets/categories.html', categories=pkg.get('groups', {}), pkg=pkg %}
+    {{ layout.moduleBoxFooter() }}
+  {% endblock categories %}
+
+  {% block package_license %}
+    {{ super() }}
+  {% endblock package_license %}
+
+  {% block package_social %}
+  {% endblock package_social %}
+
+  {% block stats %}
+    {% if 'get_visits_for_dataset' in h %}
+      {{ layout.moduleBoxHeader(_('Stats') ) }}
+      {% snippet 'package/snippets/package_matomo_stats.html', pkg=pkg %}
       {{ layout.moduleBoxFooter() }}
-    {% endblock package_tags %}
-
-    {% block categories %}
-      {{ layout.moduleBoxHeader(_('Categories') ) }}
-      {% snippet 'package/snippets/categories.html', categories=pkg.get('groups', {}), pkg=pkg %}
-      {{ layout.moduleBoxFooter() }}
-    {% endblock categories %}
-
-    {% block package_license %}
-      {{ super() }}
-    {% endblock package_license %}
-
-    {% block package_social %}
-      {{ super() }}
-    {% endblock package_social %}
-  {% endblock secondary_content %}
-
-  {% block primary_content_inner %}
-    {% block package_description %}
-      <h1>
-        {% block page_heading %}{{ h.dataset_display_name(pkg) }}{% endblock %}
-      </h1>
-      {% block package_notes %}{{ super() }}{% endblock %}
-    {% endblock %}
-
-    <div class="row">
-      <section class="main-content">
-        {% block package_resources %}
-          {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources,
-          can_edit=h.check_access('package_update', {'id':pkg.id }) %}
-        {% endblock %}
-        {% block package_additional_info %}
-          {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
-        {% endblock %}
-      </section>
-    </div>
+    {% endif %}
   {% endblock %}
+{% endblock secondary_content %}
+
+{% block primary_content_inner %}
+  {% block package_description %}
+    <h1>
+      {% block page_heading %}{{ h.dataset_display_name(pkg) }}{% endblock %}
+    </h1>
+    {% block package_notes %}{{ super() }}{% endblock %}
+  {% endblock %}
+
+  <div class="row">
+    <section class="main-content">
+      {% block package_resources %}
+        {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources,
+        can_edit=h.check_access('package_update', {'id':pkg.id }) %}
+      {% endblock %}
+      {% block package_additional_info %}
+        {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+      {% endblock %}
+    </section>
+  </div>
+{% endblock %}

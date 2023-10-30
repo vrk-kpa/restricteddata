@@ -124,6 +124,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 0;
 
   .nav-tabs {
     float: none;
@@ -135,7 +136,7 @@
 
     li {
       a {
-        color: tokens.$fi-color-brand-base;
+        color: rd.$color-black;
         padding: 6px 0;
         margin: 0 20px;
         border: none;
@@ -159,7 +160,7 @@
       &.active a {
         background: transparent;
         border: none;
-        border-bottom: 4px solid tokens.$fi-color-brand-base;
+        border-bottom: 4px solid rd.$color-link-text;
         font-weight: rd.$font-weight-bold;
       }
     }
@@ -294,5 +295,28 @@
   .action-info {
     margin-top: 20px;
     margin-left: auto;
+  }
+}
+
+.table {
+  --bs-table-bg: #{rd.$color-background};
+  --bs-table-striped-bg: #{rd.$color-white};
+  --bs-table-striped-color: #{rd.$color-black};
+  border-color: rd.$color-border;
+
+  tr {
+    border: rd.$border-light;
+  }
+  td, th {
+    padding: 10px;
+    border: none;
+    font-size: rd.$font-size-sm;
+    font-weight: rd.$font-weight-normal;
+  }
+  td:first-child, th:first-child {
+    padding-left: 20px;
+  }
+  td:last-child, th:last-child {
+    padding-right: 20px;
   }
 }

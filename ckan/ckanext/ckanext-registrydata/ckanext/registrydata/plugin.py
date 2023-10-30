@@ -74,13 +74,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         if not has_request_context():
             return search_results
 
-        try:
-            if 'user' in toolkit.g:
-                user = toolkit.get_action('user_show')({'ignore_auth': True}, {'id': toolkit.g.user})
-                if user and user.get('sysadmin'):
-                    return search_results
-        except toolkit.ObjectNotFound:
-            pass
+        if toolkit.current_user.is_authenticated and toolkit.current_user.sysadmin:
+            return search_results
 
         results = [result for result in search_results.get('results', [])]
 
@@ -101,8 +96,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             return data_dict
 
         # Skip access check if sysadmin or auth is ignored
-        if context.get('ignore_auth') or (context.get('auth_user_obj').is_authenticated
-                                          and context.get('auth_user_obj').sysadmin):
+        if context.get('ignore_auth') or (toolkit.current_user.is_authenticated
+                                          and toolkit.current_user.sysadmin):
             return data_dict
 
         user_name = context.get('user')
