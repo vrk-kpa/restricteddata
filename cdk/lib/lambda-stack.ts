@@ -1,5 +1,5 @@
 
-import {CreateDatabasesAndUsers} from "./create-databases-and-users";
+import {CreateDatabasesAndUsers} from "./lambdas/create-databases-and-users";
 import {Stack} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import {LambdaStackProps} from "./lambda-stack-props";

@@ -17,6 +17,7 @@ import {NginxStack} from "../lib/nginx-stack";
 import {SolrStack} from "../lib/solr-stack";
 import {FileSystemStack} from "../lib/filesystem-stack";
 import {CkanStack} from "../lib/ckan-stack";
+import {ShieldStack} from "../lib/shield-stack";
 
 const app = new cdk.App();
 
@@ -253,6 +254,21 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
 
 })
 
+const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  envProps: envProps,
+  environment: devStackProps.environment,
+  loadBalancer: LoadBalancerStackDev.loadBalancer,
+  rateLimitRequestSamplingEnabled: false,
+  highPriorityRequestSamplingEnabled: false,
+  bannedIpsRequestSamplingEnabled: false,
+  requestSampleAllTrafficEnabled: false,
+  vpc: VpcStackDev.vpc
+})
+
 
 // Production
 
@@ -425,5 +441,21 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
+  vpc: VpcStackProd.vpc
+})
+
+
+const ShieldStackProd = new ShieldStack(app, 'ShieldStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  envProps: envProps,
+  environment: prodStackProps.environment,
+  loadBalancer: LoadBalancerStackProd.loadBalancer,
+  rateLimitRequestSamplingEnabled: false,
+  highPriorityRequestSamplingEnabled: false,
+  bannedIpsRequestSamplingEnabled: false,
+  requestSampleAllTrafficEnabled: false,
   vpc: VpcStackProd.vpc
 })
