@@ -42,30 +42,6 @@
   }
 }
 
-.dataset-container {
-  &::before {
-    content: none;
-  }
-
-  margin-left: 0;
-  margin-right: 0;
-  background-color: rd.$color-white;
-  border: rd.$border-light;
-  border-radius: 2px;
-  padding: 20px;
-
-  .module-content {
-    padding: 0;
-  }
-
-  .module-resource {
-    margin-top: 50px;
-    margin-bottom: 80px;
-    border-bottom: none;
-  }
-
-}
-
 .main-content {
   font-size: rd.$font-size-sm;
   padding: 20px 0px;
