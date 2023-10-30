@@ -1,0 +1,37 @@
+{% ckan_extends %}
+
+{% block save_button_text %}
+  {% if form_style != 'edit' %}
+    {{ _('Next') }} <i class="fal fa-long-arrow-right"></i>
+  {% else %}
+    {{ h.humanize_entity_type('package', pkg_dict.type, 'update label') or _('Update') }}
+  {% endif %}
+{% endblock save_button_text %}
+
+{% set pkg = pkg or c.pkg_dict or data %}
+{% block delete_button %}
+  {% if 'id' in pkg and h.check_access('package_delete', {'id': pkg.id}) and not pkg.state == 'deleted' %}
+    {% set locale = h.dump_json({'content': _('Are you sure you want to delete this dataset?')}) %}
+    <a class="btn btn-link"
+       href="{%- url_for pkg.type ~ '.delete', id=pkg.id -%}"
+       data-module="confirm-action"
+       data-module-i18n="{{ locale }}">
+      {% block delete_button_text %}
+        <i class="far fa-trash"></i>{{ _("Delete") }}
+      {% endblock delete_button_text %}
+    </a>
+  {% endif %}
+  {% if pkg.get('id') %}
+    {% link_for
+    h.humanize_entity_type('package', pkg.type, 'view label') or
+    _('Abort'), named_route=pkg.type ~ '.read', id=pkg.name, class_='btn btn-link borderless'
+    %}
+  {% else %}
+    <a class="btn btn-link borderless"
+       href="{%- url_for 'dataset.search' -%}">{{ _("Abort") }}</a>
+  {% endif %}
+{% endblock delete_button %}
+
+{% block disclaimer %}
+  {% if form_style != 'edit' and (not c.pkg_dict or not c.pkg_dict.id) %}{{ super() }}{% endif %}
+{% endblock disclaimer %}

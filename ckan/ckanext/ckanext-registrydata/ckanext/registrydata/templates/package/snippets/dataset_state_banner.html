@@ -1,46 +1,22 @@
 {% set dataset_type = pkg.get('type', 'dataset') %}
 {% if pkg.get('state', '').startswith('deleted') %}
-<div class="card admin-banner private-or-draft-dataset deleted-dataset">
-  <div>
-    <img src="/images/icon-closed-eye.svg">
-    <span>{{ _('Deleted. The ' + dataset_type + ' is only visible to logged in users of the producer organization.') }}</span>
-  </div>
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-  <a class="btn btn-secondary" href="{{ h.url_for(dataset_type + '.edit', id=pkg.name) }}">
-    {{_('Edit ' + dataset_type)}}
-  </a>
-  {% endif %}
-</div>
+  {% set class = "deleted-dataset" %}
+  {% set state = _('Deleted') %}
 {% elif pkg.state.startswith('draft') %}
-<div class="card admin-banner private-or-draft-dataset">
-  <div>
-    <img src="/images/icon-closed-eye.svg">
-    <span>{{ _('In draft state. The ' + dataset_type + ' is only visible to logged in users of the producer organization.') }}</span>
-  </div>
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-  <a class="btn btn-secondary" href="{{ h.url_for(dataset_type + '.edit', id=pkg.name) }}">
-    {{_('Edit ' + dataset_type)}}
-  </a>
-  {% endif %}
-</div>
+  {% set class = "private-or-draft-dataset" %}
+  {% set state = _('Draft') %}
 {% elif pkg.private %}
-<div class="card admin-banner private-or-draft-dataset">
-  <div>
-    <img src="/images/icon-closed-eye.svg">
-    <span>{{ _('Private mode. The ' + dataset_type + ' is only visible to logged in users of the producer organization.') }}</span>
-  </div>
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-  <a class="btn btn-secondary" href="{{ h.url_for(dataset_type + '.edit', id=pkg.name) }}">
-    {{_('Edit ' + dataset_type)}}
-  </a>
-  {% endif %}
-</div>
-{% else %}
-{% if h.check_access('package_update', {'id':pkg.id }) %}
-<div class="admin-banner">
-  <a class="btn btn-secondary" href="{{ h.url_for(dataset_type + '.edit', id=pkg.name) }}">
-    {{_('Edit ' + dataset_type)}}
-  </a>
-</div>
+  {% set class = "private-or-draft-dataset" %}
+  {% set state = _('Private') %}
 {% endif %}
+{% if class and state %}
+  <div class="card admin-banner {{ class }}">
+    <div>
+      <img src="/images/icon-closed-eye.svg"
+           width="20px"
+           height="20px"
+           alt="Closed eye icon">
+      <span>{{ state ~ '. ' ~ _('The ' + dataset_type + ' is only visible to logged in users of the producer organization.') }}</span>
+    </div>
+  </div>
 {% endif %}

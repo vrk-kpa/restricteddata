@@ -27,7 +27,7 @@
 
 .search-results-header {
   background: rd.$color-white;
-  border: 1px solid rd.$color-border;
+  border: rd.$border;
   border-bottom-color: rd.$color-border-light;
   padding: 25px 20px;
   display: flex;
@@ -68,6 +68,9 @@
 }
 
 .secondary {
+  display: flex;
+  flex-direction: column;
+
   .filters-heading {
     background: rd.$color-suomifi;
     color: rd.$color-white;
@@ -78,13 +81,17 @@
 
   .filters {
     background-color: rd.$color-white;
-    border: 1px solid rd.$color-border-light;
+    border: rd.$border-light;
+    flex-grow: 2;
+
+    .module {
+      margin-top: 40px;
+    }
 
     .module-heading {
       @include tokens.fi-text-heading5;
       border: none;
       background: transparent;
-      margin-top: 40px;
 
       i {
         display: none;
@@ -110,7 +117,7 @@
       }
 
       &:not(:last-child) {
-        border-bottom: 1px solid rd.$color-border-light;
+        border-bottom: rd.$border-light;
       }
 
       a {
@@ -156,4 +163,3 @@
     }
   }
 }
-

@@ -182,7 +182,7 @@ ul.news-items {
     gap: 10px;
 
     &:not(:last-child):not(:only-child) {
-      border-right: 1px solid rd.$color-border;
+      border-right: rd.$border;
     }
     .news-title {
       flex-grow: 1;

@@ -60,7 +60,7 @@
   }
 
   &.deleted-dataset {
-    background: rd.$color-alert;
+    background: rd.$color-danger;
 
     .btn.btn-secondary {
       color: rd.$color-white;

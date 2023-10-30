@@ -23,7 +23,7 @@
 
 header.masthead {
   border-top: 4px solid rd.$color-suomifi;
-  border-bottom: 1px solid rd.$color-border;
+  border-bottom: rd.$border;
   background: rd.$color-white;
   padding: 0 !important;
 
@@ -79,7 +79,7 @@ header.masthead {
 
       &:hover {
         background-color: transparent !important;
-        border: 1px solid rd.$color-border;
+        border: rd.$border;
         border-radius: 2px;
       }
 
@@ -196,7 +196,7 @@ header.masthead {
       li {
         display: flex;
 
-        &>a:not(.link-button) {
+        &>a:not(.btn-link) {
           padding: 12px 5px;
           color: rd.$color-text-primary;
           background: transparent;

@@ -6,7 +6,8 @@ body {
   display: flex;
   flex-direction: column;
 
-  & > .main , & > .homepage {
+  &>.main,
+  &>.homepage {
     flex-grow: 1;
   }
 }
@@ -38,17 +39,6 @@ small {
 %lead,
 .lead {
   font-size: rd.$font-size-lg;
-}
-
-select.form-control,
-input.form-control,
-.dropdown-menu,
-::placeholder {
-  font-size: rd.$font-size-sm;
-}
-
-::placeholder {
-  color: rd.$color-text-placeholder;
 }
 
 h1,
@@ -94,68 +84,6 @@ a {
   }
 }
 
-input[type=submit],
-input[type=button] {
-  &.form-control {
-    background: rd.$color-button-primary;
-    color: rd.$color-white;
-    font-size: rd.$font-size-xs;
-    font-weight: rd.$font-weight-bold;
-    padding: 10px 20px 10px 20px;
-    border: none;
-    border-radius: 2px;
-
-    &:hover {
-      background: rd.$color-button-primary-hover;
-    }
-  }
-}
-
-input[type=text].form-control {
-  height: 40px;
-  border-radius: 2px;
-
-  &::placeholder {
-    font-style: italic;
-  }
-}
-
-.select-wrapper {
-  position: relative;
-
-  select {
-    @include tokens.fi-text-body-text-small;
-    background: tokens.$fi-color-white-base;
-    border: 1px solid tokens.$fi-color-black-light1;
-    border-radius: 2px;
-    padding: 8px 30px 8px 10px;
-  }
-
-  &::after {
-    font: var(--fa-font-solid);
-    content: "\f0d7";
-    color: rd.$color-text-secondary;
-    font-size: 18px;
-    position: absolute;
-    right: 10px;
-    top: calc(50% - 9px);
-  }
-}
-
-.form-control,
-textarea {
-  color: rd.$color-black;
-}
-
-.form-control[readonly] {
-  color: rd.$color-text-disabled;
-}
-
-.form-control:focus {
-  background: rd.$color-white;
-  box-shadow: 0 0 10px rd.$color-link-text;
-}
-
 .btn {
   display: flex;
   justify-content: center;
@@ -165,9 +93,16 @@ textarea {
   border-radius: 2px;
   height: 40px;
   width: fit-content;
-  
+
   &.btn-primary {
     background: rd.$color-button-primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 8px;
+    border-radius: 2px;
+    line-height: 1.0;
 
     &:hover {
       background: rd.$color-button-primary-hover;
@@ -175,37 +110,25 @@ textarea {
   }
 
   &.btn-secondary {
-    background: transparent;
+    color: rd.$color-link-text;
+    border-color: rd.$color-link-text;
+    background-color: transparent;
+    background-image: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 8px;
+    border-radius: 2px;
 
     &:hover {
-      color: inherit;
+    color: rd.$color-link-text;
       background: rd.$color-button-secondary-hover;
     }
   }
 }
 
-.simple-input .field {
-  width: 100%;
-
-  input {
-    padding-right: 40px;
-  }
-
-  .btn-search {
-    top: 0;
-    right: 0;
-    font-size: rd.$font-size-sm;
-    margin-top: 0;
-    height: 40px;
-    width: auto;
-
-    &>i {
-      padding: 0 12px;
-    }
-  }
-}
-
-.link-button {
+.btn-link {
   color: rd.$color-link-text;
   border: 1px solid rd.$color-link-text;
   background: transparent;
@@ -222,10 +145,6 @@ textarea {
   align-items: center;
   gap: 8px;
 
-  &.borderless {
-    border: 1px solid transparent;
-  }
-
   &.external {
     &::before {
       font: var(--fa-font-sharp-regular);
@@ -236,9 +155,18 @@ textarea {
   }
 
   &:hover {
-    border: 1px solid rd.$color-border;
+    color: rd.$color-link-text;
+    border: rd.$border;
     background: rd.$color-button-secondary-hover;
     text-decoration: none;
+  }
+}
+
+.borderless {
+  border: 1px solid transparent;
+
+  &:hover {
+    background: rd.$color-button-secondary-hover;
   }
 }
 
@@ -246,24 +174,6 @@ textarea {
   background: rd.$color-suomifi;
   color: rd.$color-white;
   text-shadow: none;
-}
-
-.multiple-values {
-  .multiple-value-group+.multiple-value-group {
-    margin-top: 10px;
-  }
-
-  &+button {
-    margin-top: 10px;
-  }
-}
-
-.removable-input-container {
-  display: flex;
-
-  button {
-    height: 40px;
-  }
 }
 
 /* Required to be able to use FDT and scroll the long pages (i.e. templates) */
