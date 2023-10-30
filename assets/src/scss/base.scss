@@ -109,7 +109,8 @@ a {
     }
   }
 
-  &.btn-secondary {
+  &.btn-secondary,
+  &.btn-default {
     color: rd.$color-link-text;
     border-color: rd.$color-link-text;
     background-color: transparent;
@@ -122,8 +123,13 @@ a {
     border-radius: 2px;
 
     &:hover {
-    color: rd.$color-link-text;
-      background: rd.$color-button-secondary-hover;
+      color: rd.$color-link-text;
+      background: rd.$color-button-secondary-hover !important;
+    }
+
+    &.show-filters,
+    &.hide-filters {
+      display: none;
     }
   }
 }
@@ -157,6 +163,7 @@ a {
   &:hover {
     color: rd.$color-link-text;
     border: rd.$border;
+    border-color: rd.$color-link-text;
     background: rd.$color-button-secondary-hover;
     text-decoration: none;
   }
