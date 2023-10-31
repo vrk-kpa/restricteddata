@@ -1,0 +1,28 @@
+{% ckan_extends %}
+
+{% import 'macros/layout.html' as layout %}
+
+{% block subtitle %}
+  {{ _("Create Dataset") }}
+{% endblock subtitle %}
+
+{% block pre_primary %}
+  <div>
+    <h1 class="page-heading">
+      {% block page_heading %}
+        {{ _("Create new dataset") }}
+      {% endblock page_heading %}
+    </h1>
+  </div>
+{% endblock pre_primary %}
+
+{%- block primary_container_class -%}primary-content-container{%- endblock primary_container_class -%}
+
+  {% block secondary_content %}
+    {% block stages %}
+      {{ layout.moduleBoxHeader(_('Stages') ) }}
+      <hr class="rd-group-divider" />
+      {{ h.snippet('package/snippets/stages.html', stages=form_vars.stage, pkg_name=form_vars.data.name, dataset_type=dataset_type) }}
+      {{ layout.moduleBoxFooter() }}
+    {% endblock stages %}
+  {% endblock secondary_content %}

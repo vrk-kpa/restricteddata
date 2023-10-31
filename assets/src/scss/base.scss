@@ -122,20 +122,10 @@ a {
     border-radius: 2px;
 
     &:hover {
-      color: inherit;
+    color: rd.$color-link-text;
       background: rd.$color-button-secondary-hover;
     }
   }
-
-  &.borderless {
-    border: 1px solid transparent;
-
-    &:hover {
-      border: rd.$border;
-      background: rd.$color-button-secondary-hover;
-    }
-  }
-
 }
 
 .btn-link {
@@ -165,9 +155,18 @@ a {
   }
 
   &:hover {
+    color: rd.$color-link-text;
     border: rd.$border;
     background: rd.$color-button-secondary-hover;
     text-decoration: none;
+  }
+}
+
+.borderless {
+  border: 1px solid transparent;
+
+  &:hover {
+    background: rd.$color-button-secondary-hover;
   }
 }
 

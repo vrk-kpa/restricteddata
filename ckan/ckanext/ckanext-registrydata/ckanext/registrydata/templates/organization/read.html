@@ -1,18 +1,18 @@
 {% ckan_extends %}
 
-{% block pre_primary %}
-<h1 class="page-heading">{{ group_dict.display_name }}</h1>
-{% endblock %}
+{% block pre_primary %}<h1 class="page-heading">{{ group_dict.display_name }}</h1>{% endblock pre_primary %}
 
 {% block content_primary_nav %}
-{% endblock %}
+{% endblock content_primary_nav %}
 
 {% block groups_search_form %}
-  <h3>{{ _('Filters')}}</h3>
+  <h3>{{ _("Filters") }}</h3>
   {{ super() }}
-{% endblock %}
+{% endblock groups_search_form %}
 
 {% block secondary_content %}
-  <h4 class="filters-heading">{{ _('Filter search') }}</h4>
-  {% block organization_facets %}{{ super() }}{% endblock %}
-{% endblock %}
+  <h4 class="filters-heading">{{ _("Filter search") }}</h4>
+  {% block organization_facets %}
+    {{ super() }}
+  {% endblock organization_facets %}
+{% endblock secondary_content %}

@@ -1,12 +1,9 @@
 (function ($, window) {
   $(() => {
     $('input[data-module="autocomplete"]').each(function (index, element) {
-      console.log(index)
-      console.log(element.value)
       if (element.value.length > 0 && element.value.split(',').length > 0) {
         element.value.split(',')
           .forEach(function (tag) {
-            console.log(tag)
             tag = { container: element.id, id: tag, text: tag };
             var container = $(element).siblings(".rd-select2-tags-container");
 

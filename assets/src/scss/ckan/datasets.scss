@@ -42,46 +42,38 @@
   }
 }
 
-.dataset-container {
-  &::before {
-    content: none;
+.main-content {
+  font-size: rd.$font-size-sm;
+  padding: 20px 0px;
+
+  h3 {
+    margin-bottom: 20px;
   }
-
-  margin-left: 0;
-  margin-right: 0;
-  background-color: rd.$color-white;
-  border: rd.$border-light;
-  border-radius: 2px;
-  padding: 0;
-
-  .module-content {
-    padding: 0;
-  }
-
-  .module-resource {
+  section {
     margin-top: 50px;
     margin-bottom: 80px;
-    border-bottom: none;
+
   }
 
-  .main-content {
-    font-size: rd.$font-size-sm;
-    padding: 20px 30px;
+  .admin-banner {
+    padding: 0;
+    margin: 0;
+  }
 
-    section {
-      margin-top: 50px;
-      margin-bottom: 80px;
+  /* unstyled maintainer email list */
+  .additional-info table ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
 
-      h2,
-      h3 {
-        margin-bottom: 20px;
-      }
-    }
-
+#dataset-resources {
+  .resource-list {
+    margin: 0;
     .resource-item {
       display: flex;
-      padding: 0;
-      margin: 10px;
+      padding: 5px 0;
       align-items: center;
       border-top: rd.$border;
       border-radius: 0;
@@ -92,12 +84,12 @@
       }
 
       &:last-child {
-        border-bottom: 1px solid #c8cdd0;
+        border-bottom: rd.$border;
       }
 
       & .format-label {
         position: static;
-        margin: 0;
+        margin: 0 0 0 -14px;
       }
 
       & .heading {
@@ -127,35 +119,71 @@
         margin-left: auto;
       }
     }
+  }
+}
 
-    .admin-banner {
-      padding: 0;
-      margin: 0;
-    }
+.sidebar {
+  padding: 20px 50px 20px 30px;
+  border-right: rd.$border;
+}
+// Stages
+// Builds form stages out of an ordered list. The following CSS uses tag
+// selectors on the .active class to prevent the styles bleeding into the
+// anchor element which can also have an active class.
+.stages {
+  counter-reset: stage;
+  overflow: hidden;
 
-    /* unstyled maintainer email list */
-    .additional-info table ol {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
+  :after {
+    content: none;
   }
 
-  .sidebar {
-    padding: 20px 50px 20px 30px;
-    border-right: rd.$border;
+  li {
+    line-height: 27px;
+    counter-increment: stage;
+    width: 100%;
+    float: none;
+    padding: 10px 0;
+    background: none;
 
-    .module {
-      margin-bottom: 40px;
+    &:before {
+      content: counter(stage);
+      display: inline-block;
+      width: 27px;
+      height: 27px;
+      margin-right: 5px;
+      font-weight: 700;
+      text-align: center;
+      color: rd.$color-text-primary;
+      border: 1px solid rd.$color-text-primary;
+      background: none;
+      border-radius: 14px;
+    }
 
-      .module-heading {
-        padding: 0 0 15px 0;
-        border: none;
-        background: transparent;
-      }
+    &.active:before,
+    &.complete:before {
+      color: rd.$color-white;
+      background: rd.$color-success;
+      border: none;
+    }
 
-      .module-content {
-        padding: 0;
+    &:after {
+      content: none;
+      border: none;
+    }
+
+    .highlight {
+      padding-left: 35px;
+    }
+
+    &.active,
+    &.complete,
+    &.uncomplete {
+      background: none;
+
+      .highlight {
+        color: rd.$color-text-primary;
+        background: none;
       }
     }
 
@@ -171,6 +199,30 @@
     }
     .license .module-content {
       font-size: rd.$font-size-xs;
+    }
+
+    &.active {
+      .highlight {
+        font-weight: rd.$font-weight-bold;
+        background: none;
+      }
+    }
+
+    &.last {
+      right: 0;
+    }
+
+    &:not(:first-of-type)::after {
+      left: 12px;
+      top: -5px;
+      content: " ";
+      height: 10px;
+      width: 1px;
+      position: absolute;
+      border: none;
+      margin: 0;
+      border-left: 1px solid #c8cdd0;
+      pointer-events: none;
     }
   }
 }

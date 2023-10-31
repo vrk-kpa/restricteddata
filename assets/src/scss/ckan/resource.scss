@@ -5,42 +5,40 @@
   text-transform: uppercase;
   margin: 10px 0;
 }
-.dataset-container {
-  .resource-heading-dataset {
-    color: rd.$color-text-placeholder;
-    font-weight: rd.$font-weight-normal;
-    font-size: rd.$font-size-sm;
-  }
-  .admin-banner + .module-resource {
-    margin-top: 0;
-  }
-  .sidebar {
+.resource-heading-dataset {
+  color: rd.$color-text-placeholder;
+  font-weight: rd.$font-weight-normal;
+  font-size: rd.$font-size-sm;
+}
+.admin-banner + .module-resource {
+  margin-top: 0;
+}
+.secondary.secondary-content-container {
+  .resources { 
     padding: 0;
-    .resources { 
-      .module-heading {
-        font-size: rd.$font-size-default;
-        padding: 40px 20px 10px 20px;
-        i {
-          display: none;
-        }
+    .module-heading {
+      font-size: rd.$font-size-default;
+      padding: 40px 20px 10px 20px;
+      i {
+        display: none;
       }
+    }
 
-      .nav-item {
-        a {
-          text-transform: uppercase;
-          color: rd.$color-black;
-          font-weight: rd.$font-weight-normal;
-          font-size: rd.$font-size-default;
-          padding-left: 40px;
-        }
-        &.active a {
-          font-weight: rd.$font-weight-bold;
-          border-left: 5px solid rd.$color-link-text;
-          padding-left: 35px;
-          background: rd.$color-primary-highlight;
-          &::before {
-            content: none;
-          }
+    .nav-item {
+      a {
+        text-transform: uppercase;
+        color: rd.$color-black;
+        font-weight: rd.$font-weight-normal;
+        font-size: rd.$font-size-default;
+        padding-left: 40px;
+      }
+      &.active a {
+        font-weight: rd.$font-weight-bold;
+        border-left: 5px solid rd.$color-link-text;
+        padding-left: 35px;
+        background: rd.$color-primary-highlight;
+        &::before {
+          content: none;
         }
       }
     }
