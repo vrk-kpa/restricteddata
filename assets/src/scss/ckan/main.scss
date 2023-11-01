@@ -6,6 +6,7 @@
 @use "../fonts";
 @use "../base";
 @use "../input";
+@use "../ckeditor";
 
 @use "common";
 @use "header";
@@ -18,4 +19,3 @@
 @use "tags";
 @use "categories";
 @use "search";
-

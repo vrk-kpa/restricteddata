@@ -22,7 +22,7 @@
     },
     {
       "field_name": "notes_translated",
-      "preset": "fluent_core_markdown_translated",
+      "preset": "fluent_markdown_editor",
       "form_placeholder": "Write a description for the dataset.",
       "form_languages": ["fi", "en", "sv"],
       "form_attrs": {
@@ -58,7 +58,7 @@
     {
       "field_name": "rights_translated",
       "label": "Rights",
-      "preset": "fluent_core_markdown_translated",
+      "preset": "fluent_markdown_editor",
       "validators": "fluent_text",
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": ["fi", "en", "sv"],
@@ -226,7 +226,7 @@
     {
       "field_name": "rights_translated",
       "label": "Rights",
-      "preset": "fluent_core_markdown_translated",
+      "preset": "fluent_markdown_editor",
       "validators": "fluent_text",
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": ["fi", "en", "sv"],
@@ -281,7 +281,7 @@
     {
       "field_name": "description_translated",
       "label": "Description",
-      "preset": "fluent_core_markdown_translated",
+      "preset": "fluent_markdown_editor",
       "validators": "fluent_text",
       "form_placeholder": "Write a description for the resource",
       "form_languages": ["fi", "en", "sv"],
