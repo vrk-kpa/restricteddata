@@ -57,21 +57,7 @@
             {% endif %}
           </div>
         {% endblock %}
-        {% block resource_view_content %}
-          <div class="resource-view">
-            {% if resource_views %}
-                {% for resource_view in resource_views %}
-                  {% if resource_view == current_resource_view %}
-                    {% snippet 'package/snippets/resource_view.html',
-                       resource_view=resource_view,
-                       resource=resource,
-                       package=package
-                     %}
-                  {% endif %}
-                {% endfor %}
-            {% endif %}
-          </div>
-        {% endblock %}
+        {% block data_preview %}{{ super() }}{% endblock %}
 
         {% block resource_additional_information %}{{ super() }}{% endblock %}
       {% endblock %}
@@ -81,4 +67,39 @@
 
 {% block secondary_content%}
  {% block resources_list %}{{ super() }}{% endblock %}
+{% endblock %}
+
+{% block resource_view %}
+  <div class="resource-view-toolbar">
+      {% snippet 'package/snippets/resource_view_select.html',
+                 resource_views=resource_views,
+                 current_resource_view=current_resource_view
+      %}
+      <a class="btn btn-default"
+         target="_blank"
+         rel="noreferrer"
+         href="{{ h.url_for('resource_view', id=package['name'], resource_id=resource['id'], view_id=current_resource_view['id'], qualified=True) }}">
+        <i class="fa fa-arrows-alt"></i>
+      </a>
+      <a class="btn btn-default"
+         href="#embed-{{ current_resource_view['id'] }}"
+         data-module="resource-view-embed"
+         data-module-id="{{ current_resource_view['id'] }}"
+         data-module-url="{{ h.url_for('resource_view', id=package['name'], resource_id=resource['id'], view_id=current_resource_view['id'], qualified=True) }}">
+        <i class="fa fa-code"></i>
+      </a>
+  </div>
+  <div class="resource-view-container">
+    {% if resource_views %}
+        {% for resource_view in resource_views %}
+          {% if resource_view == current_resource_view %}
+            {% snippet 'package/snippets/resource_view.html',
+               resource_view=resource_view,
+               resource=resource,
+               package=package
+             %}
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+  </div>
 {% endblock %}

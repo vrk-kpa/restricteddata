@@ -45,11 +45,7 @@
   {% endblock package_social %}
 
   {% block stats %}
-    {% if 'get_visits_for_dataset' in h %}
-      {{ layout.moduleBoxHeader(_('Stats') ) }}
-      {% snippet 'package/snippets/package_matomo_stats.html', pkg=pkg %}
-      {{ layout.moduleBoxFooter() }}
-    {% endif %}
+    {# TODO: Add matomo stats snippet from ckanext-matomo here when it is introduced #}
   {% endblock %}
 {% endblock secondary_content %}
 
