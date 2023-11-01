@@ -41,7 +41,7 @@
     },
     {
       "field_name": "access_rights",
-      "label": "Collection type",
+      "label": "Access rights",
       "preset": "select",
       "choices": [
         {
