@@ -4,7 +4,7 @@ from ckan.common import c
 from ckan.plugins import toolkit
 from ckan.lib import i18n
 from ckanext.scheming.helpers import lang
-from ckan.logic import get_action, NotFound
+from ckan.logic import NotFound
 from logging import getLogger
 from datetime import datetime, timedelta
 import iso8601

@@ -62,7 +62,7 @@ def _translations():
     _("e.g. rekisteridata@dvv.fi")
     _("Maintainer website")
     _("e.g. www.rekisteridata.fi")
-    _("The data license you select above only applies to the contents of any resource files that you add to this dataset. By submitting this form, you agree to release the metadata values that you enter into the form under the Open Database License.")
+    _("The data license you select above only applies to the contents of any resource files that you add to this dataset. By submitting this form, you agree to release the metadata values that you enter into the form under the Open Database License.")  # noqa: E501
     _('You can set the state of the dataset back to active.')
     _('Deleted. The dataset is only visible to logged in users of the producer organization.')
     _('In draft state. The dataset is only visible to logged in users of the producer organization.')
@@ -84,7 +84,7 @@ def _translations():
     _("Write a rights statement for the resource")
     _("Endpoint URL")
     _("Distribution visibility")
-    _("You can set the visibility to private temporarily for example if the distribution is missing some information. Private distributions are visible to all members of the producer-organisation.")
+    _("You can set the visibility to private temporarily for example if the distribution is missing some information. Private distributions are visible to all members of the producer-organisation.")  # noqa: E501
     _("Data status")
     _("Define a state for the data. This is recommended especially if your dataset has data resources from multiple years.")
     _("Current version")
