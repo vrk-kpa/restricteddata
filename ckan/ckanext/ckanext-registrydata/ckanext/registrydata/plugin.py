@@ -11,7 +11,7 @@ from flask import has_request_context
 from ckanext.registrydata.cli import cli
 from collections import OrderedDict
 
-from . import helpers, validators
+from . import helpers, validators, converters
 
 log = logging.getLogger(__name__)
 ResourceDict = Dict[str, Any]
@@ -48,6 +48,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'call_toolkit_function': helpers.call_toolkit_function,
             'get_homepage_news': helpers.get_homepage_news,
             'get_homepage_groups': helpers.get_homepage_groups,
+            'scheming_category_list': helpers.scheming_category_list,
+            'check_group_selected': helpers.check_group_selected
         }
 
     # IValidators:
@@ -65,6 +67,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'convert_to_json_compatible_str_if_str':
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
+            # NOTE: this is a converter. (https://github.com/vrk-kpa/ckanext-scheming/#validators)
+            'save_to_groups': converters.save_to_groups
         }
 
     # IPackageController

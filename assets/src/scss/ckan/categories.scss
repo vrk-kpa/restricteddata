@@ -11,15 +11,16 @@
       display: flex;
       align-items: center;
       height: $icon-size;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
 
       &__title {
         margin-bottom: 0;
       }
 
       &__icon {
+        max-height: $icon-size;
         width: $icon-size;
-        height: auto;
+        object-fit: contain;
         margin-right: 8px;
       }
 

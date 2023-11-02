@@ -1,13 +1,6 @@
 {% import 'macros/form.html' as form %}
 {% import 'scheming/macros/form.html' as form_custom %}
 <div class="form-group-fluent control-group">
-  {#
-    {% if field.description and field.description.strip() %}
-    <div class="field-assistive-text">
-      {{ _(field.description) }}
-    </div>
-    {% endif %}
-  #}
   {%- for lang in h.fluent_form_languages(field, entity_type, object_type, schema) -%}
     {% if loop.first and field.description and field.description.strip() %}
       {% set description = field.description %}

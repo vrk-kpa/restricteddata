@@ -2,7 +2,8 @@
 @use "variables" as rd;
 @use "mixins" as rd-mixins;
 
-label {
+label,
+label.checkbox {
   &:after {
     content: none;
   }
@@ -361,4 +362,54 @@ fieldset.radios {
       @include rd-mixins.delete;
     }
   }
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+label.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  max-width: max-content;
+  font-weight: 400;
+
+  & .custom-checkbox {
+    margin-right: 8px;
+    content: "";
+    box-sizing: border-box;
+    height: 18px;
+    width: 18px;
+    border: 1px solid tokens.$fi-color-depth-dark3;
+    border-radius: 2px;
+    background-color: rd.$color-white;
+  }
+
+  & input[type=checkbox] {
+    opacity: 0;
+    z-index: -9999;
+    width: 0;
+    margin: 0;
+
+    &:checked+.custom-checkbox {
+      border-color: rd.$color-link-text;
+
+      &::before {
+        content: "\f00c";
+        font: var(--fa-font-solid);
+        font-weight: 900;
+        font-size: 14px;
+        color: rd.$color-link-text;
+        display: inline-block;
+        pointer-events: none;
+        margin-left: 2px;
+        vertical-align: text-top;
+      }
+    }
+  }
+
+
 }

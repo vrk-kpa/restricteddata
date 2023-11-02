@@ -20,7 +20,7 @@ form-js:
      - modules/form.js
    extra:
      preload:
-      - vendor/jquery
+      - base/main
 
 resource-reorder-js:
    filter: rjsmin
@@ -48,3 +48,12 @@ rd-slug-preview-js:
       - vendor/jquery
   contents:
     - javascript/rd-slug-preview.js
+
+categories-js:
+  output: registrydata/%(version)s-rd-categories.js
+  filters: rjsmin
+  extra:
+    preload:
+      - vendor/jquery
+  contents:
+    - javascript/rd-categories.js
