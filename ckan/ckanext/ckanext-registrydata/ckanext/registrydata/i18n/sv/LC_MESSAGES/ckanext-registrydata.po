@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-registrydata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-21 09:22+0000\n"
+"POT-Creation-Date: 2023-11-02 20:22+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
 "Last-Translator: Suvi Nuttunen, 2023\n"
 "Language-Team: Swedish (https://app.transifex.com/avoindata/teams/7979/sv/)\n"
@@ -25,6 +25,26 @@ msgstr ""
 "Generated-By: Babel 2.10.3\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ckanext/registrydata/plugin.py:145
+#: ckanext/registrydata/templates/header.html:99
+#: ckanext/registrydata/templates/home/layout1.html:52
+#: ckanext/registrydata/templates/package/search.html:11
+msgid "Datasets"
+msgstr "Datamängder"
+
+#: ckanext/registrydata/plugin.py:146
+msgid "Tags"
+msgstr ""
+
+#: ckanext/registrydata/plugin.py:147
+msgid "Format"
+msgstr ""
+
+#: ckanext/registrydata/plugin.py:148
+#: ckanext/registrydata/templates/snippets/license.html:4
+msgid "License"
+msgstr ""
 
 #: ckanext/registrydata/translations.py:8
 msgid "eg. Page Title"
@@ -50,7 +70,7 @@ msgstr "Ej i meny"
 msgid "Are you sure you want to delete this Page?"
 msgstr "Vill du verkligen radera den här sidan?"
 
-#: ckanext/registrydata/templates/package/search.html:34
+#: ckanext/registrydata/templates/package/search.html:29
 #: ckanext/registrydata/translations.py:16
 msgid "Relevance"
 msgstr "Relevans"
@@ -58,6 +78,358 @@ msgstr "Relevans"
 #: ckanext/registrydata/translations.py:19
 msgid "Username or Email"
 msgstr "Användarnamn eller e-post"
+
+#: ckanext/registrydata/translations.py:22
+msgid "fi"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:23
+msgid "en"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:24
+msgid "sv"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:27
+msgid "Dataset title"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:28
+msgid "* Required field"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:29
+msgid "e.g. Finnish names"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:30
+msgid ""
+"Give a short and descriptive name for the dataset.<br><br>The URL is created"
+" automatically based on the dataset title. You can edit the URL if you want."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:31
+msgid "Dataset description"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:32
+msgid "Write a description for the dataset."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:33
+msgid ""
+"Describe the dataset’s contents, collection process, quality and  possible "
+"limits, flaws and applications in a comprehensible way. Use as confining "
+"terms as possible to make it easier to find and understand the data."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:34
+msgid "Keywords and categories"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:35
+msgid ""
+"Keywords help users to find your data. Select at least one keyword in "
+"Finnish and Swedish."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:36
+msgid "Select at least one category."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:37
+msgid "Dataset additional information"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:38
+msgid ""
+"Select a license that suits your needs. We recommend using CC0 or CC BY 4 "
+"-licenses."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:39
+msgid "Collection type"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:40
+msgid "Restricted"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:41
+msgid "Non-public"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:42
+msgid "Rights"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:43
+msgid "High value dataset"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:44
+msgid "You can mark dataset as high value dataset"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:45
+msgid "Yes"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:46
+msgid "No"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:47
+msgid "Links to additional information"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:48
+msgid ""
+"Add links to one or more websites with additional information about the "
+"data."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:49
+msgid "e.g. www.dvv.fi"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:50
+msgid "Add link"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:51
+msgid "Update frequency"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:52
+msgid "Describe how often your data is updated"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:53
+msgid "e.g. monthly"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:54
+msgid "Valid from"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:55
+msgid "Valid till"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:56
+msgid "Dataset producer and maintainer"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:57
+msgid "Select the dataset publisher (organisation)."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:58
+msgid "Dataset maintainer"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:59
+msgid "e.g. Digital and Population Data Services Agency"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:60
+msgid ""
+"The dataset maintainer will receive updates about the dataset to the email "
+"address specified in this form. We recommend using a general email address "
+"instead of the contact information of a single employee. Note that the "
+"dataset information can only be managed by registered users with Editor- or "
+"Admin-rights in the publishing organisation."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:61
+msgid "Maintainer email"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:62
+msgid "e.g. rekisteridata@dvv.fi"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:63
+msgid "Maintainer website"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:64
+msgid "e.g. www.rekisteridata.fi"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:65
+msgid ""
+"The data license you select above only applies to the contents of any "
+"resource files that you add to this dataset. By submitting this form, you "
+"agree to release the metadata values that you enter into the form under the "
+"Open Database License."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:66
+msgid "You can set the state of the dataset back to active."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:67
+msgid ""
+"Deleted. The dataset is only visible to logged in users of the producer "
+"organization."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:68
+msgid ""
+"In draft state. The dataset is only visible to logged in users of the "
+"producer organization."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:69
+msgid ""
+"Private mode. The dataset is only visible to logged in users of the producer"
+" organization."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:72
+msgid "Data resource title"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:73
+msgid ""
+"Write a short and descriptive name for the data resource. If the data covers"
+" a specific time frame, mention that in the name."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:74
+msgid "e.g. Most popular Finnish first names 2019"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:75
+msgid "Resource *"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:76
+msgid "Add the data resource by adding a link to the data."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:77
+msgid "Data"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:78
+msgid "Resource URL"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:79
+msgid "Size"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:80
+msgid "Data resource description"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:81
+msgid "Write a description for the resource"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:82
+msgid ""
+"Describe the data clearly and concisely. Use as confining terms as possible "
+"to make it easier to find and understand the data."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:83
+msgid "Additional information"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:84
+msgid "Write a rights statement for the resource"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:85
+msgid "Endpoint URL"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:86
+msgid "Distribution visibility"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:87
+msgid ""
+"You can set the visibility to private temporarily for example if the "
+"distribution is missing some information. Private distributions are visible "
+"to all members of the producer-organisation."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:88
+msgid "Data status"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:89
+msgid ""
+"Define a state for the data. This is recommended especially if your dataset "
+"has data resources from multiple years."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:90
+msgid "Current version"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:91
+msgid "Draft version"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:92
+msgid "Archived version"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:93
+msgid "Coordinate system"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:94
+msgid ""
+"If your data includes geographic information, specify the coordinate system "
+"it uses."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:95
+msgid "e.g. WGS84 (World Geodetic System 1984)"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:96
+msgid ""
+"Select the time frame by which the data is separated. For example, does the "
+"resource include data from every week or month."
+msgstr ""
+
+#: ckanext/registrydata/translations.py:97
+msgid "Temporal granularity"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:98
+msgid "e.g. a month"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:99
+msgid "Time Frame"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:100
+msgid "Start date"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:101
+msgid "End date"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:102
+msgid "Geographical accuracy"
+msgstr ""
+
+#: ckanext/registrydata/translations.py:103
+msgid ""
+"If your data includes geographic information, specify the accuracy in meters"
+msgstr ""
 
 #: ckanext/registrydata/validators.py:44
 msgid "expecting list of strings"
@@ -104,6 +476,29 @@ msgstr ""
 msgid "Remove"
 msgstr "Radera"
 
+#: ckanext/registrydata/assets/modules/rd-resource-reorder.js:40
+msgid "Reorder resources"
+msgstr ""
+
+#: ckanext/registrydata/assets/modules/rd-resource-reorder.js:41
+msgid ""
+"You can rearrange the resources by dragging them using the arrow icon. Drag "
+"the resource to the right and place it to the desired location on the list. "
+"When you are done, click the \"Save order\" -button."
+msgstr ""
+
+#: ckanext/registrydata/assets/modules/rd-resource-reorder.js:63
+msgid "Save order"
+msgstr ""
+
+#: ckanext/registrydata/assets/modules/rd-resource-reorder.js:66
+msgid "Cancel"
+msgstr ""
+
+#: ckanext/registrydata/assets/modules/rd-resource-reorder.js:76
+msgid "Saving..."
+msgstr ""
+
 #: ckanext/registrydata/templates/footer.html:6
 msgid "The service is being developed by"
 msgstr "Myndigheten för digitalisering och befolkningsdata"
@@ -112,65 +507,63 @@ msgstr "Myndigheten för digitalisering och befolkningsdata"
 msgid "the Digital and Population Data Services Agency"
 msgstr "ansvarar för utvecklingen av webbtjänsten"
 
-#: ckanext/registrydata/templates/full_width_page.html:6
-msgid "Skip to main content"
-msgstr ""
-
-#: ckanext/registrydata/templates/full_width_page.html:36
-msgid "Breadcrumb"
-msgstr ""
-
 #: ckanext/registrydata/templates/header.html:3
 msgid "Search from this site"
 msgstr "Sök på denna webbplats"
 
-#: ckanext/registrydata/templates/header.html:18
+#: ckanext/registrydata/templates/header.html:19
+msgid "Suojattudata logo"
+msgstr ""
+
+#: ckanext/registrydata/templates/header.html:24
 msgid "Suomi.fi logo"
 msgstr ""
 
-#: ckanext/registrydata/templates/header.html:34
+#: ckanext/registrydata/templates/header.html:41
 msgid "Submit"
 msgstr ""
 
-#: ckanext/registrydata/templates/header.html:45
+#: ckanext/registrydata/templates/header.html:52
 msgid "View profile"
 msgstr ""
 
-#: ckanext/registrydata/templates/header.html:47
-#: ckanext/registrydata/templates/header.html:48
+#: ckanext/registrydata/templates/header.html:54
+#: ckanext/registrydata/templates/header.html:55
 msgid "Log out"
 msgstr "Logga ut"
 
-#: ckanext/registrydata/templates/header.html:52
+#: ckanext/registrydata/templates/header.html:59
 msgid "Account"
 msgstr ""
 
-#: ckanext/registrydata/templates/header.html:56
-#: ckanext/registrydata/templates/header.html:58
+#: ckanext/registrydata/templates/header.html:63
+#: ckanext/registrydata/templates/header.html:65
 msgid "Log in"
 msgstr "Logga in"
 
-#: ckanext/registrydata/templates/header.html:91
+#: ckanext/registrydata/templates/header.html:98
 #: ckanext/registrydata/templates/snippets/home_breadcrumb_item.html:2
 msgid "Home"
 msgstr "Framsida"
 
-#: ckanext/registrydata/templates/header.html:92
-#: ckanext/registrydata/templates/home/layout1.html:52
-#: ckanext/registrydata/templates/package/search.html:11
-msgid "Datasets"
-msgstr "Datamängder"
-
-#: ckanext/registrydata/templates/header.html:95
+#: ckanext/registrydata/templates/header.html:102
 #: ckanext/registrydata/templates/home/layout1.html:64
 #: ckanext/registrydata/templates/organization/index.html:4
-#: ckanext/registrydata/templates/package/base.html:16
+#: ckanext/registrydata/templates/package/base.html:20
 msgid "Organizations"
 msgstr "Organisationer"
 
-#: ckanext/registrydata/templates/header.html:103
+#: ckanext/registrydata/templates/header.html:110
 msgid "Suomi.fi-avoindata"
 msgstr "Suomi.fi-öppnadata"
+
+#: ckanext/registrydata/templates/page.html:7
+msgid "Skip to main content"
+msgstr ""
+
+#: ckanext/registrydata/templates/page.html:34
+msgid "Breadcrumb"
+msgstr ""
 
 #: ckanext/registrydata/templates/home/layout1.html:3
 msgid "All finnish restricted data from one place"
@@ -244,21 +637,31 @@ msgstr "öppna nyheten"
 msgid "Browse all news and disruption notices"
 msgstr "Se alla nyheter och störningsmeddelande"
 
+#: ckanext/registrydata/templates/macros/form/input_block.html:26
+#: ckanext/registrydata/templates/scheming/macros/form.html:45
+msgid "Custom"
+msgstr ""
+
+#: ckanext/registrydata/templates/macros/form/input_block.html:27
+#: ckanext/registrydata/templates/scheming/macros/form.html:46
+msgid "This field is required"
+msgstr "Obligatoriskt fält"
+
 #: ckanext/registrydata/templates/organization/index.html:8
 msgid "Organization search"
 msgstr ""
 
-#: ckanext/registrydata/templates/organization/read.html:11
-#: ckanext/registrydata/templates/package/search.html:24
+#: ckanext/registrydata/templates/organization/read.html:9
+#: ckanext/registrydata/templates/package/search.html:20
 msgid "Filters"
 msgstr "Filter"
 
-#: ckanext/registrydata/templates/organization/read.html:16
-#: ckanext/registrydata/templates/package/search.html:58
+#: ckanext/registrydata/templates/organization/read.html:14
+#: ckanext/registrydata/templates/package/search.html:51
 msgid "Filter search"
 msgstr "Filtrera sökning"
 
-#: ckanext/registrydata/templates/organization/snippets/helper.html:16
+#: ckanext/registrydata/templates/organization/snippets/helper.html:15
 msgid ""
 "On this page you can find all the public administration organisations that "
 "have described their data resources to the Suojattudata service."
@@ -266,7 +669,7 @@ msgstr ""
 "På denna sida hittar du alla offentliga förvaltningsorganisationer som har "
 "beskrivit sina dataresurser till Suojattudata-tjänsten."
 
-#: ckanext/registrydata/templates/organization/snippets/helper.html:21
+#: ckanext/registrydata/templates/organization/snippets/helper.html:16
 msgid "Select the organisation whose dataset descriptions you want to view."
 msgstr "Välj den organisationen vars beskrivningar av datamängder du vill se."
 
@@ -284,45 +687,181 @@ msgstr[1] "{num} datamängder"
 msgid "0 Datasets"
 msgstr "0 datamängder"
 
-#: ckanext/registrydata/templates/package/base.html:24
+#: ckanext/registrydata/templates/package/base.html:30
+#: ckanext/registrydata/templates/package/new.html:6
 msgid "Create Dataset"
 msgstr "Lägg till en datamängd"
 
-#: ckanext/registrydata/templates/package/read.html:14
-msgid "Draft"
-msgstr "Utkast"
+#: ckanext/registrydata/templates/package/edit.html:7
+msgid "Edit dataset"
+msgstr ""
 
-#: ckanext/registrydata/templates/package/read.html:17
-msgid "Deleted"
-msgstr "Raderad"
+#: ckanext/registrydata/templates/package/edit.html:13
+#: ckanext/registrydata/templates/package/resources.html:13
+msgid "Edit metadata"
+msgstr ""
 
-#: ckanext/registrydata/templates/package/read.html:42
-msgid "Keywords"
-msgstr "Nyckelord"
+#: ckanext/registrydata/templates/package/edit.html:14
+#: ckanext/registrydata/templates/package/resources.html:14
+msgid "Resources"
+msgstr ""
 
-#: ckanext/registrydata/templates/package/read.html:48
+#: ckanext/registrydata/templates/package/edit.html:16
+#: ckanext/registrydata/templates/package/resources.html:16
+msgid "Collaborators"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/edit.html:30
+#: ckanext/registrydata/templates/package/resource_edit_base.html:33
+#: ckanext/registrydata/templates/package/resource_edit_base.html:35
+#: ckanext/registrydata/templates/package/resources.html:28
+msgid "Close without saving"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new.html:13
+msgid "Create new dataset"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new.html:23
+#: ckanext/registrydata/templates/package/new_resource.html:23
+msgid "Stages"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_package_form.html:5
+msgid "Next"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_package_form.html:7
+msgid "Update"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_package_form.html:14
+#: ckanext/registrydata/templates/package/snippets/package_form.html:13
+msgid "Are you sure you want to delete this dataset?"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_package_form.html:20
+#: ckanext/registrydata/templates/package/snippets/package_form.html:15
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:12
+msgid "Delete"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_package_form.html:27
+#: ckanext/registrydata/templates/package/new_package_form.html:31
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:18
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:22
+msgid "Abort"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_resource.html:15
+msgid "Add data to the dataset"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/new_resource_not_draft.html:4
+#: ckanext/registrydata/templates/package/new_resource_not_draft.html:9
+msgid "Add resource"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:8
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:9
+#: ckanext/registrydata/templates/package/read.html:35
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ckanext/registrydata/templates/package/search.html:35
+#: ckanext/registrydata/templates/package/read.html:10
+msgid "Activity"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/read.html:29
+msgid "Keywords"
+msgstr "Nyckelord"
+
+#: ckanext/registrydata/templates/package/read.html:49
+msgid "Stats"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_edit_base.html:8
+#: ckanext/registrydata/templates/package/resource_edit_base.html:17
+#: ckanext/registrydata/templates/package/resource_views.html:12
+msgid "Edit resource"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_edit_base.html:20
+#: ckanext/registrydata/templates/package/resource_views.html:15
+msgid "Views"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_read.html:8
+msgid "Manage"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_read.html:14
+#: ckanext/registrydata/templates/package/resource_views.html:4
+msgid "View"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_read.html:16
+msgid "API Endpoint"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_read.html:18
+msgid "Go to resource"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_read.html:20
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:48
+msgid "Download"
+msgstr "Ladda ned"
+
+#: ckanext/registrydata/templates/package/resource_views.html:8
+msgid "Edit views"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_views.html:27
+msgid "New view"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resource_views.html:49
+msgid "This resource has no views"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resources.html:7
+msgid "Edit resources"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resources.html:27
+msgid "Add new resource"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/resources.html:50
+#, python-format
+msgid ""
+"<p class=\"empty\"> This dataset has no data, <a href=\"%(url)s\">why not "
+"add some?</a> </p>"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/search.html:30
 #: ckanext/registrydata/templates/snippets/search_form.html:4
 msgid "Name Ascending"
 msgstr "Stigande efter namn"
 
-#: ckanext/registrydata/templates/package/search.html:36
+#: ckanext/registrydata/templates/package/search.html:31
 #: ckanext/registrydata/templates/snippets/search_form.html:4
 msgid "Name Descending"
 msgstr "Fallande efter namn"
 
-#: ckanext/registrydata/templates/package/search.html:37
+#: ckanext/registrydata/templates/package/search.html:32
 msgid "Last Modified"
 msgstr "Senast redigerad"
 
-#: ckanext/registrydata/templates/package/search.html:38
+#: ckanext/registrydata/templates/package/search.html:33
 msgid "Popular"
 msgstr "Populär"
 
-#: ckanext/registrydata/templates/package/search.html:40
+#: ckanext/registrydata/templates/package/search.html:34
 #: ckanext/registrydata/templates/snippets/search_form.html:3
 msgid "Search datasets..."
 msgstr "Sök datamängder"
@@ -361,6 +900,10 @@ msgstr "Senast uppdaterad"
 msgid "Created"
 msgstr "Skapad"
 
+#: ckanext/registrydata/templates/package/snippets/categories.html:15
+msgid "Category icon"
+msgstr ""
+
 #: ckanext/registrydata/templates/package/snippets/categories.html:26
 msgid "Show more categories"
 msgstr "Visa mer kategorier"
@@ -373,37 +916,135 @@ msgstr "Visa mer"
 msgid "Edit categories"
 msgstr "Redigera kategorier"
 
-#: ckanext/registrydata/templates/package/snippets/resource_item.html:35
+#: ckanext/registrydata/templates/package/snippets/dataset_state_banner.html:4
+msgid "Deleted"
+msgstr "Raderad"
+
+#: ckanext/registrydata/templates/package/snippets/dataset_state_banner.html:7
+msgid "Draft"
+msgstr "Utkast"
+
+#: ckanext/registrydata/templates/package/snippets/dataset_state_banner.html:10
+msgid "Private"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_form.html:23
+msgid "Next: Add Data"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_form.html:31
+msgid ""
+"The <i>data license</i> you select above only applies to the contents of any"
+" resource files that you add to this dataset. By submitting this form, you "
+"agree to release the <i>metadata</i> values that you enter into the form "
+"under the <a href=\"https://opendatacommons.org/licenses/odbl/1-0/\">Open "
+"Database License</a>."
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:2
+msgid "Weekly visits for last 12 months"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:11
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:27
+msgid "Visits"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:12
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:16
+msgid "During last 30 days"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:13
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:17
+msgid "During last 12 months"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:14
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:18
+msgid "All time:"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:15
+msgid "Download counts"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:27
+msgid "Year"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:27
+msgid "Downloads"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/package_matomo_stats.html:29
+msgid "Week"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:12
+msgid "Are you sure you want to delete this resource?"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:28
+msgid "Previous"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:36
+msgid "Save & add another"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:40
+msgid "Save dataset"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_form.html:47
+msgid "Add"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:37
 msgid "Preview"
 msgstr "Förhandsgranska"
 
 #: ckanext/registrydata/templates/package/snippets/resource_item.html:42
-msgid "Download"
-msgstr "Ladda ned"
-
-#: ckanext/registrydata/templates/package/snippets/resource_item.html:44
-msgid "Open"
-msgstr "Öppna"
-
-#: ckanext/registrydata/templates/package/snippets/resource_item.html:50
 #: ckanext/registrydata/templates_pages/ckanext_pages/page.html:15
 msgid "Edit"
 msgstr "Redigera"
 
-#: ckanext/registrydata/templates/scheming/macros/form.html:45
-msgid "This field is required"
-msgstr "Obligatoriskt fält"
-
-#: ckanext/registrydata/templates/scheming/macros/form.html:45
-msgid "Custom"
+#: ckanext/registrydata/templates/package/snippets/resource_item.html:50
+msgid "Navigate"
 msgstr ""
 
-#: ckanext/registrydata/templates/scheming/macros/form.html:110
+#: ckanext/registrydata/templates/package/snippets/resources_list.html:14
+msgid "Data and Resources"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resources_list.html:28
+#, python-format
+msgid ""
+"<p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not add"
+" some?</a></p>"
+msgstr ""
+
+#: ckanext/registrydata/templates/package/snippets/resources_list.html:32
+msgid "This dataset has no data"
+msgstr ""
+
+#: ckanext/registrydata/templates/scheming/form_snippets/multiple_checkbox.html:6
+#, python-format
+msgid "Categories can be edited from <a href=\"%(category_url)s\">here</a>"
+msgstr ""
+
+#: ckanext/registrydata/templates/scheming/macros/form.html:109
 #, python-format
 msgid ""
 "You can use <a href=\"#markdown\" title=\"Markdown quick reference\" data-"
-"target=\"popover\" data-content=\"%(markdown_tooltip)s\" data-"
-"html=\"true\">Markdown formatting</a> here"
+"bs-toggle=\"popover\" data-bs-trigger=\"focus\" data-bs-"
+"content=\"%(markdown_tooltip)s\" data-bs-html=\"true\">Markdown "
+"formatting</a> here"
+msgstr ""
+
+#: ckanext/registrydata/templates/scheming/package/resource_read.html:3
+msgid "Additional Information"
 msgstr ""
 
 #: ckanext/registrydata/templates/snippets/search_form.html:44
@@ -487,6 +1128,10 @@ msgstr[1] "{number} producenter hittades"
 #: ckanext/registrydata/templates/snippets/search_result_text.html:30
 msgid "No organizations found"
 msgstr "Inga producenter hittades"
+
+#: ckanext/registrydata/templates/snippets/social.html:4
+msgid "Social"
+msgstr ""
 
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:4
 #: ckanext/registrydata/templates_pages/ckanext_pages/base_form.html:5
