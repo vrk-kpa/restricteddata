@@ -27,7 +27,7 @@ resource-reorder-js:
    output: registrydata/%(version)s-registrydata-resource-reorder.js
    extra:
      preload:
-      - vendor/jquery
+      - base/main
    contents:
      - modules/rd-resource-reorder.js
 
