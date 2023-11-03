@@ -1,5 +1,4 @@
-{% import 'macros/form.html' as form %}
-{% import 'scheming/macros/form.html' as form_custom %}
+{% import 'scheming/macros/form.html' as form %}
 
 {% asset 'markdown_editor/markdown_editor-js' %}
 
@@ -9,7 +8,7 @@
   {% endif %}
   {% set form_attrs = {'data-module': 'ckeditor5-markdown', 'data-module-language': h.get_lang_prefix()} %}
   {% do form_attrs.update(field.form_attrs or {}) %}
-  {% call form_custom.textarea(
+  {% call form.textarea(
     field.field_name + '-' + lang,
     id='field-' + field.field_name + '-' + lang,
     label=_(field.label) + ' ' + _(lang),

@@ -1,12 +1,11 @@
-{% import 'macros/form.html' as form %}
-{% import 'scheming/macros/form.html' as form_custom %}
+{% import 'scheming/macros/form.html' as form %}
 
 <div class="form-group-fluent">
   {%- for lang in h.fluent_form_languages(field, entity_type, object_type, schema) -%}
     {% if loop.first and field.description and field.description.strip() %}
       {% set description = field.description %}
     {% endif %}
-    {% call form_custom.input(
+    {% call form.input(
       field.field_name + '-' + lang,
       id='field-' + field.field_name + '-' + lang,
       label=_(field.label) + ' ' + _(lang|upper),

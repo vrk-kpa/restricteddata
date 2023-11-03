@@ -92,35 +92,24 @@
       "group_title": "Dataset additional information"
     },
     {
-      "field_name": "access_rights",
-      "label": "Collection type",
+      "field_name": "private",
+      "label": "Dataset visibility",
       "preset": "select",
+      "form_snippet": "radio.html",
       "choices": [
         {
-          "value": "non-public",
-          "label": "Non-public"
+          "label": "Public",
+          "value": "False"
         },
         {
-          "value": "restricted",
-          "label": "Restricted"
+          "label": "Private",
+          "value": "True"
         }
       ],
+      "default_value": "false",
+      "validators": "keep_old_value_if_missing boolean_validator",
+      "description": "You can set the visibility to private temporarily, for example if the dataset is missing some information. Private datasets are visible to all members of the organisation.",
       "required": true
-    },
-    {
-      "field_name": "rights_translated",
-      "label": "Rights",
-      "preset": "fluent_markdown_editor",
-      "validators": "fluent_text",
-      "form_placeholder": "Write a rights statement for the resource",
-      "form_languages": [
-        "fi",
-        "en",
-        "sv"
-      ],
-      "form_attrs": {
-        "class": "form-control"
-      }
     },
     {
       "field_name": "highvalue",
@@ -138,8 +127,43 @@
         }
       ],
       "default_value": "false",
-      "validators": "ignore_not_sysadmin keep_old_value_if_missing boolean_validator",
-      "description": "You can mark dataset as high value dataset"
+      "validators": "keep_old_value_if_missing",
+      "description": "You can mark dataset as high value dataset",
+      "required": true
+    },
+    {
+      "field_name": "access_rights",
+      "label": "Access rights",
+      "preset": "select",
+      "form_snippet": "radio.html",
+      "choices": [
+        {
+          "value": "non-public",
+          "label": "Non-public"
+        },
+        {
+          "value": "restricted",
+          "label": "Restricted"
+        }
+      ],
+      "default_value": "non-public",
+      "validators": "keep_old_value_if_missing",
+      "required": true
+    },
+    {
+      "field_name": "rights_translated",
+      "label": "More about access rights",
+      "preset": "fluent_markdown_editor",
+      "validators": "fluent_text",
+      "form_placeholder": "Write a rights statement for the resource",
+      "form_languages": [
+        "fi",
+        "en",
+        "sv"
+      ],
+      "form_attrs": {
+        "class": "form-control"
+      }
     },
     {
       "field_name": "external_urls",
@@ -177,20 +201,22 @@
       "field_name": "valid_from",
       "label": "Valid from",
       "preset": "date",
-      "max_date_field": "valid_till"
+      "max_date_field": "valid_till",
+      "classes": ["control-medium", "date-input"]
     },
     {
       "field_name": "valid_till",
       "label": "Valid till",
       "preset": "date",
-      "min_date_field": "valid_from"
+      "min_date_field": "valid_from",
+      "classes": ["control-medium", "date-input"]
     },
     {
       "field_name": "owner_org",
       "label": "Publisher",
       "preset": "dataset_organization",
       "description": "Select the dataset publisher (organisation).",
-      "group_title": "Dataset producer and maintainer"
+      "group_title": "Dataset publisher and maintainer"
     },
     {
       "field_name": "maintainer",
@@ -201,7 +227,7 @@
       },
       "display_property": "dc:contributor",
       "required": true,
-      "description": "The dataset maintainer will receive updates about the dataset to the email address specified in this form. We recommend using a general email address instead of the contact information of a single employee. Note that the dataset information can only be managed by registered users with Editor- or Admin-rights in the publishing organisation."
+      "description": "Use your organisation's general email address instead of an employee's contact information to ensure that the email address works even if there are personnel changes. For example, opendata@organisation.fi or kirjaamo@organisation.fi. We can use this email address to contact the dataset maintainer."
     },
     {
       "field_name": "maintainer_email",
@@ -250,10 +276,11 @@
     },
     {
       "field_name": "url",
-      "label": "Content",
+      "label": "",
       "preset": "resource_url_upload",
       "form_placeholder": "Resource URL",
-      "upload_label": "Content",
+      "required": true,
+      "upload_label": "Resource URL",
       "group_title": "Resource *",
       "group_description": "Add the data resource by adding a link to the data."
     },
@@ -261,7 +288,8 @@
       "field_name": "format",
       "label": "Format",
       "preset": "resource_format_autocomplete",
-      "description": "File format of the selected resource."
+      "description": "File format of the selected resource.",
+      "required": true
     },
     {
       "field_name": "size",
@@ -291,13 +319,17 @@
     },
     {
       "field_name": "rights_translated",
-      "label": "Rights",
+      "label": "Conditions for re-use",
       "preset": "fluent_markdown_editor",
       "validators": "fluent_text",
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": [
         "fi",
         "en",
+        "sv"
+      ],
+      "required_languages": [
+        "fi",
         "sv"
       ],
       "form_attrs": {
@@ -324,9 +356,9 @@
         }
       ],
       "default_value": "false",
-      "validators": "boolean_validator",
-      "description": "You can set the visibility to private temporarily for example if the distribution is missing some information. Private distributions are visible to all members of the producer-organisation.",
-      "group_title": "Additional information"
+      "validators": "keep_old_value_if_missing boolean_validator",
+      "description": "You can set the visibility to private temporarily, for example if the resource is missing some information. Private resources are visible to all members of the organisation.",
+      "required": true
     },
     {
       "field_name": "maturity",
@@ -346,7 +378,9 @@
           "label": "Archived version"
         }
       ],
-      "description": "Define a state for the data. This is recommended especially if your dataset has data resources from multiple years."
+      "default_value": "current",
+      "description": "Select if the data you added is a draft version, current version or an archived version. Note that the data can still be downloaded and used even if it is in draft or archived state. This is recommended especially if your dataset has data resources from multiple years.",
+      "required": true
     },
     {
       "field_name": "position_info",
@@ -375,12 +409,17 @@
       "label": "Start date",
       "preset": "date",
       "group_description": "Time Frame",
-      "group_description_class": "ytp-combi-label"
+      "group_description_class": "combi-label",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "classes": ["control-medium", "date-input"]
     },
     {
       "field_name": "temporal_coverage_till",
       "label": "End date",
-      "preset": "date"
+      "preset": "date",
+      "classes": ["control-medium", "date-input"]
     },
     {
       "field_name": "geographical_accuracy",

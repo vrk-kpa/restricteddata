@@ -247,11 +247,17 @@
 }
 
 .rd-group-description {
-  font-family: "Source Sans Pro Regular", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   margin-top: -10px;
   margin-bottom: 20px;
   display: block;
+
+  &.combi-label {
+    font-weight: rd.$font-weight-bold;
+    line-height: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 }
 
 .field-description-text {
