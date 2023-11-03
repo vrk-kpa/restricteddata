@@ -1,31 +1,105 @@
 {% ckan_extends %}
 
 {% block pre_primary %}
-  <div class="admin-banner">
-    {% block resource_actions_inner %}
-      {% block action_manage %}
-        {% if h.check_access('package_update', {'id':pkg.id }) %}
-          {% link_for _('Manage'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-secondary' %}
-        {% endif %}
-      {% endblock action_manage %}
-      {% if res.url and h.is_url(res.url) %}
-        <a class="btn btn-primary resource-url-analytics" href="{{ res.url }}">
-          {% if res.resource_type in ('listing', 'service') %}
-            <i class="fa fa-eye"></i> {{ _("View") }}
-          {% elif res.resource_type == 'api' %}
-            <i class="fa fa-key"></i> {{ _("API Endpoint") }}
-          {% elif not res.has_views and not res.url_type == 'upload' %}
-            <i class="fa fa-external-link"></i> {{ _("Go to resource") }}
-          {% else %}
-            <i class="fa fa-arrow-circle-down"></i> {{ _("Download") }}
-          {% endif %}
-        </a>
-        {% block download_resource_button %}
-        {% endblock download_resource_button %}
-      {% endif %}
-    {% endblock resource_actions_inner %}
-  </div>
+  {% link_for _('Dataset'), named_route=pkg.type ~ '.read', id=pkg.id, icon='arrow-left-long fa-light', class_="back-link" %}
 {% endblock pre_primary %}
 
-{% block resource_actions %}
-{% endblock resource_actions %}
+{% block primary_content %}
+  <section class="module primary-content-container">
+    {% block page_header %}
+      <header class="content-header">
+        <div class="content_action">
+          {% block content_action %}
+            {% block resource_actions_inner %}
+              {% block action_manage %}
+                {% if h.check_access('package_update', {'id':pkg.id }) %}
+                  {% link_for _('Edit'), named_route=pkg.type ~ '_resource.edit', id=pkg.name, resource_id=res.id, class_='btn btn-secondary' %}
+                {% endif %}
+              {% endblock action_manage %}
+              {% if res.url and h.is_url(res.url) %}
+                <a class="btn btn-secondary resource-url-analytics" href="{{ res.url }}">
+                  {% if res.resource_type in ('listing', 'service') %}
+                    {{ _('View') }}
+                  {% elif  res.resource_type == 'api' %}
+                    {{ _('API Endpoint') }}
+                  {% elif not res.has_views and not res.url_type == 'upload' %}
+                    {{ _('Open') }}
+                  {% else %}
+                    {{ _('Download') }}
+                  {% endif %}
+                </a>
+                {% block download_resource_button %}{% endblock %}
+              {% endif %}
+            {% endblock resource_actions_inner %}
+          {% endblock content_action %}
+        </div>
+      </header>
+    {% endblock page_header %}
+    <div class="module-content">
+      {% if self.page_primary_action() | trim %}
+        <div class="page_primary_action">
+          {% block page_primary_action %}{{ super() }}{% endblock %}
+        </div>
+      {% endif %}
+      {% block primary_content_inner %}
+        {% block resource_content %}
+          {% block resource_read_title %}
+            <span class="resource-heading-dataset">{{ h.dataset_display_name(pkg) }}</span>
+            <h1 class="page-heading">{{ h.resource_display_name(res) | truncate(50) }}</h1>
+          {% endblock %}
+          <div class="prose notes" property="rdfs:label">
+            {% if res.description %}
+              {{ h.render_markdown(res.description) }}
+            {% endif %}
+            {% if not res.description and package.notes %}
+              <blockquote>{{ h.markdown_extract(h.get_translated(package, 'notes')) }}</blockquote>
+              <p>{% trans dataset=h.get_translated(package, 'title'), url=h.url_for(package.type ~ '.read', id=package.name) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}
+            {% endif %}
+          </div>
+        {% endblock %}
+        {% block data_preview %}{{ super() }}{% endblock %}
+
+        {% block resource_additional_information %}{{ super() }}{% endblock %}
+      {% endblock %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block secondary_content%}
+ {% block resources_list %}{{ super() }}{% endblock %}
+{% endblock %}
+
+{% block resource_view %}
+  <div class="resource-view-toolbar">
+      {% snippet 'package/snippets/resource_view_select.html',
+                 resource_views=resource_views,
+                 current_resource_view=current_resource_view
+      %}
+      <a class="btn btn-default"
+         target="_blank"
+         rel="noreferrer"
+         href="{{ h.url_for('resource_view', id=package['name'], resource_id=resource['id'], view_id=current_resource_view['id'], qualified=True) }}">
+        <i class="fa fa-arrows-alt"></i>
+      </a>
+      <a class="btn btn-default"
+         href="#embed-{{ current_resource_view['id'] }}"
+         data-module="resource-view-embed"
+         data-module-id="{{ current_resource_view['id'] }}"
+         data-module-url="{{ h.url_for('resource_view', id=package['name'], resource_id=resource['id'], view_id=current_resource_view['id'], qualified=True) }}">
+        <i class="fa fa-code"></i>
+      </a>
+  </div>
+  <div class="resource-view-container">
+    {% if resource_views %}
+        {% for resource_view in resource_views %}
+          {% if resource_view == current_resource_view %}
+            {% snippet 'package/snippets/resource_view.html',
+               resource_view=resource_view,
+               resource=resource,
+               package=package
+             %}
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+  </div>
+{% endblock %}
