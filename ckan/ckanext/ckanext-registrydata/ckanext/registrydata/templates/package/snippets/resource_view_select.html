@@ -1,0 +1,12 @@
+<form class="select-wrapper resource-view-select" method="get" data-module="select-switch">
+  <select name="view_id" class="form-control form-select">
+  {% for view in resource_views %}
+    {% if view.id == current_resource_view['id'] %}
+      <option value="{{ view.id }}" selected>{{ view.title }}</option>
+    {% else %}
+      <option value="{{ view.id }}">{{ view.title }}</option>
+    {% endif %}
+  {% endfor %}
+  </select>
+</form>
+

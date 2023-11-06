@@ -1,0 +1,70 @@
+@use "../variables" as rd;
+
+.back-link {
+  display: inline-block;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+.resource-heading-dataset {
+  color: rd.$color-text-placeholder;
+  font-weight: rd.$font-weight-normal;
+  font-size: rd.$font-size-sm;
+}
+.admin-banner + .module-resource {
+  margin-top: 0;
+}
+.secondary.secondary-content-container {
+  .resources { 
+    padding: 0;
+    .module-heading {
+      font-size: rd.$font-size-default;
+      padding: 40px 20px 10px 20px;
+      i {
+        display: none;
+      }
+    }
+
+    .nav-item {
+      a {
+        text-transform: uppercase;
+        color: rd.$color-black;
+        font-weight: rd.$font-weight-normal;
+        font-size: rd.$font-size-default;
+        padding-left: 40px;
+      }
+      &.active a {
+        font-weight: rd.$font-weight-bold;
+        border-left: 5px solid rd.$color-link-text;
+        padding-left: 35px;
+        background: rd.$color-primary-highlight;
+        &::before {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+.resource-view-toolbar {
+  border: rd.$border;
+  border-bottom: 0;
+
+  display: flex;
+
+  .resource-view-select {
+    margin-right: auto;
+    .form-select {
+      border-width: 0 1px 0 0;
+      border-radius: 0;
+    }
+  }
+  .btn {
+    color: rd.$color-link-text;
+    border: 0;
+    border-left: rd.$border;
+    border-radius: 0;
+  }
+}
+.resource-view-container {
+  border: rd.$border;
+}
