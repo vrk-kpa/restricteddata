@@ -49,8 +49,8 @@ export class CkanStack extends Stack {
       "dcat",
       "registrydata_pages",
       "pages",
-      "markdown_editor",
       "registrydata",
+      "markdown_editor",
       "activity",
       "text_view",
       "image_view"
