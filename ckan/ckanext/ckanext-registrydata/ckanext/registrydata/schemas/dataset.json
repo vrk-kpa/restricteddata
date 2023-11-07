@@ -127,7 +127,7 @@
         }
       ],
       "default_value": "false",
-      "validators": "keep_old_value_if_missing",
+      "validators": "ignore_not_sysadmin keep_old_value_if_missing boolean_validator",
       "description": "You can mark dataset as high value dataset",
       "required": true
     },
