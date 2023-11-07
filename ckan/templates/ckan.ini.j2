@@ -22,6 +22,7 @@ cache_dir = /tmp/%(ckan.site_id)s/
 
 beaker.session.key = ckan
 beaker.session.secret = {{ environ('CKAN_BEAKER_SESSION_SECRET') }}
+beaker.session.cookie_expires = {% if environ('DEV_MODE') == 'true' %}False{% else %}True{% endif %}
 # Secure session does not currently work in our environments as ssl is terminated on Load balancerreq
 #beaker.session.secure = True
 beaker.session.httponly = True
