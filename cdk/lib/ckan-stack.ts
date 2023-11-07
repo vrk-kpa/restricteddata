@@ -206,5 +206,80 @@ export class CkanStack extends Stack {
       scaleOutCooldown: Duration.seconds(60),
     });
 
+    const ckanCronTaskDefinition = new aws_ecs.FargateTaskDefinition(this, 'ckanTaskDefinition', {
+      cpu: props.cronTaskDef.taskCpu,
+      memoryLimitMiB: props.cronTaskDef.taskMem,
+    });
+    ckanCronTaskDefinition.addToExecutionRolePolicy(new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: [
+        "kms:Decrypt"
+      ],
+      resources: [
+        secretEncryptionKey.keyArn
+      ]
+    }));
+
+    props.ckanInstanceCredentials.secret!.grantRead(ckanCronTaskDefinition.executionRole!);
+
+    const ckanCronLogGroup = new aws_logs.LogGroup(this, 'ckanCronLogGroup', {
+      logGroupName: `/${props.environment}/registrydata/ckanCron`,
+    });
+
+    const ckanCronContainer = ckanCronTaskDefinition.addContainer('ckanCron', {
+      image: aws_ecs.ContainerImage.fromEcrRepository(ckanRepo, props.envProps.CKAN_IMAGE_TAG),
+      environment: ckanContainerEnv,
+      secrets: ckanContainerSecrets,
+      entryPoint: ['/srv/app/scripts/entrypoint_cron.sh'],
+      logging: aws_ecs.LogDrivers.awsLogs({
+        logGroup: ckanCronLogGroup,
+        streamPrefix: 'ckan-cron-service',
+      }),
+      healthCheck: {
+        command: ['CMD-SHELL', 'curl --fail http://localhost:5000/api/3/action/status_show --user-agent "docker-healthcheck" || exit 1'],
+        interval: Duration.seconds(15),
+        timeout: Duration.seconds(5),
+        retries: 5,
+        startPeriod: Duration.seconds(300),
+      },
+      linuxParameters: new aws_ecs.LinuxParameters(this, 'ckanContainerLinuxParams', {
+        initProcessEnabled: true,
+      }),
+    });
+
+    ckanCronContainer.addPortMappings({
+      containerPort: 5000,
+      protocol: aws_ecs.Protocol.TCP,
+    });
+
+     const ckanCronService = new aws_ecs.FargateService(this, 'ckanCronService', {
+      platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
+      cluster: props.cluster,
+      taskDefinition: ckanCronTaskDefinition,
+      minHealthyPercent: 50,
+      maxHealthyPercent: 200,
+      enableExecuteCommand: true,
+    });
+
+    ckanCronService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckan)');
+    ckanCronService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckan)');
+    ckanCronService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckan)')
+
+    const ckanCronServiceAsg = ckanService.autoScaleTaskCount({
+      minCapacity: props.cronTaskDef.taskMinCapacity,
+      maxCapacity: props.cronTaskDef.taskMaxCapacity,
+    });
+
+    ckanCronServiceAsg.scaleOnCpuUtilization('ckanCronServiceAsgPolicy', {
+      targetUtilizationPercent: 50,
+      scaleInCooldown: Duration.seconds(60),
+      scaleOutCooldown: Duration.seconds(60),
+    });
+
+    ckanCronServiceAsg.scaleOnMemoryUtilization('ckanCronServiceAsgPolicyMem', {
+      targetUtilizationPercent: 80,
+      scaleInCooldown: Duration.seconds(60),
+      scaleOutCooldown: Duration.seconds(60),
+    });
   }
 }
