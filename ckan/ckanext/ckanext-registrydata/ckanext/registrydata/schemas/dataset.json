@@ -253,7 +253,8 @@
         "class": "form-control"
       },
       "display_property": "dc:contributor",
-      "display_snippet": "link.html"
+      "display_snippet": "link.html",
+      "validators": "url_validator"
     }
   ],
   "resource_fields": [
