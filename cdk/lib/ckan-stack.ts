@@ -236,7 +236,7 @@ export class CkanStack extends Stack {
         streamPrefix: 'ckan-cron-service',
       }),
       healthCheck: {
-        command: ['CMD-SHELL', 'curl --fail http://localhost:5000/api/3/action/status_show --user-agent "docker-healthcheck" || exit 1'],
+        command: ['CMD-SHELL', 'ps aux | grep -o "[c]rond -f" && ps aux | grep -o "[s]upervisord --configuration"'],
         interval: Duration.seconds(15),
         timeout: Duration.seconds(5),
         retries: 5,
@@ -247,39 +247,18 @@ export class CkanStack extends Stack {
       }),
     });
 
-    ckanCronContainer.addPortMappings({
-      containerPort: 5000,
-      protocol: aws_ecs.Protocol.TCP,
-    });
-
-     const ckanCronService = new aws_ecs.FargateService(this, 'ckanCronService', {
+    const ckanCronService = new aws_ecs.FargateService(this, 'ckanCronService', {
       platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
       cluster: props.cluster,
       taskDefinition: ckanCronTaskDefinition,
-      minHealthyPercent: 50,
-      maxHealthyPercent: 200,
+      desiredCount: 1,
+      minHealthyPercent: 0,
+      maxHealthyPercent: 100,
       enableExecuteCommand: true,
     });
 
-    ckanCronService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckan)');
-    ckanCronService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckan)');
-    ckanCronService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckan)')
-
-    const ckanCronServiceAsg = ckanService.autoScaleTaskCount({
-      minCapacity: props.cronTaskDef.taskMinCapacity,
-      maxCapacity: props.cronTaskDef.taskMaxCapacity,
-    });
-
-    ckanCronServiceAsg.scaleOnCpuUtilization('ckanCronServiceAsgPolicy', {
-      targetUtilizationPercent: 50,
-      scaleInCooldown: Duration.seconds(60),
-      scaleOutCooldown: Duration.seconds(60),
-    });
-
-    ckanCronServiceAsg.scaleOnMemoryUtilization('ckanCronServiceAsgPolicyMem', {
-      targetUtilizationPercent: 80,
-      scaleInCooldown: Duration.seconds(60),
-      scaleOutCooldown: Duration.seconds(60),
-    });
+    ckanCronService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckanCron)');
+    ckanCronService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckanCron)');
+    ckanCronService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckanCron)')
   }
 }
