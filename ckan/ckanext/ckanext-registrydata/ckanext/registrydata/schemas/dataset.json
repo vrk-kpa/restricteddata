@@ -106,7 +106,7 @@
           "value": "True"
         }
       ],
-      "default_value": "false",
+      "default_value": "False",
       "validators": "keep_old_value_if_missing boolean_validator",
       "description": "You can set the visibility to private temporarily, for example if the dataset is missing some information. Private datasets are visible to all members of the organisation.",
       "required": true
@@ -119,17 +119,16 @@
       "choices": [
         {
           "label": "No",
-          "value": "false"
+          "value": "False"
         },
         {
           "label": "Yes",
-          "value": "true"
+          "value": "True"
         }
       ],
-      "default_value": "false",
+      "default_value": "False",
       "validators": "ignore_not_sysadmin keep_old_value_if_missing boolean_validator",
-      "description": "You can mark dataset as high value dataset",
-      "required": true
+      "description": "You can mark dataset as high value dataset"
     },
     {
       "field_name": "access_rights",
@@ -254,7 +253,7 @@
       },
       "display_property": "dc:contributor",
       "display_snippet": "link.html",
-      "validators": "url_validator"
+      "validators": "ignore_missing url_validator"
     }
   ],
   "resource_fields": [
@@ -349,14 +348,14 @@
       "choices": [
         {
           "label": "Public",
-          "value": "false"
+          "value": "False"
         },
         {
           "label": "Private",
-          "value": "true"
+          "value": "True"
         }
       ],
-      "default_value": "false",
+      "default_value": "False",
       "validators": "keep_old_value_if_missing boolean_validator",
       "description": "You can set the visibility to private temporarily, for example if the resource is missing some information. Private resources are visible to all members of the organisation.",
       "required": true
