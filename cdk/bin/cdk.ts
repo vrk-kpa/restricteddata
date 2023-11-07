@@ -249,6 +249,12 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
+  cronTaskDef: {
+    taskCpu: 256,
+    taskMem: 1024,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  },
   vpc: VpcStackDev.vpc
 
 })
@@ -420,6 +426,12 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
   nginxService: NginxStackProd.nginxService,
   secondaryDomainName: prodStackProps.secondaryDomainName,
   taskDef: {
+    taskCpu: 256,
+    taskMem: 1024,
+    taskMinCapacity: 1,
+    taskMaxCapacity: 1
+  },
+  cronTaskDef: {
     taskCpu: 256,
     taskMem: 1024,
     taskMinCapacity: 1,
