@@ -12,7 +12,7 @@
   {%- for field in schema.resource_fields -%}
 
     {% if field.group_title %}
-      {% if loop.index > 1 %}<div class="rd-group-divider"></div>{% endif %}
+      {% if loop.index > 1 %}<hr class="rd-group-divider"/>{% endif %}
       <h3 class="rd-group-title {% if field.group_title_class %}{{ field.group_title_class }}{% endif %}">{{ _(field.group_title) }}</h3>
     {% endif %}
 

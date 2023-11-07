@@ -1,0 +1,60 @@
+{
+  "scheming_version": 1,
+  "organization_type": "organization",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "fields": [
+    {
+      "field_name": "title_translated",
+      "label": "Title",
+      "preset": "fluent_core_title_translated",
+      "form_languages": [ "fi", "en", "sv" ],
+      "required_languages": ["fi", "sv"],
+      "form_placeholder": "My Organization",
+      "group_title": "Organization name",
+      "group_description": "* Required field"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "form_snippet": "slug.html",
+      "form_placeholder": "my-organization",
+      "validators": "not_empty unicode_safe name_validator group_name_validator",
+      "required": true,
+      "divider": true
+    },
+    {
+      "field_name": "description_translated",
+      "preset": "fluent_markdown_editor",
+      "form_placeholder": "A little information about my organization...",
+      "form_languages": [ "fi", "en", "sv" ],
+      "label": "Description",
+      "group_title": "Organization description",
+      "description": "Common, compact and plain description about the organization",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "divider": true
+    },
+    {
+      "field_name": "homepage",
+      "display_snippet": "link.html",
+      "validators": "ignore_missing unicode_safe url_validator",
+      "label": "Website",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "form_placeholder": "e.g. www.dvv.fi",
+      "group_title": "Other information"
+    },
+    {
+      "field_name": "image_url",
+      "label": "Logo",
+      "upload_label": "Upload logo",
+      "preset": "organization_url_upload",
+      "form_attrs": {
+        "class": "form-control"
+      },
+      "validators": "url_validator"
+    }
+  ]
+}

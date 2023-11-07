@@ -21,7 +21,7 @@
   {% block secondary_content %}
     {% block stages %}
       {{ layout.moduleBoxHeader(_('Stages') ) }}
-      <hr class="rd-group-divider" />
+      <hr/>
       {{ h.snippet('package/snippets/stages.html', stages=stage, pkg_name=pkg_name, dataset_type=dataset_type) }}
       {{ layout.moduleBoxFooter() }}
     {% endblock stages %}

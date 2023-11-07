@@ -1,0 +1,28 @@
+{% ckan_extends %}
+
+{% block pre_primary %}
+  <div>
+    <h1 class="page-heading">
+      {% block page_heading %}
+        {{ title }}
+      {% endblock page_heading %}
+    </h1>
+  </div>
+{% endblock pre_primary %}
+
+{% block secondary %}
+{% endblock secondary %}
+
+{% block primary_content %}
+  <section class="module primary-content-container">
+    {% block page_header %}
+    {% endblock page_header %}
+    <div class="module-content">
+      {% block primary_content_inner %}
+        {% block form %}
+          {{ form | safe }}
+        {% endblock form %}
+      {% endblock primary_content_inner %}
+    </div>
+  </section>
+{% endblock primary_content %}

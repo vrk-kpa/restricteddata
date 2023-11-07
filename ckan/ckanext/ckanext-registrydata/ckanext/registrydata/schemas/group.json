@@ -9,8 +9,8 @@
       "preset": "fluent_core_title_translated",
       "form_languages": [
         "fi",
-        "sv",
-        "en"
+        "en",
+        "sv"
       ],
       "required_languages": ["fi", "sv"],
       "form_placeholder": "My Group"
@@ -25,22 +25,21 @@
     },
     {
       "field_name": "description_translated",
-      "preset": "fluent_core_markdown_translated",
+      "preset": "fluent_markdown_editor",
       "form_placeholder": "A little information about my group...",
-      "validators": "fluent_text required_languages override_field_with_default_translation(description)",
       "form_languages": [
         "fi",
-        "sv",
-        "en"
+        "en",
+        "sv"
       ],
-      "required_languages": ["fi", "sv"],
       "label": "Description",
       "display_snippet": null
     },
     {
       "field_name": "image_url",
       "label": "Image URL",
-      "preset": "resource_url_upload"
+      "preset": "resource_url_upload",
+      "validators": "url_validator"
     }
   ]
 }
