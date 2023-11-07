@@ -206,5 +206,59 @@ export class CkanStack extends Stack {
       scaleOutCooldown: Duration.seconds(60),
     });
 
+    const ckanCronTaskDefinition = new aws_ecs.FargateTaskDefinition(this, 'ckanTaskDefinition', {
+      cpu: props.cronTaskDef.taskCpu,
+      memoryLimitMiB: props.cronTaskDef.taskMem,
+    });
+    ckanCronTaskDefinition.addToExecutionRolePolicy(new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: [
+        "kms:Decrypt"
+      ],
+      resources: [
+        secretEncryptionKey.keyArn
+      ]
+    }));
+
+    props.ckanInstanceCredentials.secret!.grantRead(ckanCronTaskDefinition.executionRole!);
+
+    const ckanCronLogGroup = new aws_logs.LogGroup(this, 'ckanCronLogGroup', {
+      logGroupName: `/${props.environment}/registrydata/ckanCron`,
+    });
+
+    const ckanCronContainer = ckanCronTaskDefinition.addContainer('ckanCron', {
+      image: aws_ecs.ContainerImage.fromEcrRepository(ckanRepo, props.envProps.CKAN_IMAGE_TAG),
+      environment: ckanContainerEnv,
+      secrets: ckanContainerSecrets,
+      entryPoint: ['/srv/app/scripts/entrypoint_cron.sh'],
+      logging: aws_ecs.LogDrivers.awsLogs({
+        logGroup: ckanCronLogGroup,
+        streamPrefix: 'ckan-cron-service',
+      }),
+      healthCheck: {
+        command: ['CMD-SHELL', 'ps aux | grep -o "[c]rond -f" && ps aux | grep -o "[s]upervisord --configuration"'],
+        interval: Duration.seconds(15),
+        timeout: Duration.seconds(5),
+        retries: 5,
+        startPeriod: Duration.seconds(300),
+      },
+      linuxParameters: new aws_ecs.LinuxParameters(this, 'ckanContainerLinuxParams', {
+        initProcessEnabled: true,
+      }),
+    });
+
+    const ckanCronService = new aws_ecs.FargateService(this, 'ckanCronService', {
+      platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
+      cluster: props.cluster,
+      taskDefinition: ckanCronTaskDefinition,
+      desiredCount: 1,
+      minHealthyPercent: 0,
+      maxHealthyPercent: 100,
+      enableExecuteCommand: true,
+    });
+
+    ckanCronService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckanCron)');
+    ckanCronService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckanCron)');
+    ckanCronService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckanCron)')
   }
 }
