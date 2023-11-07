@@ -206,7 +206,7 @@ export class CkanStack extends Stack {
       scaleOutCooldown: Duration.seconds(60),
     });
 
-    const ckanCronTaskDefinition = new aws_ecs.FargateTaskDefinition(this, 'ckanTaskDefinition', {
+    const ckanCronTaskDefinition = new aws_ecs.FargateTaskDefinition(this, 'ckanCronTaskDefinition', {
       cpu: props.cronTaskDef.taskCpu,
       memoryLimitMiB: props.cronTaskDef.taskMem,
     });
@@ -242,7 +242,7 @@ export class CkanStack extends Stack {
         retries: 5,
         startPeriod: Duration.seconds(300),
       },
-      linuxParameters: new aws_ecs.LinuxParameters(this, 'ckanContainerLinuxParams', {
+      linuxParameters: new aws_ecs.LinuxParameters(this, 'ckanCronContainerLinuxParams', {
         initProcessEnabled: true,
       }),
     });
