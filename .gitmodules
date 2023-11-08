@@ -13,3 +13,6 @@
 [submodule "ckan/ckanext/ckanext-markdown_editor"]
 	path = ckan/ckanext/ckanext-markdown_editor
 	url = https://github.com/vrk-kpa/ckanext-markdown_editor.git
+[submodule "ckan/ckanext/ckanext-harvest"]
+	path = ckan/ckanext/ckanext-harvest
+	url = https://github.com/vrk-kpa/ckanext-harvest.git

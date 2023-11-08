@@ -170,7 +170,7 @@ RUN \
   # Add directory for static content
   mkdir -p ${WWW_DIR} && \
   # install crontab
-  #chmod +x ${CRON_DIR}/scripts/*.sh && \
+  chmod +x ${CRON_DIR}/scripts/*.sh && \
   crontab -u ckan ${CRON_DIR}/crontab
 
 
