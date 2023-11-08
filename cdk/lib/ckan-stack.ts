@@ -277,6 +277,7 @@ export class CkanStack extends Stack {
       environment: ckanContainerEnv,
       secrets: ckanContainerSecrets,
       entryPoint: ['/srv/app/scripts/entrypoint_cron.sh'],
+      user: "root",
       logging: aws_ecs.LogDrivers.awsLogs({
         logGroup: ckanCronLogGroup,
         streamPrefix: 'ckan-cron-service',
