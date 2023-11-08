@@ -34,9 +34,35 @@ export class CkanStack extends Stack {
       getRepositoryArn(this, props.envProps.REGISTRY, props.envProps.REPOSITORY + '/ckan'));
 
 
+    const ckanFsDataAccessPoint = props.fileSystem!.addAccessPoint('ckanFsDataAccessPoint', {
+      path: '/ckan_data',
+      createAcl: {
+        ownerGid: '92',
+        ownerUid: '92',
+        permissions: '0755',
+      },
+      posixUser: {
+        gid: '92',
+        uid: '92',
+      },
+    });
+
+
     const ckanTaskDefinition = new aws_ecs.FargateTaskDefinition(this, 'ckanTaskDefinition', {
       cpu: props.taskDef.taskCpu,
       memoryLimitMiB: props.taskDef.taskMem,
+      volumes: [
+        {
+          name: 'ckan_data',
+          efsVolumeConfiguration: {
+            fileSystemId: props.fileSystem!.fileSystemId,
+            authorizationConfig: {
+              accessPointId: ckanFsDataAccessPoint.accessPointId,
+            },
+            transitEncryption: 'ENABLED',
+          },
+        },
+      ]
     });
 
     const ckanPluginsDefault: string[] = [
@@ -167,6 +193,12 @@ export class CkanStack extends Stack {
       protocol: aws_ecs.Protocol.TCP,
     });
 
+    ckanContainer.addMountPoints({
+      containerPath: '/srv/app/data',
+      readOnly: false,
+      sourceVolume: 'ckan_data',
+    });
+
      const ckanService = new aws_ecs.FargateService(this, 'ckanService', {
       platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
       cluster: props.cluster,
@@ -188,6 +220,7 @@ export class CkanStack extends Stack {
     ckanService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckan)');
     ckanService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckan)')
     ckanService.connections.allowFrom(props.nginxService.service, aws_ec2.Port.tcp(5000), 'HTTP connection (ckan)' )
+    ckanService.connections.allowTo(props.fileSystem!, aws_ec2.Port.tcp(2049), 'EFS connection (ckan)');
 
     const ckanServiceAsg = ckanService.autoScaleTaskCount({
       minCapacity: props.taskDef.taskMinCapacity,
@@ -209,7 +242,20 @@ export class CkanStack extends Stack {
     const ckanCronTaskDefinition = new aws_ecs.FargateTaskDefinition(this, 'ckanCronTaskDefinition', {
       cpu: props.cronTaskDef.taskCpu,
       memoryLimitMiB: props.cronTaskDef.taskMem,
+      volumes: [
+        {
+          name: 'ckan_data',
+          efsVolumeConfiguration: {
+            fileSystemId: props.fileSystem!.fileSystemId,
+            authorizationConfig: {
+              accessPointId: ckanFsDataAccessPoint.accessPointId,
+            },
+            transitEncryption: 'ENABLED',
+          },
+        }
+      ],
     });
+
     ckanCronTaskDefinition.addToExecutionRolePolicy(new PolicyStatement({
       effect: Effect.ALLOW,
       actions: [
@@ -247,6 +293,12 @@ export class CkanStack extends Stack {
       }),
     });
 
+    ckanCronContainer.addMountPoints({
+      containerPath: '/srv/app/data',
+      readOnly: false,
+      sourceVolume: 'ckan_data',
+    });
+
     const ckanCronService = new aws_ecs.FargateService(this, 'ckanCronService', {
       platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
       cluster: props.cluster,
@@ -260,5 +312,6 @@ export class CkanStack extends Stack {
     ckanCronService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckanCron)');
     ckanCronService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckanCron)');
     ckanCronService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckanCron)')
+    ckanCronService.connections.allowTo(props.fileSystem!, aws_ec2.Port.tcp(2049), 'EFS connection (ckanCron)');
   }
 }
