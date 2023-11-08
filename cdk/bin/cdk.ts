@@ -243,6 +243,7 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   solrService: SolrStackDev.solrService,
   nginxService: NginxStackDev.nginxService,
   secondaryDomainName: devStackProps.secondaryDomainName,
+  fileSystem: FileSystemStackDev.ckanFs,
   taskDef: {
     taskCpu: 256,
     taskMem: 1024,
@@ -425,6 +426,7 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
   solrService: SolrStackProd.solrService,
   nginxService: NginxStackProd.nginxService,
   secondaryDomainName: prodStackProps.secondaryDomainName,
+  fileSystem: FileSystemStackProd.ckanFs,
   taskDef: {
     taskCpu: 256,
     taskMem: 1024,
