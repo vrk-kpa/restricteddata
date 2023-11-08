@@ -187,6 +187,4 @@ def scheming_category_list(args):
 
 
 def check_group_selected(val, data):
-    if [x for x in data if x['name'] == val]:
-        return True
-    return False
+    return any(x['name'] == val for x in data)

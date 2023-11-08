@@ -21,7 +21,7 @@ def save_to_groups(key, data, errors, context):
                     groups_with_details.append({"name": identifier})
                 group_patch = flatten_list(groups_with_details)
 
-                for k, v in list(group_patch.items()):
+                for k, v in group_patch.items():
                     group_key = ('groups',) + k
                     data[group_key] = v
 
