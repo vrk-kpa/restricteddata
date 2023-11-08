@@ -312,6 +312,6 @@ export class CkanStack extends Stack {
     ckanCronService.connections.allowTo(props.databaseSecurityGroup, aws_ec2.Port.tcp(5432), 'RDS connection (ckanCron)');
     ckanCronService.connections.allowTo(props.redisSecurityGroup, aws_ec2.Port.tcp(6379), 'Redis connection (ckanCron)');
     ckanCronService.connections.allowTo(props.solrService, aws_ec2.Port.tcp(8983), 'Solr connection (ckanCron)')
-    ckanCronService.connections.allowTo(props.fileSystem!, aws_ec2.Port.tcp(2049), 'EFS connection (ckan cron)');
+    ckanCronService.connections.allowTo(props.fileSystem!, aws_ec2.Port.tcp(2049), 'EFS connection (ckanCron)');
   }
 }
