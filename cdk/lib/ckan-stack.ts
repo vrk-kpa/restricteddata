@@ -79,7 +79,8 @@ export class CkanStack extends Stack {
       "registrydata",
       "activity",
       "text_view",
-      "image_view"
+      "image_view",
+      "harvest"
     ]
 
     const ckanContainerEnv: {[key: string]: string} = {
