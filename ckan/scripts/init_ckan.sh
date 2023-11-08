@@ -24,7 +24,8 @@ fi
 #echo "init ckan extensions ..."
 
 # init ckan extension databases
-#echo "init ckan extension databases ..."
+echo "init ckan extension databases ..."
+ckan -c ${APP_DIR}/ckan.ini harvester initdb
 
 echo "Create default registrydata categories ..."
 ckan -c ${APP_DIR}/ckan.ini registrydata create-default-categories
