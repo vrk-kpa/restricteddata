@@ -9,10 +9,13 @@
       "preset": "fluent_core_title_translated",
       "form_languages": [
         "fi",
-        "en",
+        "sv",
+        "en"
+      ],
+      "required_languages": [
+        "fi",
         "sv"
       ],
-      "required_languages": ["fi", "sv"],
       "form_placeholder": "My Group"
     },
     {
@@ -29,8 +32,8 @@
       "form_placeholder": "A little information about my group...",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "label": "Description",
       "display_snippet": null
