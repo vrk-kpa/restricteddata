@@ -1,5 +1,4 @@
-{% import 'macros/form.html' as form %}
-{% import 'scheming/macros/form.html' as form_custom %}
+{% import 'scheming/macros/form.html' as form %}
 
 {% asset "registrydata/rd-select2-tags-js" %}
 
@@ -15,7 +14,7 @@
 
     {% set attrs_with_locale = h.add_locale_to_source(attrs, lang) %}
 
-    {% call form_custom.input(
+    {% call form.input(
     field.field_name + '-' + lang,
     id='field-' + field.field_name + '-' + lang,
     label=_(field.label) + ' ' + _(lang|upper),

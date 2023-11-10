@@ -1,6 +1,10 @@
+
+from ckan import model
+from ckan.common import c
 from ckan.plugins import toolkit
 from ckan.lib import i18n
 from ckanext.scheming.helpers import lang
+from ckan.logic import NotFound
 from logging import getLogger
 from datetime import datetime, timedelta
 import iso8601
@@ -141,3 +145,46 @@ def get_homepage_groups():
         'include_dataset_count': True,
         'include_extras': True,
     })
+
+
+def scheming_category_list(args):
+    # FIXME: sometimes this might return 0 categories if in development
+
+    try:
+        context = {'model': model, 'session': model.Session, 'ignore_auth': True}
+        group_ids = toolkit.get_action('group_list')(context, {})
+    except NotFound:
+        return None
+    else:
+        category_list = []
+
+        # filter groups to those user is allowed to edit
+        group_authz = toolkit.get_action('group_list_authz')({
+            'model': model, 'session': model.Session, 'user': c.user
+        }, {})
+
+        user_group_ids = set(group['name'] for group in group_authz)
+        group_ids = [group for group in group_ids if group in user_group_ids]
+
+        for group in group_ids:
+            try:
+                context = {'model': model, 'session': model.Session, 'ignore_auth': True}
+                group_details = toolkit.get_action('group_show')(context, {'id': group, 'include_users': False,
+                                                                   'include_dataset_count': False,
+                                                                   'include_groups': False,
+                                                                   'include_tags': False,
+                                                                   'include_followers': False})
+            except Exception as e:
+                log.error(e)
+                return None
+
+            category_list.append({
+                "value": group,
+                "label": group_details.get('title_translated')
+            })
+
+    return category_list
+
+
+def check_group_selected(val, data):
+    return any(x['name'] == val for x in data)

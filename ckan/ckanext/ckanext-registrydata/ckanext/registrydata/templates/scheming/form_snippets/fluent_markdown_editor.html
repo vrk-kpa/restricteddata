@@ -1,0 +1,27 @@
+{% import 'scheming/macros/form.html' as form %}
+
+{% asset 'markdown_editor/markdown_editor-js' %}
+
+{%- for lang in h.fluent_form_languages(field, entity_type, object_type, schema) -%}
+  {% if loop.first and field.description and field.description.strip() %}
+    {% set description = field.description %}
+  {% endif %}
+  {% set form_attrs = {'data-module': 'ckeditor5-markdown', 'data-module-language': h.get_lang_prefix()} %}
+  {% do form_attrs.update(field.form_attrs or {}) %}
+  {% call form.textarea(
+    field.field_name + '-' + lang,
+    id='field-' + field.field_name + '-' + lang,
+    label=_(field.label) + ' ' + _(lang),
+    placeholder=h.scheming_language_text(field.form_placeholder, lang),
+    value=data[field.field_name + '-' + lang]
+        or data.get(field.field_name, {})[lang],
+    error=errors[field.field_name + '-' + lang],
+    attrs=form_attrs,
+    is_required=h.scheming_field_required(field),
+    description=description
+    ) %}
+    {%- snippet 'scheming/form_snippets/fluent_help_text.html',
+      field=field,
+      lang=lang -%}
+  {% endcall %}
+{%- endfor -%}

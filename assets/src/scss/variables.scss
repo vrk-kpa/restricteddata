@@ -10,7 +10,7 @@ $color-primary: tokens.$fi-color-highlight-light2; // #D5E4F6
 $color-secondary: tokens.$fi-color-depth-secondary-dark1; // #E5F0FF
 $color-link-text: tokens.$fi-color-highlight-base; // #2A6EBB
 $color-white: tokens.$fi-color-white-base; // #fff
-$color-black: tokens.$fi-color-black-base; // #000
+$color-black: tokens.$fi-color-black-base; // #212121
 $color-text-primary: $color-black;
 $color-text-secondary: tokens.$fi-color-depth-dark1; // #5F686D
 $color-border: tokens.$fi-color-depth-base; // #A5ACB1
@@ -44,3 +44,4 @@ $font-weight-bold: 600;
 $border: 1px solid $color-border;
 $border-light: 1px solid $color-border-light;
 $border-dark: 1px solid $color-input-border;
+$border-link: 1px solid $color-link-text;

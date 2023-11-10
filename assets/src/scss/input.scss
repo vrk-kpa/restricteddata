@@ -1,7 +1,11 @@
 @use "suomifi-design-tokens/dist/tokens";
 @use "variables" as rd;
+@use "mixins" as rd-mixins;
 
-label {
+label,
+label.checkbox {
+  @include tokens.fi-text-body-semi-bold-small;
+
   &:after {
     content: none;
   }
@@ -24,10 +28,19 @@ input[type=button] {
   }
 }
 
+.form-control {
+  @include tokens.fi-text-body-text-small;
+  border-radius: 2px;
+  border: rd.$border-dark;
+  padding: 8px 0px 8px 10px;
+}
+
 input[type=text],
 input[type=date],
 input[type=number],
+input[type=url],
 select {
+
   &.form-control {
     @include tokens.fi-text-body-text-small;
     border-radius: 2px;
@@ -44,10 +57,15 @@ select {
       font-style: italic;
     }
   }
+
+  &:focus {
+    box-shadow: 0 0 10px rd.$color-link-text;
+  }
 }
 
 ::placeholder {
   color: rd.$color-text-placeholder !important;
+  font-style: italic;
 }
 
 textarea.form-control {
@@ -61,7 +79,6 @@ textarea.form-control {
     border: rd.$border-dark;
     border-radius: 2px 2px 0 0;
     border-bottom: 0;
-
 
     &:focus {
       box-shadow: 0 0 10px rd.$color-link-text;
@@ -337,9 +354,134 @@ textarea.form-control:focus {
   }
 }
 
-fieldset.radios {
+.resource-upload-field {
+
+  #field-resource-url {
+    width: calc(100% - 104px);
+  }
+
+  .btn-remove-url {
+    @include rd-mixins.btn-link;
+    @include rd-mixins.borderless;
+    right: 0;
+    margin-top: 10px;
+
+    &::before {
+      @include rd-mixins.delete;
+    }
+  }
+}
+
+.checkboxes,
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+
+
   label {
-    @include tokens.fi-text-body-text-small;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    max-width: max-content;
+    font-weight: 400;
+    user-select: none;
     margin-right: 30px;
+
+
+    & .custom-checkbox {
+      margin-right: 8px;
+      content: "";
+      box-sizing: border-box;
+      height: 18px;
+      width: 18px;
+      border: 1px solid tokens.$fi-color-depth-dark3;
+      border-radius: 2px;
+      background-color: rd.$color-white;
+    }
+
+    & .check {
+      border: 1px solid tokens.$fi-color-depth-dark3;
+      border-radius: 100%;
+      margin-right: 8px;
+      height: 18px;
+      width: 18px;
+      z-index: 5;
+      transition: border .25s linear;
+      display: inline-flex;
+      place-content: center;
+      align-self: center;
+
+      &::before {
+        display: flex;
+        align-self: center;
+        content: "";
+        border-radius: 100%;
+        height: 8px;
+        width: 8px;
+        transition: background .25s linear;
+      }
+    }
+
+    & input[type=checkbox],
+    & input[type=radio] {
+      opacity: 0;
+      z-index: -9999;
+      width: 0;
+      margin: 0;
+
+      &:checked {
+        &+.custom-checkbox {
+          border-color: rd.$color-link-text;
+
+          &::before {
+            content: "\f00c";
+            font: var(--fa-font-solid);
+            font-weight: 900;
+            font-size: 14px;
+            color: rd.$color-link-text;
+            display: inline-block;
+            pointer-events: none;
+            margin-left: 2px;
+            vertical-align: text-top;
+          }
+        }
+
+        &+.check {
+          border-color: rd.$color-link-text;
+
+          &::before {
+            background: rd.$color-link-text;
+          }
+        }
+      }
+    }
+  }
+}
+
+.input-group-text {
+  @include tokens.fi-text-body-text-small;
+  color: rd.$color-text-primary;
+  border-color: transparent;
+  background-color: rd.$color-white;
+  border-radius: 2px;
+  cursor: default;
+  padding: 0;
+  padding-right: 2px;
+}
+
+input[data-module="slug-preview-slug"] {
+  border: rd.$border-dark;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.date-input {
+  width: 180px;
+  display: inline-block;
+
+  &~.date-input {
+    margin-left: 20px;
   }
 }

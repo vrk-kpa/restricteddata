@@ -1,0 +1,46 @@
+@use "mixins" as rd-mixins;
+@use "variables" as rd;
+
+/* stylelint-disable-next-line selector-class-pattern */
+.ck.ck-editor__main {
+  height: 100%;
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  .ck-editor__editable_inline {
+    height: 140px;
+    overflow-y: auto;
+    resize: vertical;
+  }
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+    outline: none;
+    box-shadow: 0 0 10px rd.$color-link-text;
+  }
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.ck.ck-editor__main .ck-source-editing-area {
+  height: 190px;
+  resize: vertical;
+
+  textarea {
+    overflow-y: auto;
+  }
+}
+
+.ck-content {
+  .external-link {
+    display: inline-flex;
+    flex-direction: row;
+    align-content: center;
+
+    &::after {
+      @include rd-mixins.external;
+      font-size: 14px;
+      margin-top: 1px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+}

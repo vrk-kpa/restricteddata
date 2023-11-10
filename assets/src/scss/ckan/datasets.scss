@@ -1,4 +1,5 @@
 @use "../variables" as rd;
+@use "../mixins" as rd-mixins;
 @use "suomifi-design-tokens/dist/tokens";
 
 .dataset-list {
@@ -49,6 +50,7 @@
   h3 {
     margin-bottom: 20px;
   }
+
   section {
     margin-top: 50px;
     margin-bottom: 80px;
@@ -71,6 +73,11 @@
 #dataset-resources {
   .resource-list {
     margin: 0;
+
+    &.reordering {
+      margin: 10px -10px 10px 20px;
+    }
+
     .resource-item {
       display: flex;
       padding: 5px 0;
@@ -97,23 +104,15 @@
         font-weight: normal;
         margin-left: 10px;
         margin-right: 20px;
+        font-size: rd.$font-size-sm;
       }
 
       &__actions {
+        display: flex;
+        gap: 10px;
+
         a {
-          border-radius: 2px;
-          border: 1px solid rd.$color-link-text;
-          background: rd.$color-white; 
-          padding: 10px 20px;
-          font-size: rd.$font-size-xs;
-
-          i {
-            margin-left: 8px;
-          }
-        }
-
-        a+a {
-          margin-left: 10px;
+          @include rd-mixins.btn-link;
         }
 
         margin-left: auto;
@@ -126,6 +125,7 @@
   padding: 20px 50px 20px 30px;
   border-right: rd.$border;
 }
+
 // Stages
 // Builds form stages out of an ordered list. The following CSS uses tag
 // selectors on the .active class to prevent the styles bleeding into the
@@ -197,6 +197,7 @@
       flex-wrap: wrap;
       gap: 15px;
     }
+
     .license .module-content {
       font-size: rd.$font-size-xs;
     }

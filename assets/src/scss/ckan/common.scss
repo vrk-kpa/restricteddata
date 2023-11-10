@@ -182,19 +182,6 @@
       font-size: rd.$font-size-sm;
     }
 
-    a {
-      margin: 0;
-      letter-spacing: 0.4px;
-      line-height: 20px;
-      border: 1px solid rd.$color-suomifi;
-      border-radius: 2px;
-      text-decoration: none;
-    }
-
-    .btn.btn-default {
-      color: rd.$color-suomifi;
-    }
-
     a+a {
       margin-left: 12px;
     }
@@ -239,6 +226,7 @@
 .page_primary_action {
   display: flex;
   justify-content: end;
+  gap: 20px;
 }
 
 .control-required {
@@ -259,11 +247,17 @@
 }
 
 .rd-group-description {
-  font-family: "Source Sans Pro Regular", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   margin-top: -10px;
   margin-bottom: 20px;
   display: block;
+
+  &.combi-label {
+    font-weight: rd.$font-weight-bold;
+    line-height: 24px;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 }
 
 .field-description-text {
