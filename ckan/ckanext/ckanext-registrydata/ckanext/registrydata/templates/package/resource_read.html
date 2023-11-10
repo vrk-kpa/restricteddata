@@ -70,6 +70,7 @@
 {% endblock %}
 
 {% block resource_view %}
+  {% if resource_views %}
   <div class="resource-view-toolbar">
       {% snippet 'package/snippets/resource_view_select.html',
                  resource_views=resource_views,
@@ -102,4 +103,5 @@
         {% endfor %}
     {% endif %}
   </div>
+  {% endif %}
 {% endblock %}

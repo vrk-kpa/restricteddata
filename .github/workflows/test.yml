@@ -113,7 +113,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           outputs: type=docker,dest=/tmp/${{ matrix.name }}.tar
-          tags: ${{ env.REPOSITORY }}/${{ env.REGISTRY }}/${{ matrix.name }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
