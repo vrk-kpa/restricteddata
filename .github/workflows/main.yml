@@ -108,10 +108,11 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:${{ github.sha }}
-            ${{ steps.login.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
         env:
           REPOSITORY: ${{ vars.REPOSITORY }}
+          REGISTRY: ${{ secrets.REGISTRY }}
 
   commit-new-images:
     name: Commit new image tags
