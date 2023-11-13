@@ -7,8 +7,15 @@
       "field_name": "title_translated",
       "label": "Title",
       "preset": "fluent_core_title_translated",
-      "form_languages": [ "fi", "en", "sv" ],
-      "required_languages": ["fi", "sv"],
+      "form_languages": [
+        "fi",
+        "sv",
+        "en"
+      ],
+      "required_languages": [
+        "fi",
+        "sv"
+      ],
       "form_placeholder": "My Organization",
       "group_title": "Organization name",
       "group_description": "* Required field"
@@ -26,7 +33,11 @@
       "field_name": "description_translated",
       "preset": "fluent_markdown_editor",
       "form_placeholder": "A little information about my organization...",
-      "form_languages": [ "fi", "en", "sv" ],
+      "form_languages": [
+        "fi",
+        "sv",
+        "en"
+      ],
       "label": "Description",
       "group_title": "Organization description",
       "description": "Common, compact and plain description about the organization",

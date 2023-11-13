@@ -9,8 +9,8 @@
       "preset": "fluent_core_title_translated",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "form_placeholder": "e.g. Finnish names",
       "required_languages": [
@@ -33,8 +33,8 @@
       "form_placeholder": "Write a description for the dataset.",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "form_attrs": {
         "class": "form-control"
@@ -45,7 +45,7 @@
         "fi",
         "sv"
       ],
-      "description": "Describe the dataset’s contents, collection process, quality and  possible limits, flaws and applications in a comprehensible way. Use as confining terms as possible to make it easier to find and understand the data.",
+      "description": "Describe the dataset's contents, collection process, quality and  possible limits, flaws and applications in a comprehensible way. Use as confining terms as possible to make it easier to find and understand the data.",
       "group_title": "Dataset description"
     },
     {
@@ -55,8 +55,8 @@
       "form_placeholder": "e.g. names",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "preset": "fluent_vocabulary_with_autocomplete",
       "validators": "required_languages fluent_tags create_fluent_tags(keywords)",
@@ -157,8 +157,8 @@
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "form_attrs": {
         "class": "form-control"
@@ -184,8 +184,8 @@
       "form_placeholder": "e.g. monthly",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "preset": "fluent_vocabulary_with_autocomplete",
       "validators": "fluent_tags create_fluent_tags(update_frequency)",
@@ -201,14 +201,20 @@
       "label": "Valid from",
       "preset": "date",
       "max_date_field": "valid_till",
-      "classes": ["control-medium", "date-input"]
+      "classes": [
+        "control-medium",
+        "date-input"
+      ]
     },
     {
       "field_name": "valid_till",
       "label": "Valid till",
       "preset": "date",
       "min_date_field": "valid_from",
-      "classes": ["control-medium", "date-input"]
+      "classes": [
+        "control-medium",
+        "date-input"
+      ]
     },
     {
       "field_name": "owner_org",
@@ -263,8 +269,8 @@
       "preset": "fluent_core_translated",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "form_placeholder": "e.g. Most popular Finnish first names 2019",
       "form_attrs": {
@@ -308,8 +314,8 @@
       "form_placeholder": "Write a description for the resource",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "form_attrs": {
         "class": "form-control"
@@ -325,8 +331,8 @@
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": [
         "fi",
-        "en",
-        "sv"
+        "sv",
+        "en"
       ],
       "required_languages": [
         "fi",
@@ -395,6 +401,11 @@
       "field_name": "temporal_granularity",
       "label": "Temporal granularity",
       "form_placeholder": "e.g. a month",
+      "form_languages": [
+        "fi",
+        "sv",
+        "en"
+      ],
       "preset": "fluent_vocabulary_with_autocomplete",
       "validators": "fluent_tags create_fluent_tags(temporal_granularity)",
       "form_attrs": {
@@ -413,13 +424,19 @@
       "form_attrs": {
         "class": "form-control"
       },
-      "classes": ["control-medium", "date-input"]
+      "classes": [
+        "control-medium",
+        "date-input"
+      ]
     },
     {
       "field_name": "temporal_coverage_till",
       "label": "End date",
       "preset": "date",
-      "classes": ["control-medium", "date-input"]
+      "classes": [
+        "control-medium",
+        "date-input"
+      ]
     },
     {
       "field_name": "geographical_accuracy",

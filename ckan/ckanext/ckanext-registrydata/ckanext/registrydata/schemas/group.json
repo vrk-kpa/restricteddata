@@ -12,7 +12,10 @@
         "en",
         "sv"
       ],
-      "required_languages": ["fi", "sv"],
+      "required_languages": [
+        "fi",
+        "sv"
+      ],
       "form_placeholder": "My Group"
     },
     {
