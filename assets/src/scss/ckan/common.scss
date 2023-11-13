@@ -9,10 +9,6 @@
   box-shadow: none;
 }
 
-.rd-group-divider {
-  margin: 0;
-}
-
 .main {
   padding: 20px 0 60px 0;
 
@@ -80,6 +76,10 @@
 
     .module-content {
       padding: 0;
+
+      hr {
+        margin: 0;
+      }
     }
   }
 
@@ -258,6 +258,11 @@
     margin-top: 0;
     margin-bottom: 10px;
   }
+}
+
+.rd-group-divider {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .field-description-text {

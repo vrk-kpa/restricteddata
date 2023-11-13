@@ -69,6 +69,7 @@ export class CkanStack extends Stack {
       'fluent',
       'scheming_datasets',
       'scheming_groups',
+      'scheming_organizations',
     ];
 
     const ckanPlugins: string[] = [
