@@ -58,6 +58,7 @@
     border: rd.$border-light;
     border-radius: 2px;
     padding: 20px 30px;
+    min-height: 100%; // Extend to match when shorter than sidebar
 
     .module-content {
       padding: 0;
@@ -317,5 +318,29 @@
   }
   td:last-child, th:last-child {
     padding-right: 20px;
+  }
+}
+
+.media-grid {
+  background: none;
+  padding: 0;
+  border: none;
+
+  .media-item {
+    min-width: 335px;
+    padding: 10px 20px;
+    margin: 20px 20px 0 0;
+    box-shadow: 0px 2px 4px 1px rgba(41, 41, 41, 0.20);
+    border: rd.$border-light;
+
+    .media-heading {
+      font-size: rd.$font-size-lg;
+      font-weight: rd.$font-weight-bold;
+    }
+    .media-image {
+      float: left;
+      width: 64px;
+      margin: 0 16px 32px 0; // Bottom margin to avoid text wrapping
+    }
   }
 }
