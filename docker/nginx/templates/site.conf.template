@@ -1,7 +1,6 @@
 # auth token mapping, prevents caching
 map $http_cookie $no_cache {
-  default $cookie_auth_tkt;
-  ~SESS 1;
+  default $cookie_ckan;
 }
 
 # http scheme mapping
