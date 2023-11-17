@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+{% block content_header %}
+<header class="page-header">
+  <ul class="nav nav-tabs">
+    {{ h.build_nav(dataset_type ~ '.read', _('Dataset'), id=pkg.name)}}
+    {{ h.build_nav(dataset_type ~ '.groups', _('Categories'), id=pkg.name)}}
+    {{ h.build_nav('activity.package_activity', _('Activity'), id=pkg.name)}}
+    {#
+    <li class="active">{% link_for _('Dataset'), named_route=dataset_type ~ '.read', id=pkg.name %}</li>
+    <li>{% link_for _('Categories'), named_route=dataset_type ~ '.groups', id=pkg.name %}</li>
+    <li>{% link_for _('Activity'), named_route=dataset_type ~ '.activity', id=pkg.name %}</li>
+    #}
+</header>
+{% endblock %}
+
+{%- block primary_container_class -%}primary-content-container{%- endblock primary_container_class -%}
+
+

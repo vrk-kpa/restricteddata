@@ -2,15 +2,6 @@
 
 {% import 'macros/layout.html' as layout %}
 
-{% block content_header %}
-<header class="page-header">
-  <ul class="nav nav-tabs">
-    <li class="active">{% link_for _('Dataset'), named_route=dataset_type ~ '.read', id=pkg.name %}</li>
-    <li>{% link_for _('Categories'), named_route=dataset_type ~ '.groups', id=pkg.name %}</li>
-    <li>{% link_for _('Activity'), named_route=dataset_type ~ '.activity', id=pkg.name %}</li>
-</header>
-{% endblock %}
-
 {% block pre_primary %}
   {% snippet 'package/snippets/dataset_state_banner.html', pkg=pkg %}
 {% endblock pre_primary %}
@@ -21,8 +12,6 @@
        href="{{ h.url_for(dataset_type ~ '.edit', id=pkg.name) }}">{{ _('Edit ' + dataset_type) }}</a>
   {% endif %}
 {% endblock content_action %}
-
-{%- block primary_container_class -%}primary-content-container{%- endblock primary_container_class -%}
 
 {% block secondary_content %}
   {% block package_tags %}
