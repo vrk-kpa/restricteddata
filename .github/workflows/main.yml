@@ -132,7 +132,7 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
 
       - name: Update .env.template to reference new ckan image
-        if: ${{ (needs.build-and-test-containers.outputs.ckan == 'true') }}
+        if: ${{ (needs.build-and-test-containers.outputs.ckan == 'true') || (needs.build-and-test-containers.outputs.assets == 'true') }}
         run: |
           sed -i.bak -E 's/^(CKAN_IMAGE_TAG[[:blank:]]*=[[:blank:]]*).*/\1\"'"${{ github.sha }}"'\"/' docker/.env.template
 
@@ -150,7 +150,8 @@ jobs:
         id: envtemplate
         if: ${{ (needs.build-and-test-containers.outputs.ckan == 'true') ||
           (needs.build-and-test-containers.outputs.solr == 'true') ||
-          (needs.build-and-test-containers.outputs.nginx == 'true') }}
+          (needs.build-and-test-containers.outputs.nginx == 'true') ||
+          (needs.build-and-test-containers.outputs.assets == 'true') }}
         run: |
           git config user.name "YTP Bot"
           git config user.email "yhteentoimivuus.kehittajat@gofore.com"
