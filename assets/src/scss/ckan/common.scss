@@ -57,7 +57,7 @@
     background-color: rd.$color-white;
     border: rd.$border-light;
     border-radius: 2px;
-    padding: 20px 30px;
+    padding: 20px 30px 40px 30px;
     min-height: 100%; // Extend to match when shorter than sidebar
 
     .module-content {
@@ -107,6 +107,7 @@
     background-color: rd.$color-white;
     border: rd.$border-light;
     margin-right: -1px;
+    padding-bottom: 40px;
 
     &>.module {
       padding: 20px 20px 10px 20px;
