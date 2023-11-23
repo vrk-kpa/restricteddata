@@ -282,10 +282,11 @@
     },
     {
       "field_name": "url",
-      "label": "",
+      "label": "Resource URL",
       "preset": "resource_url_upload",
       "form_placeholder": "Resource URL",
       "required": true,
+      "validators": "unicode_safe remove_whitespace not_empty url_validator",
       "upload_label": "Resource URL",
       "group_title": "Resource *",
       "group_description": "Add the data resource by adding a link to the data."
@@ -295,6 +296,7 @@
       "label": "Format",
       "preset": "resource_format_autocomplete",
       "description": "File format of the selected resource.",
+      "validators": "if_empty_guess_format clean_format unicode_safe not_empty ",
       "required": true
     },
     {
@@ -303,8 +305,9 @@
         "class": "form-control"
       },
       "label": "Size",
-      "description": "Size of the added resouce file in bytes. Will be automatically filled when the file is uploaded.",
-      "validators": "ignore_missing int_validator"
+      "required": true,
+      "description": "Size of the added resource file in bytes. Will be automatically filled when the file is uploaded.",
+      "validators": "not_empty int_validator"
     },
     {
       "field_name": "description_translated",
@@ -327,7 +330,7 @@
       "field_name": "rights_translated",
       "label": "Conditions for re-use",
       "preset": "fluent_markdown_editor",
-      "validators": "fluent_text",
+      "validators": "fluent_text required_languages",
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": [
         "fi",
