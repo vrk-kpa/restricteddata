@@ -142,12 +142,19 @@ export class CkanStack extends Stack {
       }
     })
 
+    const beakerValidateKeySecret = new aws_secretsmanager.Secret(this, 'beakerValidateKey', {
+      encryptionKey: secretEncryptionKey,
+      generateSecretString: {
+        excludeCharacters: "%"
+      }
+    })
 
 
     const ckanContainerSecrets: { [key: string]: aws_ecs.Secret; } = {
       // .env.ckan
       CKAN_BEAKER_SESSION_SECRET: aws_ecs.Secret.fromSecretsManager(beakerSecret),
       CKAN_APP_INSTANCE_UUID: aws_ecs.Secret.fromSecretsManager(appUUIDSecret),
+      CKAN_BEAKER_SESSION_VALIDATE_KEY: aws_ecs.Secret.fromSecretsManager(beakerValidateKeySecret),
       // .env
       DB_CKAN_PASS: aws_ecs.Secret.fromSecretsManager(props.ckanInstanceCredentials.secret!, 'password'),
       SMTP_USERNAME: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'username'),
