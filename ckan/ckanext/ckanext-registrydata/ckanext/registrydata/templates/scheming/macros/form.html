@@ -60,7 +60,7 @@ description - Additional description text between the label and the input
   {%- set extra_html = caller() if caller -%}
   {% call input_block(id or name, label or name, error, classes, control_classes=["editor"], extra_html=extra_html, is_required=is_required, description="") %}
     <div class="multiple-values">
-      {% if value %}
+      {% if value and value != [''] %}
         {% set values = value if value.append else [value] %}
         {% for value_item in values %}
           {% if value_item %}
