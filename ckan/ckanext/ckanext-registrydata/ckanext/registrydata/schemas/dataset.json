@@ -41,6 +41,7 @@
       },
       "label": "Description",
       "display_snippet": null,
+      "validators": "fluent_text required_languages",
       "required_languages": [
         "fi",
         "sv"
@@ -247,7 +248,7 @@
       "display_property": "dc:contributor",
       "display_snippet": "repeating_email.html",
       "form_snippet": "repeating.html",
-      "validators": "repeating_text repeating_email not_empty",
+      "validators": "not_empty repeating_text repeating_email",
       "required": true
     },
     {
