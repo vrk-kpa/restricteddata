@@ -35,7 +35,7 @@ msgstr "Datamängder"
 
 #: ckanext/registrydata/plugin.py:146
 msgid "Tags"
-msgstr ""
+msgstr "Nyckelord"
 
 #: ckanext/registrydata/plugin.py:147
 msgid "Format"
@@ -44,7 +44,7 @@ msgstr ""
 #: ckanext/registrydata/plugin.py:148
 #: ckanext/registrydata/templates/snippets/license.html:4
 msgid "License"
-msgstr ""
+msgstr "Licens"
 
 #: ckanext/registrydata/translations.py:8
 msgid "eg. Page Title"
@@ -81,41 +81,43 @@ msgstr "Användarnamn eller e-post"
 
 #: ckanext/registrydata/translations.py:22
 msgid "fi"
-msgstr ""
+msgstr "på finska"
 
 #: ckanext/registrydata/translations.py:23
 msgid "en"
-msgstr ""
+msgstr "på engelska"
 
 #: ckanext/registrydata/translations.py:24
 msgid "sv"
-msgstr ""
+msgstr "på svenska"
 
 #: ckanext/registrydata/translations.py:27
 msgid "Dataset title"
-msgstr ""
+msgstr "Datamängdens namn"
 
 #: ckanext/registrydata/translations.py:28
 msgid "* Required field"
-msgstr ""
+msgstr "* Obligatoriskt fält"
 
 #: ckanext/registrydata/translations.py:29
 msgid "e.g. Finnish names"
-msgstr ""
+msgstr "t.ex. Finska namn"
 
 #: ckanext/registrydata/translations.py:30
 msgid ""
 "Give a short and descriptive name for the dataset.<br><br>The URL is created"
 " automatically based on the dataset title. You can edit the URL if you want."
 msgstr ""
+"Ange en kort och beskrivande namn för datamängden. Webbadressen skapas "
+"automatiskt utifrån namnet. Du kan redigera adressen om du vill."
 
 #: ckanext/registrydata/translations.py:31
 msgid "Dataset description"
-msgstr ""
+msgstr "Beskrivning av datamängden"
 
 #: ckanext/registrydata/translations.py:32
 msgid "Write a description for the dataset."
-msgstr ""
+msgstr "Skriv en beskrivning för datamängden"
 
 #: ckanext/registrydata/translations.py:33
 msgid ""
@@ -123,30 +125,36 @@ msgid ""
 "limits, flaws and applications in a comprehensible way. Use as confining "
 "terms as possible to make it easier to find and understand the data."
 msgstr ""
+"Beskriv datamängdens innehåll, insamlingsprocess, kvalitet och eventuella "
+"begränsningar, brister och tillämpningar på ett lättbegripligt sätt. Använd "
+"så avgränsande termer som möjligt för att göra det enklare att hitta "
+"datamängden och förstå innehållet."
 
 #: ckanext/registrydata/translations.py:34
 msgid "Keywords and categories"
-msgstr ""
+msgstr "Nyckelord och kategorier"
 
 #: ckanext/registrydata/translations.py:35
 msgid ""
 "Keywords help users to find your data. Select at least one keyword in "
 "Finnish and Swedish."
 msgstr ""
+"Nyckelorden gör det lättare att hitta dina data. Välj minst ett finskt och "
+"ett svenskt nyckelord."
 
 #: ckanext/registrydata/translations.py:36
 msgid "Select at least one category."
-msgstr ""
+msgstr "Välj en eller flera kategorier som beskriver dina data."
 
 #: ckanext/registrydata/translations.py:37
 msgid "Dataset additional information"
-msgstr ""
+msgstr "Övrig information om datamängden"
 
 #: ckanext/registrydata/translations.py:38
 msgid ""
 "Select a license that suits your needs. We recommend using CC0 or CC BY 4 "
 "-licenses."
-msgstr ""
+msgstr "Välj en lämplig licens. Vi rekommenderar licenserna CC0 och CC BY 4."
 
 #: ckanext/registrydata/translations.py:39
 msgid "Collection type"
@@ -162,77 +170,81 @@ msgstr ""
 
 #: ckanext/registrydata/translations.py:42
 msgid "Rights"
-msgstr ""
+msgstr "Mer infromation om användningsrättigheter"
 
 #: ckanext/registrydata/translations.py:43
 msgid "High value dataset"
-msgstr ""
+msgstr "Värdefull datamängd"
 
 #: ckanext/registrydata/translations.py:44
 msgid "You can mark dataset as high value dataset"
 msgstr ""
+"Du kan sätta datamängden som värdefull datamängd. Värdefulla datamängder är "
+"offentliga förvaltningens dokument och data som har särsklit värde för "
+"samhället, miljön och ekonomin."
 
 #: ckanext/registrydata/translations.py:45
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ckanext/registrydata/translations.py:46
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: ckanext/registrydata/translations.py:47
 msgid "Links to additional information"
-msgstr ""
+msgstr "Länkar till mer information"
 
 #: ckanext/registrydata/translations.py:48
 msgid ""
 "Add links to one or more websites with additional information about the "
 "data."
 msgstr ""
+"Lägg till en eller flera webbplatser som ger mer information om datan."
 
 #: ckanext/registrydata/translations.py:49
 msgid "e.g. www.dvv.fi"
-msgstr ""
+msgstr "t.ex. www.dvv.fi"
 
 #: ckanext/registrydata/translations.py:50
 msgid "Add link"
-msgstr ""
+msgstr "Lägg till en länk"
 
 #: ckanext/registrydata/translations.py:51
 msgid "Update frequency"
-msgstr ""
+msgstr "Uppdateringsfrekvens"
 
 #: ckanext/registrydata/translations.py:52
 msgid "Describe how often your data is updated"
-msgstr ""
+msgstr "Berätta hur ofta datamängden uppdateras"
 
 #: ckanext/registrydata/translations.py:53
 msgid "e.g. monthly"
-msgstr ""
+msgstr "t.ex. varje månad"
 
 #: ckanext/registrydata/translations.py:54
 msgid "Valid from"
-msgstr ""
+msgstr "Giltig fr.o.m."
 
 #: ckanext/registrydata/translations.py:55
 msgid "Valid till"
-msgstr ""
+msgstr "Giltig till"
 
 #: ckanext/registrydata/translations.py:56
 msgid "Dataset producer and maintainer"
-msgstr ""
+msgstr "Datamängdens producent och administratör"
 
 #: ckanext/registrydata/translations.py:57
 msgid "Select the dataset publisher (organisation)."
-msgstr ""
+msgstr "Välj datamängdens producent (organisation)."
 
 #: ckanext/registrydata/translations.py:58
 msgid "Dataset maintainer"
-msgstr ""
+msgstr "Datamängdens administratör"
 
 #: ckanext/registrydata/translations.py:59
 msgid "e.g. Digital and Population Data Services Agency"
-msgstr ""
+msgstr "t.ex. Myndigheten för digitalisering och befolkningsdata"
 
 #: ckanext/registrydata/translations.py:60
 msgid ""
@@ -245,19 +257,19 @@ msgstr ""
 
 #: ckanext/registrydata/translations.py:61
 msgid "Maintainer email"
-msgstr ""
+msgstr "Administratörens e-post"
 
 #: ckanext/registrydata/translations.py:62
 msgid "e.g. rekisteridata@dvv.fi"
-msgstr ""
+msgstr "t.ex. suojattudata@dvv.fi"
 
 #: ckanext/registrydata/translations.py:63
 msgid "Maintainer website"
-msgstr ""
+msgstr "Administratörens webbplats"
 
 #: ckanext/registrydata/translations.py:64
 msgid "e.g. www.rekisteridata.fi"
-msgstr ""
+msgstr "t.ex. suojattudata@dvv.fi"
 
 #: ckanext/registrydata/translations.py:65
 msgid ""
@@ -298,10 +310,12 @@ msgid ""
 "Write a short and descriptive name for the data resource. If the data covers"
 " a specific time frame, mention that in the name."
 msgstr ""
+"Ange ett kort och beskrivande namn för distributionen. Om data endast täcker"
+" en viss tidsintervall, uppge detta i namnet."
 
 #: ckanext/registrydata/translations.py:74
 msgid "e.g. Most popular Finnish first names 2019"
-msgstr ""
+msgstr "t.ex. de mest populära förnamnen i Finland 2019"
 
 #: ckanext/registrydata/translations.py:75
 msgid "Resource *"
@@ -321,7 +335,7 @@ msgstr ""
 
 #: ckanext/registrydata/translations.py:79
 msgid "Size"
-msgstr ""
+msgstr "Storlek"
 
 #: ckanext/registrydata/translations.py:80
 msgid "Data resource description"
@@ -343,15 +357,15 @@ msgstr ""
 
 #: ckanext/registrydata/translations.py:84
 msgid "Write a rights statement for the resource"
-msgstr ""
+msgstr "Beskriv datamängdens användningsrättigheter"
 
 #: ckanext/registrydata/translations.py:85
 msgid "Endpoint URL"
-msgstr ""
+msgstr "Länk till gränssnittet"
 
 #: ckanext/registrydata/translations.py:86
 msgid "Distribution visibility"
-msgstr ""
+msgstr "Distributionens synlighet"
 
 #: ckanext/registrydata/translations.py:87
 msgid ""
@@ -359,10 +373,13 @@ msgid ""
 "distribution is missing some information. Private distributions are visible "
 "to all members of the producer-organisation."
 msgstr ""
+"Du kan tillfälligt sätta synligheten för distributionen till privat till "
+"exempel om data är bristfälliga. Privata distributioner visas för alla "
+"inloggade medlemmar i producentorganisationen."
 
 #: ckanext/registrydata/translations.py:88
 msgid "Data status"
-msgstr ""
+msgstr "Status för distribution"
 
 #: ckanext/registrydata/translations.py:89
 msgid ""
@@ -372,15 +389,15 @@ msgstr ""
 
 #: ckanext/registrydata/translations.py:90
 msgid "Current version"
-msgstr ""
+msgstr "Nuvarande"
 
 #: ckanext/registrydata/translations.py:91
 msgid "Draft version"
-msgstr ""
+msgstr "Utkast"
 
 #: ckanext/registrydata/translations.py:92
 msgid "Archived version"
-msgstr ""
+msgstr "Arkiverad"
 
 #: ckanext/registrydata/translations.py:93
 msgid "Coordinate system"
@@ -408,7 +425,7 @@ msgstr ""
 
 #: ckanext/registrydata/translations.py:98
 msgid "e.g. a month"
-msgstr ""
+msgstr "t.ex. en månad"
 
 #: ckanext/registrydata/translations.py:99
 msgid "Time Frame"
@@ -571,7 +588,7 @@ msgstr "All finsk skyddade data på en portal"
 
 #: ckanext/registrydata/templates/home/layout1.html:6
 msgid "show all datasets"
-msgstr "visa alla detamängder"
+msgstr "visa alla datamängder"
 
 #: ckanext/registrydata/templates/home/layout1.html:8
 msgid "datasets"
@@ -694,7 +711,7 @@ msgstr "Lägg till en datamängd"
 
 #: ckanext/registrydata/templates/package/edit.html:7
 msgid "Edit dataset"
-msgstr ""
+msgstr "Redigera datamängden"
 
 #: ckanext/registrydata/templates/package/edit.html:13
 #: ckanext/registrydata/templates/package/resources.html:13
@@ -716,20 +733,20 @@ msgstr ""
 #: ckanext/registrydata/templates/package/resource_edit_base.html:35
 #: ckanext/registrydata/templates/package/resources.html:28
 msgid "Close without saving"
-msgstr ""
+msgstr "Stäng utan att spara"
 
 #: ckanext/registrydata/templates/package/new.html:13
 msgid "Create new dataset"
-msgstr ""
+msgstr "Skapa en ny datamängd"
 
 #: ckanext/registrydata/templates/package/new.html:23
 #: ckanext/registrydata/templates/package/new_resource.html:23
 msgid "Stages"
-msgstr ""
+msgstr "Steg"
 
 #: ckanext/registrydata/templates/package/new_package_form.html:5
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: ckanext/registrydata/templates/package/new_package_form.html:7
 msgid "Update"
@@ -751,7 +768,7 @@ msgstr ""
 #: ckanext/registrydata/templates/package/snippets/resource_form.html:18
 #: ckanext/registrydata/templates/package/snippets/resource_form.html:22
 msgid "Abort"
-msgstr ""
+msgstr "Avbryt"
 
 #: ckanext/registrydata/templates/package/new_resource.html:15
 msgid "Add data to the dataset"
@@ -830,11 +847,11 @@ msgstr ""
 
 #: ckanext/registrydata/templates/package/resources.html:7
 msgid "Edit resources"
-msgstr ""
+msgstr "Redigera distributioner"
 
 #: ckanext/registrydata/templates/package/resources.html:27
 msgid "Add new resource"
-msgstr ""
+msgstr "Lägg till en ny distribution"
 
 #: ckanext/registrydata/templates/package/resources.html:50
 #, python-format
@@ -842,6 +859,8 @@ msgid ""
 "<p class=\"empty\"> This dataset has no data, <a href=\"%(url)s\">why not "
 "add some?</a> </p>"
 msgstr ""
+"<p class=\"empty\">Denna datamängd har ännu inga distributioner. <a "
+"href=\"%(url)s\">Lägg till en distribution.</a></p>"
 
 #: ckanext/registrydata/templates/package/search.html:30
 #: ckanext/registrydata/templates/snippets/search_form.html:4
@@ -926,7 +945,7 @@ msgstr "Utkast"
 
 #: ckanext/registrydata/templates/package/snippets/dataset_state_banner.html:10
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #: ckanext/registrydata/templates/package/snippets/package_form.html:23
 msgid "Next: Add Data"
@@ -1016,7 +1035,7 @@ msgstr ""
 
 #: ckanext/registrydata/templates/package/snippets/resources_list.html:14
 msgid "Data and Resources"
-msgstr ""
+msgstr "Distributioner"
 
 #: ckanext/registrydata/templates/package/snippets/resources_list.html:28
 #, python-format
