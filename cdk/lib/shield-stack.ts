@@ -5,7 +5,7 @@ import {
   aws_shield,
   aws_sns,
   aws_ssm,
-  aws_wafv2, Lazy,
+  aws_wafv2,
   Stack, Token, CfnParameter
 } from "aws-cdk-lib";
 import {Construct} from "constructs";
@@ -44,7 +44,7 @@ export class ShieldStack extends Stack {
       addresses: whitelisted_ips.stringListValue
     })
 
-    
+
     const highPriorityCountryCodesParameter = new CfnParameter(this,  'highPriorityCountryCodesParameter', {
       type: 'AWS::SSM::Parameter::Value<List<String>>',
       default: `/${props.environment}/waf/high_priority_country_codes`
