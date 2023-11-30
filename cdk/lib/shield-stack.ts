@@ -6,7 +6,7 @@ import {
   aws_sns,
   aws_ssm,
   aws_wafv2,
-  Stack
+  Stack, Token, CfnParameter
 } from "aws-cdk-lib";
 import {Construct} from "constructs";
 
@@ -32,21 +32,24 @@ export class ShieldStack extends Stack {
 
     const cfnBannedIPSet = new aws_wafv2.CfnIPSet(this, 'BannedIPSet', {
       name: 'banned-ips',
-      scope: 'regional',
+      scope: 'REGIONAL',
       ipAddressVersion: "IPV4",
       addresses: banned_ips.stringListValue
     })
 
     const cfnWhiteListedIpSet = new aws_wafv2.CfnIPSet(this, 'WhitelistedIPSet', {
       name: 'whitelisted-ips',
-      scope: 'regional',
+      scope: 'REGIONAL',
       ipAddressVersion: "IPV4",
       addresses: whitelisted_ips.stringListValue
     })
 
 
-    const highPriorityCountryCodes = aws_ssm.StringListParameter.fromStringListParameterName(this, 'highPriorityCountryCodes',
-      `/${props.environment}/waf/high_priority_country_codes`);
+    const highPriorityCountryCodesParameter = new CfnParameter(this,  'highPriorityCountryCodesParameter', {
+      type: 'AWS::SSM::Parameter::Value<List<String>>',
+      default: `/${props.environment}/waf/high_priority_country_codes`
+    });
+
 
     const highPriorityRateLimit = aws_ssm.StringParameter.fromStringParameterName(this, 'highPriorityRateLimit',
       `/${props.environment}/waf/high_priority_rate_limit`);
@@ -107,7 +110,7 @@ export class ShieldStack extends Stack {
           notStatement: {
             statement: {
               geoMatchStatement: {
-                countryCodes: highPriorityCountryCodes.stringListValue
+                countryCodes: highPriorityCountryCodesParameter.valueAsList
               }
             }
           }
@@ -127,11 +130,11 @@ export class ShieldStack extends Stack {
         },
         statement: {
           rateBasedStatement: {
-            limit: parseInt(highPriorityRateLimit.stringValue, 10),
+            limit: Token.asNumber(highPriorityRateLimit.stringValue),
             aggregateKeyType: "IP",
             scopeDownStatement: {
               geoMatchStatement: {
-                countryCodes: highPriorityCountryCodes.stringListValue
+                countryCodes: highPriorityCountryCodesParameter.valueAsList
               }
             }
           }
@@ -151,13 +154,13 @@ export class ShieldStack extends Stack {
         },
         statement: {
           rateBasedStatement: {
-            limit: parseInt(rateLimit.stringValue, 10),
+            limit: Token.asNumber(rateLimit.stringValue),
             aggregateKeyType: "IP",
             scopeDownStatement: {
               notStatement: {
                 statement: {
                   geoMatchStatement: {
-                    countryCodes: highPriorityCountryCodes.stringListValue
+                    countryCodes: highPriorityCountryCodesParameter.valueAsList
                   }
                 }
               }
@@ -228,7 +231,7 @@ export class ShieldStack extends Stack {
 
 
     const cfnWebAcl = new aws_wafv2.CfnWebACL(this, 'WAFWebACL', {
-      scope: "regional",
+      scope: "REGIONAL",
       defaultAction: {
         allow: {}
       },
