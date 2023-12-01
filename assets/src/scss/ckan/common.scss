@@ -28,6 +28,12 @@
       content: none;
       border: none;
     }
+
+    &.no-nav {
+      .module {
+        flex: 1 0;
+      }
+    }
   }
 
   .primary {
