@@ -244,6 +244,11 @@ export class ShieldStack extends Stack {
     })
 
 
+    new aws_wafv2.CfnWebACLAssociation(this, 'WafAssociation', {
+      resourceArn: props.loadBalancer.loadBalancerArn,
+      webAclArn: cfnWebAcl.attrArn
+    })
+
     const WafAutomationArn = aws_ssm.StringParameter.fromStringParameterName(this, 'WafAutomationArn',
       `/${props.environment}/waf/waf_automation_arn`);
 
@@ -261,6 +266,5 @@ export class ShieldStack extends Stack {
     const eventSource = new aws_lambda_event_sources.SnsEventSource(topic);
 
     WafAutomationLambdaFunction.addEventSource(eventSource)
-
   }
 }
