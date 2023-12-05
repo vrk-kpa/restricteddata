@@ -21,7 +21,7 @@
     placeholder=h.scheming_language_text(field.form_placeholder),
     value=data[field.field_name + '-' + lang]
     or ','.join(data.get(field.field_name, {}).get(lang, [])),
-    error=errors[field.field_name + '-' + lang],
+    error=errors[field.field_name],
     classes=['control-full', 'label-on-top', 'rd-select2-tags'],
     attrs=attrs_with_locale,
     is_required=lang in field.required_languages,
