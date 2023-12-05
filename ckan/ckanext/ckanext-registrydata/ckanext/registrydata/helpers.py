@@ -10,6 +10,9 @@ from datetime import datetime, timedelta
 import iso8601
 import requests
 
+from ckan.lib.helpers import build_nav_main as ckan_build_nav_main
+from ckanext.pages.plugin import build_pages_nav_main as pages_build_nav_main
+
 
 log = getLogger(__name__)
 _ = toolkit._
@@ -188,3 +191,10 @@ def scheming_category_list(args):
 
 def check_group_selected(val, data):
     return any(x['name'] == val for x in data)
+
+
+def build_nav_main(*args, pages=False):
+    if pages:
+        return pages_build_nav_main(*args)
+    else:
+        return ckan_build_nav_main(*args)
