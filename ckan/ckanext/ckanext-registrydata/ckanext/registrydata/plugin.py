@@ -49,7 +49,8 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_homepage_news': helpers.get_homepage_news,
             'get_homepage_groups': helpers.get_homepage_groups,
             'scheming_category_list': helpers.scheming_category_list,
-            'check_group_selected': helpers.check_group_selected
+            'check_group_selected': helpers.check_group_selected,
+            'build_nav_main': helpers.build_nav_main
         }
 
     # IValidators:
