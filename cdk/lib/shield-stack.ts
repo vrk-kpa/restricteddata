@@ -6,7 +6,7 @@ import {
   aws_sns,
   aws_ssm,
   aws_wafv2,
-  Stack, Token, CfnParameter
+  Stack, Token, CfnParameter, aws_sns_subscriptions
 } from "aws-cdk-lib";
 import {Construct} from "constructs";
 
@@ -254,14 +254,13 @@ export class ShieldStack extends Stack {
 
     const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", WafAutomationArn.stringValue)
 
-    const CloudWatchAlarmArn = aws_ssm.StringParameter.fromStringParameterName(this, 'CloudWatchAlarmArn',
-      `/${props.environment}/waf/cloudwatch_alarm_arn`);
+    const SNSTopicArn = aws_ssm.StringParameter.fromStringParameterName(this, 'SNSTopicArn',
+      `/${props.environment}/waf/sns_topic_arn`);
 
-    const DDoSDetectedAlarm = aws_cloudwatch.Alarm.fromAlarmArn(this, "DDosDetectedAlarm", CloudWatchAlarmArn.stringValue)
 
-    const topic = new aws_sns.Topic(this, 'DDoSProtectionTopic', {
-      displayName: 'DDoS protection',
-    });
+    const topic =  aws_sns.Topic.fromTopicArn(this, "AlarmTopic", SNSTopicArn.stringValue)
+
+    topic.addSubscription(new aws_sns_subscriptions.LambdaSubscription(WafAutomationLambdaFunction))
 
     const eventSource = new aws_lambda_event_sources.SnsEventSource(topic);
 
