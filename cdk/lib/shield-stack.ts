@@ -258,12 +258,9 @@ export class ShieldStack extends Stack {
       `/${props.environment}/waf/sns_topic_arn`);
 
 
-    const topic =  aws_sns.Topic.fromTopicArn(this, "AlarmTopic", SNSTopicArn.stringValue)
+    const topic =  aws_sns.Topic.fromTopicArn(this, "SNSTopic", SNSTopicArn.stringValue)
 
     topic.addSubscription(new aws_sns_subscriptions.LambdaSubscription(WafAutomationLambdaFunction))
 
-    const eventSource = new aws_lambda_event_sources.SnsEventSource(topic);
-
-    WafAutomationLambdaFunction.addEventSource(eventSource)
   }
 }
