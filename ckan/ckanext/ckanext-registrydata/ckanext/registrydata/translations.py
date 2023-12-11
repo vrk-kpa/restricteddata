@@ -77,7 +77,7 @@ def _translations():
     _("e.g. names")
     _("Dataset publisher and maintainer")
     _("Publisher")
-    _("You're currently viewing an old version of this dataset. Data files may not match the old version of the metadata. <a href=\"%(url)s\">View the current version</a>.")
+    _("You're currently viewing an old version of this dataset. Data files may not match the old version of the metadata. <a href=\"%(url)s\">View the current version</a>.")  # noqa: E501
     _("View changes from")
     _("to")
     _("Show metadata diff")
