@@ -1,9 +1,9 @@
-{% import 'scheming/macros/form.html' as form %}
+{% from 'macros/form/input_block.html' import input_block %}
 
 {% set user_is_sysadmin = h.check_access('sysadmin') %}
 
 {% if user_is_sysadmin %}
-  {%- call form.input_block(
+  {%- call input_block(
     label=h.scheming_language_text(field.label),
     classes=['control-medium'],
     error=errors[field.field_name],
