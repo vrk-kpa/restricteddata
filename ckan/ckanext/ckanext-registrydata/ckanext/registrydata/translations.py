@@ -27,21 +27,22 @@ def _translations():
     _("Dataset title")
     _("* Required field")
     _("e.g. Finnish names")
-    _("Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. You can edit the URL if you want.")  # noqa: E501
+    _("Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. If necessary, you can edit the URL.")  # noqa: E501
     _("Dataset description")
     _("Write a description for the dataset.")
-    _("Describe the dataset’s contents, collection process, quality and  possible limits, flaws and applications in a comprehensible way. Use as confining terms as possible to make it easier to find and understand the data.")  # noqa: E501
+    _("Describe the dataset’s contents, collection process, quality of the data and possible limits, flaws and applications in an easily understandable way.")  # noqa: E501
     _("Keywords and categories")
-    _("Keywords help users to find your data. Select at least one keyword in Finnish and Swedish.")  # noqa: E501
+    _("Select at least one keyword relating to your data that helps users to find your data.")  # noqa: E501
     _("Select at least one category.")
     _("Dataset additional information")
-    _("Select a license that suits your needs. We recommend using CC0 or CC BY 4 -licenses.")
+    _("Select a license that suits your needs.")
     _("Collection type")
     _("Restricted")
     _("Non-public")
     _("Rights")
     _("High value dataset")
     _("You can mark dataset as high value dataset")
+    _("Select access rights for your dataset:<br><br><b>Non-public</b> datasets may include resources that contain sensitive or personal information.<br><br><b>Restricted</b> datasets may include resources that require payment, resources shared under non-disclosure agreements, resources for which the publisher or owner has not yet decided if they can be publicly released.")
     _("Yes")
     _("No")
     _("Links to additional information")
@@ -84,16 +85,18 @@ def _translations():
 
     # Resource
     _("Data resource title")
-    _("Write a short and descriptive name for the data resource. If the data covers a specific time frame, mention that in the name.")  # noqa: E501
+    _("Give a short and descriptive name for the distribution. If the data covers a specific time frame, mention that in the name.")  # noqa: E501
     _("e.g. Most popular Finnish first names 2019")
     _("Resource *")
-    _("Add the data resource by adding a link to the data.")  # noqa: E501
+    _("Add the distribution by adding a link to the data.")  # noqa: E501
     _("Data")
     _("Resource URL")
+    _("Select a file format for the distribution")
     _("Size")
     _("Data resource description")
     _("Write a description for the resource")
     _("Describe the data clearly and concisely. Use as confining terms as possible to make it easier to find and understand the data.")  # noqa: E501
+    _("Describe terms and conditions for re-use. Include how to apply for use permit and information about possible payments and their principles.")
     _("Additional information")
     _("Write a rights statement for the resource")
     _("Endpoint URL")
@@ -135,7 +138,7 @@ def _translations():
     _("Common, compact and plain description about the organization")
     _("Other information")
     _("View Organization")
-    
+
     # Dashboard
     _("News feed")
     _("Activity from items that I'm following")
