@@ -42,7 +42,7 @@ def _translations():
     _("Rights")
     _("High value dataset")
     _("You can mark dataset as high value dataset")
-    _("Select access rights for your dataset:<br><br><b>Non-public</b> datasets may include resources that contain sensitive or personal information.<br><br><b>Restricted</b> datasets may include resources that require payment, resources shared under non-disclosure agreements, resources for which the publisher or owner has not yet decided if they can be publicly released.")
+    _("Select access rights for your dataset:<br><br><b>Non-public</b> datasets may include resources that contain sensitive or personal information.<br><br><b>Restricted</b> datasets may include resources that require payment, resources shared under non-disclosure agreements, resources for which the publisher or owner has not yet decided if they can be publicly released.")  # noqa: E501
     _("Yes")
     _("No")
     _("Links to additional information")
@@ -96,7 +96,7 @@ def _translations():
     _("Data resource description")
     _("Write a description for the resource")
     _("Describe the data clearly and concisely. Use as confining terms as possible to make it easier to find and understand the data.")  # noqa: E501
-    _("Describe terms and conditions for re-use. Include how to apply for use permit and information about possible payments and their principles.")
+    _("Describe terms and conditions for re-use. Include how to apply for use permit and information about possible payments and their principles.")  # noqa: E501
     _("Additional information")
     _("Write a rights statement for the resource")
     _("Endpoint URL")
