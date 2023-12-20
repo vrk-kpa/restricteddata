@@ -124,7 +124,7 @@ jobs:
       - detect-changes
     if: ${{ needs.detect-changes.outputs.ckan == 'true' }}
     container:
-      image: ckan/ckan-dev:2.10.1
+      image: ckan/ckan-dev:2.10.3
     services:
       solr:
         image: ckan/ckan-solr:2.10-solr9
