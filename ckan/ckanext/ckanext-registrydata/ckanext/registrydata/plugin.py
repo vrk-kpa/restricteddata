@@ -155,6 +155,7 @@ class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(IPagesSchema)
+    plugins.implements(plugins.ITemplateHelpers)
 
     def update_config(self, config_):
         toolkit.add_template_directory(config_, "templates_pages")
@@ -168,9 +169,21 @@ class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'content_fi': [],
             'content_sv': [],
             'content_en': [],
-            # 'submenu_order': []
+            'submenu_order': []
             })
         return schema
+
+    # ITemplateHelpers
+    def get_helpers(self):
+        return {
+            'get_submenu_content': get_submenu_content
+        }
+
+
+def get_submenu_content():
+    pages_list = toolkit.get_action('ckanext_pages_list')(None, {'private': False})
+    submenu_pages = [page for page in pages_list if page.get('submenu_order')]
+    return sorted(submenu_pages, key=lambda p: p['submenu_order'])
 
 
 def create_vocabulary(name, defer=False):
