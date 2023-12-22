@@ -31,9 +31,7 @@
     {{ form.markdown('content_sv', id='field-content-sv', label=_('Content') + ' ' + _('SV'), placeholder=_('Enter content here'), value=data.content_sv, error=errors.content) }}
     {{ form.markdown('content_en', id='field-content-en', label=_('Content') + ' ' + _('EN'), placeholder=_('Enter content here'), value=data.content_en, error=errors.content) }}
   {% endif %}
-  {#
-    {{ form.select('submenu_order', label=_('Submenu Order'), options=[{'value': '', 'text': _('Not in menu')}, {'value': '1', 'text': '1'}, {'value': '2', 'text': '2'}, {'value': '3', 'text': '3'}, {'value': '4', 'text': '4'}, {'value': '5', 'text': '5'}, {'value': '6', 'text': '6'}], selected=data.submenu_order, error=errors.submenu_order) }}
-  #}
+  {{ form.select('submenu_order', label=_('Submenu Order'), options=[{'value': '', 'text': _('Not in menu')}, {'value': '1', 'text': '1'}, {'value': '2', 'text': '2'}, {'value': '3', 'text': '3'}, {'value': '4', 'text': '4'}, {'value': '5', 'text': '5'}, {'value': '6', 'text': '6'}], selected=data.submenu_order, error=errors.submenu_order) }}
 {% endblock extra_pages_form %}
 
 {% block form_content %}
