@@ -1,9 +1,9 @@
-{% import 'scheming/macros/form.html' as form %}
+{% from 'macros/form/input.html' import input %}
 
 {%- set values = data.get(field.field_name, [])
     + [''] * field.get('form_blanks', 3) -%}
 {%- for element in values -%}
-  {{ form.input(
+  {{ input(
     field.field_name + '-' ~ loop.index,
     id='field-' + field.field_name + '-' ~ loop.index,
     label=h.scheming_language_text(field.label) + ' ' ~ loop.index,

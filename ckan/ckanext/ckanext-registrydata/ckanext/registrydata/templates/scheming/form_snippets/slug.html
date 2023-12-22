@@ -1,4 +1,4 @@
-{% import 'scheming/macros/form.html' as form %}
+{% from 'macros/form/prepend.html' import prepend %}
 {% asset "registrydata/rd-slug-preview-js" %}
 
 {%- if entity_type == 'dataset' %}
@@ -19,7 +19,7 @@
 'data-module-prefix': domain,
 'data-module-placeholder': module_placeholder } -%}
 
-{{ form.prepend(field.field_name,
+{{ prepend(field.field_name,
 id='field-' + field.field_name,
 label=h.scheming_language_text(field.label) ,
 prepend=prefix,

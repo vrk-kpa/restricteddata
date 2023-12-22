@@ -1,4 +1,4 @@
-{% import 'scheming/macros/form.html' as form %}
+{% from 'macros/form/input.html' import input %}
 
 {% set langs = h.fluent_form_languages(field, entity_type, object_type, schema) %}
 {% set lang = langs[0] %}
@@ -8,7 +8,7 @@
     {% if loop.first and field.description and field.description.strip() %}
       {% set description = field.description %}
     {% endif %}
-    {% call form.input(
+    {% call input(
       field.field_name + '-' + lang,
       id='field-' + field.field_name + '-' + lang,
       label=_(field.label) + ' ' + _(lang|upper),

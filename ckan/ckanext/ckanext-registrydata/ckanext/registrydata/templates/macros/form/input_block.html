@@ -1,4 +1,5 @@
 {#
+ADDED DESCRIPTION PROPERTY
 A generic input_block for providing the default markup for CKAN form elements.
 It is expected to be called using a {% call %} block, the contents of which
 will be inserted into the .controls element.
@@ -10,6 +11,7 @@ classes - An array of custom classes for the outer element.
 control_classes - An array of custom classes for the .control wrapper.
 extra_html - An html string to be inserted after the errors eg. info text.
 is_required - Boolean of whether this input is requred for the form to validate
+description - Additional description text between the label and the input
 
 Example:
 
@@ -20,16 +22,17 @@ Example:
 
 #}
 
-{% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %}
+{% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false, description="") %}
   <div class="form-group{{ " error" if error }}{{ " " ~ classes | join(" ") }}">
     <label class="form-label" for="{{ for }}">
       {{ label or _("Custom") }}
       {% if is_required %}<span title="{{ _("This field is required") }}" class="control-required">*</span>{% endif %}
     </label>
-    <div class="controls{{ " " ~ control_classes | join(" ") }}">
+    {% if description and description.strip() %}<div class="field-description-text">{{ _(description) }}</div>{% endif %}
+      <div class="controls{{- ' ' ~ control_classes | join(" ") -}}">
       {{ caller() }}
       {% if error and error is iterable %}<span class="error-block">{{ error|join(", ") }}</span>{% endif %}
       {{ extra_html }}
-    </div>
+      </div>
   </div>
 {% endmacro %}

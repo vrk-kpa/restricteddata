@@ -1,6 +1,6 @@
-{% import 'scheming/macros/form.html' as form %}
+{% from 'macros/form/input.html' import input %}
 
-{% call form.input(
+{% call input(
     field.field_name,
     id='field-' + field.field_name,
     label=h.scheming_language_text(field.label),

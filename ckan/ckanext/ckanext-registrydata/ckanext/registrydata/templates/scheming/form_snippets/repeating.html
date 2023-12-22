@@ -1,7 +1,7 @@
-{% import 'scheming/macros/form.html' as form %}
+{% from 'macros/form/input_multiple.html' import input_multiple %}
 
 {% asset "registrydata/form-js" %}
-{{ form.input_multiple(
+{{ input_multiple(
     field.field_name,
     id='field-' + field.field_name,
     label=h.scheming_language_text(field.label),

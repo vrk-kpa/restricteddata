@@ -17,7 +17,7 @@
         "fi",
         "sv"
       ],
-      "description": "Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. You can edit the URL if you want.",
+      "description": "Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. If necessary, you can edit the URL.",
       "group_title": "Dataset title",
       "group_description": "* Required field"
     },
@@ -46,7 +46,7 @@
         "fi",
         "sv"
       ],
-      "description": "Describe the dataset's contents, collection process, quality and  possible limits, flaws and applications in a comprehensible way. Use as confining terms as possible to make it easier to find and understand the data.",
+      "description": "Describe the dataset’s contents, collection process, quality of the data and possible limits, flaws and applications in an easily understandable way.",
       "group_title": "Dataset description"
     },
     {
@@ -71,7 +71,7 @@
         "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?&vocabulary_id=keywords"
       },
       "group_title": "Keywords and categories",
-      "description": "Keywords help users to find your data. Select at least one keyword in Finnish and Swedish."
+      "description": "Select at least one keyword relating to your data that helps users to find your data."
     },
     {
       "field_name": "categories",
@@ -89,7 +89,7 @@
       "display_snippet": "license.html",
       "validators": "not_empty",
       "required": true,
-      "description": "Select a license that suits your needs. We recommend using CC0 or CC BY 4 -licenses.",
+      "description": "Select a license that suits your needs.",
       "group_title": "Dataset additional information"
     },
     {
@@ -148,6 +148,7 @@
       ],
       "default_value": "non-public",
       "validators": "keep_old_value_if_missing",
+      "description": "Select access rights for your dataset:<br><br><b>Non-public</b> datasets may include resources that contain sensitive or personal information.<br><br><b>Restricted</b> datasets may include resources that require payment, resources shared under non-disclosure agreements, resources for which the publisher or owner has not yet decided if they can be publicly released.",
       "required": true
     },
     {
@@ -277,7 +278,7 @@
       "form_attrs": {
         "class": "form-control"
       },
-      "description": "Write a short and descriptive name for the data resource. If the data covers a specific time frame, mention that in the name.",
+      "description": "Give a short and descriptive name for the distribution. If the data covers a specific time frame, mention that in the name.",
       "group_title": "Data resource title",
       "group_description": "* Required field"
     },
@@ -290,13 +291,13 @@
       "validators": "unicode_safe remove_whitespace not_empty url_validator",
       "upload_label": "Resource URL",
       "group_title": "Resource *",
-      "group_description": "Add the data resource by adding a link to the data."
+      "group_description": "Add the distribution by adding a link to the data."
     },
     {
       "field_name": "format",
       "label": "Format",
       "preset": "resource_format_autocomplete",
-      "description": "File format of the selected resource.",
+      "description": "Select a file format for the distribution",
       "validators": "if_empty_guess_format clean_format unicode_safe not_empty ",
       "required": true
     },
@@ -307,7 +308,7 @@
       },
       "label": "Size",
       "required": true,
-      "description": "Size of the added resource file in bytes. Will be automatically filled when the file is uploaded.",
+      "description": "Enter the file size in bytes.\n\nThe size can be approximated as a decimal if the precise size is not known. If data is offered via an API, enter the overall size of the underlying data.",
       "validators": "not_empty int_validator"
     },
     {
@@ -332,6 +333,7 @@
       "label": "Conditions for re-use",
       "preset": "fluent_markdown_editor",
       "validators": "fluent_text required_languages",
+      "description": "Describe terms and conditions for re-use. Include how to apply for use permit and information about possible payments and their principles.",
       "form_placeholder": "Write a rights statement for the resource",
       "form_languages": [
         "fi",
