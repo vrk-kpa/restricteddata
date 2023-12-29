@@ -11,7 +11,7 @@ from flask import has_request_context
 from ckanext.registrydata.cli import cli
 from collections import OrderedDict
 
-from . import helpers, validators, converters
+from . import helpers, validators, converters, views
 
 log = logging.getLogger(__name__)
 ResourceDict = Dict[str, Any]
@@ -25,12 +25,14 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IClick)
+    plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.IFacets, inherit=True)
 
     # IConfigurer
 
     def update_config(self, config_):
         toolkit.add_template_directory(config_, "templates")
+        toolkit.add_template_directory(config_, "doc")
         toolkit.add_public_directory(config_, "public")
         toolkit.add_resource("assets", "registrydata")
 
@@ -150,6 +152,10 @@ class RegistrydataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         ])
         return facets_dict
 
+    # IBlueprint
+
+    def get_blueprint(self):
+        return views.get_blueprints()
 
 class RegistrydataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.ITranslation)
