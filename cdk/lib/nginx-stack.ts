@@ -94,6 +94,19 @@ export class NginxStack extends Stack {
       openListener: false
     });
 
+    this.nginxService.listener.addCertificates("certificates", [props.newCertificate])
+
+    this.nginxService.listener.addAction("Redirect", {
+      action: aws_elasticloadbalancingv2.ListenerAction.redirect({
+        host: props.secondaryDomainName,
+        permanent: true
+      }),
+      conditions: [
+        aws_elasticloadbalancingv2.ListenerCondition.hostHeaders([props.domainName])
+      ],
+      priority: 10
+    })
+
 
     this.nginxService.targetGroup.configureHealthCheck({
       path: '/health',
@@ -116,6 +129,11 @@ export class NginxStack extends Stack {
 
     const rootRecord = new aws_route53.ARecord(this, 'subDomainRecord', {
       zone: props.zone,
+      target: aws_route53.RecordTarget.fromAlias(new aws_route53_targets.LoadBalancerTarget(props.loadBalancer))
+    })
+
+    const newRecord = new aws_route53.ARecord(this, 'newSubDomainRecord', {
+      zone: props.newZone,
       target: aws_route53.RecordTarget.fromAlias(new aws_route53_targets.LoadBalancerTarget(props.loadBalancer))
     })
   }
