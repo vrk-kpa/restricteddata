@@ -86,7 +86,6 @@ export class CkanStack extends Stack {
 
     const ckanContainerEnv: {[key: string]: string} = {
       // env.ckan
-      CKAN_SITE_URL: `https://${props.domainName}`,
       CKAN_SITE_ID: 'default',
       CKAN_PLUGINS_DEFAULT: ckanPluginsDefault.join(' '),
       CKAN_PLUGINS: ckanPlugins.join(' '),
