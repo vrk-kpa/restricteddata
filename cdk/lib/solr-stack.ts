@@ -11,7 +11,7 @@ export class SolrStack extends Stack {
     super(scope, id, props);
 
     const solrLogGroup = new aws_logs.LogGroup(this, 'solrLogGroup', {
-      logGroupName: `/${props.environment}/registrydata/solr`,
+      logGroupName: `/${props.environment}/restricteddata/solr`,
     });
 
     const solrRepo = aws_ecr.Repository.fromRepositoryArn(this, 'solrRepo',

@@ -231,7 +231,7 @@ COPY ckanext/ckanext-fluent/requirements.txt ${EXT_DIR}/ckanext-fluent/requireme
 COPY ckanext/ckanext-markdown_editor/requirements.txt ${EXT_DIR}/ckanext-markdown_editor/requirements.txt
 COPY ckanext/ckanext-pages/requirements.txt ${EXT_DIR}/ckanext-pages/requirements.txt
 COPY ckanext/ckanext-harvest/requirements.txt ${EXT_DIR}/ckanext-harvest/requirements.txt
-COPY ckanext/ckanext-registrydata/requirements.txt ${EXT_DIR}/ckanext-registrydata/requirements.txt
+COPY ckanext/ckanext-restricteddata/requirements.txt ${EXT_DIR}/ckanext-restricteddata/requirements.txt
 RUN ${SCRIPT_DIR}/install_extension_requirements.sh
 
 # copy extensions

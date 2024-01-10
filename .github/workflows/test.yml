@@ -118,7 +118,7 @@ jobs:
           REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
   test:
-    name: Test registrydata extensions
+    name: Test restricteddata extensions
     runs-on: ubuntu-latest
     needs:
       - detect-changes
@@ -159,7 +159,7 @@ jobs:
     - name: Install requirements
       run: |
         apk add proj proj-dev proj-util geos
-        cd ckan/ckanext/ckanext-registrydata
+        cd ckan/ckanext/ckanext-restricteddata
         pip install -r dev-requirements.txt
         pip install -r requirements.txt
         pip install -e .
@@ -181,7 +181,7 @@ jobs:
         pip install -e .
     - name: Run tests
       run: |
-        pytest --ckan-ini=ckan/ckanext/ckanext-registrydata/test.ini --cov=ckanext.registrydata --disable-warnings ckan/ckanext/ckanext-registrydata/ckanext/registrydata/tests
+        pytest --ckan-ini=ckan/ckanext/ckanext-restricteddata/test.ini --cov=ckanext.restricteddata --disable-warnings ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/tests
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
       with:

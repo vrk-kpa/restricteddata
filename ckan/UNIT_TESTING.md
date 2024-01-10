@@ -7,7 +7,7 @@
 In the `services` section
 ```yaml
 solr-test:
-  image: registrydata/solr:latest
+  image: restricteddata/solr:latest
   build:
     context: ./solr
   expose:
@@ -35,14 +35,14 @@ ckan.redis.url = redis://redis:6379/1
 ```
 
 **3. Start the solr-test container**
-`docker-compose -p registrydata up -d solr-test`
+`docker-compose -p restricteddata up -d solr-test`
 
 **4. Start a shell in ckan-container**
-`docker exec -it registrydata-ckan-1 bash`
+`docker exec -it restricteddata-ckan-1 bash`
 
 **5. Run pytest**
 ```bash
-cd ckanext/ckanext-registrydata
+cd ckanext/ckanext-restricteddata
 pytest
 ```
 

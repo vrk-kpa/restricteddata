@@ -11,10 +11,10 @@ export class CkanStack extends Stack {
     super(scope, id, props);
 
     const pSysadminUser = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pSysadminUser', {
-      parameterName: `/${props.environment}/registrydata/sysadmin_user`,
+      parameterName: `/${props.environment}/restricteddata/sysadmin_user`,
     });
     const pSysadminEmail = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pSysadminEmail', {
-      parameterName: `/${props.environment}/registrydata/sysadmin_email`,
+      parameterName: `/${props.environment}/restricteddata/sysadmin_email`,
     });
 
     const pSmtpHost = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pSmtpHost', {

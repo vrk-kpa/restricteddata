@@ -37,8 +37,8 @@ const paths = {
     javascript: "assets/src/javascript/",
     fontawesome: "node_modules/@fortawesome/fontawesome-pro/",
   },
-  ckanAssets: "ckan/ckanext/ckanext-registrydata/ckanext/registrydata/assets/",
-  ckanPublic: "ckan/ckanext/ckanext-registrydata/ckanext/registrydata/public/"
+  ckanAssets: "ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/assets/",
+  ckanPublic: "ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/public/"
 };
 
 // Delete any previously generated assets
@@ -90,7 +90,7 @@ const ckanSass = () => {
   return src(paths.src.scss + "ckan/**/*.scss", { sourcemaps: true })
     .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }).on('error', sass.logError))
     .pipe(cleancss({ keepBreaks: false }))
-    .pipe(concat('registrydata.css'))
+    .pipe(concat('restricteddata.css'))
     .pipe(dest(paths.ckanAssets + "css", { sourcemaps: './maps' }))
 };
 

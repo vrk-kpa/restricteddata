@@ -1,0 +1,59 @@
+#js:
+#  filter: rjsmin
+#  output: restricteddata/%(version)s-restricteddata.js
+#  contents:
+#    - javascript/restricteddata.js
+#  extra:
+#    preload:
+#      - base/main
+
+css:
+  filter: cssrewrite
+  output: restricteddata/%(version)s-restricteddata.css
+  contents:
+    - css/restricteddata.css
+
+form-js:
+   filter: rjsmin
+   output: restricteddata/%(version)s-restricteddata-form.js
+   contents:
+     - modules/form.js
+   extra:
+     preload:
+      - base/main
+
+resource-reorder-js:
+   filter: rjsmin
+   output: restricteddata/%(version)s-restricteddata-resource-reorder.js
+   extra:
+     preload:
+      - base/main
+   contents:
+     - modules/rd-resource-reorder.js
+
+rd-select2-tags-js:
+  output: restricteddata/%(version)s-rd-select2-tags.js
+  filters: rjsmin
+  extra:
+    preload:
+      - vendor/vendor
+  contents:
+    - javascript/rd-select2-tags.js
+
+rd-slug-preview-js:
+  output: restricteddata/%(version)s-rd-slug-preview.js
+  filters: rjsmin
+  extra:
+    preload:
+      - vendor/jquery
+  contents:
+    - javascript/rd-slug-preview.js
+
+categories-js:
+  output: restricteddata/%(version)s-rd-categories.js
+  filters: rjsmin
+  extra:
+    preload:
+      - vendor/jquery
+  contents:
+    - javascript/rd-categories.js
