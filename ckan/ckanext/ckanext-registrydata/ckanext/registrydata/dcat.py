@@ -1,4 +1,8 @@
-from ckanext.dcat.profiles import EuropeanDCATAP2Profile, RDF, DCT, DCAT, ADMS, VCARD, Literal, URIRef, BNode
+from ckan.plugins import toolkit
+from ckanext.dcat.profiles import (
+    EuropeanDCATAP2Profile,
+    XSD, RDF, DCT, DCAT, FOAF, ADMS, VCARD,
+    Literal, URIRef, BNode)
 
 
 class RegistrydataDCATAPProfile(EuropeanDCATAP2Profile):
@@ -70,6 +74,12 @@ class RegistrydataDCATAPProfile(EuropeanDCATAP2Profile):
                 self._add_triple_from_dict(resource_dict, temporal, DCAT.endDate,
                                            'temporal_coverage_till', date_value=True)
 
+            for size in self.g[distribution:DCAT.byteSize]:
+                if size.datatype is not XSD.nonNegativeInteger:
+                    self.g.remove((distribution, DCAT.byteSize, size))
+                    value = Literal(int(size.value), datatype=XSD.nonNegativeInteger)
+                    self.g.add((distribution, DCAT.byteSize, value))
+
         return dataset_dict
 
     def _add_fluent_text_fields(self, source_dict, ref, field_predicates):
@@ -85,3 +95,26 @@ class RegistrydataDCATAPProfile(EuropeanDCATAP2Profile):
                 if value:
                     self.g.add((ref, predicate, Literal(value, lang=language)))
 
+    def graph_from_catalog(self, catalog_dict, catalog_ref):
+        super(EuropeanDCATAP2Profile, self).graph_from_catalog(catalog_dict,
+                                                               catalog_ref)
+
+        # Catalog description is required, so add an empty one if it is missing
+        if not list(self.g[catalog_ref:DCT.description]):
+            self.g.add((catalog_ref, DCT.description, Literal('')))
+
+        # Catalog publisher is required, so add it if it is missing
+        if not list(self.g[catalog_ref:DCT.publisher]):
+            publisher = BNode()
+            self.g.add((publisher, RDF.type, FOAF.Organization))
+            self.g.add((publisher, FOAF.hasSite,
+                       URIRef(toolkit.config.get('ckan.site_url', ''))))
+            names = [
+                ('fi', 'Digi- ja väestötietovirasto'),
+                ('sv', 'Myndigheten för digitalisering och befolkningsdata'),
+                ('en', 'Digital and Population Data Services Agency'),
+            ]
+            for language, name in names:
+                value = Literal(name, lang=language)
+                self.g.add((publisher, FOAF.name, value))
+            self.g.add((catalog_ref, DCT.publisher, publisher))
