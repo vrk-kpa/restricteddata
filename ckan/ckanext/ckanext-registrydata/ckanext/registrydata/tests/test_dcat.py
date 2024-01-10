@@ -222,7 +222,7 @@ def test_dcat_resource_with_minimal_resource(app):
 
     assert url == URIRef(resource_fields['url'])
     assert format == Literal(resource_fields['format'])
-    assert size == Literal(resource_fields['size'], datatype=XSD.decimal)
+    assert size == Literal(resource_fields['size'], datatype=XSD.nonNegativeInteger)
     assert license == Literal(dataset_fields['license_id'])
     assert maturity == Literal(resource_fields['maturity'])
     assert rights_fi == Literal(resource_fields['rights_translated']['fi'], lang='fi')

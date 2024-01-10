@@ -1,3 +1,9 @@
+# DCAT-AP 3.0.0 release SHACL with the following changes:
+# - Disabled some class and node kind checks to allow literal values 
+#   due to https://github.com/SEMICeu/DCAT-AP/issues/266
+# - Added a shape for validating vcard:Kind variants
+
+@prefix : <http://suojattudata.suomi.fi/ns#> .
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -145,7 +151,7 @@
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for change type"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#CatalogueRecordShape/29ba27566ab1f32c8bb73f3492436d4bd868d3d2> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#CatalogueRecord.language";
-  shacl:class dc:LinguisticSystem;
+  # disabled to allow literals: shacl:class dc:LinguisticSystem;
   shacl:description "A language used in the textual metadata describing titles, descriptions, etc. of the Dataset."@en;
   shacl:name "language"@en;
   shacl:path dc:language;
@@ -376,7 +382,8 @@
   <https://purl.eu/ns/shacl#message> "The expected value for is part of is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#CatalogueShape/29ba27566ab1f32c8bb73f3492436d4bd868d3d2> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Catalogue.language";
-  shacl:class dc:LinguisticSystem;
+  # disabled to allow literals: shacl:class dc:LinguisticSystem;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:description "A language used in the textual metadata describing titles, descriptions, etc. of the Datasets in the Catalogue."@en;
   shacl:name "language"@en;
   shacl:path dc:language;
@@ -398,7 +405,7 @@
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#CatalogueShape/3844f5a8620973800a0f9d6121572dbe0082c955> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Catalogue.rights";
   shacl:description "A statement that specifies rights associated with the Catalogue."@en;
-  shacl:maxCount 1;
+  # disabled for multilingual support shacl:maxCount 1;
   shacl:name "rights"@en;
   shacl:path dc:rights;
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for rights"@en .
@@ -516,7 +523,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for geographical coverage is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#CatalogueShape/99435c17158fbaa12d1d955b8886d5bf935ab016> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Catalogue.rights";
-  shacl:class dc:RightsStatement;
+  # disabled to allow literals: shacl:class dc:RightsStatement;
   shacl:description "A statement that specifies rights associated with the Catalogue."@en;
   shacl:name "rights"@en;
   shacl:path dc:rights;
@@ -609,7 +616,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#CatalogueShape/db878f1cb93930f64561d0504123c66feacfad5a> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Catalogue.language";
   shacl:description "A language used in the textual metadata describing titles, descriptions, etc. of the Datasets in the Catalogue."@en;
   shacl:name "language"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:language;
   <https://purl.eu/ns/shacl#message> "The expected value for language is a rdfs:Resource (URI or blank node)"@en .
 
@@ -789,7 +796,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DataServiceShape/10c0ca4deadefb51c529f56ee01caf9bd2639ef4> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DataService.accessrights";
   shacl:description "Information regarding access or restrictions based on privacy, security, or other policies."@en;
   shacl:name "access rights"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accessRights;
   <https://purl.eu/ns/shacl#message> "The expected value for access rights is a rdfs:Resource (URI or blank node)"@en .
 
@@ -952,7 +959,7 @@
   <https://purl.eu/ns/shacl#message> "The range of geographical coverage must be of type <http://purl.org/dc/terms/Location>."@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/04d197dc40f01e87093bdd0446a9fdb1a9d44319> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.frequency";
-  shacl:class dc:Frequency;
+  # disabled to allow literals: shacl:class dc:Frequency;
   shacl:description "The frequency at which the Dataset Series is updated."@en;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
@@ -982,7 +989,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/63a8cf23801ef605734507c621693524f22476dd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.frequency";
   shacl:description "The frequency at which the Dataset Series is updated."@en;
   shacl:name "frequency"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "The expected value for frequency is a rdfs:Resource (URI or blank node)"@en .
 
@@ -1022,7 +1029,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for first is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/7b6713c1f4a52e964f5db57eabef294b6d04e90e> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.contactpoint";
-  shacl:class vcard:Kind;
+  shacl:shape :VcardKind_Shape; # Replaced to describe variants: shacl:class vcard:Kind;
   shacl:description "Contact information that can be used for sending comments about the Dataset Series."@en;
   shacl:name "contact point"@en;
   shacl:path dcat:contactPoint;
@@ -1037,7 +1044,7 @@
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/84229f2224810ba9c70b4b27f756414cc0353324> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.frequency";
   shacl:description "The frequency at which the Dataset Series is updated."@en;
-  shacl:maxCount 1;
+  # disabled to allow multilingual content: shacl:maxCount 1;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for frequency"@en .
@@ -1230,7 +1237,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for other identifier is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/04d197dc40f01e87093bdd0446a9fdb1a9d44319> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.frequency";
-  shacl:class dc:Frequency;
+  # disabled to allow literals: shacl:class dc:Frequency;
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
@@ -1260,7 +1267,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/10c0ca4deadefb51c529f56ee01caf9bd2639ef4> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.accessrights";
   shacl:description "Information that indicates whether the Dataset is open data, has access restrictions or is not public."@en;
   shacl:name "access rights"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accessRights;
   <https://purl.eu/ns/shacl#message> "The expected value for access rights is a rdfs:Resource (URI or blank node)"@en .
 
@@ -1286,7 +1293,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for temporal resolution is a Literal"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/29ba27566ab1f32c8bb73f3492436d4bd868d3d2> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.language";
-  shacl:class dc:LinguisticSystem;
+  # disabled to allow literals: shacl:class dc:LinguisticSystem;
   shacl:description "A language of the Dataset."@en;
   shacl:name "language"@en;
   shacl:path dc:language;
@@ -1421,7 +1428,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/63a8cf23801ef605734507c621693524f22476dd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.frequency";
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "The expected value for frequency is a rdfs:Resource (URI or blank node)"@en .
 
@@ -1461,7 +1468,7 @@
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for access rights"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/7b6713c1f4a52e964f5db57eabef294b6d04e90e> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.contactpoint";
-  shacl:class vcard:Kind;
+  shacl:shape :VcardKind_Shape; # Replaced to describe variants: shacl:class vcard:Kind;
   shacl:description "Contact information that can be used for sending comments about the Dataset."@en;
   shacl:name "contact point"@en;
   shacl:path dcat:contactPoint;
@@ -1497,7 +1504,7 @@
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/84229f2224810ba9c70b4b27f756414cc0353324> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.frequency";
   shacl:description "The frequency at which the Dataset is updated."@en;
-  shacl:maxCount 1;
+  # disabled to allow multilingual content: shacl:maxCount 1;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for frequency"@en .
@@ -1671,7 +1678,7 @@
   <https://purl.eu/ns/shacl#message> "The range of temporal resolution must be of type <http://www.w3.org/2001/XMLSchema#duration>."@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/ee60fdd4b8581460f5fc4077813b8bb3e3d77441> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.accessrights";
-  shacl:class dc:RightsStatement;
+  # disabled to allow literals: shacl:class dc:RightsStatement;
   shacl:description "Information that indicates whether the Dataset is open data, has access restrictions or is not public."@en;
   shacl:name "access rights"@en;
   shacl:path dc:accessRights;
@@ -1706,7 +1713,7 @@
   <https://purl.eu/ns/shacl#message> "The range of qualified relation must be of type <http://www.w3.org/ns/dcat#Relationship>."@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/ffbbcd28b1fd92213d8350e1b6418d3d998c7197> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.landingpage";
-  shacl:class foaf:Document;
+  # disabled to allow literals: shacl:class foaf:Document;
   shacl:description "A web page that provides access to the Dataset, its Distributions and/or additional information."@en;
   shacl:name "landing page"@en;
   shacl:path dcat:landingPage;
@@ -1729,7 +1736,7 @@
   shacl:targetClass dcat:Dataset .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeriesShape/04d197dc40f01e87093bdd0446a9fdb1a9d44319> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeries.frequency";
-  shacl:class dc:Frequency;
+  # disabled to allow literals: shacl:class dc:Frequency;
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
@@ -1766,7 +1773,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeriesShape/63a8cf23801ef605734507c621693524f22476dd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeries.frequency";
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "The expected value for frequency is a rdfs:Resource (URI or blank node)"@en .
 
@@ -1887,7 +1894,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for availability is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/0f6cb927d0d26f3819cba3fb903a075cd426180d> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.status";
-  shacl:class skos:Concept;
+  # disabled to allow literals: shacl:class skos:Concept;
   shacl:description "The status of the distribution in the context of maturity lifecycle."@en;
   shacl:name "status"@en;
   shacl:path <http://www.w3.org/ns/adms#status>;
@@ -1936,7 +1943,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for temporal resolution is a Literal"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/29ba27566ab1f32c8bb73f3492436d4bd868d3d2> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.language";
-  shacl:class dc:LinguisticSystem;
+  # disabled to allow literals: shacl:class dc:LinguisticSystem;
   shacl:description "A language used in the Distribution."@en;
   shacl:name "language"@en;
   shacl:path dc:language;
@@ -1958,7 +1965,7 @@
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/3844f5a8620973800a0f9d6121572dbe0082c955> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.rights";
   shacl:description "A statement that specifies rights associated with the Distribution."@en;
-  shacl:maxCount 1;
+  # disabled for multilingual support shacl:maxCount 1;
   shacl:name "rights"@en;
   shacl:path dc:rights;
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for rights"@en .
@@ -1973,7 +1980,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/3c1ab2e1170c5050c8b7742e97810027ddc104b1> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.status";
   shacl:description "The status of the distribution in the context of maturity lifecycle."@en;
   shacl:name "status"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path <http://www.w3.org/ns/adms#status>;
   <https://purl.eu/ns/shacl#message> "The expected value for status is a rdfs:Resource (URI or blank node)"@en .
 
@@ -2062,7 +2069,7 @@
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for checksum"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/737cd5f1c9f0e13c35eb82b7f0d2b2f76a9a82c7> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.format";
-  shacl:class dc:MediaTypeOrExtent;
+  # disabled to allow literals: shacl:class dc:MediaTypeOrExtent;
   shacl:description "The file format of the Distribution."@en;
   shacl:name "format"@en;
   shacl:path dc:format;
@@ -2097,7 +2104,7 @@
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for format"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/99435c17158fbaa12d1d955b8886d5bf935ab016> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.rights";
-  shacl:class dc:RightsStatement;
+  # disabled to allow literals: shacl:class dc:RightsStatement;
   shacl:description "A statement that specifies rights associated with the Distribution."@en;
   shacl:name "rights"@en;
   shacl:path dc:rights;
@@ -2162,7 +2169,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/b4c4138f0581e7240ec4dd866004c56407b3705a> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.rights";
   shacl:description "A statement that specifies rights associated with the Distribution."@en;
   shacl:name "rights"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:rights;
   <https://purl.eu/ns/shacl#message> "The expected value for rights is a rdfs:Resource (URI or blank node)"@en .
 
@@ -2176,7 +2183,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/c1577bd231c71b0b1910272999755d3414867cfd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.format";
   shacl:description "The file format of the Distribution."@en;
   shacl:name "format"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:format;
   <https://purl.eu/ns/shacl#message> "The expected value for format is a rdfs:Resource (URI or blank node)"@en .
 
@@ -2202,7 +2209,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for language is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/dbcf2adef675735c48b532392359af27af5e8b71> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.licence";
-  shacl:class dc:LicenseDocument;
+  # disabled to allow literals: shacl:class dc:LicenseDocument;
   shacl:description "A licence under which the Distribution is made available."@en;
   shacl:name "licence"@en;
   shacl:path dc:license;
@@ -2246,7 +2253,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DistributionShape/f30149ffb6ec9d00dd5866b052105729fa27d02a> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Distribution.licence";
   shacl:description "A licence under which the Distribution is made available."@en;
   shacl:name "licence"@en;
-  shacl:nodeKind shacl:BlankNodeOrIRI;
+  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:license;
   <https://purl.eu/ns/shacl#message> "The expected value for licence is a rdfs:Resource (URI or blank node)"@en .
 
@@ -2587,3 +2594,23 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#xsd:nonNegativeIntegerShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:targetClass xsd:nonNegativeInteger .
+
+# A shape to describe vcard:Kind variants
+:VcardKind_Shape
+  a shacl:NodeShape ;
+  rdfs:comment "the union of Individual, Organization, Group and Location" ;
+  rdfs:label "vcard:Kind" ;
+  shacl:message "The node is either a Individual, Organization, Group or Location" ;
+  shacl:or ([
+          shacl:class vcard:Individual
+      ]
+      [
+          shacl:class vcard:Organization
+      ]
+      [
+          shacl:class vcard:Group
+      ]
+      [
+          shacl:class vcard:Location
+      ]
+  ) .

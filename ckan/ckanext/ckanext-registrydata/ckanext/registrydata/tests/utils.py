@@ -12,7 +12,7 @@ def minimal_dataset_with_one_resource_fields(user):
         resources=[dict(
             url='http://example.com',
             format='TXT',
-            size=1234.0,
+            size=1234,
             rights_translated={'fi': 'Rights (fi)', 'sv': 'Rights (sv)'},
             private=False,
             maturity='current',
