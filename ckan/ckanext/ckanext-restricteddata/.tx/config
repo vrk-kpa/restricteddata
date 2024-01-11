@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[o:avoindata:p:restricteddata:r:ckanext-restricteddata]
+[o:avoindata:p:suojattudata:r:ckanext-restricteddata]
 file_filter = ckanext/restricteddata/i18n/<lang>/LC_MESSAGES/ckanext-restricteddata.po
 source_file = ckanext/restricteddata/i18n/ckanext-restricteddata.pot
 source_lang = en
