@@ -1,18 +1,18 @@
 {
-  "name": "registrydata",
+  "name": "restricteddata",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vrk-kpa/registrydata.git"
+    "url": "git+https://github.com/vrk-kpa/restricteddata.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vrk-kpa/registrydata/issues"
+    "url": "https://github.com/vrk-kpa/restricteddata/issues"
   },
-  "readme": "https://github.com/vrk-kpa/registrydata#readme",
+  "readme": "https://github.com/vrk-kpa/restricteddata#readme",
   "scripts": {
     "build": "gulp localBuild",
     "watch": "gulp watch",

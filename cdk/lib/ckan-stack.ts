@@ -27,7 +27,7 @@ export class CkanStack extends Stack {
 
 
     const ckanLogGroup = new aws_logs.LogGroup(this, 'ckanLogGroup', {
-      logGroupName: `/${props.environment}/registrydata/ckan`,
+      logGroupName: `/${props.environment}/restricteddata/ckan`,
     });
 
     const ckanRepo = aws_ecr.Repository.fromRepositoryArn(this, 'ckanRepo',
@@ -74,9 +74,9 @@ export class CkanStack extends Stack {
 
     const ckanPlugins: string[] = [
       "dcat",
-      "registrydata_pages",
+      "restricteddata_pages",
       "pages",
-      "registrydata",
+      "restricteddata",
       "markdown_editor",
       "activity",
       "text_view",
@@ -276,7 +276,7 @@ export class CkanStack extends Stack {
     props.ckanInstanceCredentials.secret!.grantRead(ckanCronTaskDefinition.executionRole!);
 
     const ckanCronLogGroup = new aws_logs.LogGroup(this, 'ckanCronLogGroup', {
-      logGroupName: `/${props.environment}/registrydata/ckanCron`,
+      logGroupName: `/${props.environment}/restricteddata/ckanCron`,
     });
 
     const ckanCronContainer = ckanCronTaskDefinition.addContainer('ckanCron', {

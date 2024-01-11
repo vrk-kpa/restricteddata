@@ -38,7 +38,7 @@
   <section class="main-content">
     <section id="dataset-resources" class="resources">
       {% if pkg.resources %}
-        {% asset 'registrydata/resource-reorder-js' %}
+        {% asset 'restricteddata/resource-reorder-js' %}
         <ul class="resource-list"
             {% if has_reorder %}data-module="rd-resource-reorder" data-module-id="{{ pkg.id }}"{% endif %}>
           {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
