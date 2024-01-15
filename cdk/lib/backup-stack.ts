@@ -13,8 +13,8 @@ export class BackupStack extends Stack {
     if (props.backups) {
 
       let backupVault = null;
-      let backupVaultName = `registrydata-vault-${props.environment}`;
-      let backupPlanName = `registrydata-plan-${props.environment}`;
+      let backupVaultName = `restricteddata-vault-${props.environment}`;
+      let backupPlanName = `restricteddata-plan-${props.environment}`;
 
       if (props.importVault) {
         backupVault = bak.BackupVault.fromBackupVaultName(this, 'backupVault', backupVaultName)

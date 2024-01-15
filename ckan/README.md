@@ -1,4 +1,4 @@
-# Registrydata CKAN container
+# Restricted data CKAN container
 
 ## Developer notes
 

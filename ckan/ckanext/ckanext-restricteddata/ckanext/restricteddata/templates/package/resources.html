@@ -1,0 +1,58 @@
+{% ckan_extends %}
+
+{% block pre_primary %}
+  <div>
+    <h1 class="page-heading">
+      {% block page_heading %}
+        {{ _("Edit resources") }}
+      {% endblock page_heading %}
+    </h1>
+  </div>
+  <header class="page-header">
+    <ul class="nav nav-tabs">
+      {{ h.build_nav_icon(pkg.type ~ '.edit', _('Edit metadata') , id=pkg.name) }}
+      {{ h.build_nav_icon(pkg.type ~ '.resources', _('Resources') , id=pkg.name) }}
+      {% if h.check_config_permission('allow_dataset_collaborators') and h.check_access('package_collaborator_create', {'id': pkg_dict.id}) %}
+        {{ h.build_nav_icon(pkg.type ~ '.collaborators_read', _('Collaborators') , id=pkg.name) }}
+      {% endif %}
+    </ul>
+  </header>
+{% endblock pre_primary %}
+
+{%- block primary_container_class -%}
+  primary-content-container
+{%- endblock primary_container_class -%}
+
+{% block content_action %}
+  {% link_for _('Add new resource'), named_route=pkg_dict.type ~ '_resource.new', id=pkg_dict.name, class_='btn btn-primary', icon='plus-square' %}
+  {% link_for h.humanize_entity_type('package', pkg.type, 'view label') or _('Close without saving'), named_route=pkg.type ~ '.read', id=pkg.name, class_='btn btn-default' %}
+{% endblock content_action %}
+
+{% block page_primary_action %}
+{% endblock page_primary_action %}
+
+{% block secondary %}
+{% endblock secondary %}
+
+{% block primary_content_inner %}
+  <section class="main-content">
+    <section id="dataset-resources" class="resources">
+      {% if pkg.resources %}
+        {% asset 'restricteddata/resource-reorder-js' %}
+        <ul class="resource-list"
+            {% if has_reorder %}data-module="rd-resource-reorder" data-module-id="{{ pkg.id }}"{% endif %}>
+          {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
+          {% for resource in pkg.resources %}
+            {% snippet 'package/snippets/resource_item.html', pkg=pkg, res=resource, url_is_edit=true, can_edit=can_edit %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        {% trans url=h.url_for(pkg.type ~ '_resource.new', id=pkg.name) %}
+        <p class="empty">
+          This dataset has no data, <a href="{{ url }}">why not add some?</a>
+        </p>
+      {% endtrans %}
+    {% endif %}
+  </section>
+</section>
+{% endblock primary_content_inner %}

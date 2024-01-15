@@ -30,7 +30,7 @@ export class LoadBalancerStack extends Stack {
     })
 
     const logBucket = new aws_s3.Bucket(this, 'logBucket', {
-      bucketName: `registrydata-${props.environment}-loadbalancer-logs`,
+      bucketName: `restricteddata-${props.environment}-loadbalancer-logs`,
       blockPublicAccess: aws_s3.BlockPublicAccess.BLOCK_ALL,
       encryption: BucketEncryption.S3_MANAGED,
       versioned: true,

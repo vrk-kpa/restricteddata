@@ -57,13 +57,13 @@ ckan.site_id = {{ environ('CKAN_SITE_ID') }}
 
 ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }}
 
-scheming.dataset_schemas = ckanext.registrydata.schemas:dataset.json
+scheming.dataset_schemas = ckanext.restricteddata.schemas:dataset.json
 scheming.presets = ckanext.scheming:presets.json
 				   ckanext.fluent:presets.json
-				   ckanext.registrydata:presets.json
+				   ckanext.restricteddata:presets.json
                    ckanext.markdown_editor:presets.json
-scheming.group_schemas = ckanext.registrydata.schemas:group.json
-scheming.organization_schemas = ckanext.registrydata.schemas:organization.json
+scheming.group_schemas = ckanext.restricteddata.schemas:group.json
+scheming.organization_schemas = ckanext.restricteddata.schemas:organization.json
 
 ckan.site_title = Suojattudata
 ckan.site_logo = {% if environ('DEV_MODE') == 'true' %} /images/logo-suojattudata-local.svg {% elif environ('DEPLOY_ENVIRONMENT') == 'dev' %} /images/logo-suojattudata-dev.svg {% else %} /images/logo-suojattudata.svg {% endif %}
@@ -120,7 +120,7 @@ ckanext.matomo.ignored_user_agents = docker-healthcheck
 
 solr_url = http://{{ environ('SOLR_HOST') }}:{{ environ('SOLR_PORT') }}/{{ environ('SOLR_PATH') }}
 
-ckanext.dcat.rdf.profiles = registrydata_dcat_ap
+ckanext.dcat.rdf.profiles = restricteddata_dcat_ap
 ckanext.dcat.translate_keys = False
 
 ckan.tracking_enabled = true
@@ -128,10 +128,10 @@ ckan.max_resource_size = {{ environ('CKAN_MAX_RESOURCE_SIZE') }}
 
 ckan.webassets.path = {{ environ('CKAN_WEBASSETS_PATH') }}
 
-ckanext.registrydata.news.endpoint_url = https://palveluhallinta.suomi.fi/api/articles/importantTopical?newsTypes
-ckanext.registrydata.news.ssl_verify = True
-ckanext.registrydata.news.tags = uutinen,haeirioetiedote
-ckanext.registrydata.news.url_template = https://palveluhallinta.suomi.fi/{language}/ajankohtaista/uutiset/{id}
+ckanext.restricteddata.news.endpoint_url = https://palveluhallinta.suomi.fi/api/articles/importantTopical?newsTypes
+ckanext.restricteddata.news.ssl_verify = True
+ckanext.restricteddata.news.tags = uutinen,haeirioetiedote
+ckanext.restricteddata.news.url_template = https://palveluhallinta.suomi.fi/{language}/ajankohtaista/uutiset/{id}
 
 
 [loggers]

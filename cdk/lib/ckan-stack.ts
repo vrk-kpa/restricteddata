@@ -11,10 +11,10 @@ export class CkanStack extends Stack {
     super(scope, id, props);
 
     const pSysadminUser = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pSysadminUser', {
-      parameterName: `/${props.environment}/registrydata/sysadmin_user`,
+      parameterName: `/${props.environment}/restricteddata/sysadmin_user`,
     });
     const pSysadminEmail = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pSysadminEmail', {
-      parameterName: `/${props.environment}/registrydata/sysadmin_email`,
+      parameterName: `/${props.environment}/restricteddata/sysadmin_email`,
     });
 
     const pSmtpHost = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pSmtpHost', {
@@ -27,7 +27,7 @@ export class CkanStack extends Stack {
 
 
     const ckanLogGroup = new aws_logs.LogGroup(this, 'ckanLogGroup', {
-      logGroupName: `/${props.environment}/registrydata/ckan`,
+      logGroupName: `/${props.environment}/restricteddata/ckan`,
     });
 
     const ckanRepo = aws_ecr.Repository.fromRepositoryArn(this, 'ckanRepo',
@@ -74,9 +74,9 @@ export class CkanStack extends Stack {
 
     const ckanPlugins: string[] = [
       "dcat",
-      "registrydata_pages",
+      "restricteddata_pages",
       "pages",
-      "registrydata",
+      "restricteddata",
       "markdown_editor",
       "activity",
       "text_view",
@@ -276,7 +276,7 @@ export class CkanStack extends Stack {
     props.ckanInstanceCredentials.secret!.grantRead(ckanCronTaskDefinition.executionRole!);
 
     const ckanCronLogGroup = new aws_logs.LogGroup(this, 'ckanCronLogGroup', {
-      logGroupName: `/${props.environment}/registrydata/ckanCron`,
+      logGroupName: `/${props.environment}/restricteddata/ckanCron`,
     });
 
     const ckanCronContainer = ckanCronTaskDefinition.addContainer('ckanCron', {

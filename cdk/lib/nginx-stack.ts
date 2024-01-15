@@ -18,7 +18,7 @@ export class NginxStack extends Stack {
     super(scope, id, props);
 
     const nginxLogGroup = new aws_logs.LogGroup(this, 'nginxLogGroup', {
-      logGroupName: `/${props.environment}/registrydata/nginx`,
+      logGroupName: `/${props.environment}/restricteddata/nginx`,
     });
 
     const nginxRepo = aws_ecr.Repository.fromRepositoryArn(this, 'nginxRepo',

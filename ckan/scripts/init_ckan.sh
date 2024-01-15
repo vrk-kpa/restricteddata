@@ -27,8 +27,8 @@ fi
 echo "init ckan extension databases ..."
 ckan -c ${APP_DIR}/ckan.ini harvester initdb
 
-echo "Create default registrydata categories ..."
-ckan -c ${APP_DIR}/ckan.ini registrydata create-default-categories
+echo "Create default restricteddata categories ..."
+ckan -c ${APP_DIR}/ckan.ini restricteddata create-default-categories
 
 # set init flag to done
 echo "$CKAN_IMAGE_TAG" > ${DATA_DIR}/.init-done

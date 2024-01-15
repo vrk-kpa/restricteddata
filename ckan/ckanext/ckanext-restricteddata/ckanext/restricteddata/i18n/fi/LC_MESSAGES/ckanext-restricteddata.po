@@ -1,0 +1,1617 @@
+# Translations template for ckanext-restricteddata.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the ckanext-restricteddata
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# 
+# Translators:
+# Teemu Erkkola <teemu.erkkola@iki.fi>, 2023
+# Eetu Mansikkamäki <eetu.mansikkamaki@gofore.com>, 2023
+# Roosa Lampinen, 2023
+# Suvi Nuttunen, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-restricteddata 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-01-11 10:44+0000\n"
+"PO-Revision-Date: 2023-08-15 18:05+0000\n"
+"Last-Translator: Suvi Nuttunen, 2023\n"
+"Language-Team: Finnish (https://app.transifex.com/avoindata/teams/7979/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ckanext/restricteddata/plugin.py:148
+#: ckanext/restricteddata/templates/header.html:99
+#: ckanext/restricteddata/templates/home/layout1.html:52
+#: ckanext/restricteddata/templates/package/search.html:11
+msgid "Datasets"
+msgstr "Tietoaineistot"
+
+#: ckanext/restricteddata/plugin.py:149
+msgid "Tags"
+msgstr "Avainsanat"
+
+#: ckanext/restricteddata/plugin.py:150
+msgid "Format"
+msgstr ""
+
+#: ckanext/restricteddata/plugin.py:151
+#: ckanext/restricteddata/templates/snippets/license.html:4
+msgid "License"
+msgstr "Lisenssi"
+
+#: ckanext/restricteddata/translations.py:8
+msgid "eg. Page Title"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:9
+msgid "URL"
+msgstr "URL"
+
+#: ckanext/restricteddata/translations.py:10
+msgid "Publish Date"
+msgstr "Julkaisupäivä"
+
+#: ckanext/restricteddata/translations.py:11
+msgid "Header Order"
+msgstr "Järjestysnumero valikossa"
+
+#: ckanext/restricteddata/translations.py:12
+msgid "Not in Menu"
+msgstr "Ei valikossa"
+
+#: ckanext/restricteddata/translations.py:13
+msgid "Are you sure you want to delete this Page?"
+msgstr "Haluatko varmasti poistaa tämän sivun?"
+
+#: ckanext/restricteddata/templates/package/search.html:29
+#: ckanext/restricteddata/translations.py:16
+msgid "Relevance"
+msgstr "Osuvin ensin"
+
+#: ckanext/restricteddata/translations.py:19
+msgid "Username or Email"
+msgstr "Käyttäjätunnus tai sähköpostiosoite"
+
+#: ckanext/restricteddata/translations.py:22
+msgid "fi"
+msgstr "suomeksi"
+
+#: ckanext/restricteddata/translations.py:23
+msgid "en"
+msgstr "englanniksi"
+
+#: ckanext/restricteddata/translations.py:24
+msgid "sv"
+msgstr "ruotsiksi"
+
+#: ckanext/restricteddata/translations.py:27
+msgid "Dataset title"
+msgstr "Tietoaineiston nimi"
+
+#: ckanext/restricteddata/translations.py:28
+msgid "* Required field"
+msgstr "* Pakollinen kenttä"
+
+#: ckanext/restricteddata/translations.py:29
+msgid "e.g. Finnish names"
+msgstr "esim. Suomalaiset nimiaineistot"
+
+#: ckanext/restricteddata/translations.py:30
+msgid ""
+"Give a short and descriptive name for the dataset.<br><br>The URL is created"
+" automatically based on the dataset title. If necessary, you can edit the "
+"URL."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:31
+msgid "Dataset description"
+msgstr "Tietoaineiston kuvaus"
+
+#: ckanext/restricteddata/translations.py:32
+msgid "Write a description for the dataset."
+msgstr "Kirjoita kuvaus tietoaineistolle"
+
+#: ckanext/restricteddata/translations.py:33
+msgid ""
+"Describe the dataset’s contents, collection process, quality of the data and"
+" possible limits, flaws and applications in an easily understandable way."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:34
+msgid "Keywords and categories"
+msgstr "Avainsanat ja kategoriat"
+
+#: ckanext/restricteddata/translations.py:35
+msgid ""
+"Select at least one keyword relating to your data that helps users to find "
+"your data."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:36
+msgid "Select at least one category."
+msgstr "Valitse yksi tai useampi dataasi kuvaava kategoria."
+
+#: ckanext/restricteddata/translations.py:37
+msgid "Dataset additional information"
+msgstr "Tietoaineiston muut tiedot"
+
+#: ckanext/restricteddata/translations.py:38
+msgid "Select a license that suits your needs."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:39
+msgid "Collection type"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:40
+msgid "Restricted"
+msgstr "Rajattu"
+
+#: ckanext/restricteddata/translations.py:41
+msgid "Non-public"
+msgstr "Ei-julkinen"
+
+#: ckanext/restricteddata/translations.py:42
+msgid "Rights"
+msgstr "Lisätietoa käyttöoikeuksista"
+
+#: ckanext/restricteddata/translations.py:43
+msgid "High value dataset"
+msgstr "Arvokas tietoaineisto"
+
+#: ckanext/restricteddata/translations.py:44
+msgid "You can mark dataset as high value dataset"
+msgstr "Voit merkitä tietoaineiston arvokkaaksi tietoaineistoksi."
+
+#: ckanext/restricteddata/translations.py:45
+msgid ""
+"Select access rights for your dataset:<br><br><b>Non-public</b> datasets may"
+" include resources that contain sensitive or personal "
+"information.<br><br><b>Restricted</b> datasets may include resources that "
+"require payment, resources shared under non-disclosure agreements, resources"
+" for which the publisher or owner has not yet decided if they can be "
+"publicly released."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:46
+msgid "Yes"
+msgstr "Kyllä"
+
+#: ckanext/restricteddata/translations.py:47
+msgid "No"
+msgstr "Ei"
+
+#: ckanext/restricteddata/translations.py:48
+msgid "Links to additional information"
+msgstr "Linkki lisätietoihin"
+
+#: ckanext/restricteddata/translations.py:49
+msgid ""
+"Add links to one or more websites with additional information about the "
+"data."
+msgstr ""
+"Lisää linkkejä yhteen tai useampaan verkkosivustoon, joista löytyy "
+"lisätietoa datasta."
+
+#: ckanext/restricteddata/translations.py:50
+msgid "e.g. www.dvv.fi"
+msgstr "esim. www.dvv.fi"
+
+#: ckanext/restricteddata/assets/translations.js:5
+#: ckanext/restricteddata/translations.py:51
+msgid "Add link"
+msgstr "Lisää linkki"
+
+#: ckanext/restricteddata/translations.py:52
+msgid "Update frequency"
+msgstr "Päivitystiheys"
+
+#: ckanext/restricteddata/translations.py:53
+msgid "Describe how often your data is updated"
+msgstr "Kerro, kuinka usein tietoaineisto päivittyy"
+
+#: ckanext/restricteddata/translations.py:54
+msgid "e.g. monthly"
+msgstr "esim. kuukausittain"
+
+#: ckanext/restricteddata/translations.py:55
+msgid "Valid from"
+msgstr "Voimassa alkaen"
+
+#: ckanext/restricteddata/translations.py:56
+msgid "Valid till"
+msgstr "Voimassa asti"
+
+#: ckanext/restricteddata/translations.py:57
+msgid "Dataset producer and maintainer"
+msgstr "Tietoaineiston tuottaja ja ylläpitäjä"
+
+#: ckanext/restricteddata/translations.py:58
+msgid "Select the dataset publisher (organisation)."
+msgstr "Valitse tietoaineiston julkaisija (organisaatio)."
+
+#: ckanext/restricteddata/translations.py:59
+msgid "Dataset maintainer"
+msgstr "Tietoaineiston ylläpitäjä"
+
+#: ckanext/restricteddata/translations.py:60
+msgid "e.g. Digital and Population Data Services Agency"
+msgstr "esim. Digi- ja väestötietovirasto"
+
+#: ckanext/restricteddata/translations.py:61
+msgid ""
+"The dataset maintainer will receive updates about the dataset to the email "
+"address specified in this form. We recommend using a general email address "
+"instead of the contact information of a single employee. Note that the "
+"dataset information can only be managed by registered users with Editor- or "
+"Admin-rights in the publishing organisation."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:62
+msgid "Maintainer email"
+msgstr "Ylläpitäjän sähköposti"
+
+#: ckanext/restricteddata/translations.py:63
+msgid "e.g. rekisteridata@dvv.fi"
+msgstr "esim. suojattudata@dvv.fi"
+
+#: ckanext/restricteddata/translations.py:64
+msgid "Maintainer website"
+msgstr "Ylläpitäjän verkkosivut"
+
+#: ckanext/restricteddata/translations.py:65
+msgid "e.g. www.rekisteridata.fi"
+msgstr "esim. www.suojattudata.fi"
+
+#: ckanext/restricteddata/translations.py:66
+msgid ""
+"The data license you select above only applies to the contents of any "
+"resource files that you add to this dataset. By submitting this form, you "
+"agree to release the metadata values that you enter into the form under the "
+"Open Database License."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:67
+msgid "You can set the state of the dataset back to active."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:68
+msgid ""
+"Deleted. The dataset is only visible to logged in users of the producer "
+"organization."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:69
+msgid ""
+"In draft state. The dataset is only visible to logged in users of the "
+"producer organization."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:70
+msgid ""
+"Private mode. The dataset is only visible to logged in users of the producer"
+" organization."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:71
+msgid "There is no description for this dataset"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:72
+msgid "Dataset visibility"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:73
+msgid "false"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:74
+msgid "true"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:75
+msgid "Access rights"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:76
+msgid "More about access rights"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:77
+msgid "active"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:78
+msgid "e.g. names"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:79
+msgid "Dataset publisher and maintainer"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:80
+msgid "Publisher"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:81
+#, python-format
+msgid ""
+"You're currently viewing an old version of this dataset. Data files may not "
+"match the old version of the metadata. <a href=\"%(url)s\">View the current "
+"version</a>."
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/changes.html:16
+#: ckanext/restricteddata/translations.py:82
+msgid "View changes from"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/changes.html:21
+#: ckanext/restricteddata/translations.py:83
+msgid "to"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/changes.html:39
+#: ckanext/restricteddata/translations.py:84
+msgid "Show metadata diff"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:87
+msgid "Data resource title"
+msgstr "Jakelutavan nimi"
+
+#: ckanext/restricteddata/translations.py:88
+msgid ""
+"Give a short and descriptive name for the distribution. If the data covers a"
+" specific time frame, mention that in the name."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:89
+msgid "e.g. Most popular Finnish first names 2019"
+msgstr "esim. Suosituimmat suomalaiset etunimet 2019"
+
+#: ckanext/restricteddata/translations.py:90
+msgid "Resource *"
+msgstr "Jakelutapa *"
+
+#: ckanext/restricteddata/translations.py:91
+msgid "Add the distribution by adding a link to the data."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:92
+msgid "Data"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:93
+msgid "Resource URL"
+msgstr "Jakelutavan linkki"
+
+#: ckanext/restricteddata/translations.py:94
+msgid "Select a file format for the distribution"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:95
+msgid "Size"
+msgstr "Koko"
+
+#: ckanext/restricteddata/translations.py:96
+msgid "Data resource description"
+msgstr "Jakelutavan kuvaus"
+
+#: ckanext/restricteddata/translations.py:97
+msgid "Write a description for the resource"
+msgstr "Kirjoita kuvaus jakelutavalle"
+
+#: ckanext/restricteddata/translations.py:98
+msgid ""
+"Describe the data clearly and concisely. Use as confining terms as possible "
+"to make it easier to find and understand the data."
+msgstr ""
+"Kirjoita tiivis ja helppotajuinen kuvaus jakelutavasta. Käytä mahdollisimman"
+" rajaavia termejä helpottamaan datan ymmärtämistä."
+
+#: ckanext/restricteddata/translations.py:99
+msgid ""
+"Describe terms and conditions for re-use. Include how to apply for use "
+"permit and information about possible payments and their principles."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:100
+msgid "Additional information"
+msgstr "Lisätiedot"
+
+#: ckanext/restricteddata/translations.py:101
+msgid "Write a rights statement for the resource"
+msgstr "Kuvaile tietoaineiston käyttöoikeudet"
+
+#: ckanext/restricteddata/translations.py:102
+msgid "Endpoint URL"
+msgstr "Rajapinnan osoite"
+
+#: ckanext/restricteddata/translations.py:103
+msgid "Distribution visibility"
+msgstr "Jakelutavan näkyvyys"
+
+#: ckanext/restricteddata/translations.py:104
+msgid ""
+"You can set the visibility to private temporarily for example if the "
+"distribution is missing some information. Private distributions are visible "
+"to all members of the producer-organisation."
+msgstr ""
+"Voit asettaa jakelutavan näkyvyyden väliaikaisesti yksityiseksi esimerkiksi "
+"puutteellisten tietojen vuoksi. Yksityiset jakelutavat näkyvät kaikille "
+"saman tuottajaorganisaation kirjautuneille jäsenille."
+
+#: ckanext/restricteddata/translations.py:105
+msgid "Data status"
+msgstr "Jakelutavan tila"
+
+#: ckanext/restricteddata/translations.py:106
+msgid ""
+"Define a state for the data. This is recommended especially if your dataset "
+"has data resources from multiple years."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:107
+msgid "Current version"
+msgstr "Voimassa"
+
+#: ckanext/restricteddata/translations.py:108
+msgid "Draft version"
+msgstr "Valmisteilla"
+
+#: ckanext/restricteddata/translations.py:109
+msgid "Archived version"
+msgstr "Arkistoitu"
+
+#: ckanext/restricteddata/translations.py:110
+msgid "Coordinate system"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:111
+msgid ""
+"If your data includes geographic information, specify the coordinate system "
+"it uses."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:112
+msgid "e.g. WGS84 (World Geodetic System 1984)"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:113
+msgid ""
+"Select the time frame by which the data is separated. For example, does the "
+"resource include data from every week or month."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:114
+msgid "Temporal granularity"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:115
+msgid "e.g. a month"
+msgstr "esim. kuukausi"
+
+#: ckanext/restricteddata/translations.py:116
+msgid "Time Frame"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:117
+msgid "Start date"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:118
+msgid "End date"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:119
+msgid "Geographical accuracy"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:120
+msgid ""
+"If your data includes geographic information, specify the accuracy in meters"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:121
+msgid "Metadata last updated"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:122
+msgid "Conditions for re-use"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/edit.html:14
+#: ckanext/restricteddata/templates/package/resources.html:14
+#: ckanext/restricteddata/translations.py:123
+msgid "Resources"
+msgstr "Jakelutavat"
+
+#: ckanext/restricteddata/translations.py:124
+msgid "Unnamed resource"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:125
+msgid "Add view"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:126
+msgid "All views"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:127
+msgid "View view"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:128
+msgid "eg. My View"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:129
+msgid "eg. Information about my view"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:130
+msgid "Image url"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:131
+msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:134
+msgid "Groups"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:135
+msgid "Formats"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:136
+msgid "Organization name"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:137
+msgid "Organization description"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:138
+msgid "Common, compact and plain description about the organization"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:139
+msgid "Other information"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:140
+msgid "View Organization"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:143
+msgid "News feed"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:144
+msgid "Activity from items that I'm following"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:145
+msgid "My Datasets"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:146
+msgid "Add Dataset"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:147
+msgid "My Organizations"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:148
+msgid "Add Group"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:149
+msgid "My Groups"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:152
+msgid "Activity type"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/activity_type_selector.html:18
+#: ckanext/restricteddata/translations.py:153
+msgid "All activity types"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:154
+msgid "Newer activities"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:155
+msgid "Older activities"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:156
+msgid "{actor} created the group {group}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:157
+msgid "{actor} updated the group {group}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:158
+msgid "{actor} deleted the group {group}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:159
+msgid "{actor} created the organization {organization}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:160
+msgid "{actor} updated the organization {organization}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:161
+msgid "{actor} deleted the organization {organization}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:162
+msgid "{actor} created the {dataset_type} {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:163
+msgid "{actor} updated the {dataset_type} {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:164
+msgid "{actor} deleted the {dataset_type} {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:165
+msgid "{actor} added the resource {resource} to the dataset {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:166
+msgid "{actor} updated the resource {resource} in the dataset {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:167
+msgid "{actor} deleted the resource {resource} from the dataset {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:168
+msgid "{actor} {activity_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:169
+msgid "{actor} added the tag {tag} to the dataset {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:170
+msgid "{actor} removed the tag {tag} from the dataset {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:171
+msgid "{actor} updated their profile"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:172
+msgid "{actor} started following {dataset}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:173
+msgid "{actor} started following {group}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:174
+msgid "{actor} started following {user}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:175
+msgid "new package"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:176
+msgid "changed package"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:177
+msgid "deleted package"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:178
+msgid "follow dataset"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:181
+msgid "Add {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:182
+msgid "Create {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:183
+msgid "View {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:184
+msgid "Edit {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:185
+msgid "Save {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:186
+msgid "Search {object_type}s..."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:187
+msgid "Update {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:188
+msgid "A little information about my {object_type}..."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:189
+msgid "There are no {object_type}s associated with this dataset"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:190
+msgid "There are currently no {object_type}s for this site"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:191
+msgid "There is no description for this {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:192
+msgid "You are not a member of any {object_type}s."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:193
+msgid "{object_type} Form"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:194
+msgid "My {object_type}s"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:195
+msgid "My {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:196
+msgid "No {object_type}"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:197
+msgid "{object_type}s"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:44
+msgid "expecting list of strings"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:53
+#, python-format
+msgid "invalid encoding for \"%s\" value"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:57
+#, python-format
+msgid "invalid type for repeating text: %r"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:110
+#: ckanext/restricteddata/validators.py:258
+msgid "expecting a list"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:133
+#: ckanext/restricteddata/validators.py:175
+msgid "Failed to decode JSON string"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:136
+#: ckanext/restricteddata/validators.py:178
+msgid "Invalid encoding for JSON string"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:139
+#: ckanext/restricteddata/validators.py:181
+msgid "expecting JSON object"
+msgstr ""
+
+#: ckanext/restricteddata/validators.py:144
+#: ckanext/restricteddata/validators.py:153
+#, python-format
+msgid "Required language \"%s\" missing"
+msgstr ""
+
+#: ckanext/restricteddata/assets/translations.js:6
+msgid "Add email"
+msgstr ""
+
+#: ckanext/restricteddata/assets/modules/form.js:83
+#: ckanext/restricteddata/templates/snippets/search_form.html:39
+msgid "Remove"
+msgstr "Poista"
+
+#: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:40
+msgid "Reorder resources"
+msgstr "Järjestä jakelutavat"
+
+#: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:41
+msgid ""
+"You can rearrange the resources by dragging them using the arrow icon. Drag "
+"the resource to the right and place it to the desired location on the list. "
+"When you are done, click the \"Save order\" -button."
+msgstr ""
+
+#: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:63
+msgid "Save order"
+msgstr ""
+
+#: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:66
+msgid "Cancel"
+msgstr ""
+
+#: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:76
+msgid "Saving..."
+msgstr ""
+
+#: ckanext/restricteddata/templates/footer.html:6
+msgid "The service is being developed by"
+msgstr "Verkkopalvelun kehittämisestä vastaa"
+
+#: ckanext/restricteddata/templates/footer.html:6
+msgid "the Digital and Population Data Services Agency"
+msgstr "Digi- ja väestötietovirasto"
+
+#: ckanext/restricteddata/templates/header.html:3
+msgid "Search from this site"
+msgstr "Hae tältä sivustolta"
+
+#: ckanext/restricteddata/templates/header.html:19
+msgid "Suojattudata logo"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:24
+msgid "Suomi.fi logo"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:41
+msgid "Submit"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:52
+msgid "View profile"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:54
+#: ckanext/restricteddata/templates/header.html:55
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+#: ckanext/restricteddata/templates/header.html:59
+msgid "Account"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:63
+#: ckanext/restricteddata/templates/header.html:65
+msgid "Log in"
+msgstr "Kirjaudu sisään"
+
+#: ckanext/restricteddata/templates/header.html:98
+#: ckanext/restricteddata/templates/snippets/home_breadcrumb_item.html:2
+msgid "Home"
+msgstr "Etusivu"
+
+#: ckanext/restricteddata/templates/header.html:102
+#: ckanext/restricteddata/templates/home/layout1.html:64
+#: ckanext/restricteddata/templates/organization/index.html:4
+#: ckanext/restricteddata/templates/package/base.html:20
+msgid "Organizations"
+msgstr "Tuottajat"
+
+#: ckanext/restricteddata/templates/header.html:115
+msgid "More options"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:131
+msgid "Suomi.fi-avoindata"
+msgstr "Suomi.fi-avoindata"
+
+#: ckanext/restricteddata/templates/page.html:7
+msgid "Skip to main content"
+msgstr ""
+
+#: ckanext/restricteddata/templates/page.html:34
+msgid "Breadcrumb"
+msgstr ""
+
+#: ckanext/restricteddata/templates/home/layout1.html:3
+msgid "All finnish restricted data from one place"
+msgstr "Suomen kaikki suojattu data yhdestä paikasta"
+
+#: ckanext/restricteddata/templates/home/layout1.html:6
+msgid "show all datasets"
+msgstr "näytä kaikki tietoaineistot"
+
+#: ckanext/restricteddata/templates/home/layout1.html:8
+msgid "datasets"
+msgstr "tietoaineistoa"
+
+#: ckanext/restricteddata/templates/home/layout1.html:10
+msgid "show all organizations"
+msgstr "näytä kaikki tuottajat"
+
+#: ckanext/restricteddata/templates/home/layout1.html:12
+msgid "organizations"
+msgstr "tuottajaa"
+
+#: ckanext/restricteddata/templates/home/layout1.html:18
+msgid "Type what you are searching for"
+msgstr "Kirjoita mitä olet etsimässä"
+
+#: ckanext/restricteddata/templates/home/layout1.html:27
+msgid "Restricted data categories"
+msgstr ""
+
+#: ckanext/restricteddata/templates/home/layout1.html:31
+msgid "show group"
+msgstr "näytä kategoria"
+
+#: ckanext/restricteddata/templates/home/layout1.html:42
+msgid "Restricted data data sources"
+msgstr ""
+
+#: ckanext/restricteddata/templates/home/layout1.html:53
+msgid "Browse datasets"
+msgstr "Siirry tietoaineistoihin"
+
+#: ckanext/restricteddata/templates/home/layout1.html:65
+msgid "Browse organizations"
+msgstr "Siirry tuottajiin"
+
+#: ckanext/restricteddata/templates/home/layout1.html:72
+msgid "All Finnish open data from one place"
+msgstr "Suomen kaikki avoin data yhdestä paikasta"
+
+#: ckanext/restricteddata/templates/home/layout1.html:82
+msgid "Suomi.fi open data"
+msgstr "Suomi.fi-avoindata"
+
+#: ckanext/restricteddata/templates/home/layout1.html:83
+msgid "navigate to Suomi.fi open data"
+msgstr "siirry Suomi.fi-avoindataan"
+
+#: ckanext/restricteddata/templates/home/layout1.html:83
+msgid "Navigate to site"
+msgstr "Siirry palveluun"
+
+#: ckanext/restricteddata/templates/home/layout1.html:97
+msgid "Published"
+msgstr "Julkaistu"
+
+#: ckanext/restricteddata/templates/home/layout1.html:98
+msgid "open news item"
+msgstr "avaa uutinen"
+
+#: ckanext/restricteddata/templates/home/layout1.html:105
+msgid "Browse all news and disruption notices"
+msgstr "Katso kaikki uutiset ja häiriötiedotteet"
+
+#: ckanext/restricteddata/templates/macros/form/input_block.html:28
+msgid "Custom"
+msgstr ""
+
+#: ckanext/restricteddata/templates/macros/form/input_block.html:29
+msgid "This field is required"
+msgstr "Pakollinen kenttä"
+
+#: ckanext/restricteddata/templates/macros/form/markdown.html:35
+#, python-format
+msgid ""
+"You can use <a href=\"#markdown\" title=\"Markdown quick reference\" data-"
+"bs-toggle=\"popover\" data-bs-trigger=\"focus\" data-bs-"
+"content=\"%(markdown_tooltip)s\" data-bs-html=\"true\">Markdown "
+"formatting</a> here"
+msgstr ""
+
+#: ckanext/restricteddata/templates/organization/index.html:8
+msgid "Organization search"
+msgstr "Tuottajien haku"
+
+#: ckanext/restricteddata/templates/organization/read.html:9
+#: ckanext/restricteddata/templates/package/search.html:20
+msgid "Filters"
+msgstr "Rajaukset"
+
+#: ckanext/restricteddata/templates/organization/read.html:14
+#: ckanext/restricteddata/templates/package/search.html:51
+msgid "Filter search"
+msgstr "Rajaa hakua"
+
+#: ckanext/restricteddata/templates/organization/snippets/helper.html:15
+msgid ""
+"On this page you can find all the public administration organisations that "
+"have described their data resources to the Suojattudata service."
+msgstr ""
+"Tältä sivulta löydät kaikki julkishallinnon organisaatiot, jotka ovat "
+"kuvailleet tietovarantonsa Suojattudata-palveluun."
+
+#: ckanext/restricteddata/templates/organization/snippets/helper.html:16
+msgid "Select the organisation whose dataset descriptions you want to view."
+msgstr ""
+"Valitse organisaatio, jonka tietoaineistojen kuvauksia haluat tarkastella."
+
+#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:8
+msgid "View {organization_name}"
+msgstr ""
+
+#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:18
+msgid "{num} Dataset"
+msgid_plural "{num} Datasets"
+msgstr[0] "{num} tietoaineisto"
+msgstr[1] "{num} tietoaineistoa"
+
+#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:20
+msgid "0 Datasets"
+msgstr "0 tietoaineistoa"
+
+#: ckanext/restricteddata/templates/package/base.html:30
+#: ckanext/restricteddata/templates/package/new.html:6
+msgid "Create Dataset"
+msgstr "Lisää tietoaineisto"
+
+#: ckanext/restricteddata/templates/package/changes.html:8
+msgid "Changes"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/edit.html:7
+msgid "Edit dataset"
+msgstr "Muokkaa tietoaineistoa"
+
+#: ckanext/restricteddata/templates/package/edit.html:13
+#: ckanext/restricteddata/templates/package/resources.html:13
+msgid "Edit metadata"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/edit.html:16
+#: ckanext/restricteddata/templates/package/resources.html:16
+msgid "Collaborators"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/edit.html:30
+#: ckanext/restricteddata/templates/package/resource_edit_base.html:33
+#: ckanext/restricteddata/templates/package/resource_edit_base.html:35
+#: ckanext/restricteddata/templates/package/resources.html:28
+msgid "Close without saving"
+msgstr "Sulje tallentamatta"
+
+#: ckanext/restricteddata/templates/package/new.html:13
+msgid "Create new dataset"
+msgstr "Luo uusi tietoaineisto"
+
+#: ckanext/restricteddata/templates/package/new.html:23
+#: ckanext/restricteddata/templates/package/new_resource.html:23
+msgid "Stages"
+msgstr "Vaiheet"
+
+#: ckanext/restricteddata/templates/package/new_package_form.html:5
+msgid "Next"
+msgstr "Seuraava"
+
+#: ckanext/restricteddata/templates/package/new_package_form.html:7
+msgid "Update"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/new_package_form.html:14
+#: ckanext/restricteddata/templates/package/snippets/package_form.html:13
+msgid "Are you sure you want to delete this dataset?"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/new_package_form.html:20
+#: ckanext/restricteddata/templates/package/snippets/package_form.html:15
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:12
+#: ckanext/restricteddata/templates/scheming/organization/group_form.html:41
+msgid "Delete"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/new_package_form.html:27
+#: ckanext/restricteddata/templates/package/new_package_form.html:31
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:18
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:22
+#: ckanext/restricteddata/templates/scheming/organization/group_form.html:49
+#: ckanext/restricteddata/templates/scheming/organization/group_form.html:53
+msgid "Abort"
+msgstr "Keskeytä"
+
+#: ckanext/restricteddata/templates/package/new_resource.html:15
+msgid "Add data to the dataset"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/new_resource_not_draft.html:4
+#: ckanext/restricteddata/templates/package/new_resource_not_draft.html:9
+msgid "Add resource"
+msgstr "Lisää jakelutapa"
+
+#: ckanext/restricteddata/templates/package/read.html:18
+msgid "Keywords"
+msgstr "Avainsanat"
+
+#: ckanext/restricteddata/templates/package/read.html:24
+#: ckanext/restricteddata/templates/package/read_base.html:7
+msgid "Categories"
+msgstr "Kategoriat"
+
+#: ckanext/restricteddata/templates/package/read_base.html:6
+#: ckanext/restricteddata/templates/package/resource_read.html:4
+msgid "Dataset"
+msgstr "Tietoaineisto"
+
+#: ckanext/restricteddata/templates/package/read_base.html:8
+msgid "Activity"
+msgstr "Tapahtumatiedot"
+
+#: ckanext/restricteddata/templates/package/resource_edit_base.html:8
+#: ckanext/restricteddata/templates/package/resource_edit_base.html:17
+#: ckanext/restricteddata/templates/package/resource_views.html:12
+msgid "Edit resource"
+msgstr "Muokkaa jakelutapaa"
+
+#: ckanext/restricteddata/templates/package/resource_edit_base.html:20
+#: ckanext/restricteddata/templates/package/resource_views.html:15
+msgid "Views"
+msgstr "Esikatselut"
+
+#: ckanext/restricteddata/templates/package/resource_read.html:16
+#: ckanext/restricteddata/templates/package/snippets/resource_item.html:42
+#: ckanext/restricteddata/templates_pages/ckanext_pages/page.html:15
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: ckanext/restricteddata/templates/package/resource_read.html:22
+#: ckanext/restricteddata/templates/package/resource_views.html:4
+msgid "View"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/resource_read.html:24
+msgid "API Endpoint"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/resource_read.html:26
+msgid "Open"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/resource_read.html:28
+#: ckanext/restricteddata/templates/package/snippets/resource_item.html:48
+msgid "Download"
+msgstr "Lataa"
+
+#: ckanext/restricteddata/templates/package/resource_read.html:56
+#, python-format
+msgid "Source: <a href=\"%(url)s\">%(dataset)s</a>"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/resource_views.html:8
+msgid "Edit views"
+msgstr "Muokkaa esikatseluita"
+
+#: ckanext/restricteddata/templates/package/resource_views.html:27
+msgid "New view"
+msgstr "Uusi esikatselu"
+
+#: ckanext/restricteddata/templates/package/resource_views.html:49
+msgid "This resource has no views"
+msgstr "Tällä jakelutavalla ei ole esikatseluita"
+
+#: ckanext/restricteddata/templates/package/resources.html:7
+msgid "Edit resources"
+msgstr "Muokkaa jakelutapoja"
+
+#: ckanext/restricteddata/templates/package/resources.html:27
+msgid "Add new resource"
+msgstr "Lisää uusi jakelutapa"
+
+#: ckanext/restricteddata/templates/package/resources.html:50
+#, python-format
+msgid ""
+"<p class=\"empty\"> This dataset has no data, <a href=\"%(url)s\">why not "
+"add some?</a> </p>"
+msgstr ""
+"<p class=\"empty\">Tällä tietoaineistolla ei ole vielä jakelutapoja. <a "
+"href=\"%(url)s\">Lisää jakelutapa.</a></p>"
+
+#: ckanext/restricteddata/templates/package/search.html:30
+#: ckanext/restricteddata/templates/snippets/search_form.html:4
+msgid "Name Ascending"
+msgstr "Nimen mukaan nousevasti"
+
+#: ckanext/restricteddata/templates/package/search.html:31
+#: ckanext/restricteddata/templates/snippets/search_form.html:4
+msgid "Name Descending"
+msgstr "Nimen mukaan laskevasti"
+
+#: ckanext/restricteddata/templates/package/search.html:32
+msgid "Last Modified"
+msgstr "Viimeksi muokattu"
+
+#: ckanext/restricteddata/templates/package/search.html:33
+msgid "Popular"
+msgstr "Suosittu"
+
+#: ckanext/restricteddata/templates/package/search.html:34
+#: ckanext/restricteddata/templates/snippets/search_form.html:3
+msgid "Search datasets..."
+msgstr "Etsi tietoaineistoja"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:2
+msgid "Additional Info"
+msgstr "Lisätietoja"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:8
+msgid "Source"
+msgstr "Lähde"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:23
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:28
+msgid "Author"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:35
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:40
+msgid "Maintainer"
+msgstr "Ylläpitäjä"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:47
+msgid "Version"
+msgstr "Versio"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:54
+msgid "State"
+msgstr "Tila"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:60
+msgid "Last Updated"
+msgstr "Viimeksi päivitetty"
+
+#: ckanext/restricteddata/templates/package/snippets/additional_info.html:68
+msgid "Created"
+msgstr "Luotu"
+
+#: ckanext/restricteddata/templates/package/snippets/categories.html:15
+msgid "Category icon"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/categories.html:26
+msgid "Show more categories"
+msgstr "Näytä lisää kategorioita"
+
+#: ckanext/restricteddata/templates/package/snippets/categories.html:28
+msgid "Show more"
+msgstr "Näytä lisää"
+
+#: ckanext/restricteddata/templates/package/snippets/categories.html:36
+msgid "Edit categories"
+msgstr "Muokkaa kategorioita"
+
+#: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:4
+msgid "Deleted"
+msgstr "Poistettu"
+
+#: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:7
+msgid "Draft"
+msgstr "Luonnos"
+
+#: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:10
+msgid "Private"
+msgstr "Yksityinen"
+
+#: ckanext/restricteddata/templates/package/snippets/package_form.html:23
+msgid "Next: Add Data"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/package_form.html:31
+msgid ""
+"The <i>data license</i> you select above only applies to the contents of any"
+" resource files that you add to this dataset. By submitting this form, you "
+"agree to release the <i>metadata</i> values that you enter into the form "
+"under the <a href=\"https://opendatacommons.org/licenses/odbl/1-0/\">Open "
+"Database License</a>."
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:12
+msgid "Are you sure you want to delete this resource?"
+msgstr "Haluatko varmasti poistaa tämän jakelutavan?"
+
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:28
+msgid "Previous"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:36
+msgid "Save & add another"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:40
+msgid "Save dataset"
+msgstr "Tallenna jakelutapa"
+
+#: ckanext/restricteddata/templates/package/snippets/resource_form.html:47
+msgid "Add"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_item.html:37
+msgid "Preview"
+msgstr "Esikatsele"
+
+#: ckanext/restricteddata/templates/package/snippets/resource_item.html:50
+msgid "Navigate"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:18
+msgid "This resource view is not available at the moment."
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:20
+msgid "Click here for more information."
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:27
+msgid "Download resource"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:48
+msgid "Your browser does not support iframes."
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:57
+msgid "Embed resource view"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:62
+msgid ""
+"You can copy and paste the embed code into a CMS or blog software that "
+"supports raw HTML"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:65
+msgid "Width"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:68
+msgid "Height"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resource_view.html:71
+msgid "Code"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resources_list.html:14
+msgid "Data and Resources"
+msgstr "Jakelutavat"
+
+#: ckanext/restricteddata/templates/package/snippets/resources_list.html:28
+#, python-format
+msgid ""
+"<p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not add"
+" some?</a></p>"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/snippets/resources_list.html:32
+msgid "This dataset has no data"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/form_snippets/_organization_select.html:25
+msgid "No organization"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/form_snippets/multiple_checkbox.html:6
+#, python-format
+msgid "Categories can be edited from <a href=\"%(category_url)s\">here</a>"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/organization/group_form.html:35
+msgid "Are you sure you want to delete this Organization?"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/organization/group_form.html:59
+msgid "Update Organization"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/organization/group_form.html:61
+msgid "Create Organization"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/package/resource_read.html:3
+msgid "Additional Information"
+msgstr ""
+
+#: ckanext/restricteddata/templates/scheming/snippets/errors.html:6
+msgid "The form contains invalid entries:"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/search_form.html:44
+msgid "Filter Results"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/search_form.html:62
+msgid "Order by"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/search_form.html:73
+msgid "Go"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/search_form.html:82
+msgid "<p class=\"extra\">Please try another search.</p>"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/search_form.html:88
+msgid ""
+"<p id=\"search-error\"><strong>There was an error while searching.</strong> "
+"Please try again.</p>"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:15
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] "Haulla \"{query}\" löytyi {number} tietoaineisto"
+msgstr[1] "Haulla \"{query}\" löytyi {number} tietoaineistoa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:16
+msgid "No datasets found for \"{query}\""
+msgstr "Haulla \"{query}\" ei löytynyt yhtään tietoaineistoa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:17
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] "Löytyi {number} tietoaineisto"
+msgstr[1] "Löytyi {number} tietoaineistoa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:18
+msgid "No datasets found"
+msgstr "Ei löytynyt yhtään tietoaineistoa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:21
+msgid "{number} group found for \"{query}\""
+msgid_plural "{number} groups found for \"{query}\""
+msgstr[0] "Haulla \"{query}\" löytyi {number} kategoria"
+msgstr[1] "Haulla \"{query}\" löytyi {number} kategoriaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:22
+msgid "No groups found for \"{query}\""
+msgstr "Haulla \"{query}\" ei löytynyt yhtään kategoriaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:23
+msgid "{number} group found"
+msgid_plural "{number} groups found"
+msgstr[0] "Löytyi {number} kategoria"
+msgstr[1] "Löytyi {number} kategoriaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:24
+msgid "No groups found"
+msgstr "Ei löytynyt yhtään kategoriaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:27
+msgid "{number} organization found for \"{query}\""
+msgid_plural "{number} organizations found for \"{query}\""
+msgstr[0] "Haulla \"{query}\" löytyi {number} tuottaja"
+msgstr[1] "Haulla \"{query}\" löytyi {number} tuottajaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:28
+msgid "No organizations found for \"{query}\""
+msgstr "Haulla \"{query}\" ei löytynyt yhtään tuottajaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:29
+msgid "{number} organization found"
+msgid_plural "{number} organizations found"
+msgstr[0] "Löytyi {number} tuottaja"
+msgstr[1] "Löytyi {number} tuottajaa"
+
+#: ckanext/restricteddata/templates/snippets/search_result_text.html:30
+msgid "No organizations found"
+msgstr "Ei löytynyt yhtään tuottajaa"
+
+#: ckanext/restricteddata/templates/snippets/social.html:4
+msgid "Social"
+msgstr "Jaa sosiaalisessa mediassa"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:4
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:5
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:6
+msgid "Title"
+msgstr "Nimi"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:4
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:11
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:18
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:30
+msgid "FI"
+msgstr "suomeksi"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:5
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:12
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:22
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:31
+msgid "SV"
+msgstr "ruotsiksi"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:6
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:13
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:26
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:32
+msgid "EN"
+msgstr "englanniksi"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:11
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:12
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:13
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:18
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:22
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:26
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:30
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:31
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:32
+msgid "Content"
+msgstr "Sisältö"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:11
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:12
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:13
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:30
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:31
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:32
+msgid "Enter content here"
+msgstr ""
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:20
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:24
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:28
+msgid "My content"
+msgstr ""
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
+msgid "Submenu Order"
+msgstr ""
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
+msgid "Not in menu"
+msgstr ""
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/page.html:30
+msgid "This page currently has no content"
+msgstr "Tällä sivulla ei vielä ole sisältöä"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/pages_list.html:6
+msgid "Add page"
+msgstr "Lisää sivu"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/pages_list.html:12
+#: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:4
+msgid "Pages"
+msgstr "Sivut"
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:4
+msgid "Blog"
+msgstr ""
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:27
+msgid "There are currently no blog articles here"
+msgstr ""
+
+#: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:29
+msgid "There are currently no pages here"
+msgstr ""
