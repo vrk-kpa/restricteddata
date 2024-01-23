@@ -138,6 +138,7 @@ RUN \
       unzip \
       rsync \
       util-linux \
+      xmlsec \
       nfs-utils && \
   pip install \
     jinja2-cli \
@@ -226,6 +227,7 @@ FROM ckan_build AS production
 RUN pip install uwsgitop
 
 # Install extension requirements (order in ascending probability of changes)
+COPY ckanext/ckanext-saml2auth/requirements.txt ${EXT_DIR}/ckanext-saml2auth/requirements.txt
 COPY ckanext/ckanext-dcat/requirements.txt ${EXT_DIR}/ckanext-dcat/requirements.txt
 COPY ckanext/ckanext-fluent/requirements.txt ${EXT_DIR}/ckanext-fluent/requirements.txt
 COPY ckanext/ckanext-markdown_editor/requirements.txt ${EXT_DIR}/ckanext-markdown_editor/requirements.txt

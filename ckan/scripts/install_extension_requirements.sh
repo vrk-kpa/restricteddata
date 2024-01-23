@@ -15,6 +15,7 @@ pip_install() {
 }
 
 # install extension requirements
+pip_install "${EXT_DIR}/ckanext-saml2auth/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-dcat/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-fluent/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-scheming/requirements.txt"
