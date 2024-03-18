@@ -12,6 +12,7 @@ from ckanext.restricteddata.cli import cli
 from collections import OrderedDict
 
 from . import helpers, validators, converters, views
+from .logic import action
 
 log = logging.getLogger(__name__)
 ResourceDict = Dict[str, Any]
@@ -27,6 +28,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.IFacets, inherit=True)
+    plugins.implements(plugins.IActions, inherit=True)
 
     # IConfigurer
 
@@ -156,6 +158,14 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     def get_blueprint(self):
         return views.get_blueprints()
+
+    # IActions
+
+    def get_actions(self):
+        return {
+            'user_create': action.user_create
+        }
+
 
 class RestrictedDataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.ITranslation)
