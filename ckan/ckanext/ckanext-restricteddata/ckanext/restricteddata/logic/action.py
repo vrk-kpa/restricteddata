@@ -12,9 +12,8 @@ def user_create(original_action, context, data_dict):
         context['user'] = admin_user['name']
 
         groups = toolkit.get_action('group_list')(context, {})
-        collections = toolkit.get_action('group_list')(context,  {'type': "collection"})
 
-        for group in groups + collections:
+        for group in groups:
             member_data = {'id': group, 'username': result['name'], 'role': 'member'}
             toolkit.get_action('group_member_create')(context, member_data)
 
