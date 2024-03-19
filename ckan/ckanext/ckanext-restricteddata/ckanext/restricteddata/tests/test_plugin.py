@@ -311,6 +311,7 @@ def test_user_can_add_dataset_to_group(app):
 
     with app.flask_app.test_request_context():
         app.flask_app.preprocess_request()
+        # Add dataset d to group g
         member = call_action('member_create', id=g['id'], object=d['id'],
                              object_type='package', capacity='parent',
                              context={'user': author['name'], 'ignore_auth': False})
