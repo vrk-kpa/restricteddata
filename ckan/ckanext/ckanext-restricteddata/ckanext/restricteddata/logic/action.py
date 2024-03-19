@@ -1,7 +1,7 @@
 from ckan.plugins import toolkit
 
 
-# Adds new users to every group and collection
+# Adds new users to every group
 @toolkit.chained_action
 def user_create(original_action, context, data_dict):
     result = original_action(context, data_dict)

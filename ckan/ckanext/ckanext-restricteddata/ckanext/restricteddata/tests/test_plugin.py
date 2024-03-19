@@ -51,7 +51,7 @@ import pytest
 
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import plugin_loaded
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User
+from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
 from ckan.tests.helpers import call_action
 from .utils import minimal_dataset_with_one_resource_fields
 
@@ -297,3 +297,25 @@ def test_dataset_with_resource_with_geographical_accuracy():
     dataset = call_action('package_show', id=d['name'])
     resource = dataset['resources'][0]
     assert resource['geographical_accuracy'] == dataset_fields['resources'][0]['geographical_accuracy']
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_user_can_add_dataset_to_group(app):
+    g = Group()
+    author = User()
+    org = Organization(user=author)
+
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['owner_org'] = org['id']
+    d = Dataset(**dataset_fields)
+
+    with app.flask_app.test_request_context():
+        app.flask_app.preprocess_request()
+        member = call_action('member_create', id=g['id'], object=d['id'],
+                             object_type='package', capacity='parent',
+                             context={'user': author['name'], 'ignore_auth': False})
+        print(member)
+        assert member['group_id'] == g['id']
+        assert member['table_id'] == d['id']
+        assert member['table_name'] == 'package'
+        assert member['capacity'] == 'parent'
