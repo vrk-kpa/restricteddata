@@ -46,6 +46,11 @@ header.masthead {
       a {
         color: rd.$color-suomifi;
         text-decoration: none;
+
+        img {
+          width: 265px;
+          max-height: 80px;
+        }
       }
     }
 

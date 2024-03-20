@@ -16,7 +16,7 @@
       {% block header_logo %}
       {% if g.site_logo %}
       <a class="logo" href="{{ h.url_for('home.index') }}">
-        <img src="{{ g.site_logo }}" alt="{{ _('Suojattudata logo') }}"
+        <img src="{{ h.get_translated_logo(current_lang) }}" alt="{{ _('Suojattudata logo') }}"
           title="{{ site_title }}" />
       </a>
       {% else %}

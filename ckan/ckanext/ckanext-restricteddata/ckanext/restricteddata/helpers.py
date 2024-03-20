@@ -198,3 +198,12 @@ def build_nav_main(*args, pages=False):
         return pages_build_nav_main(*args)
     else:
         return ckan_build_nav_main(*args)
+
+
+def get_translated_logo(language: str):
+    site_logo = toolkit.config.get('ckan.site_logo')
+    if not site_logo:
+        return site_logo
+    else:
+        [path, extension] = site_logo.rsplit('.', 1)
+        return f'{path}_{language}.{extension}'
