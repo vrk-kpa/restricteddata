@@ -4,6 +4,44 @@ from ckanext.dcat.profiles import (
     XSD, RDF, DCT, DCAT, FOAF, ADMS, VCARD,
     Literal, URIRef, BNode)
 
+from rdflib.namespace import Namespace
+
+FREQUENCY = Namespace("http://publications.europa.eu/resource/authority/frequency/")
+
+FREQUENCY_MAP = {
+    "annual": "ANNUAL",
+    "semiannual": "ANNUAL_2",
+    "three_times_a_year": "ANNUAL_3",
+    "bidecennial": "BIDECENNIAL",
+    "biennial": "BIENNIAL",
+    "bihourly": "BIHOURLY",
+    "bimonthly": "BIMONTHLY",
+    "biweekly": "BIWEEKLY",
+    "continuous": "CONT",
+    "daily": "DAILY",
+    "twice_a_day": "DAILY_2",
+    "decennial": "DECENNIAL",
+    "hourly": "HOURLY",
+    "irregular": "IRREG",
+    "monthly": "MONTHLY",
+    "semimonthly": "MONTHLY_2",
+    "three_times_a_month": "MONTHLY_3",
+    "never": "NEVER",
+    "provisional_data": "OP_DATPRO",
+    "other": "OTHER",
+    "quadrennial": "QUADRENNIAL",
+    "quarterly": "QUARTERLY",
+    "quinquennial": "QUINQUENNIAL",
+    "tridecennial": "TRIDECENNIAL",
+    "triennial": "TRIENNIAL",
+    "trihourly": "TRIHOURLY",
+    "unknown": "UNKNOWN",
+    "continuously_updated": "UPDATE_CONT",
+    "weekly": "WEEKLY",
+    "semiweekly": "WEEKLY_2",
+    "three_times_a_week": "WEEKLY_3",
+}
+
 
 class RestrictedDataDCATAPProfile(EuropeanDCATAP2Profile):
     def parse_dataset(self, dataset_dict, dataset_ref):
@@ -18,7 +56,6 @@ class RestrictedDataDCATAPProfile(EuropeanDCATAP2Profile):
             ('notes_translated', DCT.description),
             ('rights_translated', DCT.rights),
             ('keywords', DCAT.keyword),
-            ('update_frequency', DCT.accrualPeriodicity),
         ])
 
         maintainer_website = dataset_dict.get('maintainer_website')
@@ -40,6 +77,14 @@ class RestrictedDataDCATAPProfile(EuropeanDCATAP2Profile):
             self.g.add((temporal, RDF.type, DCT.PeriodOfTime))
             self._add_triple_from_dict(dataset_dict, temporal, DCAT.startDate, 'valid_from', date_value=True)
             self._add_triple_from_dict(dataset_dict, temporal, DCAT.endDate, 'valid_till', date_value=True)
+
+        update_frequency = dataset_dict.get('update_frequency')
+        if update_frequency:
+            self.g.bind("frequency", FREQUENCY)
+
+            # update_frequency not existing in FREQUENCY_MAP is an error
+            frequency = FREQUENCY[FREQUENCY_MAP[update_frequency]]
+            self.g.add((dataset_ref, DCT.accrualPeriodicity, URIRef(frequency)))
 
         distributions = list(self.g.subjects(predicate=RDF.type, object=DCAT.Distribution))
         for distribution in distributions:

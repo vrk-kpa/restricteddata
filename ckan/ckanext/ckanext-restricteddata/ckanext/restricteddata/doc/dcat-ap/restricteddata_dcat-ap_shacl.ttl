@@ -959,7 +959,7 @@
   <https://purl.eu/ns/shacl#message> "The range of geographical coverage must be of type <http://purl.org/dc/terms/Location>."@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/04d197dc40f01e87093bdd0446a9fdb1a9d44319> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.frequency";
-  # disabled to allow literals: shacl:class dc:Frequency;
+  # disabled to allow URIRefs: shacl:class dc:Frequency;
   shacl:description "The frequency at which the Dataset Series is updated."@en;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
@@ -989,7 +989,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/63a8cf23801ef605734507c621693524f22476dd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.frequency";
   shacl:description "The frequency at which the Dataset Series is updated."@en;
   shacl:name "frequency"@en;
-  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
+  shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "The expected value for frequency is a rdfs:Resource (URI or blank node)"@en .
 
@@ -1044,7 +1044,7 @@
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeriesShape/84229f2224810ba9c70b4b27f756414cc0353324> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetSeries.frequency";
   shacl:description "The frequency at which the Dataset Series is updated."@en;
-  # disabled to allow multilingual content: shacl:maxCount 1;
+  shacl:maxCount 1;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for frequency"@en .
@@ -1237,7 +1237,7 @@
   <https://purl.eu/ns/shacl#message> "The expected value for other identifier is a rdfs:Resource (URI or blank node)"@en .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/04d197dc40f01e87093bdd0446a9fdb1a9d44319> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.frequency";
-  # disabled to allow literals: shacl:class dc:Frequency;
+  # disabled to allow URIRefs: shacl:class dc:Frequency;
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
@@ -1428,7 +1428,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/63a8cf23801ef605734507c621693524f22476dd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.frequency";
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
-  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
+  shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "The expected value for frequency is a rdfs:Resource (URI or blank node)"@en .
 
@@ -1504,7 +1504,7 @@
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetShape/84229f2224810ba9c70b4b27f756414cc0353324> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#Dataset.frequency";
   shacl:description "The frequency at which the Dataset is updated."@en;
-  # disabled to allow multilingual content: shacl:maxCount 1;
+  shacl:maxCount 1;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "Maximally 1 values allowed for frequency"@en .
@@ -1736,7 +1736,7 @@
   shacl:targetClass dcat:Dataset .
 
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeriesShape/04d197dc40f01e87093bdd0446a9fdb1a9d44319> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeries.frequency";
-  # disabled to allow literals: shacl:class dc:Frequency;
+  # disabled to allow URIRefs: shacl:class dc:Frequency;
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
   shacl:path dc:accrualPeriodicity;
@@ -1773,7 +1773,7 @@
 <https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeriesShape/63a8cf23801ef605734507c621693524f22476dd> rdfs:seeAlso "https://semiceu.github.io//DCAT-AP/releases/3.0.0#DatasetmemberofaDatasetSeries.frequency";
   shacl:description "The frequency at which the Dataset is updated."@en;
   shacl:name "frequency"@en;
-  # disabled to allow literals: shacl:nodeKind shacl:BlankNodeOrIRI;
+  shacl:nodeKind shacl:BlankNodeOrIRI;
   shacl:path dc:accrualPeriodicity;
   <https://purl.eu/ns/shacl#message> "The expected value for frequency is a rdfs:Resource (URI or blank node)"@en .
 
