@@ -33,10 +33,13 @@ footer.site-footer {
     }
     .suomifi-dvv {
       display: flex;
+      align-items: center;
 
       img {
         border-right: rd.$border;
         padding: 11px 20px 11px 0;
+        width: 265px;
+        max-height: 80px;
       }
       span {
         padding-left: 20px;
