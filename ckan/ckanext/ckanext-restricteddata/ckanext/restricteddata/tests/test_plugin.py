@@ -50,7 +50,7 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 import pytest
 
 # import ckanext.restricteddata.plugin as plugin
-from ckan.plugins import plugin_loaded
+from ckan.plugins import plugin_loaded, toolkit
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
 from ckan.tests.helpers import call_action
 from .utils import minimal_dataset_with_one_resource_fields
@@ -125,10 +125,14 @@ def test_dataset_with_external_ursl():
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_dataset_with_update_frequency():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['update_frequency'] = {'fi': ['Test'], 'sv': ['Test']}
+    dataset_fields['update_frequency'] = 'quarterly'
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
     assert dataset['update_frequency'] == dataset_fields['update_frequency']
+
+    dataset_fields['update_frequency'] = 'invalid value'
+    with pytest.raises(toolkit.ValidationError):
+        d = Dataset(**dataset_fields)
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")

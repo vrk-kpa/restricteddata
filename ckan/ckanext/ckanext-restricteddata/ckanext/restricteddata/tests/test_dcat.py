@@ -152,27 +152,19 @@ def test_dcat_dataset_external_urls(app):
 @pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
 def test_dcat_dataset_update_frequency(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['update_frequency'] = {lang: [f'update frequency {lang} {x}' for x in range(2)]
-                                          for lang in ['fi', 'sv', 'en']}
+    dataset_fields['update_frequency'] = 'quarterly'
     Dataset(**dataset_fields)
 
     result = fetch_catalog_graph(app).query('''
-        SELECT ?updateFrequencyFi ?updateFrequencySv ?updateFrequencyEn
+        SELECT ?updateFrequency
         WHERE {
             ?a a dcat:Dataset
-            . ?a dcterms:accrualPeriodicity ?updateFrequencyFi
-              FILTER ( lang(?updateFrequencyFi) = "fi")
-            . ?a dcterms:accrualPeriodicity ?updateFrequencySv
-              FILTER ( lang(?updateFrequencySv) = "sv")
-            . ?a dcterms:accrualPeriodicity ?updateFrequencyEn
-              FILTER ( lang(?updateFrequencyEn) = "en")
+            . ?a dcterms:accrualPeriodicity ?updateFrequency
         }
         ''')
 
-    results = [r for row in result for r in row]
-    for lang, values in dataset_fields['update_frequency'].items():
-        for value in values:
-            assert Literal(value, lang=lang) in results
+    [(update_frequency,)] = result
+    assert update_frequency == URIRef('http://publications.europa.eu/resource/authority/frequency/QUARTERLY')
 
 
 @pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")

@@ -183,20 +183,25 @@
     {
       "field_name": "update_frequency",
       "label": "Update frequency",
-      "form_placeholder": "e.g. monthly",
-      "form_languages": [
-        "fi",
-        "sv",
-        "en"
-      ],
-      "preset": "fluent_vocabulary_with_autocomplete",
-      "validators": "fluent_tags create_fluent_tags(update_frequency)",
-      "form_attrs": {
-        "data-module": "autocomplete",
-        "data-module-tags": "",
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?&vocabulary_id=update_frequency"
-      },
-      "description": "Describe how often your data is updated"
+      "description": "Describe how often your data is updated",
+      "preset": "select",
+      "choices": [
+        {"value": "biennial", "label": "Biennial"},
+        {"value": "annual", "label": "Annual"},
+        {"value": "semiannual", "label": "Semiannual"},
+        {"value": "quarterly", "label": "Quarterly"},
+        {"value": "monthly", "label": "Monthly"},
+        {"value": "semimonthly", "label": "Semimonthly"},
+        {"value": "biweekly", "label": "Biweekly"},
+        {"value": "weekly", "label": "Weekly"},
+        {"value": "daily", "label": "Daily"},
+        {"value": "twice_a_day", "label": "Twice a day"},
+        {"value": "bihourly", "label": "Bihourly"},
+        {"value": "hourly", "label": "Hourly"},
+        {"value": "continuous", "label": "Continuous"},
+        {"value": "irregular", "label": "Irregular"},
+        {"value": "never", "label": "Never"}
+      ]
     },
     {
       "field_name": "valid_from",

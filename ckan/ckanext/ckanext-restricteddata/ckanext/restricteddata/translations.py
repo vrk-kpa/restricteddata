@@ -83,6 +83,22 @@ def _translations():
     _("to")
     _("Show metadata diff")
 
+    _("Biennial")
+    _("Annual")
+    _("Semiannual")
+    _("Quarterly")
+    _("Monthly")
+    _("Semimonthly")
+    _("Biweekly")
+    _("Weekly")
+    _("Daily")
+    _("Twice a day")
+    _("Bihourly")
+    _("Hourly")
+    _("Continuous")
+    _("Irregular")
+    _("Never")
+
     # Resource
     _("Data resource title")
     _("Give a short and descriptive name for the distribution. If the data covers a specific time frame, mention that in the name.")  # noqa: E501
