@@ -84,7 +84,7 @@ RUN \
   mkdir -p ${DATA_DIR} && \
   # Install CKAN and requirements
   pip install --find-links=/srv/app/wheels -r ${SRC_DIR}/ckan-requirements.txt && \
-  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.10.3#egg=ckan && \
+  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.10.4#egg=ckan && \
   # Configure environment
   addgroup -g 92 ckan && \
   adduser -u 92 -h ${APP_DIR} -H -D -G ckan ckan && \
@@ -158,8 +158,7 @@ COPY src/ckan/ckan-uwsgi.ini ${APP_DIR}
 
 # apply patches
 RUN cd ${SRC_DIR}/ckan && \
-    patch --strip=1 --input=patches/remove-ckan-fontawesome.patch && \
-    patch --strip=1 --input=patches/remove_extra_head.patch
+    patch --strip=1 --input=patches/remove-ckan-fontawesome.patch
 
 RUN \
   # Make scripts executable
