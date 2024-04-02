@@ -63,7 +63,7 @@ def _translations():
     _("e.g. rekisteridata@dvv.fi")
     _("Maintainer website")
     _("e.g. www.rekisteridata.fi")
-    _("The data license you select above only applies to the contents of any resource files that you add to this dataset. By submitting this form, you agree to release the metadata values that you enter into the form under the Open Database License.")  # noqa: E501
+    _("By submitting this form, you agree to release the metadata values that you enter into the form under the CC0 1.0 Universal license.")  # noqa: E501
     _('You can set the state of the dataset back to active.')
     _('Deleted. The dataset is only visible to logged in users of the producer organization.')
     _('In draft state. The dataset is only visible to logged in users of the producer organization.')
