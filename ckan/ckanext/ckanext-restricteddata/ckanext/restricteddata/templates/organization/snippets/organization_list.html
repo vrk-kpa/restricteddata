@@ -2,7 +2,7 @@
 <ul class="organization-list list-unstyled">
   {% block organization_list_inner %}
   {% for organization in organizations %}
-    {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index, show_capacity=show_capacity %}
+    {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index, show_capacity=False %}
   {% endfor %}
    {% endblock %}
 </ul>
