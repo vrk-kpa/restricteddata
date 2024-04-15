@@ -164,7 +164,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     def get_actions(self):
         return {
-            'user_create': action.user_create
+            'user_create': action.user_create,
+            'member_roles_list': action.member_roles_list,
         }
 
 
