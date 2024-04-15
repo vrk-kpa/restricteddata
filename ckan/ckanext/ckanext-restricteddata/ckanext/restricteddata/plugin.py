@@ -151,7 +151,6 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             ('groups', toolkit._('Datasets')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
-            ('license_id', toolkit._('License'))
         ])
         return facets_dict
 
