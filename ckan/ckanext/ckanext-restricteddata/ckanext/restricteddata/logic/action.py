@@ -18,3 +18,16 @@ def user_create(original_action, context, data_dict):
             toolkit.get_action('group_member_create')(context, member_data)
 
     return result
+
+
+# Remove "member" capacity from UIs
+@toolkit.chained_action
+def member_roles_list(original_action, context, data_dict):
+    roles = original_action(context, data_dict)
+
+    group_type = data_dict.get('group_type', 'organization')
+    if group_type == 'organization':
+        result = [role for role in roles
+                  if role['value'] != 'member']
+
+    return result
