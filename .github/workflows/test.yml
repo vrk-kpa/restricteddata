@@ -235,3 +235,64 @@ jobs:
         with:
           flags: cdk
 
+  diff-cdk:
+    name: Diff cdk
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install nodejs v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: cdk/node_modules
+          key: ${{ runner.os }}-node_cdk_v20-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_cdk_v20-
+
+      - name: install cdk npm packages and verify installation
+        working-directory: cdk
+        run: |
+          npm install
+          npx cdk doctor
+
+
+      - name: configure environment
+        shell: bash
+        run: |
+          # configure docker
+          cp -f docker/.env.template docker/.env
+          sed -i.bak -E 's/^(REGISTRY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REGISTRY}"'\"/' docker/.env
+          sed -i.bak -E 's/^(REPOSITORY[[:blank:]]*=[[:blank:]]*).*/\1\"'"${REPOSITORY}"'\"/' docker/.env
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4.0.1
+        with:
+          role-to-assume: ${{ secrets.AWS_DEV_DIFF_ROLE }}
+          role-session-name: github-actions
+          aws-region: eu-north-1
+
+      - name: synthesize cdk stacks
+        working-directory: cdk
+        run: |
+          npx cdk synth *-dev --quiet >/dev/null 2>&1
+
+      - name: Diff cdk
+        uses: corymhall/cdk-diff-action@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          cdkOutDir: cdk/cdk.out
+
+

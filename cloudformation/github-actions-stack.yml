@@ -29,12 +29,20 @@ Parameters:
     Type: String
     Default: false
     AllowedValues: [true, false]
+  CreateDiffRole:
+    Description: Is the diff role required for this aws account
+    Type: String
+    Default: false
+    AllowedValues: [ true, false ]
+
 
 Conditions:
-  CreateOIDCProvider: !Equals 
+  CreateOIDCProvider: !Equals
     - !Ref OIDCProviderArn
     - ""
   ShouldCreateBuildRole: !Equals ['true', !Ref CreateBuildRole]
+  ShouldCreateDiffRole: !Equals [ 'true', !Ref CreateDiffRole ]
+
 
 Resources:
   Role:
@@ -76,6 +84,40 @@ Resources:
                 - Effect: Allow
                   Action: "sts:AssumeRole"
                   Resource: !Sub "arn:aws:iam::${AWS::AccountId}:role/cdk-*"
+
+  DiffRole:
+    Type: AWS::IAM::Role
+    Condition: ShouldCreateDiffRole
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRoleWithWebIdentity
+            Principal:
+              Federated: !If
+                - CreateOIDCProvider
+                - !Ref GithubOidc
+                - !Ref OIDCProviderArn
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: !Ref OIDCAudience
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${RepositoryName}:*
+      Policies:
+        - PolicyName: cfn-access
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "cloudformation:*"
+                Resource: "*"
+        - PolicyName: sts-cdk-assume-permission
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: "sts:AssumeRole"
+                Resource: !Sub "arn:aws:iam::${AWS::AccountId}:role/cdk-*"
 
   BuildRole:
     Type: AWS::IAM::Role
@@ -136,3 +178,6 @@ Outputs:
   BuildRole:
     Condition: ShouldCreateBuildRole
     Value: !GetAtt BuildRole.Arn
+  DiffRole:
+    Condition: ShouldCreateDiffRole
+    Value: !GetAtt DiffRole.Arn
