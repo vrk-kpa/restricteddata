@@ -293,5 +293,6 @@ jobs:
         uses: corymhall/cdk-diff-action@v1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          cdkOutDir: cdk/cdk.out
 
 
