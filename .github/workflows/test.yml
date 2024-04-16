@@ -238,7 +238,6 @@ jobs:
   diff-cdk:
     name: Diff cdk
     runs-on: ubuntu-latest
-    environment: qa
     permissions:
       contents: read
       pull-requests: write
@@ -281,7 +280,7 @@ jobs:
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4.0.1
         with:
-          role-to-assume: ${{ secrets.AWS_DEV_DEPLOY_ROLE }}
+          role-to-assume: ${{ secrets.AWS_DEV_DIFF_ROLE }}
           role-session-name: github-actions
           aws-region: eu-north-1
 
