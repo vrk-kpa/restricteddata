@@ -101,7 +101,6 @@ class RestrictedDataDCATAPProfile(EuropeanDCATAP2Profile):
                 ('temporal_granularity', DCAT.temporalResolution),
             ])
 
-            self._add_triple_from_dict(dataset_dict, distribution, DCT.license, 'license_id')
             self._add_triple_from_dict(resource_dict, distribution, ADMS.status, 'maturity')
             self._add_triple_from_dict(resource_dict, distribution, DCAT.endpointUrl, 'endpoint_url', _type=URIRef)
             self._add_triple_from_dict(resource_dict, distribution, DCT.conformsTo, 'position_info')
