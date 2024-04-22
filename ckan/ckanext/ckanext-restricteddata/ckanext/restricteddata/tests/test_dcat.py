@@ -197,25 +197,23 @@ def test_dcat_resource_with_minimal_resource(app):
     Dataset(**dataset_fields)
 
     result = fetch_catalog_graph(app).query('''
-        SELECT ?url ?format ?size ?license ?maturity ?rightsFi ?rightsSv
+        SELECT ?url ?format ?size ?maturity ?rightsFi ?rightsSv
         WHERE {
             ?a a dcat:Distribution
             . ?a dcat:accessURL ?url
             . ?a dcterms:format ?format
             . ?a dcat:byteSize ?size
-            . ?a dcterms:license ?license
             . ?a adms:status ?maturity
             . ?a dcterms:rights ?rightsFi FILTER ( lang(?rightsFi) = "fi")
             . ?a dcterms:rights ?rightsSv FILTER ( lang(?rightsSv) = "sv")
         }
         ''')
 
-    [(url, format, size, license, maturity, rights_fi, rights_sv)] = list(result)
+    [(url, format, size, maturity, rights_fi, rights_sv)] = list(result)
 
     assert url == URIRef(resource_fields['url'])
     assert format == Literal(resource_fields['format'])
     assert size == Literal(resource_fields['size'], datatype=XSD.nonNegativeInteger)
-    assert license == Literal(dataset_fields['license_id'])
     assert maturity == Literal(resource_fields['maturity'])
     assert rights_fi == Literal(resource_fields['rights_translated']['fi'], lang='fi')
     assert rights_sv == Literal(resource_fields['rights_translated']['sv'], lang='sv')

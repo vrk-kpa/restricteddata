@@ -78,7 +78,6 @@ def test_minimal_dataset():
     assert dataset['access_rights'] == dataset_fields['access_rights']
     assert dataset['maintainer'] == dataset_fields['maintainer']
     assert dataset['maintainer_email'] == dataset_fields['maintainer_email']
-    assert dataset['license_id'] == dataset_fields['license_id']
     assert dataset['keywords'] == dataset_fields['keywords']
 
     assert len(dataset['resources']) == 1

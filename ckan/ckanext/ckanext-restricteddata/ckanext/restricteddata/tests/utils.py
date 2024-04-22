@@ -7,7 +7,6 @@ def minimal_dataset_with_one_resource_fields(user):
         access_rights='non-public',
         maintainer='maintainer',
         maintainer_email=['maintainer@example.com'],
-        license_id='notspecified',
         keywords={'fi': ['test-fi'], 'sv': ['test-sv']},
         resources=[dict(
             url='http://example.com',
