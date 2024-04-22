@@ -83,16 +83,6 @@
       "display_snippet": null
     },
     {
-      "field_name": "license_id",
-      "label": "License",
-      "form_snippet": "license.html",
-      "display_snippet": "license.html",
-      "validators": "not_empty",
-      "required": true,
-      "description": "Select a license that suits your needs.",
-      "group_title": "Dataset additional information"
-    },
-    {
       "field_name": "private",
       "label": "Dataset visibility",
       "preset": "select",
@@ -110,7 +100,8 @@
       "default_value": "False",
       "validators": "keep_old_value_if_missing boolean_validator",
       "description": "You can set the visibility to private temporarily, for example if the dataset is missing some information. Private datasets are visible to all members of the organisation.",
-      "required": true
+      "required": true,
+      "group_title": "Dataset additional information"
     },
     {
       "field_name": "highvalue",
