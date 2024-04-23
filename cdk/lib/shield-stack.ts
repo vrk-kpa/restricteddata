@@ -11,7 +11,6 @@ import {
 import {Construct} from "constructs";
 
 import {ShieldStackProps} from "./shield-stack-props";
-import any = jasmine.any;
 
 
 export class ShieldStack extends Stack {

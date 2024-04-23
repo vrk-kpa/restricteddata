@@ -7,5 +7,6 @@ export interface DatabaseStackProps extends CommonStackProps {
     backupPlan: aws_backup.BackupPlan;
     cacheNodeType: string;
     numCacheNodes: number;
+    terminationProtection: boolean;
 }
 

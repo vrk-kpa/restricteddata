@@ -115,7 +115,8 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
   backups: true,
   backupPlan: BackupStackDev.backupPlan,
   cacheNodeType: 'cache.t3.micro',
-  numCacheNodes: 1
+  numCacheNodes: 1,
+  terminationProtection: true
 })
 
 const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev', {
@@ -175,7 +176,8 @@ const FileSystemStackDev = new FileSystemStack(app, 'FilesystemStack-dev', {
   },
   envProps: envProps,
   environment: devStackProps.environment,
-  vpc: VpcStackDev.vpc
+  vpc: VpcStackDev.vpc,
+  terminationProtection: true
 })
 
 
@@ -323,7 +325,8 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
   backups: true,
   backupPlan: BackupStackProd.backupPlan,
   cacheNodeType: 'cache.t3.micro',
-  numCacheNodes: 1
+  numCacheNodes: 1,
+  terminationProtection: true
 })
 
 const LoadBalancerStackProd = new LoadBalancerStack(app, 'LoadBalancerStack-prod', {
@@ -375,7 +378,8 @@ const FileSystemStackProd = new FileSystemStack(app, 'FilesystemStack-prod', {
   },
   envProps: envProps,
   environment: prodStackProps.environment,
-  vpc: VpcStackProd.vpc
+  vpc: VpcStackProd.vpc,
+  terminationProtection: true
 })
 
 
