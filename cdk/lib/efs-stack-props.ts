@@ -5,4 +5,5 @@ import {aws_backup} from "aws-cdk-lib";
 
 export interface EfsStackProps extends CommonStackProps {
   vpc: ec2.IVpc;
+  terminationProtection: boolean;
 }
