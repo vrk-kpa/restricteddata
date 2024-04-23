@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-02 11:34+0000\n"
+"POT-Creation-Date: 2024-04-22 10:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,11 +31,6 @@ msgstr ""
 
 #: ckanext/restricteddata/plugin.py:153
 msgid "Format"
-msgstr ""
-
-#: ckanext/restricteddata/plugin.py:154
-#: ckanext/restricteddata/templates/snippets/license.html:4
-msgid "License"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:8
@@ -1073,6 +1068,17 @@ msgstr ""
 msgid "Organization search"
 msgstr ""
 
+#: ckanext/restricteddata/templates/organization/member_new.html:8
+msgid "What are roles?"
+msgstr ""
+
+#: ckanext/restricteddata/templates/organization/member_new.html:11
+msgid ""
+"<p><strong>Admin:</strong> Can add/edit and delete datasets, as well as "
+"manage organization members.</p> <p><strong>Editor:</strong> Can add and edit"
+" datasets, but not manage organization members.</p>"
+msgstr ""
+
 #: ckanext/restricteddata/templates/organization/read.html:9
 #: ckanext/restricteddata/templates/package/search.html:20
 msgid "Filters"
@@ -1474,6 +1480,10 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/scheming/snippets/errors.html:6
 msgid "The form contains invalid entries:"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/license.html:4
+msgid "License"
 msgstr ""
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:44
