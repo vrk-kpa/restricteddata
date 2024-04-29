@@ -21,4 +21,6 @@ jobs:
 
       - name: Restart containers
         run: |
-          aws ecs update-service --cluster clustername --service ${{ matrix.container }} --force-new-deployment
+          aws ecs update-service --cluster ${{ env.cluster }} --service ${{ matrix.container }} --force-new-deployment
+        env:
+          cluster: ${{ secrets.cluster }}
