@@ -1,4 +1,4 @@
-import {CommonStackProps} from "./common-stack-props";
+import {CommonStackProps} from "../common-stack-props";
 
 export interface SendToZulipProps extends CommonStackProps {
   zulipApiUser: string,

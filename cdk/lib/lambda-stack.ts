@@ -5,7 +5,7 @@ import {Construct} from "constructs";
 import {LambdaStackProps} from "./lambda-stack-props";
 import {Credentials} from "aws-cdk-lib/aws-rds";
 import {Key} from "aws-cdk-lib/aws-kms";
-import { SendToZulip } from "./send-to-zulip";
+import { SendToZulip } from "./lambdas/send-to-zulip";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 export class LambdaStack extends Stack {
