@@ -209,6 +209,7 @@ export class CkanStack extends Stack {
      const ckanService = new aws_ecs.FargateService(this, 'ckanService', {
       platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
       cluster: props.cluster,
+      serviceName: "ckan",
       taskDefinition: ckanTaskDefinition,
       minHealthyPercent: 50,
       maxHealthyPercent: 200,
@@ -310,6 +311,7 @@ export class CkanStack extends Stack {
     const ckanCronService = new aws_ecs.FargateService(this, 'ckanCronService', {
       platformVersion: aws_ecs.FargatePlatformVersion.VERSION1_4,
       cluster: props.cluster,
+      serviceName: "ckanCron",
       taskDefinition: ckanCronTaskDefinition,
       desiredCount: 1,
       minHealthyPercent: 0,
