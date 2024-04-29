@@ -18,6 +18,7 @@ import {SolrStack} from "../lib/solr-stack";
 import {FileSystemStack} from "../lib/filesystem-stack";
 import {CkanStack} from "../lib/ckan-stack";
 import {ShieldStack} from "../lib/shield-stack";
+import {MonitoringStack} from '../lib/monitoring-stack';
 
 const app = new cdk.App();
 
@@ -280,6 +281,16 @@ const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
   vpc: VpcStackDev.vpc
 })
 
+const MonitoringStackDev = new MonitoringStack(app, 'MonitoringStack-dev', {
+  sendToZulipLambda: LambdaStackDev.sendToZulipLambda,
+  envProps: envProps,
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  environment: devStackProps.environment,
+  vpc: VpcStackDev.vpc
+});
 
 // Production
 
@@ -481,3 +492,14 @@ const ShieldStackProd = new ShieldStack(app, 'ShieldStack-prod', {
   requestSampleAllTrafficEnabled: false,
   vpc: VpcStackProd.vpc
 })
+
+const MonitoringStackProd = new MonitoringStack(app, 'MonitoringStack-prod', {
+  sendToZulipLambda: LambdaStackProd.sendToZulipLambda,
+  envProps: envProps,
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  environment: prodStackProps.environment,
+  vpc: VpcStackProd.vpc
+});
