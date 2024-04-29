@@ -7,7 +7,7 @@ jobs:
   restart-dev:
     name: restart dev containers
     runs-on: ubuntu-latest
-    environment: dev
+    environment: qa
     strategy:
       matrix:
         container: ["ckan", "ckanCron"]
@@ -21,6 +21,4 @@ jobs:
 
       - name: Restart containers
         run: |
-          aws ecs update-service --cluster ${{ env.cluster }} --service ${{ matrix.container }} --force-new-deployment
-        env:
-          cluster: ${{ secrets.cluster }}
+          aws ecs update-service --cluster ${{ secrets.cluster }} --service ${{ matrix.container }} --force-new-deployment
