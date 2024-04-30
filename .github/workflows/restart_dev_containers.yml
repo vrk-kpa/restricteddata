@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: qa
     permissions:
-      id-token: read
+      id-token: write
     strategy:
       matrix:
         container: ["ckan", "ckanCron"]
