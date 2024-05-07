@@ -1,0 +1,6 @@
+{% ckan_extends %}
+{% block group_list_inner %}
+  {% for group in groups %}
+    {% snippet "group/snippets/group_item.html", group=group, position=loop.index, show_capacity=show_capacity, allow_delete=allow_delete %}
+  {% endfor %}
+{% endblock %}

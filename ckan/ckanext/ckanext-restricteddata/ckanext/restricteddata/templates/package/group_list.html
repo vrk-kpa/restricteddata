@@ -1,0 +1,29 @@
+{% ckan_extends %}
+
+{% block primary_content_inner %}
+  <h2 class="hide-heading">{{ h.humanize_entity_type('group', default_group_type, 'page title') or _('Groups') }}</h2>
+
+  {# Added package_update requirement #}
+  {% set assignable_groups = h.get_assignable_groups_for_package(pkg_dict) %}
+  {% if assignable_groups %}
+    <form class="add-to-group" method="post">
+      {{ h.csrf_input() }}
+      <select id="field-add_group" name="group_added" data-module="autocomplete">
+        {% for group in assignable_groups %}
+          <option value="{{ group.name }}">{{ h.get_translated(group, 'title') }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary" title="{{ _('Associate this group with this dataset') }}">{{ _('Add to group') }}</button>
+    </form>
+  {% endif %}
+
+  {% if pkg_dict.groups %}
+    <form method="post">
+      {{ h.csrf_input() }}
+      {% set allow_group_delete = h.check_access('package_update', {'id': pkg.id }) %}
+      {% snippet 'group/snippets/group_list.html', groups=pkg_dict.groups, allow_delete=allow_group_delete %}
+    </form>
+  {% else %}
+    <p class="empty">{{ h.humanize_entity_type('group', default_group_type, 'no associated label') or _('There are no groups associated with this dataset') }}</p>
+  {% endif %}
+{% endblock %}

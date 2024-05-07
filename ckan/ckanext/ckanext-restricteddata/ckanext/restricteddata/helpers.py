@@ -1,4 +1,3 @@
-
 from ckan import model
 from ckan.common import c
 from ckan.plugins import toolkit
@@ -207,3 +206,19 @@ def get_translated_logo(language: str):
     else:
         [path, extension] = site_logo.rsplit('.', 1)
         return f'{path}_{language}.{extension}'
+
+
+def get_assignable_groups_for_package(pkg_dict):
+    context = {'model': model, 'session': model.Session, 'user': c.user}
+
+    try:
+        toolkit.check_access('package_update', context, {'id': pkg_dict['id']})
+    except toolkit.NotAuthorized:
+        return []
+
+    groups = scheming_category_list(None)
+    package_group_ids = set(g['name'] for g in pkg_dict.get('groups', []))
+
+    return [{'name': g['value'], 'title_translated': g['label']}
+            for g in groups
+            if g['value'] not in package_group_ids]
