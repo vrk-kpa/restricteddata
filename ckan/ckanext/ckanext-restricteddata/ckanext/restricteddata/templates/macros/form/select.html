@@ -32,11 +32,13 @@ options     - A list/tuple of fields to be used as <options>.
 
     {%- set extra_html = caller() if caller -%}
     {% call input_block(id or name, label or name, error, classes, extra_html=extra_html, is_required=is_required, description=description) %}
-    <select id="{{ id or name }}" name="{{ name }}" {{ attributes(attrs) }}>
-      {% for option in options %}
-      <option value="{{ option.value }}"
-              {% if option.value == selected %}selected{% endif %}>{{ option.text or option.value }}</option>
-      {% endfor %}
-    </select>
+    <div class="select-wrapper">
+      <select id="{{ id or name }}" name="{{ name }}" {{ attributes(attrs) }}>
+        {% for option in options %}
+        <option value="{{ option.value }}"
+                {% if option.value == selected %}selected{% endif %}>{{ option.text or option.value }}</option>
+        {% endfor %}
+      </select>
+    </div>
     {% endcall %}
     {% endmacro %}
