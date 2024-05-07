@@ -7,6 +7,7 @@
 
   .organization-item {
     padding: 20px;
+    border-bottom: rd.$border-light;
     .organization-content {
       .organization-heading {
         font-size: inherit;
@@ -15,5 +16,9 @@
         }
       }
     }
+  }
+
+  &:last-child {
+    border-bottom: none;
   }
 }
