@@ -87,7 +87,7 @@ export const lintStyles = () => {
 
 // Preprocess our ckan sass
 const ckanSass = () => {
-  return src(paths.src.scss + "ckan/**/*.scss", { sourcemaps: true })
+  return src(paths.src.scss + "ckan/main.scss", { sourcemaps: true })
     .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }).on('error', sass.logError))
     .pipe(cleancss({ keepBreaks: false }))
     .pipe(concat('restricteddata.css'))
