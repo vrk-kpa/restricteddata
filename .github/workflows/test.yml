@@ -186,6 +186,7 @@ jobs:
       uses: codecov/codecov-action@v4
       with:
         flags: ckan
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   test-cdk:
     name: test-cdk
@@ -234,4 +235,5 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           flags: cdk
+          token: ${{ secrets.CODECOV_TOKEN }}
 
