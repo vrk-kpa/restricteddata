@@ -55,7 +55,7 @@ flask-multistatic==1.0
     # via ckan
 flask-wtf==1.0.1
     # via ckan
-gevent==23.9.1
+gevent==24.2.1
     # via -r ckan/ckan-requirements.in
 greenlet==2.0.2
     # via
