@@ -24,8 +24,7 @@ charset-normalizer==2.0.12
     # via
     #   ckan
     #   requests
-# Removed manually for installing editable separately
-# ckan[requirements] @ git+https://github.com/ckan/ckan.git@ckan-2.10.4
+ckan[requirements] @ git+https://github.com/ckan/ckan.git@ckan-2.10.4
     # via -r ckan/ckan-requirements.in
 click==8.1.3
     # via
@@ -55,7 +54,7 @@ flask-multistatic==1.0
     # via ckan
 flask-wtf==1.0.1
     # via ckan
-gevent==23.9.1
+gevent==24.2.1
     # via -r ckan/ckan-requirements.in
 greenlet==2.0.2
     # via
