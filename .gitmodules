@@ -16,3 +16,6 @@
 [submodule "ckan/ckanext/ckanext-harvest"]
 	path = ckan/ckanext/ckanext-harvest
 	url = https://github.com/vrk-kpa/ckanext-harvest.git
+[submodule "ckan/ckanext/ckanext-matomo"]
+	path = ckan/ckanext/ckanext-matomo
+	url = https://github.com/vrk-kpa/ckanext-matomo.git
