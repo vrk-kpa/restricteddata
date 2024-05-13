@@ -1,11 +1,11 @@
 import {aws_kms, Stack, StackProps} from "aws-cdk-lib";
 import {Construct} from "constructs";
-import {CommonStackProps} from "./common-stack-props";
+import {EnvStackProps} from "./env-stack-props";
 
 export class KmsKeyStack extends Stack {
     readonly databaseEncryptionKey: aws_kms.IKey;
-  
-    constructor(scope: Construct, id: string, props: CommonStackProps) {
+
+    constructor(scope: Construct, id: string, props: EnvStackProps) {
         super(scope, id, props);
 
         this.databaseEncryptionKey = new aws_kms.Key(this, 'databaseEncryptionKey', {
