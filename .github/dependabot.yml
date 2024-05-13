@@ -7,7 +7,7 @@ registries:
 
 updates:
 - package-ecosystem: pip
-  directory: "/"
+  directory: "/ckan/"
   schedule:
     interval: daily
     time: "03:00"
@@ -31,12 +31,6 @@ updates:
   open-pull-requests-limit: 10
 - package-ecosystem: npm
   directory: "/"
-  schedule:
-    interval: daily
-    time: "03:00"
-  open-pull-requests-limit: 10
-- package-ecosystem: npm
-  directory: "/assets/"
   schedule:
     interval: daily
     time: "03:00"
