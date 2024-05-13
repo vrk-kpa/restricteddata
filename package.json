@@ -22,7 +22,7 @@
     "@fortawesome/fontawesome-pro": "^6.4.2",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.2",
     "bootstrap": "^5.3.3",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^2.3.0",
     "gulp-concat": "^2.6.1",
