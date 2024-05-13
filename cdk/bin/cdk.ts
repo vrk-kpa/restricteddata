@@ -19,6 +19,7 @@ import {FileSystemStack} from "../lib/filesystem-stack";
 import {CkanStack} from "../lib/ckan-stack";
 import {ShieldStack} from "../lib/shield-stack";
 import {MonitoringStack} from '../lib/monitoring-stack';
+import {ParameterStack} from "../lib/parameter-stack";
 
 const app = new cdk.App();
 
@@ -80,6 +81,13 @@ const VpcStackDev = new VpcStack(app, 'VpcStack-dev', {
   }
 })
 
+const ParameterStackDev = new ParameterStack(app, 'ParameterStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region
+  },
+  environment: devStackProps.environment,
+})
 
 
 const KmsKeyStackDev = new KmsKeyStack(app, 'KmsKeyStack-dev', {
@@ -87,9 +95,7 @@ const KmsKeyStackDev = new KmsKeyStack(app, 'KmsKeyStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region
   },
-  envProps: envProps,
   environment: devStackProps.environment,
-  vpc: VpcStackDev.vpc,
 })
 
 const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
@@ -97,8 +103,6 @@ const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  envProps: envProps,
-  vpc: VpcStackDev.vpc,
   environment: devStackProps.environment,
   importVault: false,
   backups: true
@@ -109,7 +113,6 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region
   },
-  envProps: envProps,
   environment: devStackProps.environment,
   vpc: VpcStackDev.vpc,
   multiAz: false,
@@ -125,7 +128,6 @@ const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev',
     account: devStackProps.account,
     region: devStackProps.region
   },
-  envProps: envProps,
   environment: devStackProps.environment,
   vpc: VpcStackDev.vpc
 })
@@ -135,7 +137,6 @@ const LambdaStackDev = new LambdaStack(app, 'LambdaStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  envProps: envProps,
   environment: devStackProps.environment,
   ckanInstance: DatabaseStackDev.ckanInstance,
   ckanAdminCredentials: DatabaseStackDev.ckanAdminCredentials,
@@ -165,7 +166,6 @@ const EcsClusterStackDev = new EcsClusterStack(app, 'EcsClusterStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  envProps: envProps,
   environment: devStackProps.environment,
   vpc: VpcStackDev.vpc
 })
@@ -175,7 +175,6 @@ const FileSystemStackDev = new FileSystemStack(app, 'FilesystemStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  envProps: envProps,
   environment: devStackProps.environment,
   vpc: VpcStackDev.vpc,
   terminationProtection: true
@@ -263,7 +262,6 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
     taskMaxCapacity: 1
   },
   vpc: VpcStackDev.vpc
-
 })
 
 const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
@@ -271,25 +269,20 @@ const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  envProps: envProps,
   environment: devStackProps.environment,
   loadBalancer: LoadBalancerStackDev.loadBalancer,
   rateLimitRequestSamplingEnabled: false,
   highPriorityRequestSamplingEnabled: false,
   bannedIpsRequestSamplingEnabled: false,
   requestSampleAllTrafficEnabled: false,
-  vpc: VpcStackDev.vpc
 })
 
 const MonitoringStackDev = new MonitoringStack(app, 'MonitoringStack-dev', {
   sendToZulipLambda: LambdaStackDev.sendToZulipLambda,
-  envProps: envProps,
   env: {
     account: devStackProps.account,
     region: devStackProps.region,
   },
-  environment: devStackProps.environment,
-  vpc: VpcStackDev.vpc
 });
 
 // Production
@@ -307,9 +300,7 @@ const KmsKeyStackProd = new KmsKeyStack(app, 'KmsKeyStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region
   },
-  envProps: envProps,
-  environment: prodStackProps.environment,
-  vpc: VpcStackProd.vpc,
+  environment: prodStackProps.environment
 })
 
 const BackupStackProd = new BackupStack(app, 'BackupStack-prod', {
@@ -317,8 +308,6 @@ const BackupStackProd = new BackupStack(app, 'BackupStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  envProps: envProps,
-  vpc: VpcStackProd.vpc,
   environment: prodStackProps.environment,
   importVault: false,
   backups: true
@@ -329,7 +318,6 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region
   },
-  envProps: envProps,
   environment: prodStackProps.environment,
   vpc: VpcStackProd.vpc,
   multiAz: false,
@@ -345,7 +333,6 @@ const LoadBalancerStackProd = new LoadBalancerStack(app, 'LoadBalancerStack-prod
     account: prodStackProps.account,
     region: prodStackProps.region
   },
-  envProps: envProps,
   environment: prodStackProps.environment,
   vpc: VpcStackProd.vpc
 })
@@ -355,7 +342,6 @@ const LambdaStackProd = new LambdaStack(app, 'LambdaStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  envProps: envProps,
   environment: prodStackProps.environment,
   ckanInstance: DatabaseStackProd.ckanInstance,
   ckanAdminCredentials: DatabaseStackProd.ckanAdminCredentials,
@@ -377,7 +363,6 @@ const EcsClusterStackProd = new EcsClusterStack(app, 'EcsClusterStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  envProps: envProps,
   environment: prodStackProps.environment,
   vpc: VpcStackProd.vpc
 })
@@ -387,7 +372,6 @@ const FileSystemStackProd = new FileSystemStack(app, 'FilesystemStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  envProps: envProps,
   environment: prodStackProps.environment,
   vpc: VpcStackProd.vpc,
   terminationProtection: true
@@ -483,23 +467,19 @@ const ShieldStackProd = new ShieldStack(app, 'ShieldStack-prod', {
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  envProps: envProps,
   environment: prodStackProps.environment,
   loadBalancer: LoadBalancerStackProd.loadBalancer,
   rateLimitRequestSamplingEnabled: false,
   highPriorityRequestSamplingEnabled: false,
   bannedIpsRequestSamplingEnabled: false,
-  requestSampleAllTrafficEnabled: false,
-  vpc: VpcStackProd.vpc
+  requestSampleAllTrafficEnabled: false
 })
 
 const MonitoringStackProd = new MonitoringStack(app, 'MonitoringStack-prod', {
   sendToZulipLambda: LambdaStackProd.sendToZulipLambda,
-  envProps: envProps,
   env: {
     account: prodStackProps.account,
     region: prodStackProps.region,
   },
-  environment: prodStackProps.environment,
   vpc: VpcStackProd.vpc
 });
