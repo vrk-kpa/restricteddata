@@ -1,6 +1,6 @@
 import {Construct} from "constructs";
 import {NodejsFunction} from "aws-cdk-lib/aws-lambda-nodejs";
-import {aws_ec2, aws_rds} from "aws-cdk-lib";
+import {aws_ec2, aws_lambda, aws_rds} from "aws-cdk-lib";
 import {CreateDatabasesAndUsersProps} from "./create-databases-and-users-props";
 import {Trigger, TriggerFunction} from "aws-cdk-lib/triggers";
 import {ISecret} from "aws-cdk-lib/aws-secretsmanager";
@@ -33,6 +33,7 @@ export class CreateDatabasesAndUsers extends Construct {
         },
         vpc: props.vpc,
         securityGroups: [secGroup],
+        runtime: aws_lambda.Runtime.NODEJS_20_X,
         bundling: {
           externalModules: [
             "sqlite3",
