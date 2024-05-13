@@ -19,7 +19,6 @@ import {FileSystemStack} from "../lib/filesystem-stack";
 import {CkanStack} from "../lib/ckan-stack";
 import {ShieldStack} from "../lib/shield-stack";
 import {MonitoringStack} from '../lib/monitoring-stack';
-import {ParameterStack} from "../lib/parameter-stack";
 
 const app = new cdk.App();
 
@@ -79,14 +78,6 @@ const VpcStackDev = new VpcStack(app, 'VpcStack-dev', {
     account: devStackProps.account,
     region: devStackProps.region
   }
-})
-
-const ParameterStackDev = new ParameterStack(app, 'ParameterStack-dev', {
-  env: {
-    account: devStackProps.account,
-    region: devStackProps.region
-  },
-  environment: devStackProps.environment,
 })
 
 
@@ -480,6 +471,5 @@ const MonitoringStackProd = new MonitoringStack(app, 'MonitoringStack-prod', {
   env: {
     account: prodStackProps.account,
     region: prodStackProps.region,
-  },
-  vpc: VpcStackProd.vpc
+  }
 });
