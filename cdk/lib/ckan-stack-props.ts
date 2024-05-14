@@ -15,4 +15,8 @@ export interface CkanStackProps extends EcsStackProps {
   solrService: aws_ecs.FargateService,
   nginxService: aws_ecs_patterns.ApplicationLoadBalancedFargateService,
   cronTaskDef: EcsTaskDefinitionProps,
+  analyticsEnabled: boolean,
+  matomoSiteId: number | undefined,
+  matomoDomain: string | undefined,
+  matomoScriptDomain: string | undefined
 }

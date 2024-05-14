@@ -252,7 +252,11 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
-  vpc: VpcStackDev.vpc
+  vpc: VpcStackDev.vpc,
+  analyticsEnabled: true,
+  matomoSiteId: 47,
+  matomoDomain: "suomi.matomo.cloud",
+  matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/"
 })
 
 const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
@@ -449,7 +453,11 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
-  vpc: VpcStackProd.vpc
+  vpc: VpcStackProd.vpc,
+  analyticsEnabled: true,
+  matomoSiteId: 48,
+  matomoDomain: "suomi.matomo.cloud",
+  matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/",
 })
 
 

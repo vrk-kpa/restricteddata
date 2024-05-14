@@ -84,6 +84,10 @@ export class CkanStack extends Stack {
       "harvest"
     ]
 
+    if ( props.analyticsEnabled ) {
+      ckanPlugins.push('matomo')
+    }
+
     const ckanContainerEnv: {[key: string]: string} = {
       // env.ckan
       CKAN_SITE_ID: 'default',
@@ -116,6 +120,20 @@ export class CkanStack extends Stack {
       CKAN_SYSADMIN_NAME: pSysadminUser.stringValue,
       CKAN_SYSADMIN_EMAIL: pSysadminEmail.stringValue,
       DEPLOY_ENVIRONMENT: props.environment,
+    }
+
+    if ( props.analyticsEnabled ) {
+      ckanContainerEnv['MATOMO_ENABLED'] = 'true'
+      ckanContainerEnv['MATOMO_SITE_ID'] = props.matomoSiteId!.toString()
+      ckanContainerEnv['MATOMO_DOMAIN'] = props.matomoDomain!
+      ckanContainerEnv['MATOMO_SCRIPT_DOMAIN'] = props.matomoScriptDomain!
+    }
+    else{
+      ckanContainerEnv['MATOMO_ENABLED'] = 'false'
+      ckanContainerEnv['MATOMO_SITE_ID'] = ''
+      ckanContainerEnv['MATOMO_DOMAIN'] = ''
+      ckanContainerEnv['MATOMO_SCRIPT_DOMAIN'] = ''
+      ckanContainerEnv['MATOMO_TOKEN'] = ''
     }
 
     const smtpSecrets = aws_secretsmanager.Secret.fromSecretNameV2(this, 'smtpSecrets',
@@ -159,6 +177,14 @@ export class CkanStack extends Stack {
       SMTP_PASS: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'password'),
       CKAN_SYSADMIN_PASSWORD: aws_ecs.Secret.fromSecretsManager(props.ckanSysAdminSecret),
     };
+
+    if ( props.analyticsEnabled ) {
+
+      const matomoSecret = aws_secretsmanager.Secret.fromSecretNameV2(this, 'matomoSecret',
+        `${props.environment}/matomo`)
+
+      ckanContainerSecrets['MATOMO_TOKEN'] = aws_ecs.Secret.fromSecretsManager(matomoSecret)
+    }
 
     ckanTaskDefinition.addToExecutionRolePolicy(new PolicyStatement({
       effect: Effect.ALLOW,
