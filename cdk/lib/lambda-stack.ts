@@ -20,7 +20,6 @@ export class LambdaStack extends Stack {
 
     const createDatabases = new CreateDatabasesAndUsers(this, 'create-databases-and-users', {
       env: props.env,
-      envProps: props.envProps,
       ckanInstance: props.ckanInstance,
       ckanAdminCredentials: props.ckanAdminCredentials,
       vpc: props.vpc,
@@ -35,10 +34,8 @@ export class LambdaStack extends Stack {
       zulipApiUrl: 'turina.dvv.fi',
       zulipStream: 'DGA',
       zulipTopic: 'Container restarts',
-      envProps: props.envProps,
       env: props.env,
-      environment: props.environment,
-      vpc: props.vpc
+      environment: props.environment
     });
     this.sendToZulipLambda = sendToZulip.lambda;
   }

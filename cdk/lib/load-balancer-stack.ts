@@ -1,12 +1,12 @@
 import {aws_ec2, aws_s3, Duration, Stack} from "aws-cdk-lib";
 import {Construct} from "constructs";
 import {ApplicationLoadBalancer, ApplicationProtocol} from "aws-cdk-lib/aws-elasticloadbalancingv2";
-import {CommonStackProps} from "./common-stack-props";
 import {BucketEncryption} from "aws-cdk-lib/aws-s3";
+import {NetworkStackProps} from "./network-stack-props";
 
 export class LoadBalancerStack extends Stack {
   readonly loadBalancer: ApplicationLoadBalancer
-  constructor(scope: Construct, id: string, props: CommonStackProps) {
+  constructor(scope: Construct, id: string, props: NetworkStackProps) {
     super(scope, id, props);
 
     const secGroup = new aws_ec2.SecurityGroup(this, 'loadBalancerSecurityGroup', {

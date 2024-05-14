@@ -1,7 +1,8 @@
 import {aws_kms, aws_rds, StackProps} from "aws-cdk-lib";
-import {CommonStackProps} from "../common-stack-props";
 
-export interface CreateDatabasesAndUsersProps extends CommonStackProps{
+import {NetworkStackProps} from "../network-stack-props";
+
+export interface CreateDatabasesAndUsersProps extends NetworkStackProps {
   ckanInstance: aws_rds.IDatabaseInstance,
   ckanAdminCredentials: aws_rds.Credentials,
   secretsEncryptionKey: aws_kms.IKey;
