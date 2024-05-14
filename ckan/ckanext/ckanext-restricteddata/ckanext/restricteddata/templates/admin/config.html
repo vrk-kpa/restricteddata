@@ -1,0 +1,40 @@
+{% ckan_extends %}
+
+{% import 'macros/form.html' as form %}
+
+{% block admin_form %}
+
+  {{ super() }}
+
+  <h3>{{ _('Info message') }}</h3>
+
+  {% for lang in ['fi', 'sv', 'en'] %}
+    {{ form.input('ckanext.restricteddata.info_message_%s' % lang,
+                  id='field-ckanext.restricteddata.info_message_%s' % lang,
+                  label=_('Info message (%s)' % lang),
+                  value=data['ckanext.restricteddata.info_message_%s' % lang],
+                  error=errors['ckanext.restricteddata.info_message_%s' % lang]) }}
+  {% endfor %}
+
+  <h3>{{ _('Service alert') }}</h3>
+
+  {% for lang in ['fi', 'sv', 'en'] %}
+    {{ form.input('ckanext.restricteddata.service_alert_%s' % lang,
+                  id='field-ckanext.restricteddata.service_alert_%s' % lang,
+                  label=_('Service alert (%s)' % lang),
+                  value=data['ckanext.restricteddata.service_alert_%s' % lang],
+                  error=errors['ckanext.restricteddata.service_alert_%s' % lang]) }}
+  {% endfor %}
+
+{% endblock %}
+
+
+{% block admin_form_help %}
+
+  {{ super() }}
+
+  <p><strong>Info message:</strong> Message shown in a notification on every page.</p>
+
+  <p><strong>Service alert:</strong> Maintenance message shown in a notification on every page.</p>
+
+{% endblock %}

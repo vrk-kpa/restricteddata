@@ -39,6 +39,17 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         toolkit.add_public_directory(config_, "public")
         toolkit.add_resource("assets", "restricteddata")
 
+    def update_config_schema(self, schema):
+        ignore_missing = toolkit.get_validator('ignore_missing')
+        unicode_safe = toolkit.get_validator('unicode_safe')
+
+        schema.update({
+            f'ckanext.restricteddata.{field}_{lang}': [ignore_missing, unicode_safe]
+            for field in ['info_message', 'service_alert']
+            for lang in ['fi', 'sv', 'en']})
+
+        return schema
+
     # ITemplateHelpers
 
     def get_helpers(self):

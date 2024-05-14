@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-22 10:29+0000\n"
+"POT-Creation-Date: 2024-05-14 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ckanext/restricteddata/plugin.py:151
+#: ckanext/restricteddata/plugin.py:162
 #: ckanext/restricteddata/templates/header.html:99
 #: ckanext/restricteddata/templates/home/layout1.html:52
 #: ckanext/restricteddata/templates/package/search.html:11
 msgid "Datasets"
 msgstr ""
 
-#: ckanext/restricteddata/plugin.py:152
+#: ckanext/restricteddata/plugin.py:163
 msgid "Tags"
 msgstr ""
 
-#: ckanext/restricteddata/plugin.py:153
+#: ckanext/restricteddata/plugin.py:164
 msgid "Format"
 msgstr ""
 
@@ -628,6 +628,7 @@ msgstr ""
 msgid "View Organization"
 msgstr ""
 
+#: ckanext/restricteddata/templates/user/dashboard.html:4
 #: ckanext/restricteddata/translations.py:159
 msgid "News feed"
 msgstr ""
@@ -636,6 +637,7 @@ msgstr ""
 msgid "Activity from items that I'm following"
 msgstr ""
 
+#: ckanext/restricteddata/templates/user/dashboard.html:5
 #: ckanext/restricteddata/translations.py:161
 msgid "My Datasets"
 msgstr ""
@@ -644,6 +646,7 @@ msgstr ""
 msgid "Add Dataset"
 msgstr ""
 
+#: ckanext/restricteddata/templates/user/dashboard.html:6
 #: ckanext/restricteddata/translations.py:163
 msgid "My Organizations"
 msgstr ""
@@ -971,8 +974,16 @@ msgstr ""
 msgid "Skip to main content"
 msgstr ""
 
-#: ckanext/restricteddata/templates/page.html:34
+#: ckanext/restricteddata/templates/page.html:38
 msgid "Breadcrumb"
+msgstr ""
+
+#: ckanext/restricteddata/templates/admin/config.html:9
+msgid "Info message"
+msgstr ""
+
+#: ckanext/restricteddata/templates/admin/config.html:19
+msgid "Service alert"
 msgstr ""
 
 #: ckanext/restricteddata/templates/home/layout1.html:3
@@ -1087,6 +1098,11 @@ msgstr ""
 #: ckanext/restricteddata/templates/organization/read.html:14
 #: ckanext/restricteddata/templates/package/search.html:51
 msgid "Filter search"
+msgstr ""
+
+#: ckanext/restricteddata/templates/organization/read.html:22
+#: ckanext/restricteddata/templates/user/read.html:5
+msgid "Manage"
 msgstr ""
 
 #: ckanext/restricteddata/templates/organization/snippets/helper.html:15
