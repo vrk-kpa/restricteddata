@@ -12,7 +12,7 @@ from ckanext.restricteddata.cli import cli
 from collections import OrderedDict
 
 from . import helpers, validators, converters, views
-from .logic import action
+from .logic import action, auth
 
 log = logging.getLogger(__name__)
 ResourceDict = Dict[str, Any]
@@ -29,6 +29,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.IFacets, inherit=True)
     plugins.implements(plugins.IActions, inherit=True)
+    plugins.implements(plugins.IAuthFunctions)
 
     # IConfigurer
 
@@ -56,6 +57,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'check_group_selected': helpers.check_group_selected,
             'build_nav_main': helpers.build_nav_main,
             'get_translated_logo': helpers.get_translated_logo,
+            'get_assignable_groups_for_package': helpers.get_assignable_groups_for_package,
         }
 
     # IValidators:
@@ -165,6 +167,14 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'user_create': action.user_create,
             'member_roles_list': action.member_roles_list,
+        }
+
+    # IAuthFunctions
+
+    def get_auth_functions(self):
+        return {
+            'member_create': auth.member_create,
+            'member_delete': auth.member_delete,
         }
 
 
