@@ -181,7 +181,7 @@ export class CkanStack extends Stack {
     if ( props.analyticsEnabled ) {
 
       const matomoSecret = aws_secretsmanager.Secret.fromSecretNameV2(this, 'matomoSecret',
-        `${props.environment}/matomo`)
+        `/${props.environment}/matomo`)
 
       ckanContainerSecrets['MATOMO_TOKEN'] = aws_ecs.Secret.fromSecretsManager(matomoSecret)
     }
