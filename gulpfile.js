@@ -128,7 +128,7 @@ const images = () => {
 
 // Copy fonts
 const fonts = () => {
-  return src(paths.src.fonts + "**/*", { since: lastRun(fonts) })
+  return src(paths.src.fonts + "**/*", { since: lastRun(fonts), encoding: false })
     .pipe(dest(paths.ckanPublic + "fonts"))
 };
 
@@ -139,13 +139,13 @@ const javascript = () => {
 };
 
 const copyFontawesomeCss = () => {
-  return src([paths.src.fontawesome + "css/all.css", paths.src.fontawesome + "css/sharp-regular.css", paths.src.fontawesome + "css/sharp-solid.css"], { since: lastRun(copyFontawesomeCss), allowEmpty: true })
+  return src([paths.src.fontawesome + "css/all.css", paths.src.fontawesome + "css/sharp-regular.css", paths.src.fontawesome + "css/sharp-solid.css"], { since: lastRun(copyFontawesomeCss), allowEmpty: true})
     .pipe(concat('all.css'))
     .pipe(dest(paths.ckanPublic + "/vendor/fontawesome/css/"))
 }
 
 const copyFontawesomeFonts = () => {
-  return src(paths.src.fontawesome + "webfonts/*", { since: lastRun(copyFontawesomeFonts) })
+  return src(paths.src.fontawesome + "webfonts/*", { since: lastRun(copyFontawesomeFonts), encoding: false })
     .pipe(dest(paths.ckanPublic + "/vendor/fontawesome/webfonts/"))
 }
 
