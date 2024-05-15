@@ -1,0 +1,19 @@
+{% if type == "warning" %}
+  {% set icon = "fa-regular fa-triangle-exclamation" %}
+  {% set alert_class = "alert-warning" %}
+{% elif type == "error" %}
+  {% set icon = "fa-regular fa-circle-exclamation" %}
+  {% set alert_class = "alert-error" %}
+{% else %}
+  {% set icon = "fa-regular fa-circle-info" %}
+  {% set alert_class = "alert-info" %}
+{% endif %}
+
+<div class="alert {{ alert_class }} alert-dismissible show" role="alert">
+  <i class="fa {{ icon }}"></i>
+  <span class="message">{{ message }}</span>
+  <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close">
+    Close
+    <i class="fa fa-light fa-xmark"></i>
+  </button>
+</div>

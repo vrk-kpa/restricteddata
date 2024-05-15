@@ -8,6 +8,10 @@
     </div>
   {% endblock %}
 
+  {% block global_messages %}
+    {% snippet 'snippets/global_messages.html' %}
+  {% endblock %}
+
   {#
   Override the header on a page by page basis by extending this block. If
   making sitewide header changes it is preferable to override the header.html
@@ -31,7 +35,7 @@
           {% endblock %}
 
           {% block toolbar %}
-            <div class="toolbar" role="navigation" aria-label="{{ _("Breadcrumb") }}">
+            <div class="toolbar" role="navigation" aria-label="{{ _('Breadcrumb') }}">
               {% block breadcrumb %}
                 {% if self.breadcrumb_content() | trim %}
                   <ol class="breadcrumb">

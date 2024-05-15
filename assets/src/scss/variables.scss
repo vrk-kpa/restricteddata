@@ -30,6 +30,10 @@ $color-badge-text: tokens.$fi-color-black-light1; // #949494
 $color-danger: tokens.$fi-color-alert-base; // #c33932
 $color-success: tokens.$fi-color-success-base; // 09A580
 $color-input-border: tokens.$fi-color-black-light1; // #949494
+$color-alert-info: tokens.$fi-color-info-light1; // #ebf3ff
+$color-alert-info-shade: #1770ee33; // not found in tokens
+$color-alert-warning: tokens.$fi-color-warning-base; // #f6af09
+$color-alert-error: tokens.$fi-color-alert-base; // #ae332c
 
 // Text
 $font-size-lg: 22px;

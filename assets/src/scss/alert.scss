@@ -1,0 +1,65 @@
+@use "variables" as rd;
+
+.alert {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: rd.$color-black;
+  font-size: rd.$font-size-sm;
+  font-weight: rd.$font-weight-normal;
+  letter-spacing: 0px;
+  text-decoration: none;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  width: 100%;
+  padding: 0 15px 0 15px;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  flex-grow: 1;
+
+  &.alert-error {
+    color: rd.$color-white;
+    background: rd.$color-alert-error;
+    border-bottom: 1px solid rd.$color-alert-info-shade;
+  }
+  &.alert-warning {
+    background: rd.$color-alert-warning;
+  }
+  &.alert-info {
+    background: rd.$color-alert-info;
+    border-bottom: 1px solid rd.$color-alert-info-shade;
+  }
+
+  i {
+    font-size: 24px;
+  }
+
+  .message {
+    margin: 15px 0 15px 0;
+    flex-grow: 1;
+  }
+  .btn-close {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    position: static;
+    opacity: 1.0;
+    color: inherit;
+    background: none;
+    width: auto;
+    height: auto;
+    padding: 7px;
+    border: 1px solid transparent;
+    border-radius: 0;
+
+    &:hover {
+      border-color: rd.$color-black;
+    }
+    i {
+      font-size: 14px;
+    }
+
+  }
+}

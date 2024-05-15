@@ -1,0 +1,12 @@
+{% set current_lang = h.get_lang_prefix() %}
+
+{% set service_alert = c['ckanext.restricteddata.service_alert_%s' % current_lang] %}
+{% if service_alert %}
+  {% snippet 'snippets/alert.html', type="error", message=service_alert %}
+{% endif %}
+
+{% set info_message = c['ckanext.restricteddata.info_message_%s' % current_lang] %}
+{% if info_message %}
+  {% snippet 'snippets/alert.html', type="info", message=info_message %}
+{% endif %}
+
