@@ -32,7 +32,10 @@ export class NginxStack extends Stack {
 
     // define nginx content security policies
     const nginxCspDefaultSrc: string[] = [];
-    const nginxCspScriptSrc: string[] = [];
+    const nginxCspScriptSrc: string[] = [
+      'cdn.matomo.cloud',
+      'suomi.matomo.cloud',
+    ];
     const nginxCspStyleSrc: string[] = [];
     const nginxCspFrameSrc: string[] = [];
 
