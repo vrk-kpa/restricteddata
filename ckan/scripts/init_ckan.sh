@@ -26,7 +26,7 @@ fi
 # init ckan extension databases
 echo "init ckan extension databases ..."
 ckan -c ${APP_DIR}/ckan.ini harvester initdb
-ckan -c ${APP_DIR}/production.ini db upgrade -p matomo
+ckan -c ${APP_DIR}/ckan.ini db upgrade -p matomo
 
 echo "Create default restricteddata categories ..."
 ckan -c ${APP_DIR}/ckan.ini restricteddata create-default-categories
