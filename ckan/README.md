@@ -1,4 +1,4 @@
-# Restricted data CKAN container 
+# Restricted data CKAN container
 
 ## Developer notes
 
