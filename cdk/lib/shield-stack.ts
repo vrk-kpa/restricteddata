@@ -12,6 +12,7 @@ import {Construct} from "constructs";
 
 import {ShieldStackProps} from "./shield-stack-props";
 
+import { z } from "zod";
 
 export class ShieldStack extends Stack {
   constructor(scope: Construct, id: string, props: ShieldStackProps) {
@@ -24,7 +25,7 @@ export class ShieldStack extends Stack {
 
     const banned_ips = new CfnParameter(this, 'bannedIpsList', {
       type: 'AWS::SSM::Parameter::Value<List<String>>',
-      default: `/${props.environment}/waf/banned_ips`
+      default: props.bannedIpListParameterName
     })
 
     const cfnBannedIPSet = new aws_wafv2.CfnIPSet(this, 'BannedIPSet', {
@@ -36,7 +37,7 @@ export class ShieldStack extends Stack {
 
     const whitelisted_ips = new CfnParameter(this, 'whitelistedIpsList', {
       type: 'AWS::SSM::Parameter::Value<List<String>>',
-      default: `/${props.environment}/waf/whitelisted_ips`
+      default: props.whitelistedIpListParameterName
     })
 
     const cfnWhiteListedIpSet = new aws_wafv2.CfnIPSet(this, 'WhitelistedIPSet', {
@@ -49,20 +50,9 @@ export class ShieldStack extends Stack {
 
     const highPriorityCountryCodesParameter = new CfnParameter(this,  'highPriorityCountryCodesParameter', {
       type: 'AWS::SSM::Parameter::Value<List<String>>',
-      default: `/${props.environment}/waf/high_priority_country_codes`
+      default: props.highPriorityCountryCodeListParameterName
     });
 
-
-    const highPriorityRateLimit = aws_ssm.StringParameter.fromStringParameterName(this, 'highPriorityRateLimit',
-      `/${props.environment}/waf/high_priority_rate_limit`);
-
-    const rateLimit = aws_ssm.StringParameter.fromStringParameterName(this, 'rateLimit',
-      `/${props.environment}/waf/rate_limit`);
-
-
-    const managedRulesParameter = aws_ssm.StringParameter.valueFromLookup(this, `/${props.environment}/waf/managed_rules`)
-
-    const managedRules = managedRulesParameter.startsWith("dummy-value") ? "dummy" : JSON.parse(managedRulesParameter)
 
     let rules = [
       {
@@ -132,7 +122,7 @@ export class ShieldStack extends Stack {
         },
         statement: {
           rateBasedStatement: {
-            limit: Token.asNumber(highPriorityRateLimit.stringValue),
+            limit: Token.asNumber(props.highPriorityRateLimit.stringValue),
             aggregateKeyType: "IP",
             scopeDownStatement: {
               geoMatchStatement: {
@@ -156,7 +146,7 @@ export class ShieldStack extends Stack {
         },
         statement: {
           rateBasedStatement: {
-            limit: Token.asNumber(rateLimit.stringValue),
+            limit: Token.asNumber(props.rateLimit.stringValue),
             aggregateKeyType: "IP",
             scopeDownStatement: {
               notStatement: {
@@ -177,31 +167,88 @@ export class ShieldStack extends Stack {
       },
     ]
 
-    type RuleGroup = {
-      groupName: string,
-      vendorName: string,
-      excludedRules: string[],
-      enableRequestSampling: boolean
-    }
+    const RuleGroupSchema = z.array(
+      z.object(
+        {
+          groupName: z.string(),
+          vendorName: z.string(),
+          ruleActionOverrideCounts: z.array(z.string()).default([]),
+          ruleActionOverrideAllows: z.array(z.string()).default([]),
+          ruleActionOverrideBlocks: z.array(z.string()).default([]),
+          ruleActionOverrideCaptchas: z.array(z.string()).default([]),
+          ruleActionOverrideChallenges: z.array(z.string()).default([]),
+          enableRequestSampling: z.boolean()
+        }
+      ).strict()
+    )
+
+
+    const managedRulesParameter = aws_ssm.StringParameter.valueFromLookup(this, props.managedRulesParameterName)
+
+    const managedRules = managedRulesParameter.startsWith("dummy-value") ? "dummy" : JSON.parse(managedRulesParameter)
 
 
     if ( managedRules !== "dummy"){
       let ruleList: any[] = []
-
-      managedRules.forEach((rule: RuleGroup, index: number) => {
+      const validatedRules = RuleGroupSchema.parse(managedRules)
+      validatedRules.forEach((rule, index: number) => {
 
         let ruleActionOverrides = []
 
-        for (let excludedRule of rule.excludedRules) {
-          let excludedRuleObj = {
+        for (let overrideCountRule of rule.ruleActionOverrideCounts) {
+          let overrideCountRuleObj = {
             actionToUse: {
               count: {}
             },
-            name: excludedRule
+            name: overrideCountRule
           }
 
-          ruleActionOverrides.push(excludedRuleObj)
+          ruleActionOverrides.push(overrideCountRuleObj)
         }
+
+        for ( let overrideAllowRule of rule.ruleActionOverrideAllows) {
+          let overrideAllowRuleObj = {
+            actionToUse: {
+              allow: {}
+            },
+            name: overrideAllowRule
+          }
+
+          ruleActionOverrides.push(overrideAllowRuleObj)
+        }
+
+        for ( let overrideBlockRule of rule.ruleActionOverrideBlocks) {
+          let overrideBlockRuleObj = {
+            actionToUse: {
+              block: {}
+            },
+            name: overrideBlockRule
+          }
+
+          ruleActionOverrides.push(overrideBlockRuleObj)
+        }
+        for ( let overrideCaptchaRule of rule.ruleActionOverrideCaptchas) {
+          let overrideCaptchaRuleObj = {
+            actionToUse: {
+              captcha: {}
+            },
+            name: overrideCaptchaRule
+          }
+
+          ruleActionOverrides.push(overrideCaptchaRuleObj)
+        }
+        for ( let overrideChallengeRule of rule.ruleActionOverrideChallenges) {
+          let overrideChallengeRuleObj = {
+            actionToUse: {
+              challenge: {}
+            },
+            name: overrideChallengeRule
+          }
+
+
+          ruleActionOverrides.push(overrideChallengeRuleObj)
+        }
+
 
         let managedRuleGroup: aws_wafv2.CfnWebACL.RuleProperty = {
           name: "managed-rule-group-" + rule.groupName,
@@ -251,16 +298,9 @@ export class ShieldStack extends Stack {
       webAclArn: cfnWebAcl.attrArn
     })
 
-    const WafAutomationArn = aws_ssm.StringParameter.fromStringParameterName(this, 'WafAutomationArn',
-      `/${props.environment}/waf/waf_automation_arn`);
+    const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", props.wafAutomationArn.stringValue)
 
-    const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", WafAutomationArn.stringValue)
-
-    const SNSTopicArn = aws_ssm.StringParameter.fromStringParameterName(this, 'SNSTopicArn',
-      `/${props.environment}/waf/sns_topic_arn`);
-
-
-    const topic =  aws_sns.Topic.fromTopicArn(this, "SNSTopic", SNSTopicArn.stringValue)
+    const topic =  aws_sns.Topic.fromTopicArn(this, "SNSTopic", props.snsTopicArn.stringValue)
 
     topic.addSubscription(new aws_sns_subscriptions.LambdaSubscription(WafAutomationLambdaFunction))
 
