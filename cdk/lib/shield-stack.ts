@@ -298,10 +298,7 @@ export class ShieldStack extends Stack {
       webAclArn: cfnWebAcl.attrArn
     })
 
-    const WafAutomationArn = aws_ssm.StringParameter.fromStringParameterName(this, 'WafAutomationArn',
-      props.wafAutomationArn.stringValue);
-
-    const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", WafAutomationArn.stringValue)
+    const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", props.wafAutomationArn.stringValue)
 
     const topic =  aws_sns.Topic.fromTopicArn(this, "SNSTopic", props.snsTopicArn.stringValue)
 
