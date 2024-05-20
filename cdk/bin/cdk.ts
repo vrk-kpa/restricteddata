@@ -17,6 +17,7 @@ import {NginxStack} from "../lib/nginx-stack";
 import {SolrStack} from "../lib/solr-stack";
 import {FileSystemStack} from "../lib/filesystem-stack";
 import {CkanStack} from "../lib/ckan-stack";
+import {ShieldParameterStack} from "../lib/shield-parameter-stack";
 import {ShieldStack} from "../lib/shield-stack";
 import {MonitoringStack} from '../lib/monitoring-stack';
 
@@ -259,6 +260,14 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/"
 })
 
+const ShieldParameterStackDev = new ShieldParameterStack(app, 'ShieldParameterStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  environment: devStackProps.environment,
+})
+
 const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
   env: {
     account: devStackProps.account,
@@ -270,6 +279,15 @@ const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
   highPriorityRequestSamplingEnabled: false,
   bannedIpsRequestSamplingEnabled: false,
   requestSampleAllTrafficEnabled: false,
+  bannedIpListParameterName: ShieldParameterStackDev.bannedIpListParameterName,
+  whitelistedIpListParameterName: ShieldParameterStackDev.whitelistedIpListParameterName,
+  highPriorityCountryCodeListParameterName: ShieldParameterStackDev.highPriorityCountryCodeListParameterName,
+  highPriorityRateLimit: ShieldParameterStackDev.highPriorityRateLimit,
+  rateLimit: ShieldParameterStackDev.rateLimit,
+  managedRulesParameterName: ShieldParameterStackDev.managedRulesParameterName,
+  snsTopicArn: ShieldParameterStackDev.snsTopicArn,
+  wafAutomationArn: ShieldParameterStackDev.wafAutomationArn,
+  evaluationPeriod: ShieldParameterStackDev.evaluationPeriod
 })
 
 const MonitoringStackDev = new MonitoringStack(app, 'MonitoringStack-dev', {
@@ -461,6 +479,14 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
 })
 
 
+const ShieldParameterStackProd = new ShieldParameterStack(app, 'ShieldParameterStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  environment: prodStackProps.environment,
+})
+
 const ShieldStackProd = new ShieldStack(app, 'ShieldStack-prod', {
   env: {
     account: prodStackProps.account,
@@ -471,7 +497,16 @@ const ShieldStackProd = new ShieldStack(app, 'ShieldStack-prod', {
   rateLimitRequestSamplingEnabled: false,
   highPriorityRequestSamplingEnabled: false,
   bannedIpsRequestSamplingEnabled: false,
-  requestSampleAllTrafficEnabled: false
+  requestSampleAllTrafficEnabled: false,
+  bannedIpListParameterName: ShieldParameterStackProd.bannedIpListParameterName,
+  whitelistedIpListParameterName: ShieldParameterStackProd.whitelistedIpListParameterName,
+  highPriorityCountryCodeListParameterName: ShieldParameterStackProd.highPriorityCountryCodeListParameterName,
+  highPriorityRateLimit: ShieldParameterStackProd.highPriorityRateLimit,
+  rateLimit: ShieldParameterStackProd.rateLimit,
+  managedRulesParameterName: ShieldParameterStackProd.managedRulesParameterName,
+  snsTopicArn: ShieldParameterStackProd.snsTopicArn,
+  wafAutomationArn: ShieldParameterStackProd.wafAutomationArn,
+  evaluationPeriod: ShieldParameterStackProd.evaluationPeriod
 })
 
 const MonitoringStackProd = new MonitoringStack(app, 'MonitoringStack-prod', {
