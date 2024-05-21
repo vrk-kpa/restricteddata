@@ -118,6 +118,14 @@ jobs:
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
+
+      - name: upload images
+        if: ${{ matrix.build-container == true }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.name }}
+          path: /tmp/${{ matrix.name }}.tar
+
   test:
     name: Test restricteddata extensions
     runs-on: ubuntu-latest
