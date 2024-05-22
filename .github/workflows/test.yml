@@ -251,6 +251,10 @@ jobs:
         run: |
           docker load --input /tmp/nginx/nginx.tar
 
+      - name: configure .env
+        shell: bash
+        run: cp -f docker/.env.template docker/.env
+
       - name: bring services up
         working-directory: docker
         run: |
