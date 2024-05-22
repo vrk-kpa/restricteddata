@@ -1,7 +1,6 @@
 name: CI/CD
 
 on:
-  push:
   schedule:
     - cron: "0 6 * * *"
   pull_request:
@@ -202,11 +201,11 @@ jobs:
     needs:
       - detect-changes
       - build-containers
-    #if: ${{ (needs.detect-changes.outputs.nginx == 'true') ||
-            #(needs.detect-changes.outputs.ckan == 'true') ||
-            #(needs.detect-changes.outputs.solr == 'true') ||
-            #(needs.detect-changes.outputs.assets == 'true') ||
-            #(needs.detect-changes.outputs.environment == 'true') }}
+    if: ${{ (needs.detect-changes.outputs.nginx == 'true') ||
+            (needs.detect-changes.outputs.ckan == 'true') ||
+            (needs.detect-changes.outputs.solr == 'true') ||
+            (needs.detect-changes.outputs.assets == 'true') ||
+            (needs.detect-changes.outputs.environment == 'true') }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write
