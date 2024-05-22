@@ -298,7 +298,7 @@ jobs:
       - name: upload log artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: docker-logs
+          name: robot.log
           path: /tmp/robot.log
 
       - name: export docker logs if running tests fails
