@@ -91,7 +91,7 @@ jobs:
         id: cache-node_modules
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-node_v20-
 
