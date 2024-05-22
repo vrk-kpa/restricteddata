@@ -22,4 +22,6 @@ pip_install "${EXT_DIR}/ckanext-pages/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-harvest/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-markdown_editor/requirements.txt"
 pip_install "${EXT_DIR}/ckanext-restricteddata/requirements.txt"
-pip_install "${EXT_DIR}/ckanext-matomo/requirements.txt"
+if [[ "${MATOMO_ENABLED}" == "true "]]; then
+  pip_install "${EXT_DIR}/ckanext-matomo/requirements.txt"
+fi
