@@ -275,13 +275,6 @@ jobs:
       - name: wait until services have started
         shell: bash
         run: |
-          sleep 30s
-          # print the list of containers
-          docker ps -a
-          # print logs to debug errors
-          docker logs restricteddata_ckan_1
-          docker logs restricteddata_solr_1
-          docker logs restricteddata_nginx_1
           # wait for services to start properly
           while [[ $(curl -L --write-out '%{http_code}' --silent --output /dev/null http://localhost) != "200" ]]; do
             echo "waiting for services to start up and initialize ..."
@@ -299,7 +292,30 @@ jobs:
         run: docker build -t robot/test robot/
 
       - name: Run robot tests
-        run: docker run --rm --network host robot/test
+        shell: bash
+        run: docker run --rm --network host robot/test | tee /tmp/robot.log
+
+      - name: upload log artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-logs
+          path: /tmp/robot.log
+
+      - name: export docker logs if running tests fails
+        if: failure()
+        shell: bash
+        run: |
+          docker logs restricteddata_ckan_1 > /tmp/restricteddata_ckan_1.log 2>&1
+          docker logs restricteddata_ckan_cron_1 > /tmp/restricteddata_ckan_cron_1.log 2>&1
+          docker logs restricteddata_solr_1 > /tmp/restricteddata_solr_1.log 2>&1
+          docker logs restricteddata_nginx_1 > /tmp/restricteddata_nginx_1.log 2>&1
+
+      - name: upload log artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-logs
+          path: /tmp/restricteddata_*.log
 
   test-cdk:
     name: test-cdk
