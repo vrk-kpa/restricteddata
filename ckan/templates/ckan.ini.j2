@@ -55,7 +55,7 @@ ckan.auth.public_user_details = False
 
 ckan.site_id = {{ environ('CKAN_SITE_ID') }}
 
-ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }} {% if environ('MATOMO_ENABLED') %}{{ environ('CKAN_PLUGINS_MATOMO') }}{% endif %}
+ckan.plugins = {{ environ('CKAN_PLUGINS') }} {{ environ('CKAN_PLUGINS_DEFAULT') }} {% if environ('MATOMO_ENABLED') == 'true' %}{{ environ('CKAN_PLUGINS_MATOMO') }}{% endif %}
 
 scheming.dataset_schemas = ckanext.restricteddata.schemas:dataset.json
 scheming.presets = ckanext.scheming:presets.json
