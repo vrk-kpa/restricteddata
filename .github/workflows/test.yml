@@ -273,6 +273,7 @@ jobs:
 
       - name: wait until services have started
         shell: bash
+        timeout-minutes: 5
         run: |
           sleep 30s
           # print the list of containers
