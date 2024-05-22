@@ -265,7 +265,7 @@ jobs:
           dotenv -f docker/.env set MATOMO_ENABLED false
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
-          REPOSITORY: ${{ secrets.REPOSITORY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
 
       - name: bring services up
         working-directory: docker
