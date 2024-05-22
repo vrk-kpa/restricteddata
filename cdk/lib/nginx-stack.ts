@@ -35,10 +35,16 @@ export class NginxStack extends Stack {
     const nginxCspScriptSrc: string[] = [
       'cdn.matomo.cloud',
       'suomi.matomo.cloud',
+      'js-de.sentry-cdn.com'
     ];
     const nginxCspStyleSrc: string[] = [];
     const nginxCspFrameSrc: string[] = [];
+    const nginxCspConnecSrc: string[] = [
+      "suomi.matomo.cloud",
+      "*.sentry.io"
+    ]
 
+    const nginxCspWorkerSrc: string[] = [];
 
     const nginxContainer = nginxTaskDefinition.addContainer('nginx', {
       image: aws_ecs.ContainerImage.fromEcrRepository(nginxRepo, props.envProps.NGINX_IMAGE_TAG),
@@ -51,6 +57,7 @@ export class NginxStack extends Stack {
         NGINX_CSP_SCRIPT_SRC: nginxCspScriptSrc.join(' '),
         NGINX_CSP_STYLE_SRC: nginxCspStyleSrc.join(' '),
         NGINX_CSP_FRAME_SRC: nginxCspFrameSrc.join(' '),
+        NGINX_CSP_WORKER_SRC: nginxCspWorkerSrc.join(' '),
 
         // .env
         NGINX_PORT: "80",
