@@ -81,7 +81,8 @@ export class CkanStack extends Stack {
       "activity",
       "text_view",
       "image_view",
-      "harvest"
+      "harvest",
+      "sentry"
     ]
 
     if ( props.analyticsEnabled ) {
@@ -120,6 +121,9 @@ export class CkanStack extends Stack {
       CKAN_SYSADMIN_NAME: pSysadminUser.stringValue,
       CKAN_SYSADMIN_EMAIL: pSysadminEmail.stringValue,
       DEPLOY_ENVIRONMENT: props.environment,
+      SENTRY_ENV: props.environment,
+      SENTRY_TRACES_SAMPLE_RATE: props.sentryTracesSampleRate,
+      SENTRY_PROFILES_SAMPLE_RATE: props.sentryProfilesSampleRate
     }
 
     if ( props.analyticsEnabled ) {
@@ -139,6 +143,8 @@ export class CkanStack extends Stack {
     const smtpSecrets = aws_secretsmanager.Secret.fromSecretNameV2(this, 'smtpSecrets',
       `/${props.environment}/smtp`)
 
+    const sentrySecrets = aws_secretsmanager.Secret.fromSecretNameV2(this, 'sentrySecrets',
+      `/${props.environment}/sentry`)
 
     const secretEncryptionKey = Key.fromLookup(this, 'EncryptionKey', {
       aliasName: `alias/secrets-encryption-key-${props.environment}`
@@ -176,6 +182,8 @@ export class CkanStack extends Stack {
       SMTP_USERNAME: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'username'),
       SMTP_PASS: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'password'),
       CKAN_SYSADMIN_PASSWORD: aws_ecs.Secret.fromSecretsManager(props.ckanSysAdminSecret),
+      SENTRY_DSN: aws_ecs.Secret.fromSecretsManager(sentrySecrets, 'dsn'),
+      SENTRY_LOADER_SCRIPT: aws_ecs.Secret.fromSecretsManager(sentrySecrets, 'loader_script')
     };
 
     if ( props.analyticsEnabled ) {

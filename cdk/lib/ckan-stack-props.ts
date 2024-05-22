@@ -18,5 +18,7 @@ export interface CkanStackProps extends EcsStackProps {
   analyticsEnabled: boolean,
   matomoSiteId: number | undefined,
   matomoDomain: string | undefined,
-  matomoScriptDomain: string | undefined
+  matomoScriptDomain: string | undefined,
+  sentryTracesSampleRate: string,
+  sentryProfilesSampleRate: string
 }
