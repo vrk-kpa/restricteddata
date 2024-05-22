@@ -274,6 +274,13 @@ jobs:
       - name: wait until services have started
         shell: bash
         run: |
+          sleep 30s
+          # print the list of containers
+          docker ps -a
+          # print logs to debug errors
+          docker logs restricteddata_ckan_1
+          docker logs restricteddata_solr_1
+          docker logs restricteddata_nginx_1
           # wait for services to start properly
           while [[ $(curl -L --write-out '%{http_code}' --silent --output /dev/null http://localhost) != "200" ]]; do
             echo "waiting for services to start up and initialize ..."
