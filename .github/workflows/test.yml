@@ -237,23 +237,35 @@ jobs:
           path: /tmp
 
       - name: load built ckan image
-        if: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true')}}
+        #if: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true')}}
         run: |
           docker load --input /tmp/ckan/ckan.tar
 
       - name: load built solr image
-        if: ${{ needs.detect-changes.outputs.solr == 'true' }}
+        #if: ${{ needs.detect-changes.outputs.solr == 'true' }}
         run: |
           docker load --input /tmp/solr/solr.tar
 
       - name: load built nginx image
-        if: ${{ needs.detect-changes.outputs.nginx == 'true' }}
+        #if: ${{ needs.detect-changes.outputs.nginx == 'true' }}
         run: |
           docker load --input /tmp/nginx/nginx.tar
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
       - name: configure .env
         shell: bash
-        run: cp -f docker/.env.template docker/.env
+        run: |
+          cp -f docker/.env.template docker/.env
+          pip install "python-dotenv[cli]"
+          dotenv -f docker/.env set REGISTRY ${REGISTRY}
+          dotenv -f docker/.env set REPOSITORY ${REPOSITORY}
+          dotenv -f docker/.env set MATOMO_ENABLED false
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REPOSITORY: ${{ secrets.REPOSITORY }}
 
       - name: bring services up
         working-directory: docker
