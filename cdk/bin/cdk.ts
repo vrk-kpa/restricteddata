@@ -257,7 +257,9 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   analyticsEnabled: true,
   matomoSiteId: 47,
   matomoDomain: "suomi.matomo.cloud",
-  matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/"
+  matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/",
+  sentryTracesSampleRate: "1.0",
+  sentryProfilesSampleRate: "1.0"
 })
 
 const ShieldParameterStackDev = new ShieldParameterStack(app, 'ShieldParameterStack-dev', {
@@ -476,6 +478,8 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
   matomoSiteId: 48,
   matomoDomain: "suomi.matomo.cloud",
   matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/",
+  sentryTracesSampleRate: "0.1",
+  sentryProfilesSampleRate: "0.1"
 })
 
 

@@ -19,3 +19,6 @@
 [submodule "ckan/ckanext/ckanext-matomo"]
 	path = ckan/ckanext/ckanext-matomo
 	url = https://github.com/vrk-kpa/ckanext-matomo.git
+[submodule "ckan/ckanext/ckanext-sentry"]
+	path = ckan/ckanext/ckanext-sentry
+	url = https://github.com/vrk-kpa/ckanext-sentry.git
