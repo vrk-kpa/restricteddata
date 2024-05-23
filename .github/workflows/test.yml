@@ -91,7 +91,7 @@ jobs:
         id: cache-node_modules
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-node_v20-
 
@@ -117,6 +117,14 @@ jobs:
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
+
+      - name: upload images
+        if: ${{ matrix.build-container == true }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.name }}
+          path: /tmp/${{ matrix.name }}.tar
+
   test:
     name: Test restricteddata extensions
     runs-on: ubuntu-latest
@@ -188,6 +196,127 @@ jobs:
         flags: ckan
         token: ${{ secrets.CODECOV_TOKEN }}
 
+  test-e2e:
+    name: test-e2e
+    needs:
+      - detect-changes
+      - build-containers
+    if: ${{ (needs.detect-changes.outputs.nginx == 'true') ||
+            (needs.detect-changes.outputs.ckan == 'true') ||
+            (needs.detect-changes.outputs.solr == 'true') ||
+            (needs.detect-changes.outputs.assets == 'true') ||
+            (needs.detect-changes.outputs.environment == 'true') }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup docker buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_BUILD_ROLE }}
+          role-session-name: github-actions
+          aws-region: eu-north-1
+
+      - name: login to AWS ECR
+        id: login
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registries: ${{ secrets.AWS_PROD_ACCOUNT_ID }}
+
+      - name: download built images
+        uses: actions/download-artifact@v3
+        with:
+          path: /tmp
+
+      - name: load built ckan image
+        if: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true')}}
+        run: |
+          docker load --input /tmp/ckan/ckan.tar
+
+      - name: load built solr image
+        if: ${{ needs.detect-changes.outputs.solr == 'true' }}
+        run: |
+          docker load --input /tmp/solr/solr.tar
+
+      - name: load built nginx image
+        if: ${{ needs.detect-changes.outputs.nginx == 'true' }}
+        run: |
+          docker load --input /tmp/nginx/nginx.tar
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: configure .env
+        shell: bash
+        run: |
+          cp -f docker/.env.template docker/.env
+          pip install "python-dotenv[cli]"
+          dotenv -f docker/.env set REGISTRY ${REGISTRY}
+          dotenv -f docker/.env set REPOSITORY ${REPOSITORY}
+          dotenv -f docker/.env set MATOMO_ENABLED false
+        env:
+          REGISTRY: ${{ secrets.REGISTRY }}
+          REPOSITORY: ${{ vars.REPOSITORY }}
+
+      - name: bring services up
+        working-directory: docker
+        run: |
+          docker-compose -f docker-compose.yml -f docker-compose.build.yml -p restricteddata up -d
+
+      - name: wait until services have started
+        shell: bash
+        timeout-minutes: 5
+        run: |
+          # wait for services to start properly
+          while [[ $(curl -L --write-out '%{http_code}' --silent --output /dev/null http://localhost) != "200" ]]; do
+            echo "waiting for services to start up and initialize ..."
+            sleep 5s
+          done
+          sleep 5s
+          # print the list of containers
+          docker ps -a
+          # print logs to debug errors
+          docker logs restricteddata_ckan_1
+          docker logs restricteddata_solr_1
+          docker logs restricteddata_nginx_1
+
+      - name: Build robot container
+        run: docker build -t robot/test robot/
+
+      - name: Run robot tests
+        shell: bash
+        run: docker run --rm --network host robot/test | tee /tmp/robot.log
+
+      - name: upload log artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: robot.log
+          path: /tmp/robot.log
+
+      - name: export docker logs if running tests fails
+        if: failure()
+        shell: bash
+        run: |
+          docker logs restricteddata_ckan_1 > /tmp/restricteddata_ckan_1.log 2>&1
+          docker logs restricteddata_ckan_cron_1 > /tmp/restricteddata_ckan_cron_1.log 2>&1
+          docker logs restricteddata_solr_1 > /tmp/restricteddata_solr_1.log 2>&1
+          docker logs restricteddata_nginx_1 > /tmp/restricteddata_nginx_1.log 2>&1
+
+      - name: upload log artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-logs
+          path: /tmp/restricteddata_*.log
+
   test-cdk:
     name: test-cdk
     runs-on: ubuntu-latest
@@ -236,4 +365,3 @@ jobs:
         with:
           flags: cdk
           token: ${{ secrets.CODECOV_TOKEN }}
-
