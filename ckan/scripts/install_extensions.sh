@@ -10,8 +10,11 @@ pip install -e ${EXT_DIR}/ckanext-dcat \
     -e ${EXT_DIR}/ckanext-scheming \
     -e ${EXT_DIR}/ckanext-pages \
     -e ${EXT_DIR}/ckanext-harvest \
-    -e ${EXT_DIR}/ckanext-markdown_editor \
-    -e ${EXT_DIR}/ckanext-matomo
+    -e ${EXT_DIR}/ckanext-markdown_editor
+
+if [[ "${MATOMO_ENABLED}" == "true" ]]; then
+    pip install -e ${EXT_DIR}/ckanext-matomo
+fi
 
 
 # compile translations
