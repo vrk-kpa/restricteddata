@@ -1,0 +1,7 @@
+git:
+  filters:
+    - filter_type: file
+      file_format: PO
+      source_language: en
+      source_file: 'ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/i18n/ckanext-restricteddata.pot'
+      translation_files_expression: 'ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/i18n/<lang>/LC_MESSAGES/ckanext-restricteddata.po'
