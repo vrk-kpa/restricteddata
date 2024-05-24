@@ -140,12 +140,13 @@ ckanext.restricteddata.service_alert_fi =
 ckanext.restricteddata.service_alert_sv =
 ckanext.restricteddata.service_alert_en =
 
-
+{% if environ('SENTRY_DSN') %}
 sentry.dsn = {{ environ('SENTRY_DSN') }}
 sentry.environment = {{ environ('SENTRY_ENV') }}
 sentry.traces_sample_rate = {{ environ('SENTRY_TRACES_SAMPLE_RATE') }}
-sentry.profiles_sample_rate = {{ environ('SENTRY_ENV_PROFILES_SAMPLE_RATE') }}
+sentry.profiles_sample_rate = {{ environ('SENTRY_PROFILES_SAMPLE_RATE') }}
 sentry.loader_script = {{ environ('SENTRY_LOADER_SCRIPT') }}
+{% endif %}
 
 [loggers]
 keys = root, ckan, ckanext
