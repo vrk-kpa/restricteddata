@@ -85,8 +85,9 @@ export class CkanStack extends Stack {
       "sentry"
     ]
 
+    const ckanPluginsMatomo: string[] = []
     if ( props.analyticsEnabled ) {
-      ckanPlugins.push('matomo')
+      ckanPluginsMatomo.push('matomo')
     }
 
     const ckanContainerEnv: {[key: string]: string} = {
@@ -94,6 +95,7 @@ export class CkanStack extends Stack {
       CKAN_SITE_ID: 'default',
       CKAN_PLUGINS_DEFAULT: ckanPluginsDefault.join(' '),
       CKAN_PLUGINS: ckanPlugins.join(' '),
+      CKAN_PLUGINS_MATOMO: ckanPluginsMatomo.join(' '),
       CKAN_WEBASSETS_PATH: '/srv/app/data/webassets',
       CKAN_MAX_RESOURCE_SIZE: '5000',
       CKAN_PROFILING_ENABLED: 'false',
