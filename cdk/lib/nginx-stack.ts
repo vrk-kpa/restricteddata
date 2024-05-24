@@ -57,6 +57,7 @@ export class NginxStack extends Stack {
         NGINX_CSP_SCRIPT_SRC: nginxCspScriptSrc.join(' '),
         NGINX_CSP_STYLE_SRC: nginxCspStyleSrc.join(' '),
         NGINX_CSP_FRAME_SRC: nginxCspFrameSrc.join(' '),
+        NGINX_CSP_CONNECT_SRC: nginxCspConnecSrc.join(' '),
         NGINX_CSP_WORKER_SRC: nginxCspWorkerSrc.join(' '),
 
         // .env
