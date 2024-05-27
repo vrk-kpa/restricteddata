@@ -120,7 +120,7 @@ jobs:
 
       - name: upload images
         if: ${{ matrix.build-container == true }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.name }}
           path: /tmp/${{ matrix.name }}.tar
@@ -296,7 +296,7 @@ jobs:
         run: docker run --rm --network host robot/test | tee /tmp/robot.log
 
       - name: upload log artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: robot.log
           path: /tmp/robot.log
@@ -312,7 +312,7 @@ jobs:
 
       - name: upload log artifacts
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-logs
           path: /tmp/restricteddata_*.log
