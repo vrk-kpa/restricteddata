@@ -1,6 +1,6 @@
-import requests
+from requests import get, post
 from robot.api.deco import keyword, library
-from robot.api import logger, FatalError, Failure
+from robot.api import logger, Failure
 
 @library
 class CkanLibrary:
@@ -11,15 +11,18 @@ class CkanLibrary:
         self.host = host
         self.port = port
 
-    def call_action(self, action, **params):
-        return requests.get(f"http://{self.host}:{self.port}/api/action/{action}", params=params).json()
+    def action(self, name):
+        return f"http://{self.host}:{self.port}/api/action/{name}"
 
-    def open_page(self, path=""):
-        return requests.get(f"http://{self.host}:{self.port}{path}")
+    def page(self, path=""):
+        return f"http://{self.host}:{self.port}{path}"
 
     @keyword
     def ckan_version_should_be(self, version):
-        running_version = self.call_action("status_show")["result"]["ckan_version"]
+        running_version = get(self.action("status_show")).json()["result"]["ckan_version"]
         if running_version != version:
             raise Failure(f"CKAN version should be {version} but is {running_version}")
 
+    @keyword
+    def reset_ckan(self):
+        post(self.action("reset"))

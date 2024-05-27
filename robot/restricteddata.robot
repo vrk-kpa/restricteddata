@@ -6,14 +6,20 @@ Documentation     A resource file with reusable keywords and variables.
 ...               by the imported SeleniumLibrary.
 
 Library           SeleniumLibrary
+Library           CkanLibrary.py
 
 *** Variables ***
 ${SERVER}          localhost
+${ROOT_URL}        http://${SERVER}
 ${BROWSER}         headlesschrome
 ${DELAY}           0
-${LOGIN URL}       http://${SERVER}/user/login
-${DASHBOARD URL}   http://${SERVER}/dashboard/datasets
-${INDEX URL}       http://${SERVER}/
+${ADMIN_USERNAME}  admin
+${ADMIN_PASSWORD}  administrator
+${TEST_USER_USERNAME}  test-user
+${TEST_USER_PASSWORD}  test-user
+${LOGIN URL}       ${ROOT_URL}/user/login
+${DASHBOARD URL}   ${ROOT_URL}/dashboard/datasets
+${INDEX URL}       ${ROOT_URL}/
 
 *** Keywords ***
 
@@ -45,6 +51,14 @@ Go To Login Page
     Go To    ${LOGIN URL}
     Login Page Should Be Open
 
+URL Path Should be
+    [Arguments]    ${path}
+    Location Should Be  ${ROOT_URL}${path}
+
+Open URL Path
+    [Arguments]    ${path}
+    Go To  ${ROOT_URL}${path}
+
 Input Username
     [Arguments]    ${username}
     Input Text    id:field-login    ${username}
@@ -53,8 +67,27 @@ Input Password
     [Arguments]    ${password}
     Input Text    id:field-password  ${password}
 
-Submit Credentials
-    Click Button  class:btn-primary
+Submit Primary Form
+    Scroll Element Into View   css:.primary form button[type=submit]
+    Click Button   css:.primary form button.btn-primary[type=submit]
+
+Log In As Administrator
+    Go To Login Page
+    Input Username  ${ADMIN_USERNAME}
+    Input Password  ${ADMIN_PASSWORD}
+    Submit Primary Form
+
+Log In As Test User
+    Go To Login Page
+    Input Username  ${TEST_USER_USERNAME}
+    Input Password  ${TEST_USER_PASSWORD}
+    Submit Primary Form
+    
+Log Out
+    Open URL Path  /user/_logout
+    URL Path Should Be  /user/logged_out_redirect
+    Page Should Contain  Kirjaudu sisään
+    Delete All Cookies
 
 Dashboard Page Should Be Open
     Location Should Be    ${DASHBOARD URL}
@@ -66,3 +99,52 @@ Open Browser To Front Page
 Front Page Should Be Open
     Location Should Be  ${INDEX URL}
     Title Should Be  Tervetuloa - Suojattudata
+
+Dataset List Should Be Open
+    Title Should Be  Tietoaineisto - Suojattudata
+    URL Path Should Be  /dataset/
+
+
+Reset Data And Open Front Page
+    Reset CKAN
+    Open Browser To Front Page
+
+
+Create Test Organisation
+    Log In As Administrator
+    Go To  ${ROOT_URL}/organization/
+    Click Link  link:Lisää organisaatio
+    Input Text  id:field-title_translated-fi  Testiorganisaatio
+    Input Text  id:field-title_translated-sv  Test organisation
+    Submit Primary Form
+    URL Path Should Be  /organization/testiorganisaatio
+    Open URL Path  /organization/members/testiorganisaatio
+    Click Link  link:Lisää jäsen
+    Input Text Into Select2  username  test-user
+    Submit Primary Form
+    Log Out
+    
+
+Input Text Into CKEditor
+    [Arguments]  ${id}  ${text}
+    Scroll Element Into View  css:#${id} + .ck-editor .ck-editor__editable
+    Click Element  css:#${id} + .ck-editor .ck-editor__editable
+    Press Keys     None  ${text}
+    
+Input Tag Into Select2
+    [Arguments]  ${id}  ${text}
+    Scroll Element Into View  id:s2id_${id}
+    Click Element  id:s2id_${id}
+    Press Keys     None  ${text}
+    Wait Until Element Is Visible  css:.select2-result-label[data-value="${text}"]
+    Press Keys     None  \n
+    Element Should Be Visible  css:[data-container-id="${id}"][data-tag-id="${text}"]
+
+Input Text Into Select2
+    [Arguments]  ${id}  ${text}
+    Scroll Element Into View  id:s2id_${id}
+    Click Element  id:s2id_${id}
+    Press Keys     None  ${text}
+    Wait Until Element Is Visible  css:.select2-result-label[data-value="${text}"]
+    Press Keys     None  \n
+    Textfield Value Should Be  name:${id}  ${text}

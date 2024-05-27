@@ -12,8 +12,13 @@
         "validators": "fluent_text required_languages override_field_with_default_translation(title)",
         "output_validators": "fluent_core_translated_output",
         "form_attrs": {
-          "data-module": "slug-preview-target",
-          "class": "form-control slug-preview-target"
+          "class": "form-control"
+        },
+        "lang_form_attrs": {
+          "fi": {
+            "data-module": "slug-preview-target",
+            "class": "form-control slug-preview-target"
+          }
         }
       }
     },

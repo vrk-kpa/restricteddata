@@ -20,3 +20,9 @@ ckan/ckanext/ckan
 # Built assets
 **/*.css.map
 assets/src/vendor
+
+# Robot test artifacts
+robot/selenium-screenshot-*.png
+robot/log.html
+robot/output.xml
+robot/report.html
