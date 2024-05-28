@@ -1,12 +1,14 @@
 {% if type == "warning" %}
   {% set icon = "fa-regular fa-triangle-exclamation" %}
   {% set alert_class = "alert-warning" %}
-{% elif type == "error" %}
+{% elif type == "error" or type == "alert-danger" %}
   {% set icon = "fa-regular fa-circle-exclamation" %}
   {% set alert_class = "alert-error" %}
-{% else %}
+{% elif type == "info" or type == "alert-info" %}
   {% set icon = "fa-regular fa-circle-info" %}
   {% set alert_class = "alert-info" %}
+{% else %}
+  {% set alert_class = type %}
 {% endif %}
 
 <div class="alert {{ alert_class }} alert-dismissible show" role="alert">
