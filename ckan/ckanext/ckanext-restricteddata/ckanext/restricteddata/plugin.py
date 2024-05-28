@@ -283,3 +283,39 @@ def filter_allowed_resources(resources: List[ResourceDict],
 
     return [resource for resource in resources
             if is_allowed(resource)]
+
+
+# NOTE: DO NOT ENABLE THIS PLUGIN IN NON-LOCAL ENVIRONMENTS
+class RestrictedDataResetPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.interfaces.IActions)
+
+    def get_actions(self):
+        return {
+            "reset": _reset
+        }
+
+@toolkit.side_effect_free
+def _reset(context, data_dict):
+    # clean database
+    from ckan import model
+    model.repo.delete_all()
+
+    # clear search index
+    from ckan.lib.search import clear_all
+    clear_all()
+
+    # Create default sysadmin
+    context = {'ignore_auth': True}
+    admin_username = data_dict.get('admin_username', 'admin')
+    admin_password = data_dict.get('admin_password', 'administrator')
+    admin = {
+      'name': admin_username,
+      'email': 'admin@localhost',
+      'password': admin_password
+    }
+    toolkit.get_action('user_create')(context, admin)
+    toolkit.get_action('user_patch')(context, {'id': admin['name'],
+                                               'email': admin['email'],
+                                               'sysadmin': True})
+
+    return "Cleared"
