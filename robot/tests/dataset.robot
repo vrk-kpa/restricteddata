@@ -11,6 +11,8 @@ Navigate To The Dataset Page
 
 Create Minimal Dataset And Resource
     Create Test Organisation
+    Create Test User
+    Add Test User To Test Organisation
 
     Log In As Test User
     Click Link  link:Tietoaineistot

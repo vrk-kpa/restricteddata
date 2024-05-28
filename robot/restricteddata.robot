@@ -6,7 +6,7 @@ Documentation     A resource file with reusable keywords and variables.
 ...               by the imported SeleniumLibrary.
 
 Library           SeleniumLibrary
-Library           CkanLibrary.py
+Library           CkanLibrary.py  admin_username=${ADMIN_USERNAME}  admin_password=${ADMIN_PASSWORD}
 
 *** Variables ***
 ${SERVER}          localhost
@@ -77,6 +77,9 @@ Log In As Administrator
     Input Password  ${ADMIN_PASSWORD}
     Submit Primary Form
 
+Create Test User
+    Create CKAN User  ${TEST_USER_USERNAME}  ${TEST_USER_USERNAME}@example.com  ${TEST_USER_PASSWORD}
+
 Log In As Test User
     Go To Login Page
     Input Username  ${TEST_USER_USERNAME}
@@ -118,9 +121,11 @@ Create Test Organisation
     Input Text  id:field-title_translated-sv  Test organisation
     Submit Primary Form
     URL Path Should Be  /organization/testiorganisaatio
+
+Add Test User To Test Organisation
     Open URL Path  /organization/members/testiorganisaatio
     Click Link  link:Lisää jäsen
-    Input Text Into Select2  username  test-user
+    Input Text Into Select2  username  ${TEST_USER_USERNAME}
     Submit Primary Form
     Log Out
     

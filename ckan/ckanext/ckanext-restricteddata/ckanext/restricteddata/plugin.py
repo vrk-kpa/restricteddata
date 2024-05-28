@@ -306,23 +306,16 @@ def _reset(context, data_dict):
 
     # Create default sysadmin
     context = {'ignore_auth': True}
+    admin_username = data_dict.get('admin_username', 'admin')
+    admin_password = data_dict.get('admin_password', 'administrator')
     admin = {
-      'name': 'admin',
+      'name': admin_username,
       'email': 'admin@localhost',
-      'password': 'administrator'
+      'password': admin_password
     }
     toolkit.get_action('user_create')(context, admin)
     toolkit.get_action('user_patch')(context, {'id': admin['name'],
                                                'email': admin['email'],
                                                'sysadmin': True})
-
-    # Create test user
-    context = {'ignore_auth': True}
-    test_user = {
-      'name': 'test-user',
-      'email': 'test-user@localhost',
-      'password': 'test-user'
-    }
-    toolkit.get_action('user_create')(context, test_user)
 
     return "Cleared"

@@ -6,10 +6,18 @@ from robot.api import logger, Failure
 class CkanLibrary:
     ROBOT_LIBRARY_SCOPE = "SUITE"
 
-    def __init__(self, host='localhost', port=80):
+    def __init__(self, host='localhost', port=80, admin_username='admin', admin_password='administrator'):
         logger.debug("Using CkanLibrary")
         self.host = host
         self.port = port
+        self.admin_username = admin_username
+        self.admin_password = admin_password
+        self.admin_cookies = self.get_session_cookie(admin_username, admin_password)
+
+    def get_session_cookie(self, username, password):
+        data = {'login': username, 'password': password}
+        response = post(self.page('/user/login'), data=data)
+        return response.cookies
 
     def action(self, name):
         return f"http://{self.host}:{self.port}/api/action/{name}"
@@ -25,4 +33,11 @@ class CkanLibrary:
 
     @keyword
     def reset_ckan(self):
-        post(self.action("reset"))
+        post(self.action("reset"), data={'admin_username': self.admin_username,
+                                         'admin_password': self.admin_password})
+        self.admin_cookies = self.get_session_cookie(self.admin_username, self.admin_password)
+
+    @keyword
+    def create_ckan_user(self, name, email, password):
+        data = {'name': name, 'email': email, 'password': password}
+        post(self.action('user_create'), data=data, cookies=self.admin_cookies)
