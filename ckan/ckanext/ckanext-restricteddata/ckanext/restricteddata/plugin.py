@@ -5,14 +5,20 @@ import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.logic import NotFound
+from ckan.common import g
 from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
+import ckan.model as model
 from flask import has_request_context
 from ckanext.restricteddata.cli import cli
 from collections import OrderedDict
+import jwt
+from flask_login import login_user, logout_user
 
 from . import helpers, validators, converters, views
 from .logic import action, auth
+import random
+import base64
 
 log = logging.getLogger(__name__)
 ResourceDict = Dict[str, Any]
@@ -283,6 +289,85 @@ def filter_allowed_resources(resources: List[ResourceDict],
 
     return [resource for resource in resources
             if is_allowed(resource)]
+
+
+class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IAuthenticator, inherit=True)
+
+    def decode_paha_jwt_token(self, key, algorithm):
+        '''Tries to decode a PAHA JWT token payload from request'''
+        
+        if not (key and algorithm):
+            return
+        
+        authorization = toolkit.request.headers.get('Authorization')
+        if not authorization:
+            return
+        try:
+            schema, encoded_token = authorization.split(' ', 1)
+        except ValueError:
+            return
+
+        if schema != 'Bearer':
+            return
+
+        try:
+            token = jwt.decode(encoded_token, key, algorithms=[algorithm])
+        except Exception:
+            # Fallback to regular auth if anything at all goes wrong with the token
+            return
+            
+        if token.get('iss') != 'PAHA':
+            return
+
+        return token
+        
+    def create_or_authenticate_paha_user(self, token):
+        '''Identifies a user based on a PAHA JWT token creating a new user if needed'''
+        log.info(token)
+        user_email = token['email']
+        user = model.User.by_email(user_email)
+
+        # Create a new user if one does not exist
+        if not user:
+            logout_user()
+            user_first_name = token['firstName']
+            user_last_name = token['lastName']
+            user_name = f'{user_first_name}_{user_last_name}'
+            if not model.User.check_name_available(user_name):
+                for i in range(1, 100):
+                    user_name = f'{user_first_name}_{user_last_name}_{i}'
+                    if model.User.check_name_available(user_name):
+                        break
+                else:
+                    raise RuntimeError("Could not generate an available username!")
+
+            context = {'ignore_auth': True}
+            user_dict = {
+                'name': user_name,
+                'email': user_email,
+                'password': base64.a85encode(random.randbytes(128)).decode('utf-8'),
+                'fullname': f'{user_first_name} {user_last_name}'
+            }
+            toolkit.get_action('user_create')(context, user_dict)
+
+            user = model.User.by_email(user_email)
+
+        if user:
+            g.user = user.name
+            g.userobj = user
+            login_user(user)
+        else:
+            raise RuntimeError("Could not find or create PAHA user!")
+    
+    def identify(self):
+        key = toolkit.config.get('ckanext.restricteddata.paha_jwt_key')
+        algorithm = toolkit.config.get('ckanext.restricteddata.paha_jwt_algorithm')
+        paha_jwt_token = self.decode_paha_jwt_token(key, algorithm)
+        if paha_jwt_token:
+            return self.create_or_authenticate_paha_user(paha_jwt_token)
+
+        return super().identify()
 
 
 # NOTE: DO NOT ENABLE THIS PLUGIN IN NON-LOCAL ENVIRONMENTS
