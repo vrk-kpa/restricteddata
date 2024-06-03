@@ -5,7 +5,6 @@ import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.logic import NotFound
-from ckan.common import g
 from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
 import ckan.model as model
@@ -324,7 +323,6 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
         
     def create_or_authenticate_paha_user(self, token):
         '''Identifies a user based on a PAHA JWT token creating a new user if needed'''
-        log.info(token)
         user_email = token['email']
         user = model.User.by_email(user_email)
 
@@ -354,8 +352,8 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
             user = model.User.by_email(user_email)
 
         if user:
-            g.user = user.name
-            g.userobj = user
+            toolkit.g.user = user.name
+            toolkit.g.userobj = user
             login_user(user)
         else:
             raise RuntimeError("Could not find or create PAHA user!")
