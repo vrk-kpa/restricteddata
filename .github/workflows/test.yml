@@ -293,7 +293,7 @@ jobs:
 
       - name: Run robot tests
         shell: bash
-        run: docker run --rm --network host -d ./results:/robot/results robot/test
+        run: docker run --rm --network host -v ./results:/robot/results robot/test
 
       - name: export robot test artifacts
         if: always()
