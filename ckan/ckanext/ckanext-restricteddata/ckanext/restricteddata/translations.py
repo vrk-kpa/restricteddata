@@ -117,7 +117,7 @@ def _translations():
     _("Write a rights statement for the resource")
     _("Endpoint URL")
     _("Distribution visibility")
-    _("You can set the visibility to private temporarily for example if the distribution is missing some information. Private distributions are visible to all members of the producer-organisation.")  # noqa: E501
+    _("You can set the visibility to private temporarily, for example if the dataset is missing some information. Private datasets are visible to all members of the organisation.")  # noqa: E501
     _("Data status")
     _("Define a state for the data. This is recommended especially if your dataset has data resources from multiple years.")
     _("Current version")
