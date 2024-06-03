@@ -347,13 +347,20 @@ def test_non_maintainer_can_not_add_dataset_to_group(app):
 
 @pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
 def test_paha_authentication_creates_new_user(app):
-    payload = {"iss": "PAHA", "email": "foo@example.com", "firstName": "foo", "lastName": "bar"}
+    # Get new user profile with PAHA authentication
+    email = "foo@example.com"
+    payload = {"iss": "PAHA", "email": email, "firstName": "foo", "lastName": "bar"}
     key = toolkit.config['ckanext.restricteddata.paha_jwt_key']
     algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
     token = jwt.encode(payload, key, algorithm=algorithm)
     headers = {"Authorization": f'Bearer {token}'}
     response = app.get(url=toolkit.url_for("user.read", id="foo_bar"), headers=headers)
     assert response.status_code == 200
+
+    # Make sure 
+    assert email in response.body
+
+    # Verify that the user has been created 
     user = call_action('user_show', id="foo_bar", context={"ignore_auth": True})
     assert user['fullname'] == "foo bar"
 
