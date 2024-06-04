@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:04+0000\n"
+"POT-Creation-Date: 2024-06-04 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ckanext/restricteddata/plugin.py:170
+#: ckanext/restricteddata/plugin.py:164
 #: ckanext/restricteddata/templates/header.html:99
 #: ckanext/restricteddata/templates/home/layout1.html:52
 #: ckanext/restricteddata/templates/package/search.html:11
 msgid "Datasets"
 msgstr ""
 
-#: ckanext/restricteddata/plugin.py:171
+#: ckanext/restricteddata/plugin.py:165
 msgid "Tags"
 msgstr ""
 
-#: ckanext/restricteddata/plugin.py:172
+#: ckanext/restricteddata/plugin.py:166
 msgid "Format"
 msgstr ""
 
@@ -343,497 +343,520 @@ msgstr ""
 msgid "Show metadata diff"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:86
-msgid "Biennial"
+#: ckanext/restricteddata/translations.py:85
+msgid ""
+"Use your organisation's general email address instead of an employee's "
+"contact information to ensure that the email address works even if there are "
+"personnel changes. For example, opendata@organisation.fi or "
+"kirjaamo@organisation.fi. We can use this email address to contact the "
+"dataset maintainer."
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:87
-msgid "Annual"
+msgid "Biennial"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:88
-msgid "Semiannual"
+msgid "Annual"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:89
-msgid "Quarterly"
+msgid "Semiannual"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:90
-msgid "Monthly"
+msgid "Quarterly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:91
-msgid "Semimonthly"
+msgid "Monthly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:92
-msgid "Biweekly"
+msgid "Semimonthly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:93
-msgid "Weekly"
+msgid "Biweekly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:94
-msgid "Daily"
+msgid "Weekly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:95
-msgid "Twice a day"
+msgid "Daily"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:96
-msgid "Bihourly"
+msgid "Twice a day"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:97
-msgid "Hourly"
+msgid "Bihourly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:98
-msgid "Continuous"
+msgid "Hourly"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:99
-msgid "Irregular"
+msgid "Continuous"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:100
+msgid "Irregular"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:101
 msgid "Never"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:103
+#: ckanext/restricteddata/translations.py:104
 msgid "Data resource title"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:104
+#: ckanext/restricteddata/translations.py:105
 msgid ""
 "Give a short and descriptive name for the distribution. If the data covers a "
 "specific time frame, mention that in the name."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:105
+#: ckanext/restricteddata/translations.py:106
 msgid "e.g. Most popular Finnish first names 2019"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:106
+#: ckanext/restricteddata/translations.py:107
 msgid "Resource *"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:107
+#: ckanext/restricteddata/translations.py:108
 msgid "Add the distribution by adding a link to the data."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:108
+#: ckanext/restricteddata/translations.py:109
 msgid "Data"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:109
+#: ckanext/restricteddata/translations.py:110
 msgid "Resource URL"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:110
+#: ckanext/restricteddata/translations.py:111
 msgid "Select a file format for the distribution"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:111
+#: ckanext/restricteddata/translations.py:112
 msgid "Size"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:112
-msgid "Data resource description"
+#: ckanext/restricteddata/translations.py:113
+msgid ""
+"Enter the file size in bytes.\n"
+"\n"
+"The size can be approximated as a decimal if the precise size is not known. "
+"If data is offered via an API, enter the overall size of the underlying data."
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:113
-msgid "Write a description for the resource"
+msgid "Data resource description"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:114
+msgid "Write a description for the resource"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:115
 msgid ""
 "Describe the data clearly and concisely. Use as confining terms as possible "
 "to make it easier to find and understand the data."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:115
+#: ckanext/restricteddata/translations.py:116
 msgid ""
 "Describe terms and conditions for re-use. Include how to apply for use permit"
 " and information about possible payments and their principles."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:116
+#: ckanext/restricteddata/translations.py:117
 msgid "Additional information"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:117
+#: ckanext/restricteddata/translations.py:118
 msgid "Write a rights statement for the resource"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:118
+#: ckanext/restricteddata/translations.py:119
 msgid "Endpoint URL"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:119
+#: ckanext/restricteddata/translations.py:120
 msgid "Distribution visibility"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:120
+#: ckanext/restricteddata/translations.py:121
 msgid ""
 "You can set the visibility to private temporarily, for example if the dataset"
 " is missing some information. Private datasets are visible to all members of "
 "the organisation."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:121
+#: ckanext/restricteddata/translations.py:122
 msgid "Data status"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:122
+#: ckanext/restricteddata/translations.py:123
 msgid ""
 "Define a state for the data. This is recommended especially if your dataset "
 "has data resources from multiple years."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:123
+#: ckanext/restricteddata/translations.py:124
 msgid "Current version"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:124
+#: ckanext/restricteddata/translations.py:125
 msgid "Draft version"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:125
+#: ckanext/restricteddata/translations.py:126
 msgid "Archived version"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:126
+#: ckanext/restricteddata/translations.py:127
 msgid "Coordinate system"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:127
+#: ckanext/restricteddata/translations.py:128
 msgid ""
 "If your data includes geographic information, specify the coordinate system "
 "it uses."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:128
+#: ckanext/restricteddata/translations.py:129
 msgid "e.g. WGS84 (World Geodetic System 1984)"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:129
+#: ckanext/restricteddata/translations.py:130
 msgid ""
 "Select the time frame by which the data is separated. For example, does the "
 "resource include data from every week or month."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:130
+#: ckanext/restricteddata/translations.py:131
 msgid "Temporal granularity"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:131
+#: ckanext/restricteddata/translations.py:132
 msgid "e.g. a month"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:132
+#: ckanext/restricteddata/translations.py:133
 msgid "Time Frame"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:133
+#: ckanext/restricteddata/translations.py:134
 msgid "Start date"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:134
+#: ckanext/restricteddata/translations.py:135
 msgid "End date"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:135
+#: ckanext/restricteddata/translations.py:136
 msgid "Geographical accuracy"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:136
+#: ckanext/restricteddata/translations.py:137
 msgid "If your data includes geographic information, specify the accuracy in meters"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:137
+#: ckanext/restricteddata/translations.py:138
 msgid "Metadata last updated"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:138
+#: ckanext/restricteddata/translations.py:139
 msgid "Conditions for re-use"
 msgstr ""
 
 #: ckanext/restricteddata/templates/package/edit.html:14
 #: ckanext/restricteddata/templates/package/resources.html:14
-#: ckanext/restricteddata/translations.py:139
+#: ckanext/restricteddata/translations.py:140
 msgid "Resources"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:140
+#: ckanext/restricteddata/translations.py:141
 msgid "Unnamed resource"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:141
+#: ckanext/restricteddata/translations.py:142
 msgid "Add view"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:142
+#: ckanext/restricteddata/translations.py:143
 msgid "All views"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:143
+#: ckanext/restricteddata/translations.py:144
 msgid "View view"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:144
+#: ckanext/restricteddata/translations.py:145
 msgid "eg. My View"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:145
+#: ckanext/restricteddata/translations.py:146
 msgid "eg. Information about my view"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:146
+#: ckanext/restricteddata/translations.py:147
 msgid "Image url"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:147
+#: ckanext/restricteddata/translations.py:148
 msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
 msgstr ""
 
 #: ckanext/restricteddata/templates/package/group_list.html:4
-#: ckanext/restricteddata/translations.py:150
+#: ckanext/restricteddata/translations.py:151
 msgid "Groups"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:151
+#: ckanext/restricteddata/translations.py:152
 msgid "Formats"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:152
+#: ckanext/restricteddata/translations.py:153
 msgid "Organization name"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:153
+#: ckanext/restricteddata/translations.py:154
 msgid "Organization description"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:154
+#: ckanext/restricteddata/translations.py:155
 msgid "Common, compact and plain description about the organization"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:155
+#: ckanext/restricteddata/translations.py:156
 msgid "Other information"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:156
+#: ckanext/restricteddata/translations.py:157
 msgid "View Organization"
 msgstr ""
 
 #: ckanext/restricteddata/templates/user/dashboard.html:4
-#: ckanext/restricteddata/translations.py:159
+#: ckanext/restricteddata/translations.py:160
 msgid "News feed"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:160
+#: ckanext/restricteddata/translations.py:161
 msgid "Activity from items that I'm following"
 msgstr ""
 
 #: ckanext/restricteddata/templates/user/dashboard.html:5
-#: ckanext/restricteddata/translations.py:161
+#: ckanext/restricteddata/translations.py:162
 msgid "My Datasets"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:162
+#: ckanext/restricteddata/translations.py:163
 msgid "Add Dataset"
 msgstr ""
 
 #: ckanext/restricteddata/templates/user/dashboard.html:6
-#: ckanext/restricteddata/translations.py:163
+#: ckanext/restricteddata/translations.py:164
 msgid "My Organizations"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:164
+#: ckanext/restricteddata/translations.py:165
 msgid "Add Group"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:165
+#: ckanext/restricteddata/translations.py:166
 msgid "My Groups"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:168
+#: ckanext/restricteddata/translations.py:169
+msgid ""
+"You will receive notification emails from {site_title}, e.g. when you have "
+"new activities on your dashboard."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:170
 msgid "Activity type"
 msgstr ""
 
 #: ckanext/restricteddata/templates/snippets/activity_type_selector.html:18
-#: ckanext/restricteddata/translations.py:169
+#: ckanext/restricteddata/translations.py:171
 msgid "All activity types"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:170
+#: ckanext/restricteddata/translations.py:172
 msgid "Newer activities"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:171
+#: ckanext/restricteddata/translations.py:173
 msgid "Older activities"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:172
+#: ckanext/restricteddata/translations.py:174
 msgid "{actor} created the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:173
+#: ckanext/restricteddata/translations.py:175
 msgid "{actor} updated the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:174
+#: ckanext/restricteddata/translations.py:176
 msgid "{actor} deleted the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:175
+#: ckanext/restricteddata/translations.py:177
 msgid "{actor} created the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:176
+#: ckanext/restricteddata/translations.py:178
 msgid "{actor} updated the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:177
+#: ckanext/restricteddata/translations.py:179
 msgid "{actor} deleted the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:178
+#: ckanext/restricteddata/translations.py:180
 msgid "{actor} created the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:179
+#: ckanext/restricteddata/translations.py:181
 msgid "{actor} updated the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:180
+#: ckanext/restricteddata/translations.py:182
 msgid "{actor} deleted the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:181
+#: ckanext/restricteddata/translations.py:183
 msgid "{actor} added the resource {resource} to the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:182
+#: ckanext/restricteddata/translations.py:184
 msgid "{actor} updated the resource {resource} in the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:183
+#: ckanext/restricteddata/translations.py:185
 msgid "{actor} deleted the resource {resource} from the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:184
+#: ckanext/restricteddata/translations.py:186
 msgid "{actor} {activity_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:185
+#: ckanext/restricteddata/translations.py:187
 msgid "{actor} added the tag {tag} to the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:186
+#: ckanext/restricteddata/translations.py:188
 msgid "{actor} removed the tag {tag} from the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:187
+#: ckanext/restricteddata/translations.py:189
 msgid "{actor} updated their profile"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:188
+#: ckanext/restricteddata/translations.py:190
 msgid "{actor} started following {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:189
+#: ckanext/restricteddata/translations.py:191
 msgid "{actor} started following {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:190
+#: ckanext/restricteddata/translations.py:192
 msgid "{actor} started following {user}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:191
+#: ckanext/restricteddata/translations.py:193
 msgid "new package"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:192
+#: ckanext/restricteddata/translations.py:194
 msgid "changed package"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:193
+#: ckanext/restricteddata/translations.py:195
 msgid "deleted package"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:194
+#: ckanext/restricteddata/translations.py:196
 msgid "follow dataset"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:197
+#: ckanext/restricteddata/translations.py:199
 msgid "Add {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:198
+#: ckanext/restricteddata/translations.py:200
 msgid "Create {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:199
+#: ckanext/restricteddata/translations.py:201
 msgid "View {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:200
+#: ckanext/restricteddata/translations.py:202
 msgid "Edit {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:201
+#: ckanext/restricteddata/translations.py:203
 msgid "Save {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:202
+#: ckanext/restricteddata/translations.py:204
 msgid "Search {object_type}s..."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:203
+#: ckanext/restricteddata/translations.py:205
 msgid "Update {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:204
+#: ckanext/restricteddata/translations.py:206
 msgid "A little information about my {object_type}..."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:205
+#: ckanext/restricteddata/translations.py:207
 msgid "There are no {object_type}s associated with this dataset"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:206
+#: ckanext/restricteddata/translations.py:208
 msgid "There are currently no {object_type}s for this site"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:207
+#: ckanext/restricteddata/translations.py:209
 msgid "There is no description for this {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:208
+#: ckanext/restricteddata/translations.py:210
 msgid "You are not a member of any {object_type}s."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:209
+#: ckanext/restricteddata/translations.py:211
 msgid "{object_type} Form"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:210
+#: ckanext/restricteddata/translations.py:212
 msgid "My {object_type}s"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:211
+#: ckanext/restricteddata/translations.py:213
 msgid "My {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:212
+#: ckanext/restricteddata/translations.py:214
 msgid "No {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:213
+#: ckanext/restricteddata/translations.py:215
 msgid "{object_type}s"
 msgstr ""
 

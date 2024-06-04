@@ -82,6 +82,7 @@ def _translations():
     _("View changes from")
     _("to")
     _("Show metadata diff")
+    _("Use your organisation's general email address instead of an employee's contact information to ensure that the email address works even if there are personnel changes. For example, opendata@organisation.fi or kirjaamo@organisation.fi. We can use this email address to contact the dataset maintainer.")
 
     _("Biennial")
     _("Annual")
@@ -109,7 +110,7 @@ def _translations():
     _("Resource URL")
     _("Select a file format for the distribution")
     _("Size")
-    _("Data resource description")
+    _("Enter the file size in bytes.\n\nThe size can be approximated as a decimal if the precise size is not known. If data is offered via an API, enter the overall size of the underlying data.")    _("Data resource description")
     _("Write a description for the resource")
     _("Describe the data clearly and concisely. Use as confining terms as possible to make it easier to find and understand the data.")  # noqa: E501
     _("Describe terms and conditions for re-use. Include how to apply for use permit and information about possible payments and their principles.")  # noqa: E501
@@ -165,6 +166,7 @@ def _translations():
     _("My Groups")
 
     # Activity streams
+    _("You will receive notification emails from {site_title}, e.g. when you have new activities on your dashboard.")
     _("Activity type")
     _("All activity types")
     _("Newer activities")
