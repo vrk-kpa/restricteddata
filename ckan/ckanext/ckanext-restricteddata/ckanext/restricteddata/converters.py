@@ -26,9 +26,8 @@ def save_to_groups(key, data, errors, context):
                     data[group_key] = v
 
     else:
-        # Delete categories key if it is missing
-        # TODO: Should delete existing groups from dataset
-        data.pop(key, None)
-        raise StopOnError
+        # Convert categories and groups key values to empty string if categories key is missing
+        data[key] = ""
+        data[('groups',)] = ""
 
     return data[key]

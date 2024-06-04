@@ -342,3 +342,28 @@ def test_non_maintainer_can_not_add_dataset_to_group(app):
             call_action('member_create', id=g['id'], object=d['id'],
                         object_type='package', capacity='parent',
                         context={'user': some_user['name'], 'ignore_auth': False})
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_categories_are_added_as_groups(app):
+    g = Group()
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['categories'] = g['name']
+    d = Dataset(**dataset_fields)
+    dataset = call_action('package_show', id=d['name'])
+
+    assert dataset['groups'][0]['id'] == g['id']
+
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_groups_are_removed_when_categories_are_removed(app):
+    g = Group()
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['categories'] = g['name']
+    d = Dataset(**dataset_fields)
+
+    d.pop('categories')
+    dataset = call_action('package_update', d)
+
+    assert len(dataset['groups'] == 0 )
