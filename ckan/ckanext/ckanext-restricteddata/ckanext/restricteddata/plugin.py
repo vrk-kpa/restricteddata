@@ -323,12 +323,13 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
         
     def create_or_authenticate_paha_user(self, token):
         '''Identifies a user based on a PAHA JWT token creating a new user if needed'''
-        user_email = token['email']
-        user = model.User.by_email(user_email)
+        user_id = token['id']
+        user = model.User.get(user_id)
 
         # Create a new user if one does not exist
         if not user:
             logout_user()
+            user_email = token['email']
             user_first_name = token['firstName']
             user_last_name = token['lastName']
             user_name = f'{user_first_name}_{user_last_name}'
@@ -340,16 +341,20 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
                 else:
                     raise RuntimeError("Could not generate an available username!")
 
-            context = {'ignore_auth': True}
             user_dict = {
+                'id': user_id,
                 'name': user_name,
                 'email': user_email,
                 'password': base64.a85encode(random.randbytes(128)).decode('utf-8'),
                 'fullname': f'{user_first_name} {user_last_name}'
             }
+            
+            site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+            context = {'user': site_user_info['name']}
+            
             toolkit.get_action('user_create')(context, user_dict)
 
-            user = model.User.by_email(user_email)
+            user = model.User.get(user_id)
 
         if user:
             toolkit.g.user = user.name
