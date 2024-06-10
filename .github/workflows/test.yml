@@ -188,8 +188,7 @@ jobs:
         pip install -r requirements.txt
         pip install -e .
     - name: Run tests
-      run: |
-        pytest --ckan-ini=ckan/ckanext/ckanext-restricteddata/test.ini --cov=ckanext.restricteddata --disable-warnings ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/tests
+      run: pytest --ckan-ini=ckan/ckanext/ckanext-restricteddata/test.ini --cov=ckanext.restricteddata --disable-warnings ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/tests
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4
       with:

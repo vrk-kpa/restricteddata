@@ -48,6 +48,7 @@ To temporary patch the CKAN configuration for the duration of a test you can use
         pass
 """
 import pytest
+import jwt
 
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import plugin_loaded, toolkit
@@ -342,3 +343,48 @@ def test_non_maintainer_can_not_add_dataset_to_group(app):
             call_action('member_create', id=g['id'], object=d['id'],
                         object_type='package', capacity='parent',
                         context={'user': some_user['name'], 'ignore_auth': False})
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
+def test_paha_authentication_creates_new_user(app):
+    # Get new user profile with PAHA authentication
+    email = "foo@example.com"
+    payload = {"iss": "PAHA", "id": "test-id", "email": email, "firstName": "foo", "lastName": "bar"}
+    key = toolkit.config['ckanext.restricteddata.paha_jwt_key']
+    algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
+    token = jwt.encode(payload, key, algorithm=algorithm)
+    headers = {"Authorization": f'Bearer {token}'}
+    response = app.get(url=toolkit.url_for("user.read", id="foo_bar"), headers=headers)
+    assert response.status_code == 200
+
+    # Make sure 
+    assert email in response.body
+
+    # Verify that the user has been created 
+    user = call_action('user_show', id="foo_bar", context={"ignore_auth": True})
+    assert user['fullname'] == "foo bar"
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
+def test_paha_authentication_logs_in_user(app):
+    test_id = "test-id"
+    some_user = User(id=test_id)
+
+    # Prepare a client that can hold cookies
+    client = app.test_client(use_cookies=True)
+
+    # Get user profile with PAHA authentication
+    payload = {"iss": "PAHA", "id": test_id}
+    key = toolkit.config['ckanext.restricteddata.paha_jwt_key']
+    algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
+    token = jwt.encode(payload, key, algorithm=algorithm)
+    headers = {"Authorization": f'Bearer {token}'}
+    response = client.get(toolkit.url_for("user.read", id=some_user['name']), headers=headers)
+    assert response.status_code == 200
+    # User is logged in if their email is on their profile page
+    assert some_user['email'] in response.body
+
+    # Use the cookies set in previous step to repeat the query
+    response = client.get(toolkit.url_for("user.read", id=some_user['name']))
+    assert response.status_code == 200
+    assert some_user['email'] in response.body

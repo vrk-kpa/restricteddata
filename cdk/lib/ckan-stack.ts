@@ -101,6 +101,7 @@ export class CkanStack extends Stack {
       CKAN_PROFILING_ENABLED: 'false',
       CKAN_LOG_LEVEL: 'INFO',
       CKAN_EXT_LOG_LEVEL: 'INFO',
+      CKAN_PAHA_JWT_ALGORITHM: 'RS256',
 
       // .env
       CKAN_IMAGE_TAG: props.envProps.CKAN_IMAGE_TAG,
@@ -173,12 +174,16 @@ export class CkanStack extends Stack {
       }
     })
 
+    const pahaJwtKeySecret = aws_secretsmanager.Secret.fromSecretNameV2(this, 'pahaJwtKeySecret',
+      `/${props.environment}/paha_jwt_key`)
+
 
     const ckanContainerSecrets: { [key: string]: aws_ecs.Secret; } = {
       // .env.ckan
       CKAN_BEAKER_SESSION_SECRET: aws_ecs.Secret.fromSecretsManager(beakerSecret),
       CKAN_APP_INSTANCE_UUID: aws_ecs.Secret.fromSecretsManager(appUUIDSecret),
       CKAN_BEAKER_SESSION_VALIDATE_KEY: aws_ecs.Secret.fromSecretsManager(beakerValidateKeySecret),
+      CKAN_PAHA_JWT_KEY: aws_ecs.Secret.fromSecretsManager(pahaJwtKeySecret),
       // .env
       DB_CKAN_PASS: aws_ecs.Secret.fromSecretsManager(props.ckanInstanceCredentials.secret!, 'password'),
       SMTP_USERNAME: aws_ecs.Secret.fromSecretsManager(smtpSecrets, 'username'),
