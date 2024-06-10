@@ -76,6 +76,7 @@ Log In As Administrator
     Input Username  ${ADMIN_USERNAME}
     Input Password  ${ADMIN_PASSWORD}
     Submit Primary Form
+    URL Path Should Be  /dashboard/datasets
 
 Create Test User
     Create CKAN User  ${TEST_USER_USERNAME}  ${TEST_USER_USERNAME}@example.com  ${TEST_USER_PASSWORD}
@@ -85,6 +86,7 @@ Log In As Test User
     Input Username  ${TEST_USER_USERNAME}
     Input Password  ${TEST_USER_PASSWORD}
     Submit Primary Form
+    URL Path Should Be  /dashboard/datasets
     
 Log Out
     Open URL Path  /user/_logout
