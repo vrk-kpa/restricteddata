@@ -31,18 +31,9 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-
-      - name: cache node_modules
-        uses: actions/cache@v4
-        id: cache-node_modules
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-build-node_v20-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-node_v20-
+          cache-dependency-path: 'package-lock.json'
 
       - name: Authenticate npm registry
-        if: ${{ steps.cache-node_modules.outputs.cache-hit != 'true' }}
         run: |
           cat <<EOT >> .npmrc
           @fortawesome:registry=https://npm.fontawesome.com/
@@ -52,7 +43,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: install npm packages
-        if: ${{ steps.cache-node_modules.outputs.cache-hit != 'true' }}
         run: npm ci
 
       - name: run stylelint
