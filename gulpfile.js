@@ -9,6 +9,8 @@ import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import cleancss from "gulp-clean-css";
 import concat from "gulp-concat";
 import rename from "gulp-rename";
+import PluginError from "plugin-error";
+
 import gulpStylelint from "@ronilaukkarinen/gulp-stylelint";
 
 const { src, watch, dest, parallel, lastRun, series } = gulp;
@@ -88,7 +90,10 @@ export const lintStyles = () => {
 // Preprocess our ckan sass
 const ckanSass = () => {
   return src(paths.src.scss + "ckan/main.scss", { sourcemaps: true })
-    .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }).on('error', sass.logError))
+    .pipe(sass.sync({ includePaths: ["node_modules"], outputStyle: 'expanded', sourceMap: true }))
+    .on('error', function (error) {
+      throw new PluginError('sass', error.formatted);
+    })
     .pipe(cleancss({ keepBreaks: false }))
     .pipe(concat('restricteddata.css'))
     .pipe(dest(paths.ckanAssets + "css", { sourcemaps: './maps' }))
@@ -97,7 +102,10 @@ const ckanSass = () => {
 // Separate fonts to their own css to optimize their loading
 const fontsCss = () => {
   return src(paths.src.scss + "fonts.scss", { since: lastRun(fontsCss) })
-    .pipe(sass({ includePaths: ["node_modules"], outputStyle: 'expanded' }).on('error', sass.logError))
+    .pipe(sass.sync({ includePaths: ["node_modules"], outputStyle: 'expanded' }))
+    .on('error', function (error) {
+      throw new PluginError('sass', error.formatted);
+    })
     .pipe(cleancss({ keepBreaks: false }))
     .pipe(rename('fonts.css'))
     .pipe(dest(paths.ckanPublic + "fonts"))
