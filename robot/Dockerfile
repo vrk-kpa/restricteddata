@@ -4,4 +4,4 @@ WORKDIR /robot
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
-CMD ["robot", "tests"]
+CMD ["robot", "-d", "results", "tests"]

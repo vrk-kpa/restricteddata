@@ -293,13 +293,14 @@ jobs:
 
       - name: Run robot tests
         shell: bash
-        run: docker run --rm --network host robot/test | tee /tmp/robot.log
+        run: docker run --rm --network host -v ./results:/robot/results robot/test
 
-      - name: upload log artifacts
+      - name: upload robot test results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: robot.log
-          path: /tmp/robot.log
+          name: robot-results
+          path: results/*
 
       - name: export docker logs if running tests fails
         if: failure()

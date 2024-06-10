@@ -5,20 +5,20 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 # 
 # Translators:
-# Teemu Erkkola <teemu.erkkola@iki.fi>, 2023
 # Eetu Mansikkamäki <eetu.mansikkamaki@gofore.com>, 2023
 # Roosa Lampinen, 2023
 # Suvi Nuttunen, 2023
 # Pinja Perttunen, 2024
+# Teemu Erkkola <teemu.erkkola@iki.fi>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-04-22 10:29+0000\n"
+"POT-Creation-Date: 2024-06-03 09:04+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
-"Last-Translator: Pinja Perttunen, 2024\n"
+"Last-Translator: Teemu Erkkola <teemu.erkkola@iki.fi>, 2024\n"
 "Language-Team: Finnish (https://app.transifex.com/avoindata/teams/7979/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,18 +27,18 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ckanext/restricteddata/plugin.py:151
+#: ckanext/restricteddata/plugin.py:170
 #: ckanext/restricteddata/templates/header.html:99
 #: ckanext/restricteddata/templates/home/layout1.html:52
 #: ckanext/restricteddata/templates/package/search.html:11
 msgid "Datasets"
 msgstr "Tietoaineistot"
 
-#: ckanext/restricteddata/plugin.py:152
+#: ckanext/restricteddata/plugin.py:171
 msgid "Tags"
 msgstr "Avainsanat"
 
-#: ckanext/restricteddata/plugin.py:153
+#: ckanext/restricteddata/plugin.py:172
 msgid "Format"
 msgstr "Tiedostomuoto"
 
@@ -527,9 +527,9 @@ msgstr "Jakelutavan näkyvyys"
 
 #: ckanext/restricteddata/translations.py:120
 msgid ""
-"You can set the visibility to private temporarily for example if the "
-"distribution is missing some information. Private distributions are visible "
-"to all members of the producer-organisation."
+"You can set the visibility to private temporarily, for example if the "
+"dataset is missing some information. Private datasets are visible to all "
+"members of the organisation."
 msgstr ""
 "Voit asettaa jakelutavan näkyvyyden väliaikaisesti yksityiseksi esimerkiksi "
 "puutteellisten tietojen vuoksi. Yksityiset jakelutavat näkyvät kaikille "
@@ -658,6 +658,7 @@ msgstr "Kuvan URL"
 msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
 msgstr ""
 
+#: ckanext/restricteddata/templates/package/group_list.html:4
 #: ckanext/restricteddata/translations.py:150
 msgid "Groups"
 msgstr "Kategoriat"
@@ -688,6 +689,7 @@ msgstr "Muut tiedot"
 msgid "View Organization"
 msgstr "Tarkastele tuottajaa"
 
+#: ckanext/restricteddata/templates/user/dashboard.html:4
 #: ckanext/restricteddata/translations.py:159
 msgid "News feed"
 msgstr "Ajankohtaista"
@@ -696,6 +698,7 @@ msgstr "Ajankohtaista"
 msgid "Activity from items that I'm following"
 msgstr ""
 
+#: ckanext/restricteddata/templates/user/dashboard.html:5
 #: ckanext/restricteddata/translations.py:161
 msgid "My Datasets"
 msgstr "Tietoaineistoni"
@@ -704,6 +707,7 @@ msgstr "Tietoaineistoni"
 msgid "Add Dataset"
 msgstr "Lisää tietoaineisto"
 
+#: ckanext/restricteddata/templates/user/dashboard.html:6
 #: ckanext/restricteddata/translations.py:163
 msgid "My Organizations"
 msgstr "Tuottajani"
@@ -938,6 +942,7 @@ msgid "Add email"
 msgstr "Lisää sähköposti"
 
 #: ckanext/restricteddata/assets/modules/form.js:83
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:39
 #: ckanext/restricteddata/templates/snippets/search_form.html:39
 msgid "Remove"
 msgstr "Poista"
@@ -1031,8 +1036,43 @@ msgstr "Suomi.fi-avoindata"
 msgid "Skip to main content"
 msgstr "Hyppää pääsisältöön"
 
-#: ckanext/restricteddata/templates/page.html:34
+#: ckanext/restricteddata/templates/page.html:40
 msgid "Breadcrumb"
+msgstr ""
+
+#: ckanext/restricteddata/templates/admin/config.html:9
+msgid "Info message"
+msgstr ""
+
+#: ckanext/restricteddata/templates/admin/config.html:19
+msgid "Service alert"
+msgstr ""
+
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:16
+#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:18
+msgid "{num} Dataset"
+msgid_plural "{num} Datasets"
+msgstr[0] "{num} tietoaineisto"
+msgstr[1] "{num} tietoaineistoa"
+
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:18
+#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:20
+msgid "0 Datasets"
+msgstr "0 tietoaineistoa"
+
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:23
+msgid "{num} Member"
+msgid_plural "{num} Members"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:34
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:35
+msgid "View {name}"
+msgstr ""
+
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:39
+msgid "Remove dataset from this group"
 msgstr ""
 
 #: ckanext/restricteddata/templates/home/layout1.html:3
@@ -1157,6 +1197,11 @@ msgstr "Rajaukset"
 msgid "Filter search"
 msgstr "Rajaa hakua"
 
+#: ckanext/restricteddata/templates/organization/read.html:22
+#: ckanext/restricteddata/templates/user/read.html:5
+msgid "Manage"
+msgstr ""
+
 #: ckanext/restricteddata/templates/organization/snippets/helper.html:15
 msgid ""
 "On this page you can find all the public administration organisations that "
@@ -1173,16 +1218,6 @@ msgstr ""
 #: ckanext/restricteddata/templates/organization/snippets/organization_item.html:8
 msgid "View {organization_name}"
 msgstr "Tarkastele {organization_name}"
-
-#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:18
-msgid "{num} Dataset"
-msgid_plural "{num} Datasets"
-msgstr[0] "{num} tietoaineisto"
-msgstr[1] "{num} tietoaineistoa"
-
-#: ckanext/restricteddata/templates/organization/snippets/organization_item.html:20
-msgid "0 Datasets"
-msgstr "0 tietoaineistoa"
 
 #: ckanext/restricteddata/templates/package/base.html:30
 #: ckanext/restricteddata/templates/package/new.html:6
@@ -1213,6 +1248,18 @@ msgstr ""
 #: ckanext/restricteddata/templates/package/resources.html:28
 msgid "Close without saving"
 msgstr "Sulje tallentamatta"
+
+#: ckanext/restricteddata/templates/package/group_list.html:16
+msgid "Associate this group with this dataset"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/group_list.html:16
+msgid "Add to group"
+msgstr ""
+
+#: ckanext/restricteddata/templates/package/group_list.html:27
+msgid "There are no groups associated with this dataset"
+msgstr ""
 
 #: ckanext/restricteddata/templates/package/new.html:13
 msgid "Create new dataset"
