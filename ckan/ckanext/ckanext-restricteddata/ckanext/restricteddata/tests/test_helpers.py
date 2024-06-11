@@ -33,7 +33,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
-        dataset_fields['groups'] = [{'name': g1['name']}]
+        dataset_fields['categories'] = [g1['name']]
         d = Dataset(**dataset_fields)
 
         toolkit.g.user = maintainer['name']
