@@ -360,10 +360,13 @@ def test_categories_are_added_as_groups(app):
 def test_groups_are_removed_when_categories_are_removed(app):
     g = Group()
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['categories'] = g['name']
+
     d = Dataset(**dataset_fields)
 
-    d.pop('categories')
-    dataset = call_action('package_update', d)
+    dataset_fields['categories'] = g['name']
+    d = call_action('package_update', name=d['id'], **dataset_fields)
 
-    assert len(dataset['groups'] == 0 )
+    dataset_fields['categories'] = []
+    dataset = call_action('package_update', name=d['id'], **dataset_fields)
+
+    assert len(dataset['groups']) == 0
