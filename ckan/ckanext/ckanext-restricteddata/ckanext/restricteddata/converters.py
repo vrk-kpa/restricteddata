@@ -1,5 +1,5 @@
 import json
-from ckan.lib.navl.dictization_functions import missing, flatten_list, StopOnError
+from ckan.lib.navl.dictization_functions import missing, flatten_list
 
 def save_to_groups(key, data, errors, context):
     # https://docs.ckan.org/en/ckan-2.7.3/api/#ckan.logic.action.create.package_create
