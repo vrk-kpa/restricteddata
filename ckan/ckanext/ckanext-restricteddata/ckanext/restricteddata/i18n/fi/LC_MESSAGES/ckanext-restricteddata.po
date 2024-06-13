@@ -735,7 +735,7 @@ msgstr "Lisää kategoria"
 
 #: ckanext/restricteddata/translations.py:166
 msgid "My Groups"
-msgstr ""
+msgstr "Kategoriani"
 
 #: ckanext/restricteddata/translations.py:169
 msgid ""
