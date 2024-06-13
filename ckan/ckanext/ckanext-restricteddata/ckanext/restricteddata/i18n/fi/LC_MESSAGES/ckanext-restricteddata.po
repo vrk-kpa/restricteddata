@@ -1007,7 +1007,7 @@ msgstr "Hae tältä sivustolta"
 
 #: ckanext/restricteddata/templates/header.html:19
 msgid "Suojattudata logo"
-msgstr "Suojattudata logo"
+msgstr "Suojattudata-logo"
 
 #: ckanext/restricteddata/templates/header.html:24
 msgid "Suomi.fi logo"
