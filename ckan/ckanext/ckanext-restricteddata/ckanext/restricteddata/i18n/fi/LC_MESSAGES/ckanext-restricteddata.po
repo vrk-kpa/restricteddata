@@ -1096,7 +1096,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:39
 msgid "Remove dataset from this group"
-msgstr "Poista tietoaineisto ryhmästä"
+msgstr "Poista tietoaineisto kategoriasta"
 
 #: ckanext/restricteddata/templates/home/layout1.html:3
 msgid "All finnish restricted data from one place"
