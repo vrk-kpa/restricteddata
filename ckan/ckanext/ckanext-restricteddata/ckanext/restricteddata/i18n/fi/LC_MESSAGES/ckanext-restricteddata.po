@@ -1278,7 +1278,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/group_list.html:16
 msgid "Add to group"
-msgstr "Lisää ryhmään"
+msgstr "Lisää kategoriaan"
 
 #: ckanext/restricteddata/templates/package/group_list.html:27
 msgid "There are no groups associated with this dataset"
