@@ -1774,7 +1774,7 @@ msgstr ""
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:24
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:28
 msgid "My content"
-msgstr ""
+msgstr "Sisältöni"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Submenu Order"
