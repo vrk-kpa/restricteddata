@@ -1768,7 +1768,7 @@ msgstr "Sisältö"
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:31
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:32
 msgid "Enter content here"
-msgstr ""
+msgstr "Syötä sisältö tähän"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:20
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:24
