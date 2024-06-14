@@ -133,7 +133,7 @@ def test_highvalue_category_is_required_when_highvalue_is_true(app):
     dataset_fields['highvalue'] = True
 
     with pytest.raises(toolkit.ValidationError):
-        d = Dataset(**dataset_fields)
+        Dataset(**dataset_fields)
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -142,7 +142,7 @@ def test_dataset_with_invalid_highvalue_category():
     dataset_fields['highvalue'] = True
     dataset_fields['highvalue_category'] = "spatial"
     with pytest.raises(toolkit.ValidationError):
-        d = Dataset(**dataset_fields)
+        Dataset(**dataset_fields)
 
 
 
@@ -165,7 +165,7 @@ def test_dataset_with_update_frequency():
 
     dataset_fields['update_frequency'] = 'invalid value'
     with pytest.raises(toolkit.ValidationError):
-        d = Dataset(**dataset_fields)
+        Dataset(**dataset_fields)
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
