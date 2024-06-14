@@ -561,6 +561,8 @@ msgid ""
 "Define a state for the data. This is recommended especially if your dataset "
 "has data resources from multiple years."
 msgstr ""
+"Voit määritellä data-aineiston tilan. Tämä on suositeltavaa erityisesti, jos"
+" tietoaineistollasi on data-aineistoja useilta eri vuosilta."
 
 #: ckanext/restricteddata/translations.py:124
 msgid "Current version"
