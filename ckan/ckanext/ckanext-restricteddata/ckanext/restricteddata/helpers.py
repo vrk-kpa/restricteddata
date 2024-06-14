@@ -66,8 +66,6 @@ def scheming_language_text_or_empty(text, prefer_lang=None):
                 return ''
 
     t = _(text)
-    #if isinstance(t, str):
-    #    return t.decode('utf-8')
     return t
 
 
