@@ -296,7 +296,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:67
 msgid "You can set the state of the dataset back to active."
-msgstr ""
+msgstr "Voit asettaa tietoaineiston tilan aktiiviseksi."
 
 #: ckanext/restricteddata/translations.py:68
 msgid ""
@@ -633,7 +633,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:138
 msgid "Metadata last updated"
-msgstr ""
+msgstr "Metatiedot viimeksi päivitetty"
 
 #: ckanext/restricteddata/translations.py:139
 msgid "Conditions for re-use"
@@ -888,7 +888,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:207
 msgid "There are no {object_type}s associated with this dataset"
-msgstr ""
+msgstr "Tietoaineistoon ei ole liitetty {object_type}"
 
 #: ckanext/restricteddata/translations.py:208
 msgid "There are currently no {object_type}s for this site"
