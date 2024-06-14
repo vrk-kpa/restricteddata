@@ -373,7 +373,7 @@ msgstr ""
 #: ckanext/restricteddata/templates/package/changes.html:16
 #: ckanext/restricteddata/translations.py:82
 msgid "View changes from"
-msgstr ""
+msgstr "Tarkastele muutoksia"
 
 #: ckanext/restricteddata/templates/package/changes.html:21
 #: ckanext/restricteddata/translations.py:83
