@@ -18,7 +18,7 @@
                     type="checkbox"
                     name="{{ field.field_name }}"
                     value="{{ val }}"
-                    {% if h.check_group_selected(val, data.groups) %}checked{% endif %} />
+                    {% if val in data[field.field_name] %}checked{% endif %} />
                     <span class="custom-checkbox"></span>
                 {{ label }}
             </label>

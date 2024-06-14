@@ -70,7 +70,6 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_homepage_news': helpers.get_homepage_news,
             'get_homepage_groups': helpers.get_homepage_groups,
             'scheming_category_list': helpers.scheming_category_list,
-            'check_group_selected': helpers.check_group_selected,
             'build_nav_main': helpers.build_nav_main,
             'get_translated_logo': helpers.get_translated_logo,
             'get_assignable_groups_for_package': helpers.get_assignable_groups_for_package,
@@ -91,6 +90,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'convert_to_json_compatible_str_if_str':
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
+            'highvalue_category': validators.highvalue_category,
             # NOTE: this is a converter. (https://github.com/vrk-kpa/ckanext-scheming/#validators)
             'save_to_groups': converters.save_to_groups
         }
@@ -295,10 +295,10 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
 
     def decode_paha_jwt_token(self, key, algorithm):
         '''Tries to decode a PAHA JWT token payload from request'''
-        
+
         if not (key and algorithm):
             return
-        
+
         authorization = toolkit.request.headers.get('Authorization')
         if not authorization:
             return
@@ -315,12 +315,12 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
         except Exception:
             # Fallback to regular auth if anything at all goes wrong with the token
             return
-            
+
         if token.get('iss') != 'PAHA':
             return
 
         return token
-        
+
     def create_or_authenticate_paha_user(self, token):
         '''Identifies a user based on a PAHA JWT token creating a new user if needed'''
         user_id = token['id']
@@ -348,10 +348,10 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
                 'password': base64.a85encode(random.randbytes(128)).decode('utf-8'),
                 'fullname': f'{user_first_name} {user_last_name}'
             }
-            
+
             site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
             context = {'user': site_user_info['name']}
-            
+
             toolkit.get_action('user_create')(context, user_dict)
 
             user = model.User.get(user_id)
@@ -362,7 +362,7 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
             login_user(user)
         else:
             raise RuntimeError("Could not find or create PAHA user!")
-    
+
     def identify(self):
         key = toolkit.config.get('ckanext.restricteddata.paha_jwt_key')
         algorithm = toolkit.config.get('ckanext.restricteddata.paha_jwt_algorithm')
