@@ -1092,7 +1092,7 @@ msgstr[1] ""
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:34
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:35
 msgid "View {name}"
-msgstr ""
+msgstr "Tarkastele {name}"
 
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:39
 msgid "Remove dataset from this group"
