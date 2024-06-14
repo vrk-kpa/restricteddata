@@ -960,7 +960,7 @@ msgstr ""
 #: ckanext/restricteddata/validators.py:153
 #, python-format
 msgid "Required language \"%s\" missing"
-msgstr ""
+msgstr "Vaadittu käännös \"%s\" puuttuu"
 
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
