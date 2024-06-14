@@ -1088,8 +1088,8 @@ msgstr "0 tietoaineistoa"
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:23
 msgid "{num} Member"
 msgid_plural "{num} Members"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} jäsen"
+msgstr[1] "{num} jäsentä"
 
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:34
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:35
