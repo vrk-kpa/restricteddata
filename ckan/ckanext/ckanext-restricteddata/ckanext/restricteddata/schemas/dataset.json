@@ -123,6 +123,38 @@
       "description": "You can mark dataset as high value dataset"
     },
     {
+      "field_name": "highvalue_category",
+      "label": "High-value dataset category",
+      "preset": "multiple_checkbox",
+      "choices": [
+        {
+          "value": "meteorological",
+          "label": "Meteorological"
+        },
+        {
+          "value": "companies and company ownership",
+          "label": "Companies and company ownership"
+          },
+        {
+          "value": "geospatial",
+          "label": "Geospatial"
+        },
+        {
+          "value": "mobility",
+          "label": "Mobility"
+        },
+        {
+          "value": "earth observation and environment",
+          "label": "Earth observation and environment"
+        },
+        {
+          "value": "statistics",
+          "label": "Statistics"
+        }
+      ],
+      "validators": "highvalue_category scheming_multiple_choice"
+    },
+    {
       "field_name": "access_rights",
       "label": "Access rights",
       "preset": "select",
