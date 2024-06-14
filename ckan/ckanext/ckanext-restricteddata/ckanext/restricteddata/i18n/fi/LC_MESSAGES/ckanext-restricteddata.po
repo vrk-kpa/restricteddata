@@ -1063,7 +1063,7 @@ msgstr "Hyppää pääsisältöön"
 
 #: ckanext/restricteddata/templates/page.html:40
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Murupolku"
 
 #: ckanext/restricteddata/templates/admin/config.html:9
 msgid "Info message"
