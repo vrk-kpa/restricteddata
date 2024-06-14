@@ -647,7 +647,7 @@ msgstr "Jakelutavat"
 
 #: ckanext/restricteddata/translations.py:141
 msgid "Unnamed resource"
-msgstr ""
+msgstr "Nimetön data-aineisto"
 
 #: ckanext/restricteddata/translations.py:142
 msgid "Add view"
