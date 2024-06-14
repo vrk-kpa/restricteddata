@@ -1805,7 +1805,7 @@ msgstr "Blogi"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:27
 msgid "There are currently no blog articles here"
-msgstr ""
+msgstr "Sivulla ei ole tällä hetkellä blogi-artikkeleja."
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:29
 msgid "There are currently no pages here"
