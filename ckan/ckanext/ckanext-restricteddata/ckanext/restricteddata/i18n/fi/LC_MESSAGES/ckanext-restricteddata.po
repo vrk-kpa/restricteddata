@@ -1199,7 +1199,7 @@ msgstr "Tuottajien haku"
 
 #: ckanext/restricteddata/templates/organization/member_new.html:8
 msgid "What are roles?"
-msgstr ""
+msgstr "Mitä ovat roolit?"
 
 #: ckanext/restricteddata/templates/organization/member_new.html:11
 msgid ""
