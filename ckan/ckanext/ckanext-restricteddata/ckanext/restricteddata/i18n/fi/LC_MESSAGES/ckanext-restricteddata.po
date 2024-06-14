@@ -1276,7 +1276,7 @@ msgstr "Sulje tallentamatta"
 
 #: ckanext/restricteddata/templates/package/group_list.html:16
 msgid "Associate this group with this dataset"
-msgstr ""
+msgstr "Liitä kategoria tähän tietoaineistoon"
 
 #: ckanext/restricteddata/templates/package/group_list.html:16
 msgid "Add to group"
