@@ -145,6 +145,23 @@ def test_dataset_with_invalid_highvalue_category():
         Dataset(**dataset_fields)
 
 
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_dataset_with_highvalue_category_as_normal_user(app):
+    user = User()
+    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+    d = Dataset(**dataset_fields)
+
+    dataset_fields['highvalue'] = True
+    dataset_fields['highvalue_category'] = "geospatial"
+
+    context = {"user": user["name"], "ignore_auth": False}
+
+    d = call_action('package_update', context=context, name=d['name'], **dataset_fields)
+
+    dataset = call_action('package_show', id=d['name'])
+    assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue_category'] == ["geospatial"]
+
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_dataset_with_external_ursl():

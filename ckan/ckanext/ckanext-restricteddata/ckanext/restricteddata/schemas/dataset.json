@@ -107,7 +107,7 @@
       "field_name": "highvalue",
       "label": "High value dataset",
       "preset": "select",
-      "form_snippet": "radio_sysadmin.html",
+      "form_snippet": "radio.html",
       "choices": [
         {
           "label": "No",
@@ -119,7 +119,7 @@
         }
       ],
       "default_value": "False",
-      "validators": "ignore_not_sysadmin keep_old_value_if_missing boolean_validator",
+      "validators": "boolean_validator",
       "description": "You can mark dataset as high value dataset"
     },
     {
