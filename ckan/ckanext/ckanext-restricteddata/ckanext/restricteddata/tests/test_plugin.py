@@ -120,11 +120,11 @@ def test_dataset_with_highvalue_category():
 def test_dataset_with_multiple_highvalue_categories():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['highvalue'] = True
-    dataset_fields['highvalue_category'] = ["geospatial", "mobility"]
+    dataset_fields['highvalue_category'] = ["geospatial", "mobility", "earth-observation-and-environment"]
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
     assert dataset['highvalue'] == 'true'
-    assert dataset['highvalue_category'] == ["geospatial", "mobility"]
+    assert dataset['highvalue_category'] == ["geospatial", "mobility", "earth-observation-and-environment"]
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
