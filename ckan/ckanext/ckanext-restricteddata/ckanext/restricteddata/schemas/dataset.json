@@ -107,20 +107,57 @@
       "field_name": "highvalue",
       "label": "High value dataset",
       "preset": "select",
-      "form_snippet": "radio_sysadmin.html",
+      "form_snippet": "radio.html",
       "choices": [
         {
           "label": "No",
-          "value": "False"
+          "value": "False",
+          "hide_element": "highvalue_category"
         },
         {
           "label": "Yes",
-          "value": "True"
+          "value": "True",
+          "show_element": "highvalue_category"
         }
       ],
       "default_value": "False",
-      "validators": "ignore_not_sysadmin keep_old_value_if_missing boolean_validator",
+      "validators": "boolean_validator",
       "description": "You can mark dataset as high value dataset"
+    },
+    {
+      "field_name": "highvalue_category",
+      "label": "High-value dataset category",
+      "visual_required": true,
+      "hideable": true,
+      "preset": "multiple_checkbox",
+      "choices": [
+        {
+          "value": "meteorological",
+          "label": "Meteorological"
+        },
+        {
+          "value": "companies-and-company-ownership",
+          "label": "Companies and company ownership"
+          },
+        {
+          "value": "geospatial",
+          "label": "Geospatial"
+        },
+        {
+          "value": "mobility",
+          "label": "Mobility"
+        },
+        {
+          "value": "earth-observation-and-environment",
+          "label": "Earth observation and environment"
+        },
+        {
+          "value": "statistics",
+          "label": "Statistics"
+        }
+      ],
+      "validators": "highvalue_category scheming_multiple_choice",
+      "description": "Select at least one category."
     },
     {
       "field_name": "access_rights",

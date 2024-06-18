@@ -12,6 +12,7 @@ control_classes - An array of custom classes for the .control wrapper.
 extra_html - An html string to be inserted after the errors eg. info text.
 is_required - Boolean of whether this input is requred for the form to validate
 description - Additional description text between the label and the input
+hideable - boolean, adds id to the whole component to allow hiding
 
 Example:
 
@@ -22,8 +23,8 @@ Example:
 
 #}
 
-{% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false, description="") %}
-  <div class="form-group{{ " error" if error }}{{ " " ~ classes | join(" ") }}">
+{% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false, description="", hideable=False) %}
+<div class="form-group{{ " error" if error }}{{ " " ~ classes | join(" ") }}" {% if hideable %} id={{ for }} {% endif %} >
     <label class="form-label" for="{{ for }}">
       {{ label or _("Custom") }}
       {% if is_required %}<span title="{{ _("This field is required") }}" class="control-required">*</span>{% endif %}

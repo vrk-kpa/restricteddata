@@ -106,12 +106,61 @@ def test_dataset_with_maintainer_website():
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
-def test_dataset_with_highvalue():
+def test_dataset_with_highvalue_category():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['highvalue'] = True
+    dataset_fields['highvalue_category'] = "geospatial"
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
     assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue_category'] == ["geospatial"]
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_dataset_with_multiple_highvalue_categories():
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['highvalue'] = True
+    dataset_fields['highvalue_category'] = ["geospatial", "mobility", "earth-observation-and-environment"]
+    d = Dataset(**dataset_fields)
+    dataset = call_action('package_show', id=d['name'])
+    assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue_category'] == ["geospatial", "mobility", "earth-observation-and-environment"]
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_highvalue_category_is_required_when_highvalue_is_true(app):
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['highvalue'] = True
+
+    with pytest.raises(toolkit.ValidationError):
+        Dataset(**dataset_fields)
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_dataset_with_invalid_highvalue_category():
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['highvalue'] = True
+    dataset_fields['highvalue_category'] = "spatial"
+    with pytest.raises(toolkit.ValidationError):
+        Dataset(**dataset_fields)
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_dataset_with_highvalue_category_as_normal_user(app):
+    user = User()
+    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+    d = Dataset(**dataset_fields)
+
+    dataset_fields['highvalue'] = True
+    dataset_fields['highvalue_category'] = "geospatial"
+
+    context = {"user": user["name"], "ignore_auth": False}
+
+    d = call_action('package_update', context=context, name=d['name'], **dataset_fields)
+
+    dataset = call_action('package_show', id=d['name'])
+    assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue_category'] == ["geospatial"]
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -133,7 +182,7 @@ def test_dataset_with_update_frequency():
 
     dataset_fields['update_frequency'] = 'invalid value'
     with pytest.raises(toolkit.ValidationError):
-        d = Dataset(**dataset_fields)
+        Dataset(**dataset_fields)
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
@@ -384,10 +433,10 @@ def test_paha_authentication_creates_new_user(app):
     response = app.get(url=toolkit.url_for("user.read", id="foo_bar"), headers=headers)
     assert response.status_code == 200
 
-    # Make sure 
+    # Make sure
     assert email in response.body
 
-    # Verify that the user has been created 
+    # Verify that the user has been created
     user = call_action('user_show', id="foo_bar", context={"ignore_auth": True})
     assert user['fullname'] == "foo bar"
 

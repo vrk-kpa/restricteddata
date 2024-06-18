@@ -66,8 +66,6 @@ def scheming_language_text_or_empty(text, prefer_lang=None):
                 return ''
 
     t = _(text)
-    if isinstance(t, str):
-        return t.decode('utf-8')
     return t
 
 
@@ -186,10 +184,6 @@ def scheming_category_list(args):
             })
 
     return category_list
-
-
-def check_group_selected(val, data):
-    return any(x['name'] == val for x in data)
 
 
 def build_nav_main(*args, pages=False):

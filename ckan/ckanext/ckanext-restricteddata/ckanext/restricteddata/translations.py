@@ -100,6 +100,14 @@ def _translations():
     _("Irregular")
     _("Never")
 
+    _('High-value dataset category')
+    _('Meteorological')
+    _('Companies and company ownership')
+    _('Geospatial')
+    _('Mobility')
+    _('Earth observation and environment')
+    _('Statistics')
+
     # Resource
     _("Data resource title")
     _("Give a short and descriptive name for the distribution. If the data covers a specific time frame, mention that in the name.")  # noqa: E501

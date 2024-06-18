@@ -273,3 +273,12 @@ def convert_to_json_compatible_str_if_str(value):
             value = json.dumps({'fi': value})
         return value
 
+
+def highvalue_category(key, data, errors, context):
+    highvalue = data.get(("highvalue",), False)
+    if highvalue is True:
+        value = data.get(key)
+        if not value:
+            errors[key].append(_('You must select at least 1 high value category'))
+
+        return data[key]
