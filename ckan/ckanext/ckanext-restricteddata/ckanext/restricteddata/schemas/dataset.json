@@ -128,6 +128,7 @@
       "field_name": "highvalue_category",
       "label": "High-value dataset category",
       "hideable": true,
+      "required": true,
       "preset": "multiple_checkbox",
       "choices": [
         {
@@ -155,7 +156,7 @@
           "label": "Statistics"
         }
       ],
-      "validators": "highvalue_category scheming_multiple_choice"
+      "validators": "highvalue_category scheming_required scheming_multiple_choice"
     },
     {
       "field_name": "access_rights",
