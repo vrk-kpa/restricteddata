@@ -156,7 +156,8 @@
           "label": "Statistics"
         }
       ],
-      "validators": "highvalue_category scheming_required scheming_multiple_choice"
+      "validators": "highvalue_category scheming_required scheming_multiple_choice",
+      "description": "Select at least one category."
     },
     {
       "field_name": "access_rights",
