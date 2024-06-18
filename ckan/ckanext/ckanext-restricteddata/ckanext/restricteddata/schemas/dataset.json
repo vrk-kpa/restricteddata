@@ -127,8 +127,8 @@
     {
       "field_name": "highvalue_category",
       "label": "High-value dataset category",
+      "visual_required": true,
       "hideable": true,
-      "required": true,
       "preset": "multiple_checkbox",
       "choices": [
         {
@@ -156,7 +156,7 @@
           "label": "Statistics"
         }
       ],
-      "validators": "highvalue_category scheming_required scheming_multiple_choice",
+      "validators": "highvalue_category scheming_multiple_choice",
       "description": "Select at least one category."
     },
     {

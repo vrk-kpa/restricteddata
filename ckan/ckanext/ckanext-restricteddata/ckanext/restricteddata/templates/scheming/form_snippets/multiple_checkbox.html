@@ -5,7 +5,7 @@
     label=h.scheming_language_text(field.label),
     classes=['control-medium'],
     error=errors[field.field_name],
-    is_required=h.scheming_field_required(field),
+    is_required=h.scheming_field_required(field) or field.visual_required,
     description=field.description,
     hideable=field.hideable) -%}
     {%- set choices = [] -%}
