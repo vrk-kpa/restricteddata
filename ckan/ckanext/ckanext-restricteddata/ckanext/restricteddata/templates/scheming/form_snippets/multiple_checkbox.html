@@ -1,17 +1,19 @@
 {% from 'macros/form/input_block.html' import input_block %}
 
 {%- call input_block(
+    for=field.field_name,
     label=h.scheming_language_text(field.label),
     classes=['control-medium'],
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field),
-    description=field.description) -%}
+    description=field.description,
+    hideable=field.hideable) -%}
     {%- set choices = [] -%}
     {%- for c in h.scheming_field_choices(field) -%}
         {%- do choices.append(
         (c.value, h.scheming_language_text_or_empty(c.label))) -%}
     {%- endfor -%}
-    <fieldset class="checkboxes">
+<fieldset class="checkboxes">
         {%- for val, label in choices -%}
         <label class="checkbox mb-3" for="field-{{ field.field_name }}-{{ val }}">
             <input id="field-{{ field.field_name }}-{{ val }}"

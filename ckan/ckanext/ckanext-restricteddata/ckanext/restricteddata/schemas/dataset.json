@@ -111,11 +111,13 @@
       "choices": [
         {
           "label": "No",
-          "value": "False"
+          "value": "False",
+          "hide_element": "highvalue_category"
         },
         {
           "label": "Yes",
-          "value": "True"
+          "value": "True",
+          "show_element": "highvalue_category"
         }
       ],
       "default_value": "False",
@@ -125,6 +127,7 @@
     {
       "field_name": "highvalue_category",
       "label": "High-value dataset category",
+      "hideable": true,
       "preset": "multiple_checkbox",
       "choices": [
         {
