@@ -164,6 +164,30 @@ def test_dataset_with_highvalue_category_as_normal_user(app):
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_search_facets_with_highvalue_category():
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['highvalue'] = True
+    dataset_fields['highvalue_category'] = ["earth-observation-and-environment"]
+    d = Dataset(**dataset_fields)
+    data_dict = {
+        "facet.field": ['vocab_highvalue_category']
+    }
+    results = call_action('package_search', **data_dict )
+    assert results['search_facets'] == {
+        "vocab_highvalue_category": {
+            "items": [
+                {
+                    "count": 1,
+                    "display_name": "Earth observation and environment",
+                    "name": "earth-observation-and-environment"
+                }
+            ],
+            "title": "vocab_highvalue_category"
+        }
+    }
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_dataset_with_external_ursl():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['external_urls'] = ['http://example.com', 'https://example.com']
