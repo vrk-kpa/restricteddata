@@ -163,7 +163,7 @@ def test_dataset_with_highvalue_category_as_normal_user(app):
     assert dataset['highvalue_category'] == ["geospatial"]
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins")
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
 def test_search_facets_with_highvalue_category():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['highvalue'] = True
