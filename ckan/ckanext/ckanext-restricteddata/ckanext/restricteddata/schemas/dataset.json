@@ -130,34 +130,10 @@
       "visual_required": true,
       "hideable": true,
       "preset": "multiple_checkbox",
-      "choices": [
-        {
-          "value": "meteorological",
-          "label": "Meteorological"
-        },
-        {
-          "value": "companies-and-company-ownership",
-          "label": "Companies and company ownership"
-          },
-        {
-          "value": "geospatial",
-          "label": "Geospatial"
-        },
-        {
-          "value": "mobility",
-          "label": "Mobility"
-        },
-        {
-          "value": "earth-observation-and-environment",
-          "label": "Earth observation and environment"
-        },
-        {
-          "value": "statistics",
-          "label": "Statistics"
-        }
-      ],
+      "choices_helper": "scheming_highvalue_category_list",
       "validators": "highvalue_category scheming_multiple_choice",
-      "description": "Select at least one category."
+      "description": "Select at least one category.",
+      "display_snippet": "tag_list.html"
     },
     {
       "field_name": "access_rights",

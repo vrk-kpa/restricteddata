@@ -1,0 +1,24 @@
+{%- set values = data[field.field_name] -%}
+{%- set tags = [] -%}
+
+{%- for choice in h.scheming_field_choices(field) -%}
+  {%- if choice.value in values -%}
+    {%- do tags.append((choice.value, h.scheming_language_text(choice.label))) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+  <ul class="tag-list">
+    {%- for value, label in tags -%}
+      {% set tag_dict = dict({
+        'controller': 'dataset',
+        'action': 'search',
+        'vocab_' + field.field_name : value }) %}
+      <li>
+        <a class="{% block tag_list_item_class %}tag{% endblock %}" href="{{ h.call_toolkit_function('url_for',[], tag_dict) }}">
+        {{ h.truncate(label, 22) }}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+
+
