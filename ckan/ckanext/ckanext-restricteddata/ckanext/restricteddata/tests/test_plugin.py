@@ -168,7 +168,7 @@ def test_search_facets_with_highvalue_category():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['highvalue'] = True
     dataset_fields['highvalue_category'] = ["earth-observation-and-environment"]
-    d = Dataset(**dataset_fields)
+    Dataset(**dataset_fields)
     data_dict = {
         "facet.field": ['vocab_highvalue_category']
     }
