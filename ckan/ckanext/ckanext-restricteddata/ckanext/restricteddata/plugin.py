@@ -166,7 +166,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def dataset_facets(self, facets_dict, package_type):
         lang = helpers.get_lang_prefix()
         facets_dict = OrderedDict([
-            ('groups', toolkit._('Datasets')),
+            ('groups', toolkit._('Groups')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
         ])
