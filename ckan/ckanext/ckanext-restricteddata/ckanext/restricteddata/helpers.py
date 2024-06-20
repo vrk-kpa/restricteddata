@@ -228,7 +228,7 @@ highvalue_categories = {
 }
 
 def scheming_highvalue_category_list(field):
-    return [{"value": category, "label": highvalue_categories[category] } for category in highvalue_categories]
+    return [{"value": category, "label": label } for category, label in highvalue_categories.items()]
 
 def get_highvalue_category_label(value):
     return highvalue_categories.get(value, "")
