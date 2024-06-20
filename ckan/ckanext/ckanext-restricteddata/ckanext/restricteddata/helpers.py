@@ -216,3 +216,19 @@ def get_assignable_groups_for_package(pkg_dict):
     return [{'name': g['value'], 'title_translated': g['label']}
             for g in groups
             if g['value'] not in package_group_ids]
+
+
+highvalue_categories = {
+    "meteorological": "Meteorological",
+    "companies-and-company-ownership": "Companies and company ownership",
+    "geospatial": "Geospatial",
+    "mobility": "Mobility",
+    "earth-observation-and-environment": "Earth observation and environment",
+    "statistics": "Statistics"
+}
+
+def scheming_highvalue_category_list(field):
+    return [{"value": category, "label": label } for category, label in highvalue_categories.items()]
+
+def get_highvalue_category_label(value):
+    return highvalue_categories.get(value, "")

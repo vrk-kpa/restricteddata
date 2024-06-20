@@ -73,6 +73,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'build_nav_main': helpers.build_nav_main,
             'get_translated_logo': helpers.get_translated_logo,
             'get_assignable_groups_for_package': helpers.get_assignable_groups_for_package,
+            'scheming_highvalue_category_list': helpers.scheming_highvalue_category_list,
+            'get_highvalue_category_label': helpers.get_highvalue_category_label
         }
 
     # IValidators:
@@ -98,6 +100,16 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     # IPackageController
 
     def after_dataset_search(self, search_results, search_params) -> PackageDict:
+
+        # Modify facet display name to be human-readable
+        # TODO: handle translations for groups and highvalue categories
+        if search_results.get('search_facets'):
+            for facet in search_results['search_facets']:
+                if facet == "vocab_highvalue_category":
+                    for facet_item in search_results['search_facets'][facet]['items']:
+                        facet_item['display_name'] = helpers.get_highvalue_category_label(facet_item['name'])
+
+
         # Only filter results if processing a request
         if not has_request_context():
             return search_results
@@ -154,6 +166,9 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
                 if prop_value.get(language):
                     pkg_dict['vocab_%s_%s' % (prop_key, language)] = [tag.lower() for tag in prop_value[language]]
 
+        if pkg_dict.get('highvalue_category'):
+            pkg_dict['vocab_highvalue_category'] = json.loads(pkg_dict.get('highvalue_category'))
+
         return pkg_dict
 
     # IClick
@@ -166,7 +181,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def dataset_facets(self, facets_dict, package_type):
         lang = helpers.get_lang_prefix()
         facets_dict = OrderedDict([
-            ('groups', toolkit._('Datasets')),
+            ('groups', toolkit._('Groups')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
         ])
