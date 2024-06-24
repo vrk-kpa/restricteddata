@@ -91,7 +91,7 @@ jobs:
         run: npx gulp
 
       - name: build images
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         if: ${{ matrix.build-container == true }}
         with:
           context: ${{ matrix.context }}
