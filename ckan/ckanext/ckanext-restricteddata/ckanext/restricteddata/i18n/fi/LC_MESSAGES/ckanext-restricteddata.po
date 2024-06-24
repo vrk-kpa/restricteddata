@@ -519,7 +519,7 @@ msgstr "Jakelutavan linkki"
 
 #: ckanext/restricteddata/translations.py:119
 msgid "Select a file format for the distribution"
-msgstr "Data-aineiston tiedostomuoto"
+msgstr "Jakelutavan tiedostomuoto"
 
 #: ckanext/restricteddata/translations.py:120
 msgid "Size"
