@@ -12,6 +12,7 @@ Create A Header Nav Page
     Select From List By Value  submenu_order  1
     Submit Form  css:.pages-form
     URL Path Should Be  /pages/test
+    Element Should Contain  css:h1.page-heading  Title fi
     Log Out
 
     Go To Front Page
@@ -34,6 +35,7 @@ Create A Footer Nav Page
     Select From List By Index  order  1
     Submit Form  css:.pages-form
     URL Path Should Be  /pages/test
+    Element Should Contain  css:h1.page-heading  Title fi
     Log Out
 
     Go To Front Page
