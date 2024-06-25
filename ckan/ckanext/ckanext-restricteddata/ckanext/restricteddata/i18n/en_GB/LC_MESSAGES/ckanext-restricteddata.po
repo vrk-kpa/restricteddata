@@ -1417,16 +1417,16 @@ msgstr "View"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:24
 msgid "API Endpoint"
-msgstr ""
+msgstr "API Endpoint"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:26
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:28
 #: ckanext/restricteddata/templates/package/snippets/resource_item.html:48
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:56
 #, python-format
