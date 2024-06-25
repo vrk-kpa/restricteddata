@@ -1558,6 +1558,10 @@ msgid ""
 "href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.en\">CC0 1.0 "
 "Universal license</a>."
 msgstr ""
+"By submitting this form, you agree to release the metadata values that you "
+"enter into the form under the <a "
+"href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.en\">CC0 1.0 "
+"Universal license</a>."
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:12
 msgid "Are you sure you want to delete this resource?"
