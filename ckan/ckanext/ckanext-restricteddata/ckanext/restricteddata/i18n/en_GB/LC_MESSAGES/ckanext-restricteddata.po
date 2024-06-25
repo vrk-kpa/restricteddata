@@ -1589,7 +1589,7 @@ msgstr "Preview"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_item.html:50
 msgid "Navigate"
-msgstr ""
+msgstr "Navigate"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:18
 msgid "This resource view is not available at the moment."
