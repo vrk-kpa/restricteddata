@@ -1335,7 +1335,7 @@ msgstr "Create new dataset"
 #: ckanext/restricteddata/templates/package/new.html:23
 #: ckanext/restricteddata/templates/package/new_resource.html:23
 msgid "Stages"
-msgstr ""
+msgstr "Stages"
 
 #: ckanext/restricteddata/templates/package/new_package_form.html:5
 msgid "Next"
