@@ -1491,12 +1491,12 @@ msgstr "Additional Info"
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:8
 msgid "Source"
-msgstr ""
+msgstr "Source"
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:23
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:28
 msgid "Author"
-msgstr ""
+msgstr "Author"
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:35
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:40
