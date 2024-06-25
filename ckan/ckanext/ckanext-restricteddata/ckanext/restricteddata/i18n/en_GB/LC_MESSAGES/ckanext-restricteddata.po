@@ -1605,7 +1605,7 @@ msgstr "Download distribution"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:48
 msgid "Your browser does not support iframes."
-msgstr ""
+msgstr "Your browser does not support iframes."
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:57
 msgid "Embed resource view"
@@ -1616,6 +1616,8 @@ msgid ""
 "You can copy and paste the embed code into a CMS or blog software that "
 "supports raw HTML"
 msgstr ""
+"You can copy and paste the embed code into a CMS or blog software that "
+"supports raw HTML"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:65
 msgid "Width"
