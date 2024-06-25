@@ -1170,7 +1170,7 @@ msgstr "Type what you are searching for"
 
 #: ckanext/restricteddata/templates/home/layout1.html:27
 msgid "Restricted data categories"
-msgstr ""
+msgstr "Restricted data categories"
 
 #: ckanext/restricteddata/templates/home/layout1.html:31
 msgid "show group"
