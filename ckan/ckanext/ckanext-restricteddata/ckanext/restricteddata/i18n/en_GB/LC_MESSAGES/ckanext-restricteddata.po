@@ -1222,7 +1222,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:30
 msgid "This field is required"
-msgstr ""
+msgstr "This field is required"
 
 #: ckanext/restricteddata/templates/macros/form/markdown.html:35
 #, python-format
