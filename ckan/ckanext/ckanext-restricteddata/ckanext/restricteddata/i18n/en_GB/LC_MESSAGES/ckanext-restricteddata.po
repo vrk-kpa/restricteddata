@@ -1364,7 +1364,7 @@ msgstr "Delete"
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:49
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:53
 msgid "Abort"
-msgstr ""
+msgstr "Abort"
 
 #: ckanext/restricteddata/templates/package/new_resource.html:15
 msgid "Add data to the dataset"
