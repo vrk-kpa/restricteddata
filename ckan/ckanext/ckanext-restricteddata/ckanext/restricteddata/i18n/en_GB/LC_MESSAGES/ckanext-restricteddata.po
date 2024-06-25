@@ -1377,12 +1377,12 @@ msgstr "Add distribution"
 
 #: ckanext/restricteddata/templates/package/read.html:18
 msgid "Keywords"
-msgstr ""
+msgstr "Keywords"
 
 #: ckanext/restricteddata/templates/package/read.html:24
 #: ckanext/restricteddata/templates/package/read_base.html:7
 msgid "Categories"
-msgstr ""
+msgstr "Categories"
 
 #: ckanext/restricteddata/templates/package/read_base.html:6
 #: ckanext/restricteddata/templates/package/resource_read.html:4
@@ -1391,7 +1391,7 @@ msgstr "Dataset"
 
 #: ckanext/restricteddata/templates/package/read_base.html:8
 msgid "Activity"
-msgstr ""
+msgstr "Activity"
 
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:8
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:17
