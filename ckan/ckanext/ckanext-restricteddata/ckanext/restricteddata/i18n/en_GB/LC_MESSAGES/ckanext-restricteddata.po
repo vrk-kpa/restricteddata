@@ -1210,11 +1210,11 @@ msgstr "Published"
 
 #: ckanext/restricteddata/templates/home/layout1.html:98
 msgid "open news item"
-msgstr ""
+msgstr "open news item"
 
 #: ckanext/restricteddata/templates/home/layout1.html:105
 msgid "Browse all news and disruption notices"
-msgstr ""
+msgstr "Browse all news and disruption notices"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:29
 msgid "Custom"
