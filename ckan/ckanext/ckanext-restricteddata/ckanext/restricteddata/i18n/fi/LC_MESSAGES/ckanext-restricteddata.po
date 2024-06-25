@@ -694,7 +694,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:154
 msgid "eg. My View"
-msgstr ""
+msgstr "esim. Esikatseluni"
 
 #: ckanext/restricteddata/translations.py:155
 msgid "eg. Information about my view"
