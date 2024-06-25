@@ -951,7 +951,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:224
 msgid "{object_type}s"
-msgstr ""
+msgstr "{object_type}t"
 
 #: ckanext/restricteddata/validators.py:44
 msgid "expecting list of strings"
