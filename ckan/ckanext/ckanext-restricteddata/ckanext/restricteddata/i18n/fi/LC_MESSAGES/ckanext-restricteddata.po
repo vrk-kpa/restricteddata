@@ -396,6 +396,11 @@ msgid ""
 "kirjaamo@organisation.fi. We can use this email address to contact the "
 "dataset maintainer."
 msgstr ""
+"Käytä organisaatiosi yleistä sähköpostiosoitetta yksittäisen työntekijän "
+"yhteystietojen sijasta, jotta sähköpostiosoite toimii, vaikka henkilöstössä "
+"tapahtuisi muutoksia. Esimerkiksi opendata@organisation.fi tai "
+"kirjaamo@organisation.fi. Voimme käyttää tätä sähköpostiosoitetta "
+"ottaaksemme yhteyttä tietoaineiston ylläpitäjään."
 
 #: ckanext/restricteddata/translations.py:87
 msgid "Biennial"
