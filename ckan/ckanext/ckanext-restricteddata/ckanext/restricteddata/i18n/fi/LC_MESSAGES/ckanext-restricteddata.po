@@ -467,7 +467,7 @@ msgstr "Meteorological"
 
 #: ckanext/restricteddata/translations.py:105
 msgid "Companies and company ownership"
-msgstr ""
+msgstr "Companies and company ownership"
 
 #: ckanext/restricteddata/translations.py:106
 msgid "Geospatial"
