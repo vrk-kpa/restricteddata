@@ -1541,11 +1541,11 @@ msgstr "Deleted"
 
 #: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:7
 msgid "Draft"
-msgstr ""
+msgstr "Draft"
 
 #: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:10
 msgid "Private"
-msgstr ""
+msgstr "Private"
 
 #: ckanext/restricteddata/templates/package/snippets/package_form.html:23
 msgid "Next: Add Data"
