@@ -1621,11 +1621,11 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:65
 msgid "Width"
-msgstr ""
+msgstr "Width"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:68
 msgid "Height"
-msgstr ""
+msgstr "Height"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:71
 msgid "Code"
