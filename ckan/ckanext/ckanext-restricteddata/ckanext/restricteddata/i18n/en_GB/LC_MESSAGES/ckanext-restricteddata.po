@@ -1684,7 +1684,9 @@ msgstr "Go"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:82
 msgid "<p class=\"extra\">Please try another search.</p>"
-msgstr "<p class=\"extra\">Please try another search.</p>"
+msgstr ""
+"<p class=\"extra\">Please check that you typed the search term "
+"correctly.</p>"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:88
 msgid ""
