@@ -995,7 +995,7 @@ msgstr "Vaadittu käännös \"%s\" puuttuu"
 
 #: ckanext/restricteddata/validators.py:282
 msgid "You must select at least 1 high value category"
-msgstr ""
+msgstr "Valitse ainakin yksi arvokkaan tietoaineiston kategoria"
 
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
