@@ -47,6 +47,10 @@ Open Browser To Login Page
 Login Page Should Be Open
     Title Should Be    Kirjaudu - Suojattudata
 
+Go To Front Page
+    Go To    ${INDEX URL}
+    Front Page Should Be Open
+
 Go To Login Page
     Go To    ${LOGIN URL}
     Login Page Should Be Open
