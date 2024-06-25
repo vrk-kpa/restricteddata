@@ -1529,15 +1529,15 @@ msgstr "Show more categories"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:28
 msgid "Show more"
-msgstr ""
+msgstr "Show more"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:36
 msgid "Edit categories"
-msgstr ""
+msgstr "Edit categories"
 
 #: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:4
 msgid "Deleted"
-msgstr ""
+msgstr "Deleted"
 
 #: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:7
 msgid "Draft"
