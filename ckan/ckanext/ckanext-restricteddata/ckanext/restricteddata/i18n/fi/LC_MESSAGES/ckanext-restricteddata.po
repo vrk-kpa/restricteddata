@@ -1670,7 +1670,7 @@ msgstr "Lisenssi"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:44
 msgid "Filter Results"
-msgstr "Suodata tuloksia"
+msgstr "Rajaa tuloksia"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:62
 msgid "Order by"
