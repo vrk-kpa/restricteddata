@@ -1691,6 +1691,8 @@ msgid ""
 "<p id=\"search-error\"><strong>There was an error while searching.</strong> "
 "Please try again.</p>"
 msgstr ""
+"<p id=\"search-error\"><strong>There was an error while searching.</strong> "
+"Please try again.</p>"
 
 #: ckanext/restricteddata/templates/snippets/search_result_text.html:15
 msgid "{number} dataset found for \"{query}\""
