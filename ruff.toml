@@ -1,4 +1,4 @@
-select = ["E", "F"]
+lint.select = ["E", "F"]
 
 extend-exclude = [
   "ckanext-dcat",
