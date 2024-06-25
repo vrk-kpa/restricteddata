@@ -690,7 +690,7 @@ msgstr "Lisää esikatseluita"
 
 #: ckanext/restricteddata/translations.py:153
 msgid "View view"
-msgstr ""
+msgstr "Tarkastele esikatselua"
 
 #: ckanext/restricteddata/translations.py:154
 msgid "eg. My View"
