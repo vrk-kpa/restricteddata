@@ -1431,7 +1431,7 @@ msgstr "Download"
 #: ckanext/restricteddata/templates/package/resource_read.html:56
 #, python-format
 msgid "Source: <a href=\"%(url)s\">%(dataset)s</a>"
-msgstr ""
+msgstr "Source: <a href=\"%(url)s\">%(dataset)s</a>"
 
 #: ckanext/restricteddata/templates/package/resource_views.html:8
 msgid "Edit views"
