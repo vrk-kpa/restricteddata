@@ -1525,7 +1525,7 @@ msgstr "Category icon"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:26
 msgid "Show more categories"
-msgstr ""
+msgstr "Show more categories"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:28
 msgid "Show more"
