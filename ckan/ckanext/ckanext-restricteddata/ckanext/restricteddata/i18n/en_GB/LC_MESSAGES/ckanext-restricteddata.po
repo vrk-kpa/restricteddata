@@ -1339,11 +1339,11 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/new_package_form.html:5
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
 #: ckanext/restricteddata/templates/package/new_package_form.html:7
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 #: ckanext/restricteddata/templates/package/new_package_form.html:14
 #: ckanext/restricteddata/templates/package/snippets/package_form.html:13
