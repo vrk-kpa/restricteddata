@@ -531,6 +531,9 @@ msgid ""
 "\n"
 "The size can be approximated as a decimal if the precise size is not known. If data is offered via an API, enter the overall size of the underlying data."
 msgstr ""
+"Syötä tiedoston koko tavuina.\n"
+"\n"
+"Jos et tiedä tarkkaa kokoa, anna arvio desimaalin tarkkuudella. Jos data on tarjolla rajapinnan kautta, koon tulisi viitata rajapinnan takana olevan tietoaineiston todelliseen kokoon."
 
 #: ckanext/restricteddata/translations.py:122
 msgid "Data resource description"
