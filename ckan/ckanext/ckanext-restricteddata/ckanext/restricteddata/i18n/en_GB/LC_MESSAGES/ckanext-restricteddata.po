@@ -1314,7 +1314,7 @@ msgstr ""
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:35
 #: ckanext/restricteddata/templates/package/resources.html:28
 msgid "Close without saving"
-msgstr ""
+msgstr "Close without saving"
 
 #: ckanext/restricteddata/templates/package/group_list.html:16
 msgid "Associate this group with this dataset"
