@@ -1501,15 +1501,15 @@ msgstr "Author"
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:35
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:40
 msgid "Maintainer"
-msgstr ""
+msgstr "Maintainer"
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:47
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:54
 msgid "State"
-msgstr ""
+msgstr "State"
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:60
 msgid "Last Updated"
