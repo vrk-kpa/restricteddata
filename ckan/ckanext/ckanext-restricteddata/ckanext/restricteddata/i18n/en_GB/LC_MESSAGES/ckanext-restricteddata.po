@@ -1289,7 +1289,7 @@ msgstr "View {organization_name}"
 #: ckanext/restricteddata/templates/package/base.html:30
 #: ckanext/restricteddata/templates/package/new.html:6
 msgid "Create Dataset"
-msgstr ""
+msgstr "Create Dataset"
 
 #: ckanext/restricteddata/templates/package/changes.html:8
 msgid "Changes"
