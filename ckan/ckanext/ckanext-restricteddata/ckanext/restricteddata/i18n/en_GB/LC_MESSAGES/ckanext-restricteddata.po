@@ -1459,8 +1459,8 @@ msgid ""
 "<p class=\"empty\"> This dataset has no data, <a href=\"%(url)s\">why not "
 "add some?</a> </p>"
 msgstr ""
-"<p class=\"empty\"> This dataset has no data, <a href=\"%(url)s\">why not "
-"add some?</a> </p>"
+"<p class=\"empty\"> This dataset has no distributions, <a "
+"href=\"%(url)s\">why not add some?</a> </p>"
 
 #: ckanext/restricteddata/templates/package/search.html:30
 #: ckanext/restricteddata/templates/snippets/search_form.html:4
