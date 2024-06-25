@@ -915,7 +915,7 @@ msgstr "Päivitä {object_type}"
 
 #: ckanext/restricteddata/translations.py:215
 msgid "A little information about my {object_type}..."
-msgstr ""
+msgstr "Tietoa {object_type}ni..."
 
 #: ckanext/restricteddata/translations.py:216
 msgid "There are no {object_type}s associated with this dataset"
