@@ -467,7 +467,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:105
 msgid "Companies and company ownership"
-msgstr "Companies and company ownership"
+msgstr ""
 
 #: ckanext/restricteddata/translations.py:106
 msgid "Geospatial"
