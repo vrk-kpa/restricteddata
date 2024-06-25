@@ -1849,4 +1849,4 @@ msgstr "Sivulla ei ole tällä hetkellä blogi-artikkeleja."
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:29
 msgid "There are currently no pages here"
-msgstr ""
+msgstr "Sivuja ei tällä hetkellä ole"
