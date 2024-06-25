@@ -16,6 +16,7 @@ Create A Header Nav Page
     Log Out
 
     Go To Front Page
+    Reload Page  # CKAN cache shows old front page without this
     Element Should Contain  css:header .navbar  Title fi
 
     Click Element  id:language-select-dropdown
@@ -39,6 +40,7 @@ Create A Footer Nav Page
     Log Out
 
     Go To Front Page
+    Reload Page  # CKAN cache shows old front page without this
     Element Should Contain  css:.footer-links  Title fi
 
     Click Element  id:language-select-dropdown
