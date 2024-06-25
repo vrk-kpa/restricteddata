@@ -8,9 +8,10 @@ from logging import getLogger
 from datetime import datetime, timedelta
 import iso8601
 import requests
+from html import escape as html_escape
+from urllib.parse import quote
 
 from ckan.lib.helpers import build_nav_main as ckan_build_nav_main
-from ckanext.pages.plugin import build_pages_nav_main as pages_build_nav_main
 
 
 log = getLogger(__name__)
@@ -185,6 +186,51 @@ def scheming_category_list(args):
 
     return category_list
 
+
+# Copied from ckanext-pages to add multilingual title support
+def pages_build_nav_main(*args):
+    about_menu = toolkit.asbool(toolkit.config.get('ckanext.pages.about_menu', True))
+    group_menu = toolkit.asbool(toolkit.config.get('ckanext.pages.group_menu', True))
+    org_menu = toolkit.asbool(toolkit.config.get('ckanext.pages.organization_menu', True))
+
+    new_args = []
+    for arg in args:
+        if arg[0] in 'home.about' and not about_menu:
+            continue
+        if arg[0] in 'home.group_index' and not org_menu:
+            continue
+        if arg[0] in 'home.organizations_index' and not group_menu:
+            continue
+        new_args.append(arg)
+
+    output = ckan_build_nav_main(*new_args)
+
+    # do not display any private pages in menu even for sysadmins
+    pages_list = toolkit.get_action('ckanext_pages_list')(None, {'order': True, 'private': False})
+
+    page_name = ''
+    is_current_page = toolkit.get_endpoint() in (('pages', 'show'), ('pages', 'blog_show'))
+
+    if is_current_page:
+        page_name = toolkit.request.path.split('/')[-1]
+
+    language = get_lang_prefix()
+
+    for page in pages_list:
+        type_ = 'blog' if page['page_type'] == 'blog' else 'pages'
+        name = quote(page['name'])
+        if page.get('title_' + language):
+            title = html_escape(page['title' + '_' + language])
+        else:
+            title = html_escape(page['title'])
+        link = toolkit.h.literal(u'<a href="/{}/{}">{}</a>'.format(type_, name, title))
+        if page['name'] == page_name:
+            li = toolkit.literal('<li class="active">') + link + toolkit.literal('</li>')
+        else:
+            li = toolkit.literal('<li>') + link + toolkit.literal('</li>')
+        output = output + li
+
+    return output
 
 def build_nav_main(*args, pages=False):
     if pages:
