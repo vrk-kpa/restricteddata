@@ -1408,7 +1408,7 @@ msgstr "Previews"
 #: ckanext/restricteddata/templates/package/snippets/resource_item.html:42
 #: ckanext/restricteddata/templates_pages/ckanext_pages/page.html:15
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:22
 #: ckanext/restricteddata/templates/package/resource_views.html:4
