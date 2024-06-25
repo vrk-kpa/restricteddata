@@ -459,7 +459,7 @@ msgstr "Ei koskaan"
 
 #: ckanext/restricteddata/translations.py:103
 msgid "High-value dataset category"
-msgstr ""
+msgstr "Arvokkaan tietoaineiston kategoria"
 
 #: ckanext/restricteddata/translations.py:104
 msgid "Meteorological"
