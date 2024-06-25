@@ -1577,7 +1577,7 @@ msgstr "Save & add another"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:40
 msgid "Save dataset"
-msgstr ""
+msgstr "Save distribution"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:47
 msgid "Add"
