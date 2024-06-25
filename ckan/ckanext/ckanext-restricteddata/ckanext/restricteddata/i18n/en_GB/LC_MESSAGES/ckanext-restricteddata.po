@@ -1243,7 +1243,7 @@ msgstr "Organisation search"
 
 #: ckanext/restricteddata/templates/organization/member_new.html:8
 msgid "What are roles?"
-msgstr ""
+msgstr "What are roles?"
 
 #: ckanext/restricteddata/templates/organization/member_new.html:11
 msgid ""
@@ -1251,6 +1251,9 @@ msgid ""
 "manage organization members.</p> <p><strong>Editor:</strong> Can add and "
 "edit datasets, but not manage organization members.</p>"
 msgstr ""
+"<p><strong>Admin:</strong> Can add/edit and delete datasets, as well as "
+"manage organisation members.</p> <p><strong>Editor:</strong> Can add and "
+"edit datasets, but not manage organisation members.</p>"
 
 #: ckanext/restricteddata/templates/organization/read.html:9
 #: ckanext/restricteddata/templates/package/search.html:20
