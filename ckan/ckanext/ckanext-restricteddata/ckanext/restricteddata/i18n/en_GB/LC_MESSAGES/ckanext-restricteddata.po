@@ -1664,11 +1664,11 @@ msgstr "Additional Information"
 
 #: ckanext/restricteddata/templates/scheming/snippets/errors.html:6
 msgid "The form contains invalid entries:"
-msgstr ""
+msgstr "The form contains invalid entries:"
 
 #: ckanext/restricteddata/templates/snippets/license.html:4
 msgid "License"
-msgstr ""
+msgstr "License"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:44
 msgid "Filter Results"
