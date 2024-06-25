@@ -1368,7 +1368,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/new_resource.html:15
 msgid "Add data to the dataset"
-msgstr ""
+msgstr "Add data to the dataset"
 
 #: ckanext/restricteddata/templates/package/new_resource_not_draft.html:4
 #: ckanext/restricteddata/templates/package/new_resource_not_draft.html:9
