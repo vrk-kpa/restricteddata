@@ -1330,7 +1330,7 @@ msgstr "There are no categories associated with this dataset"
 
 #: ckanext/restricteddata/templates/package/new.html:13
 msgid "Create new dataset"
-msgstr ""
+msgstr "Create new dataset"
 
 #: ckanext/restricteddata/templates/package/new.html:23
 #: ckanext/restricteddata/templates/package/new_resource.html:23
@@ -1515,7 +1515,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:68
 msgid "Created"
-msgstr ""
+msgstr "Created"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:15
 msgid "Category icon"
