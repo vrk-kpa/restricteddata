@@ -1672,15 +1672,15 @@ msgstr "License"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:44
 msgid "Filter Results"
-msgstr ""
+msgstr "Filter Results"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:62
 msgid "Order by"
-msgstr ""
+msgstr "Order by"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:73
 msgid "Go"
-msgstr ""
+msgstr "Go"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:82
 msgid "<p class=\"extra\">Please try another search.</p>"
