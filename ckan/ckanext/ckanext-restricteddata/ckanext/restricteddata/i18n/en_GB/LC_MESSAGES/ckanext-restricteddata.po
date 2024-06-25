@@ -1293,7 +1293,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/changes.html:8
 msgid "Changes"
-msgstr ""
+msgstr "Changes"
 
 #: ckanext/restricteddata/templates/package/edit.html:7
 msgid "Edit dataset"
