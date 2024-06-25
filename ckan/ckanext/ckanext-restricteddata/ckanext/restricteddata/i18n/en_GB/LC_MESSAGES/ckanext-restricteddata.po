@@ -1202,11 +1202,11 @@ msgstr "navigate to Suomi.fi Open Data"
 
 #: ckanext/restricteddata/templates/home/layout1.html:83
 msgid "Navigate to site"
-msgstr ""
+msgstr "Navigate to site"
 
 #: ckanext/restricteddata/templates/home/layout1.html:97
 msgid "Published"
-msgstr ""
+msgstr "Published"
 
 #: ckanext/restricteddata/templates/home/layout1.html:98
 msgid "open news item"
