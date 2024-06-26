@@ -480,7 +480,7 @@ msgstr "Paikkatiedot"
 
 #: ckanext/restricteddata/translations.py:107
 msgid "Mobility"
-msgstr ""
+msgstr "Liikkuvuustiedot"
 
 #: ckanext/restricteddata/translations.py:108
 msgid "Earth observation and environment"
