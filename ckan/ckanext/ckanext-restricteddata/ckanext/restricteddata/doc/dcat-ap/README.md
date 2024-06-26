@@ -33,6 +33,7 @@ voaf | http://purl.org/vocommons/voaf#
 vcard | http://www.w3.org/2006/vcard/ns#
 geodcat | http://data.europa.eu/930/#
 gsp | http://www.opengis.net/ont/geosparql#
+hvd | https://semiceu.github.io/uri.semic.eu-generated/DCAT-AP/releases/2.2.0-hvd/#
 
 
 ## Classes
@@ -113,6 +114,8 @@ dcat:landingPage | foaf:Document | 0..n | This property refers to a web page tha
 dct:issued | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the date of formal issuance (e.g., publication) of the Dataset.
 dct:type | skos:Concept | 0..1 | This property refers to the type of the Dataset. A controlled vocabulary for the values has not been established.
 dct:modified | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the most recent date on which the Dataset was changed or modified.
+dcatap:hvdCategory | skos:Concept | 0..n | The HVD category to which this Dataset belongs.
+dcatap:applicableLegislation | hvd:LegalResource | 0..n | The legislation that mandates the creation or management of the Dataset.
  
 
  
@@ -159,6 +162,7 @@ dcat:temporalResolution | xsd:duration | 0..n | This property refers to the mini
 **dct:temporal** | dct:PeriodOfTime | 0..n | This property refers to a temporal period that the Distribution covers.
 dct:title | rdfs:Literal | 0..n | This property contains a name given to the Distribution. This property can be repeated for parallel language versions of the description.
 dct:modified | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the most recent date on which the Distribution was changed or modified.
+dcatap:applicableLegislation | hvd:LegalResource | 0..n | The legislation that mandates the creation or management of the Dataset.
  
 
  

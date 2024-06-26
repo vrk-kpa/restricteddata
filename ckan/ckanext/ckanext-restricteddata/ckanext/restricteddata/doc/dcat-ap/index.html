@@ -44,6 +44,7 @@
       <tr><td>vcard</td><td>http://www.w3.org/2006/vcard/ns#</td></tr>
       <tr><td>geodcat</td><td>http://data.europa.eu/930/#</td></tr>
       <tr><td>gsp</td><td>http://www.opengis.net/ont/geosparql#</td></tr>
+      <tr><td>hvd</td><td>https://semiceu.github.io/uri.semic.eu-generated/DCAT-AP/releases/2.2.0-hvd/#</td></tr>
       
       </tbody>
     </table>
@@ -261,6 +262,18 @@
             <td>0..1</td>
             <td>This property contains the most recent date on which the Dataset was changed or modified.</td>
           </tr>
+        <tr>
+            <td>dcatap:hvdCategory </td>
+            <td>skos:Concept</td>
+            <td>0..n</td>
+            <td>The HVD category to which this Dataset belongs.</td>
+          </tr>
+        <tr>
+            <td>dcatap:applicableLegislation </td>
+            <td>hvd:LegalResource</td>
+            <td>0..n</td>
+            <td>The legislation that mandates the creation or management of the Dataset.</td>
+          </tr>
          
         </tbody>
       </table>
@@ -397,6 +410,12 @@
             <td>rdfs:Literal typed as xsd:date or xsd:dateTime</td>
             <td>0..1</td>
             <td>This property contains the most recent date on which the Distribution was changed or modified.</td>
+          </tr>
+        <tr>
+            <td>dcatap:applicableLegislation </td>
+            <td>hvd:LegalResource</td>
+            <td>0..n</td>
+            <td>The legislation that mandates the creation or management of the Dataset.</td>
           </tr>
          
         </tbody>

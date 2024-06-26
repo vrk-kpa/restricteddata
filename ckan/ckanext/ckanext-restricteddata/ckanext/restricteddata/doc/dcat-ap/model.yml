@@ -35,6 +35,8 @@ vocabularies:
     uri: "http://data.europa.eu/930/#"
   - prefix: gsp
     uri: "http://www.opengis.net/ont/geosparql#"
+  - prefix: hvd
+    uri: "https://semiceu.github.io/uri.semic.eu-generated/DCAT-AP/releases/2.2.0-hvd/#"
 classes:
   - title: Catalogue
     description: A catalogue or repository that hosts the Datasets being described.
@@ -377,6 +379,18 @@ classes:
           #description: Party that accepts accountability and responsibility for the data and ensures appropriate care and maintenance of the resource [ISO-19115].
           #min: 0
           #max: n
+        - name: HVD category
+          term: dcatap:hvdCategory
+          range: skos:Concept
+          description: The HVD category to which this Dataset belongs. 
+          min: 0
+          max: n
+        - name: applicable legislation
+          term: dcatap:applicableLegislation
+          range: hvd:LegalResource
+          description: The legislation that mandates the creation or management of the Dataset.
+          min: 0
+          max: n
 
 
   - title: Distribution
@@ -539,6 +553,12 @@ classes:
           #description: This property tells the accuracy of geospatial data in meters
           #min: 0
           #max: 1
+        - name: applicable legislation
+          term: dcatap:applicableLegislation
+          range: hvd:LegalResource
+          description: The legislation that mandates the creation or management of the Dataset.
+          min: 0
+          max: n
 
 # - title: placeholder
 #   description: placeholder
