@@ -488,7 +488,7 @@ msgstr "Maan havainnointi ja ympäristö"
 
 #: ckanext/restricteddata/translations.py:109
 msgid "Statistics"
-msgstr ""
+msgstr "Tilastotiedot"
 
 #: ckanext/restricteddata/translations.py:112
 msgid "Data resource title"
