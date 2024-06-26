@@ -468,7 +468,7 @@ msgstr "Arvokkaan tietoaineiston kategoria"
 
 #: ckanext/restricteddata/translations.py:104
 msgid "Meteorological"
-msgstr ""
+msgstr "Säätiedot"
 
 #: ckanext/restricteddata/translations.py:105
 msgid "Companies and company ownership"
