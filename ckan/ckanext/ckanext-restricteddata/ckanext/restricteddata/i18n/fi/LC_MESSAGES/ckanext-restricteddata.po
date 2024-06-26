@@ -484,7 +484,7 @@ msgstr "Liikkuvuustiedot"
 
 #: ckanext/restricteddata/translations.py:108
 msgid "Earth observation and environment"
-msgstr ""
+msgstr "Maan havainnointi ja ympäristö"
 
 #: ckanext/restricteddata/translations.py:109
 msgid "Statistics"
