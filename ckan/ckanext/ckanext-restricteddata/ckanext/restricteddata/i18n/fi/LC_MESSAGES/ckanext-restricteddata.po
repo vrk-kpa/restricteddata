@@ -476,7 +476,7 @@ msgstr "Yritys- ja yritysten omistustiedot"
 
 #: ckanext/restricteddata/translations.py:106
 msgid "Geospatial"
-msgstr ""
+msgstr "Paikkatiedot"
 
 #: ckanext/restricteddata/translations.py:107
 msgid "Mobility"
