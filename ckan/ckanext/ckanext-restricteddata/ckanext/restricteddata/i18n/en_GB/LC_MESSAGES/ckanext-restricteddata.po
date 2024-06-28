@@ -512,7 +512,7 @@ msgstr "Add the distribution by adding a link to the data."
 
 #: ckanext/restricteddata/translations.py:117
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: ckanext/restricteddata/translations.py:118
 msgid "Resource URL"
