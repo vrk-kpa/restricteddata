@@ -1217,7 +1217,7 @@ msgstr "Katso kaikki uutiset ja häiriötiedotteet"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:29
 msgid "Custom"
-msgstr ""
+msgstr "Custom"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:30
 msgid "This field is required"
