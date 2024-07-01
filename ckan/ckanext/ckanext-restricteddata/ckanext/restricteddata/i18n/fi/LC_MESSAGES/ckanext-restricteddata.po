@@ -978,7 +978,7 @@ msgstr ""
 #: ckanext/restricteddata/validators.py:110
 #: ckanext/restricteddata/validators.py:258
 msgid "expecting a list"
-msgstr ""
+msgstr "odottaa listaa"
 
 #: ckanext/restricteddata/validators.py:133
 #: ckanext/restricteddata/validators.py:175
