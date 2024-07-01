@@ -935,7 +935,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:218
 msgid "There is no description for this {object_type}"
-msgstr ""
+msgstr "Tälle {object_type}lle ei ole kuvausta"
 
 #: ckanext/restricteddata/translations.py:219
 msgid "You are not a member of any {object_type}s."
