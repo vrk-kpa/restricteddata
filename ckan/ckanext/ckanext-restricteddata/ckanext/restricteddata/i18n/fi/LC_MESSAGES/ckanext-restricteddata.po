@@ -706,7 +706,7 @@ msgstr "esimerkiksi Näkymäni"
 
 #: ckanext/restricteddata/translations.py:155
 msgid "eg. Information about my view"
-msgstr ""
+msgstr "esimerkiksi Tietoa näkymästäni"
 
 #: ckanext/restricteddata/translations.py:156
 msgid "Image url"
