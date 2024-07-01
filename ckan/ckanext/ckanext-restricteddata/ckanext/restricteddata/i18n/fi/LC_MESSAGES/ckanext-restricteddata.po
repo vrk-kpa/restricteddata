@@ -1831,7 +1831,7 @@ msgstr "Alivalikon järjestys"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Not in menu"
-msgstr ""
+msgstr "Ei valikossa"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/page.html:30
 msgid "This page currently has no content"
