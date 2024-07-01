@@ -983,7 +983,7 @@ msgstr "odottaa listaa"
 #: ckanext/restricteddata/validators.py:133
 #: ckanext/restricteddata/validators.py:175
 msgid "Failed to decode JSON string"
-msgstr ""
+msgstr "JSON-merkkijonon purkaminen epäonnistui"
 
 #: ckanext/restricteddata/validators.py:136
 #: ckanext/restricteddata/validators.py:178
