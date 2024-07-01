@@ -516,7 +516,7 @@ msgstr "Lisää linkki tietoaineistoon."
 
 #: ckanext/restricteddata/translations.py:117
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: ckanext/restricteddata/translations.py:118
 msgid "Resource URL"
