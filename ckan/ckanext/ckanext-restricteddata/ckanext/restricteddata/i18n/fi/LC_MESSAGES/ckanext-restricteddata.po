@@ -939,7 +939,7 @@ msgstr "Tälle {object_type}lle ei ole kuvausta"
 
 #: ckanext/restricteddata/translations.py:219
 msgid "You are not a member of any {object_type}s."
-msgstr ""
+msgstr "Et ole minkään {object_type}n jäsen"
 
 #: ckanext/restricteddata/translations.py:220
 msgid "{object_type} Form"
