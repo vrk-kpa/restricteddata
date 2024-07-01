@@ -689,7 +689,7 @@ msgstr "Add view"
 
 #: ckanext/restricteddata/translations.py:152
 msgid "All views"
-msgstr ""
+msgstr "All views"
 
 #: ckanext/restricteddata/translations.py:153
 msgid "View view"
