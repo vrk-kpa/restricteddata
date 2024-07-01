@@ -754,7 +754,7 @@ msgstr "Ajankohtaista"
 
 #: ckanext/restricteddata/translations.py:170
 msgid "Activity from items that I'm following"
-msgstr ""
+msgstr "Seuraamieni asioiden toiminta"
 
 #: ckanext/restricteddata/templates/user/dashboard.html:5
 #: ckanext/restricteddata/translations.py:171
