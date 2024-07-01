@@ -783,6 +783,8 @@ msgid ""
 "You will receive notification emails from {site_title}, e.g. when you have "
 "new activities on your dashboard."
 msgstr ""
+"Saat ilmoitussähköposteja {site_title}lta esimerkiksi silloin, kun "
+"yhteenvedossasi on uusia tapahtumatietoja."
 
 #: ckanext/restricteddata/translations.py:179
 msgid "Activity type"
