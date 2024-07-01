@@ -963,7 +963,7 @@ msgstr "{object_type}t"
 
 #: ckanext/restricteddata/validators.py:44
 msgid "expecting list of strings"
-msgstr ""
+msgstr "odottaa merkkijonolistaa"
 
 #: ckanext/restricteddata/validators.py:53
 #, python-format
