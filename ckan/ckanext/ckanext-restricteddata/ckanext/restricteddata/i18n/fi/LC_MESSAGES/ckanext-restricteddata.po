@@ -973,7 +973,7 @@ msgstr "Arvon \"%s\" koodaus on virheellinen"
 #: ckanext/restricteddata/validators.py:57
 #, python-format
 msgid "invalid type for repeating text: %r"
-msgstr ""
+msgstr "Toistuvan tekstin tyyppi on virheellinen: %r"
 
 #: ckanext/restricteddata/validators.py:110
 #: ckanext/restricteddata/validators.py:258
