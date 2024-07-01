@@ -1029,6 +1029,9 @@ msgid ""
 "the resource to the right and place it to the desired location on the list. "
 "When you are done, click the \"Save order\" -button."
 msgstr ""
+"Voit järjestää jakelutavat uudelleen vetämällä niitä nuolikuvakkeen avulla. "
+"Vedä jakelutapa oikealle ja sijoita se haluamaasi kohtaan listassa. Kun olet"
+" valmis, valitse \"Tallenna järjestys\"."
 
 #: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:63
 msgid "Save order"
