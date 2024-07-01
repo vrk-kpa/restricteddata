@@ -386,7 +386,7 @@ msgstr ""
 #: ckanext/restricteddata/templates/package/changes.html:39
 #: ckanext/restricteddata/translations.py:84
 msgid "Show metadata diff"
-msgstr ""
+msgstr "Näytä metatietojen diff"
 
 #: ckanext/restricteddata/translations.py:85
 msgid ""
