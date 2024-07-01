@@ -951,7 +951,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:222
 msgid "My {object_type}"
-msgstr ""
+msgstr "{object_type}ni"
 
 #: ckanext/restricteddata/translations.py:223
 msgid "No {object_type}"
