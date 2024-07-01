@@ -1117,7 +1117,7 @@ msgstr "Murupolku"
 
 #: ckanext/restricteddata/templates/admin/config.html:9
 msgid "Info message"
-msgstr ""
+msgstr "Tiedotusviesti"
 
 #: ckanext/restricteddata/templates/admin/config.html:19
 msgid "Service alert"
