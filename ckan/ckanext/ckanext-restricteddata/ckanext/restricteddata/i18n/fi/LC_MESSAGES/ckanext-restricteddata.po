@@ -968,7 +968,7 @@ msgstr "odottaa merkkijonolistaa"
 #: ckanext/restricteddata/validators.py:53
 #, python-format
 msgid "invalid encoding for \"%s\" value"
-msgstr ""
+msgstr "Arvon \"%s\" koodaus on virheellinen"
 
 #: ckanext/restricteddata/validators.py:57
 #, python-format
