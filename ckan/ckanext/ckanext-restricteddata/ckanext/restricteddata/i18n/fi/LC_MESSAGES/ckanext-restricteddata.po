@@ -381,7 +381,7 @@ msgstr "Tarkastele muutoksia"
 #: ckanext/restricteddata/templates/package/changes.html:21
 #: ckanext/restricteddata/translations.py:83
 msgid "to"
-msgstr ""
+msgstr " "
 
 #: ckanext/restricteddata/templates/package/changes.html:39
 #: ckanext/restricteddata/translations.py:84
