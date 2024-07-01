@@ -1307,7 +1307,7 @@ msgstr "Edit metadata"
 #: ckanext/restricteddata/templates/package/edit.html:16
 #: ckanext/restricteddata/templates/package/resources.html:16
 msgid "Collaborators"
-msgstr ""
+msgstr "Collaborators"
 
 #: ckanext/restricteddata/templates/package/edit.html:30
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:33
