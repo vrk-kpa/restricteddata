@@ -935,7 +935,7 @@ msgstr "Tietoaineistoon ei ole liitetty {object_type}"
 
 #: ckanext/restricteddata/translations.py:217
 msgid "There are currently no {object_type}s for this site"
-msgstr ""
+msgstr "Sivulla ei ole tällä hetkellä {object_type}"
 
 #: ckanext/restricteddata/translations.py:218
 msgid "There is no description for this {object_type}"
