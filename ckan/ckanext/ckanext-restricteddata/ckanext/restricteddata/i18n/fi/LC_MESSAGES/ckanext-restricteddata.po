@@ -1310,7 +1310,7 @@ msgstr "Muokkaa tietoaineistoa"
 #: ckanext/restricteddata/templates/package/edit.html:13
 #: ckanext/restricteddata/templates/package/resources.html:13
 msgid "Edit metadata"
-msgstr "Muokkaa metadataa"
+msgstr "Muokkaa metatietoja"
 
 #: ckanext/restricteddata/templates/package/edit.html:16
 #: ckanext/restricteddata/templates/package/resources.html:16
