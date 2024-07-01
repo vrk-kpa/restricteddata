@@ -694,7 +694,7 @@ msgstr "Lisää esikatselu"
 
 #: ckanext/restricteddata/translations.py:152
 msgid "All views"
-msgstr ""
+msgstr "Kaikki esikatselut"
 
 #: ckanext/restricteddata/translations.py:153
 msgid "View view"
