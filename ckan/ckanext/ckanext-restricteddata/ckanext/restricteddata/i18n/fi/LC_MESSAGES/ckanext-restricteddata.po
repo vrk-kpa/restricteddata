@@ -943,7 +943,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:220
 msgid "{object_type} Form"
-msgstr ""
+msgstr "{object_type} lomake"
 
 #: ckanext/restricteddata/translations.py:221
 msgid "My {object_type}s"
