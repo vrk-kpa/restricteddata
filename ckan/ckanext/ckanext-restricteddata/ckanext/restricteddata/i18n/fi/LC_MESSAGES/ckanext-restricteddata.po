@@ -988,7 +988,7 @@ msgstr "JSON-merkkijonon purkaminen epäonnistui"
 #: ckanext/restricteddata/validators.py:136
 #: ckanext/restricteddata/validators.py:178
 msgid "Invalid encoding for JSON string"
-msgstr ""
+msgstr "JSON-merkkijonon koodaus on virheellinen"
 
 #: ckanext/restricteddata/validators.py:139
 #: ckanext/restricteddata/validators.py:181
