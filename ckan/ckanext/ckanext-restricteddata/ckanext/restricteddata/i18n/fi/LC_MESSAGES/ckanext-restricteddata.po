@@ -1827,7 +1827,7 @@ msgstr "Sisältöni"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Submenu Order"
-msgstr ""
+msgstr "Alivalikon järjestys"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Not in menu"
