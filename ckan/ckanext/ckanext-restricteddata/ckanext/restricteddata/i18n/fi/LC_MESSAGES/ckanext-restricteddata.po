@@ -715,6 +715,8 @@ msgstr "Kuvan URL"
 #: ckanext/restricteddata/translations.py:157
 msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
 msgstr ""
+"esimerkiksi http://example.com/image.jpg (jos tyhjä, käytetään resurssin "
+"url-osoitetta)"
 
 #: ckanext/restricteddata/templates/package/group_list.html:4
 #: ckanext/restricteddata/translations.py:160
