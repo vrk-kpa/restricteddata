@@ -993,7 +993,7 @@ msgstr ""
 #: ckanext/restricteddata/validators.py:139
 #: ckanext/restricteddata/validators.py:181
 msgid "expecting JSON object"
-msgstr ""
+msgstr "odottaa JSON-objektia"
 
 #: ckanext/restricteddata/validators.py:144
 #: ckanext/restricteddata/validators.py:153
