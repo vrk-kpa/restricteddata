@@ -690,7 +690,7 @@ msgstr "Nimetön jakelutapa"
 
 #: ckanext/restricteddata/translations.py:151
 msgid "Add view"
-msgstr ""
+msgstr "Lisää näkymä"
 
 #: ckanext/restricteddata/translations.py:152
 msgid "All views"
