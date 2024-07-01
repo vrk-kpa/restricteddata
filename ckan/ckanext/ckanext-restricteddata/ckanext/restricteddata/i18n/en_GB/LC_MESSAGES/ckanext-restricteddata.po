@@ -685,7 +685,7 @@ msgstr "Unnamed distribution"
 
 #: ckanext/restricteddata/translations.py:151
 msgid "Add view"
-msgstr ""
+msgstr "Add view"
 
 #: ckanext/restricteddata/translations.py:152
 msgid "All views"
