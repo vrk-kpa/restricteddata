@@ -1315,7 +1315,7 @@ msgstr "Muokkaa metadataa"
 #: ckanext/restricteddata/templates/package/edit.html:16
 #: ckanext/restricteddata/templates/package/resources.html:16
 msgid "Collaborators"
-msgstr ""
+msgstr "Yhteistyötahot"
 
 #: ckanext/restricteddata/templates/package/edit.html:30
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:33
