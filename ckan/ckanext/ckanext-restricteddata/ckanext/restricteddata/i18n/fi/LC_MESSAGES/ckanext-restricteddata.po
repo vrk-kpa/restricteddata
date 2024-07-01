@@ -370,7 +370,7 @@ msgid ""
 "version</a>."
 msgstr ""
 "Tarkastelet tällä hetkellä vanhaa versiota tietoaineistosta. Datatiedostot "
-"eivät välttämättä vastaa metadatan vanhaa versiota. <a "
+"eivät välttämättä vastaa metatietojen vanhaa versiota. <a "
 "href=\"%(url)s\">Tarkastele voimassa olevaa versiota</a>."
 
 #: ckanext/restricteddata/templates/package/changes.html:16
