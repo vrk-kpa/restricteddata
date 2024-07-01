@@ -1327,7 +1327,7 @@ msgstr "Lisää kategoriaan"
 
 #: ckanext/restricteddata/templates/package/group_list.html:27
 msgid "There are no groups associated with this dataset"
-msgstr "Tähän tietoaineistoon ei ole liitetty kategorioita"
+msgstr "Tietoaineistoon ei ole liitetty kategorioita"
 
 #: ckanext/restricteddata/templates/package/new.html:13
 msgid "Create new dataset"
