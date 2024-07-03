@@ -1664,7 +1664,7 @@ msgstr "Mer information"
 
 #: ckanext/restricteddata/templates/scheming/snippets/errors.html:6
 msgid "The form contains invalid entries:"
-msgstr ""
+msgstr "Formuläret innehåller ogiltiga poster:"
 
 #: ckanext/restricteddata/templates/snippets/license.html:4
 msgid "License"
