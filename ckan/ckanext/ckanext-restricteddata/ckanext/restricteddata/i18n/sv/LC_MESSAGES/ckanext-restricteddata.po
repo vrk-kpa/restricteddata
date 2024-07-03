@@ -1640,7 +1640,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/resources_list.html:32
 msgid "This dataset has no data"
-msgstr ""
+msgstr "Denna datamängden har inga data"
 
 #: ckanext/restricteddata/templates/scheming/form_snippets/_organization_select.html:25
 msgid "No organization"
