@@ -1231,8 +1231,8 @@ msgid ""
 msgstr ""
 "Du kan använda <a href=\"#markdown\" title=\"Markdown quick reference\" "
 "data-bs-toggle=\"popover\" data-bs-trigger=\"focus\" data-bs-"
-"content=\"%(markdown_tooltip)s\" data-bs-html=\"true\">Markdown "
-"formatting</a> här"
+"content=\"%(markdown_tooltip)s\" data-bs-html=\"true\">Markdown-"
+"formatering</a> här"
 
 #: ckanext/restricteddata/templates/organization/index.html:8
 msgid "Organization search"
