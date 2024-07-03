@@ -846,7 +846,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:195
 msgid "{actor} {activity_type}"
-msgstr ""
+msgstr "{actor} {activity_type}"
 
 #: ckanext/restricteddata/translations.py:196
 msgid "{actor} added the tag {tag} to the dataset {dataset}"
