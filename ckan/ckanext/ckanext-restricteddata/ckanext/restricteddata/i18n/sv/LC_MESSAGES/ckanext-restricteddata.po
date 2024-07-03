@@ -1366,7 +1366,7 @@ msgstr "Avbryt"
 
 #: ckanext/restricteddata/templates/package/new_resource.html:15
 msgid "Add data to the dataset"
-msgstr ""
+msgstr "Lägg till data i datamängden"
 
 #: ckanext/restricteddata/templates/package/new_resource_not_draft.html:4
 #: ckanext/restricteddata/templates/package/new_resource_not_draft.html:9
