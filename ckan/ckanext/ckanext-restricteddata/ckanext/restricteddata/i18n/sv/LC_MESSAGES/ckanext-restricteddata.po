@@ -1112,7 +1112,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/admin/config.html:19
 msgid "Service alert"
-msgstr ""
+msgstr "Servicevarning"
 
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:16
 #: ckanext/restricteddata/templates/organization/snippets/organization_item.html:18
