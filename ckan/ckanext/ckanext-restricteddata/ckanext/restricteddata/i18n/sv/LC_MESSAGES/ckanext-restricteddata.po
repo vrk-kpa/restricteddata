@@ -1617,7 +1617,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:65
 msgid "Width"
-msgstr ""
+msgstr "Bredd"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:68
 msgid "Height"
