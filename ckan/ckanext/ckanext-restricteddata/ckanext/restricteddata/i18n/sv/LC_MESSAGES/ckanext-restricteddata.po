@@ -1244,6 +1244,10 @@ msgid ""
 "manage organization members.</p> <p><strong>Editor:</strong> Can add and "
 "edit datasets, but not manage organization members.</p>"
 msgstr ""
+"<p><strong>Administratör:</strong> Kan lägga till, redigera och radera "
+"datamängder, samt hantera organisationsmedlemmar.</p> "
+"<p><strong>Redigerare:</strong> Kan lägga till och redigera datamängder, men"
+" inte hantera organisationsmedlemmar.</p>"
 
 #: ckanext/restricteddata/templates/organization/read.html:9
 #: ckanext/restricteddata/templates/package/search.html:20
