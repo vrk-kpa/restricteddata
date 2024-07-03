@@ -1637,6 +1637,8 @@ msgid ""
 "<p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not add"
 " some?</a></p>"
 msgstr ""
+"<p class=\"empty\">Denna datamängd har inga data, <a href=\"%(url)s\">vill "
+"du lägga till data?</a></p>"
 
 #: ckanext/restricteddata/templates/package/snippets/resources_list.html:32
 msgid "This dataset has no data"
