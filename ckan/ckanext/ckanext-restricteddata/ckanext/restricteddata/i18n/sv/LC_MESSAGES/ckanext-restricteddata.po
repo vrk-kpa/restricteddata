@@ -1614,6 +1614,8 @@ msgid ""
 "You can copy and paste the embed code into a CMS or blog software that "
 "supports raw HTML"
 msgstr ""
+"Du kan kopiera och klistra in inbäddningskoden i ett CMS- eller bloggprogram"
+" som stöder rå HTML"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:65
 msgid "Width"
