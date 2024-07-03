@@ -1415,7 +1415,7 @@ msgstr "Visa"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:24
 msgid "API Endpoint"
-msgstr ""
+msgstr "API-slutpunkt"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:26
 msgid "Open"
