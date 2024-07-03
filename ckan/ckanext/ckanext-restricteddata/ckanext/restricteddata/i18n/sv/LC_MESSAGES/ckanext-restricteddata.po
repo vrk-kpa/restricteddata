@@ -1291,7 +1291,7 @@ msgstr "Lägg till en datamängd"
 
 #: ckanext/restricteddata/templates/package/changes.html:8
 msgid "Changes"
-msgstr ""
+msgstr "Ändringar"
 
 #: ckanext/restricteddata/templates/package/edit.html:7
 msgid "Edit dataset"
