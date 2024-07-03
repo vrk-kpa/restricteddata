@@ -1232,7 +1232,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/organization/index.html:8
 msgid "Organization search"
-msgstr ""
+msgstr "Sök organisationer"
 
 #: ckanext/restricteddata/templates/organization/member_new.html:8
 msgid "What are roles?"
