@@ -1625,7 +1625,7 @@ msgstr "Höjd"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:71
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #: ckanext/restricteddata/templates/package/snippets/resources_list.html:14
 msgid "Data and Resources"
