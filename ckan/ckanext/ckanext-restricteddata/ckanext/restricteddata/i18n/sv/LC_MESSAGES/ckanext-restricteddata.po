@@ -1754,7 +1754,7 @@ msgstr "Inga producenter hittades"
 
 #: ckanext/restricteddata/templates/snippets/social.html:4
 msgid "Social"
-msgstr ""
+msgstr "Dela i sociala medier"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:4
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:5
