@@ -1802,7 +1802,7 @@ msgstr "Innehåll"
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:31
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:32
 msgid "Enter content here"
-msgstr ""
+msgstr "Ange innehåll här"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:20
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:24
