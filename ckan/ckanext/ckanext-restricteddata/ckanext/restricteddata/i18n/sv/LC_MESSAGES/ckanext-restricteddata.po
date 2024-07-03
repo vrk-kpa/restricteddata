@@ -1316,7 +1316,7 @@ msgstr "Stäng utan att spara"
 
 #: ckanext/restricteddata/templates/package/group_list.html:16
 msgid "Associate this group with this dataset"
-msgstr ""
+msgstr "Koppla denna kategori till denna datamängd"
 
 #: ckanext/restricteddata/templates/package/group_list.html:16
 msgid "Add to group"
