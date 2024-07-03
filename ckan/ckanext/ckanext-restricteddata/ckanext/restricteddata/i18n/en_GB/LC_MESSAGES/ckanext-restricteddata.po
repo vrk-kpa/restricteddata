@@ -663,7 +663,8 @@ msgstr "Geographical accuracy"
 msgid ""
 "If your data includes geographic information, specify the accuracy in meters"
 msgstr ""
-"If your data includes geographic information, specify the accuracy in meters"
+"If your data includes geographic information, specify the accuracy in "
+"meters. E.g. 30"
 
 #: ckanext/restricteddata/translations.py:147
 msgid "Metadata last updated"
