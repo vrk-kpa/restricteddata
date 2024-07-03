@@ -1648,7 +1648,7 @@ msgstr "Organisation saknas"
 
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:35
 msgid "Are you sure you want to delete this Organization?"
-msgstr ""
+msgstr "Vill du verkligen radera denna organisation?"
 
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:59
 msgid "Update Organization"
