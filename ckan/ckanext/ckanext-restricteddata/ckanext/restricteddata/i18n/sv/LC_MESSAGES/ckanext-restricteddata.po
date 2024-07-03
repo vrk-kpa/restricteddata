@@ -699,7 +699,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:155
 msgid "eg. Information about my view"
-msgstr "t.ex. Information om min vy"
+msgstr "till exempel Information om min vy"
 
 #: ckanext/restricteddata/translations.py:156
 msgid "Image url"
