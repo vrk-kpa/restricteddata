@@ -1652,7 +1652,7 @@ msgstr "Vill du verkligen radera denna organisation?"
 
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:59
 msgid "Update Organization"
-msgstr ""
+msgstr "Uppdatera organisationen"
 
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:61
 msgid "Create Organization"
