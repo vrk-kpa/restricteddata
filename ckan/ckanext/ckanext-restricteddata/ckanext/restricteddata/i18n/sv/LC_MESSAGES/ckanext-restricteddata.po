@@ -1621,7 +1621,7 @@ msgstr "Bredd"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:68
 msgid "Height"
-msgstr ""
+msgstr "Höjd"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:71
 msgid "Code"
