@@ -687,7 +687,7 @@ msgstr "Lägg till vy"
 
 #: ckanext/restricteddata/translations.py:152
 msgid "All views"
-msgstr ""
+msgstr "Alla förhandsgranskningar"
 
 #: ckanext/restricteddata/translations.py:153
 msgid "View view"
