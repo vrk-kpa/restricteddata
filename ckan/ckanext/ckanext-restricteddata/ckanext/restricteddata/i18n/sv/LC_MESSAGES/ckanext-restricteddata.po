@@ -1353,7 +1353,7 @@ msgstr "Vill du verkligen radera datamängden?"
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:12
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:41
 msgid "Delete"
-msgstr ""
+msgstr "Radera"
 
 #: ckanext/restricteddata/templates/package/new_package_form.html:27
 #: ckanext/restricteddata/templates/package/new_package_form.html:31
