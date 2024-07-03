@@ -1519,7 +1519,7 @@ msgstr "Skapad"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:15
 msgid "Category icon"
-msgstr ""
+msgstr "Kategorisikon"
 
 #: ckanext/restricteddata/templates/package/snippets/categories.html:26
 msgid "Show more categories"
