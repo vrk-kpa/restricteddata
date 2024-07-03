@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:48
 msgid "Your browser does not support iframes."
-msgstr ""
+msgstr "Din webbläsare saknar stöd för ramar."
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:57
 msgid "Embed resource view"
