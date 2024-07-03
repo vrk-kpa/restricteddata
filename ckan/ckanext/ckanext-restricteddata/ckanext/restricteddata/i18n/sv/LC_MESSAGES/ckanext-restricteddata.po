@@ -1215,7 +1215,7 @@ msgstr "Se alla nyheter och störningsmeddelande"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:29
 msgid "Custom"
-msgstr ""
+msgstr "Anpassad"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:30
 msgid "This field is required"
