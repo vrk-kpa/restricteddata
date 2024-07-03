@@ -826,7 +826,7 @@ msgstr "{actor} skapade {dataset_type} {dataset}"
 
 #: ckanext/restricteddata/translations.py:190
 msgid "{actor} updated the {dataset_type} {dataset}"
-msgstr ""
+msgstr "{actor} uppdaterade {dataset_type} {dataset}"
 
 #: ckanext/restricteddata/translations.py:191
 msgid "{actor} deleted the {dataset_type} {dataset}"
