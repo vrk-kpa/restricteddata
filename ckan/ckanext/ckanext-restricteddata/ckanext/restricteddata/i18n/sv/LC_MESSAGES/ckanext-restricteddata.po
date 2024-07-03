@@ -1656,7 +1656,7 @@ msgstr "Uppdatera organisationen"
 
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:61
 msgid "Create Organization"
-msgstr ""
+msgstr "Skapa en organisation"
 
 #: ckanext/restricteddata/templates/scheming/package/resource_read.html:3
 msgid "Additional Information"
