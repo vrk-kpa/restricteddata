@@ -1680,7 +1680,7 @@ msgstr "Sortera på"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:73
 msgid "Go"
-msgstr ""
+msgstr "Gå"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:82
 msgid "<p class=\"extra\">Please try another search.</p>"
