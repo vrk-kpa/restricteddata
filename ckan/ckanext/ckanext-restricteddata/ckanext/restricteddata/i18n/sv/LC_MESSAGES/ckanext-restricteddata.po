@@ -834,7 +834,7 @@ msgstr "{actor} raderade {dataset_type} {dataset}"
 
 #: ckanext/restricteddata/translations.py:192
 msgid "{actor} added the resource {resource} to the dataset {dataset}"
-msgstr ""
+msgstr "{actor} lade till distributionen {resource} i datamängden {dataset}"
 
 #: ckanext/restricteddata/translations.py:193
 msgid "{actor} updated the resource {resource} in the dataset {dataset}"
