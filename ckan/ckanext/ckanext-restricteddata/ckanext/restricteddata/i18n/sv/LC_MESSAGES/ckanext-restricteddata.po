@@ -802,7 +802,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:184
 msgid "{actor} updated the group {group}"
-msgstr ""
+msgstr "{actor} uppdaterade kategorien {group}"
 
 #: ckanext/restricteddata/translations.py:185
 msgid "{actor} deleted the group {group}"
