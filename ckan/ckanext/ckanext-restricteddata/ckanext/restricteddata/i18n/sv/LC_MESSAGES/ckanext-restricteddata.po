@@ -842,7 +842,7 @@ msgstr "{actor} uppdaterade distributionen {resource} i datamängden {dataset}"
 
 #: ckanext/restricteddata/translations.py:194
 msgid "{actor} deleted the resource {resource} from the dataset {dataset}"
-msgstr ""
+msgstr "{actor} raderade distributionen {resource} från datamängden {dataset}"
 
 #: ckanext/restricteddata/translations.py:195
 msgid "{actor} {activity_type}"
