@@ -810,7 +810,7 @@ msgstr "{actor} raderade kategorien {group}"
 
 #: ckanext/restricteddata/translations.py:186
 msgid "{actor} created the organization {organization}"
-msgstr ""
+msgstr "{actor} skapade organisationen {organization}"
 
 #: ckanext/restricteddata/translations.py:187
 msgid "{actor} updated the organization {organization}"
