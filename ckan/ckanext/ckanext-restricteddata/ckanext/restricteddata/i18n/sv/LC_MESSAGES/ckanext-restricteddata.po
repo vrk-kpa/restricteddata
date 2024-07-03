@@ -854,7 +854,7 @@ msgstr "{actor} lade till nyckelordet {tag} i datamängden {dataset}"
 
 #: ckanext/restricteddata/translations.py:197
 msgid "{actor} removed the tag {tag} from the dataset {dataset}"
-msgstr ""
+msgstr "{actor} tog bort nyckelordet {tag} från datamängden {dataset}"
 
 #: ckanext/restricteddata/translations.py:198
 msgid "{actor} updated their profile"
