@@ -695,7 +695,7 @@ msgstr "Visa förhandsgranskningen"
 
 #: ckanext/restricteddata/translations.py:154
 msgid "eg. My View"
-msgstr ""
+msgstr "till exempel Min vy"
 
 #: ckanext/restricteddata/translations.py:155
 msgid "eg. Information about my view"
