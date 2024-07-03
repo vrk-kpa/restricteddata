@@ -1686,7 +1686,7 @@ msgstr "Gå"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:82
 msgid "<p class=\"extra\">Please try another search.</p>"
-msgstr ""
+msgstr "<p class=\"extra\">Vänligen försök en annan sökning.</p>"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:88
 msgid ""
