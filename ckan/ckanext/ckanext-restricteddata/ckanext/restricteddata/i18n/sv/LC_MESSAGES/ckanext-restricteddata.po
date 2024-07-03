@@ -814,7 +814,7 @@ msgstr "{actor} skapade organisationen {organization}"
 
 #: ckanext/restricteddata/translations.py:187
 msgid "{actor} updated the organization {organization}"
-msgstr ""
+msgstr "{actor} upddaterade organisationen {organization}"
 
 #: ckanext/restricteddata/translations.py:188
 msgid "{actor} deleted the organization {organization}"
