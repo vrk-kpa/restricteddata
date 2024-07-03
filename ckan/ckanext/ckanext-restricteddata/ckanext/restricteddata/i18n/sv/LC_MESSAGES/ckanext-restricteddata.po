@@ -669,7 +669,7 @@ msgstr "Metadata senast uppdaterad"
 
 #: ckanext/restricteddata/translations.py:148
 msgid "Conditions for re-use"
-msgstr ""
+msgstr "Villkor för vidareutnyttjande"
 
 #: ckanext/restricteddata/templates/package/edit.html:14
 #: ckanext/restricteddata/templates/package/resources.html:14
