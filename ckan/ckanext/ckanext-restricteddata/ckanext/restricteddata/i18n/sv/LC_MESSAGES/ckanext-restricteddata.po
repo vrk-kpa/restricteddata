@@ -1346,7 +1346,9 @@ msgstr "Uppdatera"
 #: ckanext/restricteddata/templates/package/new_package_form.html:14
 #: ckanext/restricteddata/templates/package/snippets/package_form.html:13
 msgid "Are you sure you want to delete this dataset?"
-msgstr "Vill du verkligen radera datamängden?"
+msgstr ""
+"Vill du verkligen radera denna datamängd\n"
+"?"
 
 #: ckanext/restricteddata/templates/package/new_package_form.html:20
 #: ckanext/restricteddata/templates/package/snippets/package_form.html:15
