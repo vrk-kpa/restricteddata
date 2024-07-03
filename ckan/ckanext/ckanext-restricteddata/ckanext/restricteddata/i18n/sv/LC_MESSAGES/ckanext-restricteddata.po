@@ -998,7 +998,7 @@ msgstr "Den nödvändiga översättningen \"%s\" saknas"
 
 #: ckanext/restricteddata/validators.py:282
 msgid "You must select at least 1 high value category"
-msgstr "Du måste välja åtminstone en kategori av värdefull datamängd"
+msgstr "Du måste välja åtminstone 1 kategori av värdefull datamängd"
 
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
