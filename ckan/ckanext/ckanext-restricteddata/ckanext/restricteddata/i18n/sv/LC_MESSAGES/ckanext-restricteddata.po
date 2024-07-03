@@ -1644,7 +1644,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/scheming/form_snippets/_organization_select.html:25
 msgid "No organization"
-msgstr ""
+msgstr "Organisation saknas"
 
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:35
 msgid "Are you sure you want to delete this Organization?"
