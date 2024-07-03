@@ -1833,7 +1833,7 @@ msgstr "Sidor"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:4
 msgid "Blog"
-msgstr ""
+msgstr "Blogg"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:27
 msgid "There are currently no blog articles here"
