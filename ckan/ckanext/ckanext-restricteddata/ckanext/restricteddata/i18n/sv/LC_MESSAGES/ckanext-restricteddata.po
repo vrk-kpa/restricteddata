@@ -1419,7 +1419,7 @@ msgstr "API-slutpunkt"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:26
 msgid "Open"
-msgstr ""
+msgstr "Öppna"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:28
 #: ckanext/restricteddata/templates/package/snippets/resource_item.html:48
