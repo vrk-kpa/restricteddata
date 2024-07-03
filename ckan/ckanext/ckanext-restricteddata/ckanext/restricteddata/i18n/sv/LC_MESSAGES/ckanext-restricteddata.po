@@ -557,6 +557,9 @@ msgid ""
 "Describe terms and conditions for re-use. Include how to apply for use "
 "permit and information about possible payments and their principles."
 msgstr ""
+"Beskriv villkor och förutsättningar för vidareutnyttjande. Inkludera "
+"information om hur tillstånd för vidareutnyttjande kan sökas och eventuella "
+"avgifter och grunderna för dem."
 
 #: ckanext/restricteddata/translations.py:126
 msgid "Additional information"
