@@ -535,6 +535,9 @@ msgid ""
 "\n"
 "The size can be approximated as a decimal if the precise size is not known. If data is offered via an API, enter the overall size of the underlying data."
 msgstr ""
+"Ange filens storlek i bits.\n"
+"\n"
+"Om du inte vet exakt storlek, ange en uppskattning med en decimals noggrannhet. Om data erbjuds via ett gränssnitt, ange den verkliga storleken på den datamängd som finns bakom gränssnittet."
 
 #: ckanext/restricteddata/translations.py:122
 msgid "Data resource description"
