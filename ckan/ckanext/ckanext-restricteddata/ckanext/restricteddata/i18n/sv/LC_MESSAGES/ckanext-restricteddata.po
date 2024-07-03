@@ -798,7 +798,7 @@ msgstr "Äldre aktiviteter"
 
 #: ckanext/restricteddata/translations.py:183
 msgid "{actor} created the group {group}"
-msgstr ""
+msgstr "{actor} skapade kategorien {group}"
 
 #: ckanext/restricteddata/translations.py:184
 msgid "{actor} updated the group {group}"
