@@ -691,7 +691,7 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:153
 msgid "View view"
-msgstr "Visa förhandsgranskningar"
+msgstr "Visa förhandsgranskningen"
 
 #: ckanext/restricteddata/translations.py:154
 msgid "eg. My View"
