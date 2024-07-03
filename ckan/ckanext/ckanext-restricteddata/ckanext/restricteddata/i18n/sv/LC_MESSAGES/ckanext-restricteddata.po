@@ -1389,7 +1389,7 @@ msgstr "Datamängd"
 
 #: ckanext/restricteddata/templates/package/read_base.html:8
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitet"
 
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:8
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:17
