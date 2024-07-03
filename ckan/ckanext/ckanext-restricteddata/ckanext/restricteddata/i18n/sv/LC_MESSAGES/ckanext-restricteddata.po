@@ -822,7 +822,7 @@ msgstr "{actor} raderade organisationen {organization}"
 
 #: ckanext/restricteddata/translations.py:189
 msgid "{actor} created the {dataset_type} {dataset}"
-msgstr ""
+msgstr "{actor} skapade {dataset_type} {dataset}"
 
 #: ckanext/restricteddata/translations.py:190
 msgid "{actor} updated the {dataset_type} {dataset}"
