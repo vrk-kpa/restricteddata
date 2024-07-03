@@ -10,15 +10,16 @@
 # Suvi Nuttunen, 2023
 # Pinja Perttunen, 2024
 # Teemu Erkkola <teemu.erkkola@iki.fi>, 2024
+# Laura Eloranta, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-03 09:04+0000\n"
+"POT-Creation-Date: 2024-06-18 06:55+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
-"Last-Translator: Teemu Erkkola <teemu.erkkola@iki.fi>, 2024\n"
+"Last-Translator: Laura Eloranta, 2024\n"
 "Language-Team: Swedish (https://app.transifex.com/avoindata/teams/7979/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,24 +28,24 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ckanext/restricteddata/plugin.py:170
+#: ckanext/restricteddata/plugin.py:169
 #: ckanext/restricteddata/templates/header.html:99
 #: ckanext/restricteddata/templates/home/layout1.html:52
 #: ckanext/restricteddata/templates/package/search.html:11
 msgid "Datasets"
 msgstr "Datamängder"
 
-#: ckanext/restricteddata/plugin.py:171
+#: ckanext/restricteddata/plugin.py:170
 msgid "Tags"
 msgstr "Nyckelord"
 
-#: ckanext/restricteddata/plugin.py:172
+#: ckanext/restricteddata/plugin.py:171
 msgid "Format"
-msgstr ""
+msgstr "Filformat"
 
 #: ckanext/restricteddata/translations.py:8
 msgid "eg. Page Title"
-msgstr ""
+msgstr "till exempel sidtitel"
 
 #: ckanext/restricteddata/translations.py:9
 msgid "URL"
@@ -56,7 +57,7 @@ msgstr "Publiceringsdatum"
 
 #: ckanext/restricteddata/translations.py:11
 msgid "Header Order"
-msgstr ""
+msgstr "Sivhuvud ordning"
 
 #: ckanext/restricteddata/translations.py:12
 msgid "Not in Menu"
@@ -105,6 +106,8 @@ msgid ""
 " automatically based on the dataset title. If necessary, you can edit the "
 "URL."
 msgstr ""
+"Ange en kort och beskrivande namn för datamängden. <br><br>Webbadressen "
+"skapas automatiskt utifrån namnet. Du kan redigera adressen om du vill."
 
 #: ckanext/restricteddata/translations.py:31
 msgid "Dataset description"
@@ -119,6 +122,8 @@ msgid ""
 "Describe the dataset’s contents, collection process, quality of the data and"
 " possible limits, flaws and applications in an easily understandable way."
 msgstr ""
+"Beskriv datamängdens innehåll, insamlingsprocess, kvalitet och eventuella "
+"begränsningar, brister och tillämpningar på ett lättbegripligt sätt. "
 
 #: ckanext/restricteddata/translations.py:34
 msgid "Keywords and categories"
@@ -129,6 +134,8 @@ msgid ""
 "Select at least one keyword relating to your data that helps users to find "
 "your data."
 msgstr ""
+"Välj minst ett nyckelord som relaterar till dina data och som gör det "
+"lättare för användarna att hitta dina data."
 
 #: ckanext/restricteddata/translations.py:36
 msgid "Select at least one category."
@@ -140,11 +147,11 @@ msgstr "Övrig information om datamängden"
 
 #: ckanext/restricteddata/translations.py:38
 msgid "Select a license that suits your needs."
-msgstr ""
+msgstr "Välj en lämplig licens. "
 
 #: ckanext/restricteddata/translations.py:39
 msgid "Collection type"
-msgstr ""
+msgstr "Typ av datamängd"
 
 #: ckanext/restricteddata/translations.py:40
 msgid "Restricted"
@@ -178,6 +185,11 @@ msgid ""
 " for which the publisher or owner has not yet decided if they can be "
 "publicly released."
 msgstr ""
+"Select access rights for your dataset:<br><br><b>Icke-offentlig</b> "
+"datamängder kan innehålla dataresurser med känsliga eller personliga "
+"uppgifter.<br><br><b>Begränsad</b> datamängder kan innehålla avgiftsbelagda "
+"data, data som delats enligt sekretessavtal eller data som producenten eller"
+" ägaren ännu inte har beslutat om det kan publiceras offentligt."
 
 #: ckanext/restricteddata/translations.py:46
 msgid "Yes"
@@ -251,6 +263,11 @@ msgid ""
 "dataset information can only be managed by registered users with Editor- or "
 "Admin-rights in the publishing organisation."
 msgstr ""
+"Uppdateringar gällande denna datamängd skickas till den ansvariga på den "
+"angivna e-postadressen. Ange helst en allmän e-postadress i stället för "
+"kontaktuppgifterna till en enskild anställd. Observera att datamängden kan "
+"endast redigeras av registrerade användare med behörighet som redigerare "
+"eller administratör i organisationen."
 
 #: ckanext/restricteddata/translations.py:62
 msgid "Maintainer email"
@@ -258,7 +275,7 @@ msgstr "Administratörens e-post"
 
 #: ckanext/restricteddata/translations.py:63
 msgid "e.g. rekisteridata@dvv.fi"
-msgstr "t.ex. suojattudata@dvv.fi"
+msgstr "till exempel suojattudata@dvv.fi"
 
 #: ckanext/restricteddata/translations.py:64
 msgid "Maintainer website"
@@ -266,7 +283,7 @@ msgstr "Administratörens webbplats"
 
 #: ckanext/restricteddata/translations.py:65
 msgid "e.g. www.rekisteridata.fi"
-msgstr "t.ex. suojattudata@dvv.fi"
+msgstr "till exempel suojattudata@dvv.fi"
 
 #: ckanext/restricteddata/translations.py:66
 msgid ""
@@ -278,65 +295,71 @@ msgstr ""
 
 #: ckanext/restricteddata/translations.py:67
 msgid "You can set the state of the dataset back to active."
-msgstr ""
+msgstr "Du kan sätta datamängdens status till aktiv."
 
 #: ckanext/restricteddata/translations.py:68
 msgid ""
 "Deleted. The dataset is only visible to logged in users of the producer "
 "organization."
 msgstr ""
+"Raderad. Datamängden är endast synlig för inloggade användare av "
+"producentorganisationen."
 
 #: ckanext/restricteddata/translations.py:69
 msgid ""
 "In draft state. The dataset is only visible to logged in users of the "
 "producer organization."
 msgstr ""
+"Utkast. Datamängden är endast synlig för inloggade användare av "
+"producentorganisationen."
 
 #: ckanext/restricteddata/translations.py:70
 msgid ""
 "Private mode. The dataset is only visible to logged in users of the producer"
 " organization."
 msgstr ""
+"Privat läge. Datamängden är endast synlig för inloggade användare av "
+"producentorganisationen."
 
 #: ckanext/restricteddata/translations.py:71
 msgid "There is no description for this dataset"
-msgstr ""
+msgstr "Datamängden saknar beskrivning"
 
 #: ckanext/restricteddata/translations.py:72
 msgid "Dataset visibility"
-msgstr ""
+msgstr "Datamängdens synlighet"
 
 #: ckanext/restricteddata/translations.py:73
 msgid "false"
-msgstr ""
+msgstr "falskt"
 
 #: ckanext/restricteddata/translations.py:74
 msgid "true"
-msgstr ""
+msgstr "sant"
 
 #: ckanext/restricteddata/translations.py:75
 msgid "Access rights"
-msgstr ""
+msgstr "Behörigheter"
 
 #: ckanext/restricteddata/translations.py:76
 msgid "More about access rights"
-msgstr ""
+msgstr "Mer om behörigheter"
 
 #: ckanext/restricteddata/translations.py:77
 msgid "active"
-msgstr ""
+msgstr "aktiv"
 
 #: ckanext/restricteddata/translations.py:78
 msgid "e.g. names"
-msgstr ""
+msgstr "till exempel namn"
 
 #: ckanext/restricteddata/translations.py:79
 msgid "Dataset publisher and maintainer"
-msgstr ""
+msgstr "Datamängdens producent och administratör"
 
 #: ckanext/restricteddata/translations.py:80
 msgid "Publisher"
-msgstr ""
+msgstr "Producent"
 
 #: ckanext/restricteddata/translations.py:81
 #, python-format
@@ -345,11 +368,14 @@ msgid ""
 "match the old version of the metadata. <a href=\"%(url)s\">View the current "
 "version</a>."
 msgstr ""
+"Du visar för närvarande en gammal version av datamängden. Datafilerna kanske"
+" inte motsvarar den gamla versionen av metadata <a href=\"%(url)s\">Visa den"
+" nuvarande versionen. </a>."
 
 #: ckanext/restricteddata/templates/package/changes.html:16
 #: ckanext/restricteddata/translations.py:82
 msgid "View changes from"
-msgstr ""
+msgstr "Visa ändringar från"
 
 #: ckanext/restricteddata/templates/package/changes.html:21
 #: ckanext/restricteddata/translations.py:83
@@ -359,115 +385,166 @@ msgstr ""
 #: ckanext/restricteddata/templates/package/changes.html:39
 #: ckanext/restricteddata/translations.py:84
 msgid "Show metadata diff"
-msgstr ""
+msgstr "Visa metadata diff"
 
-#: ckanext/restricteddata/translations.py:86
+#: ckanext/restricteddata/translations.py:85
+msgid ""
+"Use your organisation's general email address instead of an employee's "
+"contact information to ensure that the email address works even if there are"
+" personnel changes. For example, opendata@organisation.fi or "
+"kirjaamo@organisation.fi. We can use this email address to contact the "
+"dataset maintainer."
+msgstr ""
+"Använd organisationens allmänna e-postadress i stället för den anställdes "
+"kontaktuppgifter för att säkerställa att e-postadressen fungerar även om det"
+" sker personalförändringar. Till exempel opendata@organisation.fi eller "
+"kirjaamo@organisation.fi. Vi kan använda den här e-postadressen för att "
+"kontakta datamängdens administratör."
+
+#: ckanext/restricteddata/translations.py:87
 msgid "Biennial"
 msgstr "Vartannat år"
 
-#: ckanext/restricteddata/translations.py:87
+#: ckanext/restricteddata/translations.py:88
 msgid "Annual"
 msgstr "Årlig"
 
-#: ckanext/restricteddata/translations.py:88
+#: ckanext/restricteddata/translations.py:89
 msgid "Semiannual"
 msgstr "Halvårs"
 
-#: ckanext/restricteddata/translations.py:89
+#: ckanext/restricteddata/translations.py:90
 msgid "Quarterly"
 msgstr "Kvartalsvis"
 
-#: ckanext/restricteddata/translations.py:90
+#: ckanext/restricteddata/translations.py:91
 msgid "Monthly"
 msgstr "Månatligen"
 
-#: ckanext/restricteddata/translations.py:91
+#: ckanext/restricteddata/translations.py:92
 msgid "Semimonthly"
 msgstr "Två gånger per månad"
 
-#: ckanext/restricteddata/translations.py:92
+#: ckanext/restricteddata/translations.py:93
 msgid "Biweekly"
 msgstr "Var fjortonde dag"
 
-#: ckanext/restricteddata/translations.py:93
+#: ckanext/restricteddata/translations.py:94
 msgid "Weekly"
 msgstr "Veckovis"
 
-#: ckanext/restricteddata/translations.py:94
+#: ckanext/restricteddata/translations.py:95
 msgid "Daily"
 msgstr "Dagligen"
 
-#: ckanext/restricteddata/translations.py:95
+#: ckanext/restricteddata/translations.py:96
 msgid "Twice a day"
 msgstr "Två gånger per dag"
 
-#: ckanext/restricteddata/translations.py:96
+#: ckanext/restricteddata/translations.py:97
 msgid "Bihourly"
 msgstr "Varannan timme"
 
-#: ckanext/restricteddata/translations.py:97
+#: ckanext/restricteddata/translations.py:98
 msgid "Hourly"
 msgstr "En gång i timmen"
 
-#: ckanext/restricteddata/translations.py:98
+#: ckanext/restricteddata/translations.py:99
 msgid "Continuous"
 msgstr "Kontinuerlig"
 
-#: ckanext/restricteddata/translations.py:99
+#: ckanext/restricteddata/translations.py:100
 msgid "Irregular"
 msgstr "Oregelbundet"
 
-#: ckanext/restricteddata/translations.py:100
+#: ckanext/restricteddata/translations.py:101
 msgid "Never"
 msgstr "Aldrig"
 
 #: ckanext/restricteddata/translations.py:103
+msgid "High-value dataset category"
+msgstr "Kategori av värdefull datamängd"
+
+#: ckanext/restricteddata/translations.py:104
+msgid "Meteorological"
+msgstr "Meteorologiska data"
+
+#: ckanext/restricteddata/translations.py:105
+msgid "Companies and company ownership"
+msgstr "Företag och företagsägande"
+
+#: ckanext/restricteddata/translations.py:106
+msgid "Geospatial"
+msgstr "Geospatiala data"
+
+#: ckanext/restricteddata/translations.py:107
+msgid "Mobility"
+msgstr "Rörlighet"
+
+#: ckanext/restricteddata/translations.py:108
+msgid "Earth observation and environment"
+msgstr "Jordobservation och miljö"
+
+#: ckanext/restricteddata/translations.py:109
+msgid "Statistics"
+msgstr "Statistik"
+
+#: ckanext/restricteddata/translations.py:112
 msgid "Data resource title"
 msgstr "Distributionens namn"
 
-#: ckanext/restricteddata/translations.py:104
+#: ckanext/restricteddata/translations.py:113
 msgid ""
 "Give a short and descriptive name for the distribution. If the data covers a"
 " specific time frame, mention that in the name."
 msgstr ""
+"Ange en kort och beskrivande namn för distributionen. Om data bara täcker "
+"ett visst tidsintervall, ange det i namnet."
 
-#: ckanext/restricteddata/translations.py:105
+#: ckanext/restricteddata/translations.py:114
 msgid "e.g. Most popular Finnish first names 2019"
 msgstr "t.ex. de mest populära förnamnen i Finland 2019"
 
-#: ckanext/restricteddata/translations.py:106
+#: ckanext/restricteddata/translations.py:115
 msgid "Resource *"
 msgstr "Distribution"
 
-#: ckanext/restricteddata/translations.py:107
+#: ckanext/restricteddata/translations.py:116
 msgid "Add the distribution by adding a link to the data."
-msgstr ""
+msgstr "Lägg till distributionen genom att lägga till en länk till data."
 
-#: ckanext/restricteddata/translations.py:108
+#: ckanext/restricteddata/translations.py:117
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
-#: ckanext/restricteddata/translations.py:109
+#: ckanext/restricteddata/translations.py:118
 msgid "Resource URL"
 msgstr "Distributionens länk"
 
-#: ckanext/restricteddata/translations.py:110
+#: ckanext/restricteddata/translations.py:119
 msgid "Select a file format for the distribution"
-msgstr ""
+msgstr "Välj ett filformat för distributionen"
 
-#: ckanext/restricteddata/translations.py:111
+#: ckanext/restricteddata/translations.py:120
 msgid "Size"
 msgstr "Storlek"
 
-#: ckanext/restricteddata/translations.py:112
+#: ckanext/restricteddata/translations.py:121
+msgid ""
+"Enter the file size in bytes.\n"
+"\n"
+"The size can be approximated as a decimal if the precise size is not known. If data is offered via an API, enter the overall size of the underlying data."
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:122
 msgid "Data resource description"
 msgstr "Beskrivning av distribution"
 
-#: ckanext/restricteddata/translations.py:113
+#: ckanext/restricteddata/translations.py:123
 msgid "Write a description for the resource"
 msgstr "Ange en beskrivning för distributionen"
 
-#: ckanext/restricteddata/translations.py:114
+#: ckanext/restricteddata/translations.py:124
 msgid ""
 "Describe the data clearly and concisely. Use as confining terms as possible "
 "to make it easier to find and understand the data."
@@ -475,29 +552,29 @@ msgstr ""
 "Skriv en kortfattad och lättbegriplig beskrivning av distributionen. Använd "
 "så avgränsande termer som möjligt för att göra det enklare att förstå datan."
 
-#: ckanext/restricteddata/translations.py:115
+#: ckanext/restricteddata/translations.py:125
 msgid ""
 "Describe terms and conditions for re-use. Include how to apply for use "
 "permit and information about possible payments and their principles."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:116
+#: ckanext/restricteddata/translations.py:126
 msgid "Additional information"
 msgstr "Mer information"
 
-#: ckanext/restricteddata/translations.py:117
+#: ckanext/restricteddata/translations.py:127
 msgid "Write a rights statement for the resource"
 msgstr "Beskriv datamängdens användningsrättigheter"
 
-#: ckanext/restricteddata/translations.py:118
+#: ckanext/restricteddata/translations.py:128
 msgid "Endpoint URL"
 msgstr "Länk till gränssnittet"
 
-#: ckanext/restricteddata/translations.py:119
+#: ckanext/restricteddata/translations.py:129
 msgid "Distribution visibility"
 msgstr "Distributionens synlighet"
 
-#: ckanext/restricteddata/translations.py:120
+#: ckanext/restricteddata/translations.py:130
 msgid ""
 "You can set the visibility to private temporarily, for example if the "
 "dataset is missing some information. Private datasets are visible to all "
@@ -507,403 +584,425 @@ msgstr ""
 "exempel om data är bristfälliga. Privata distributioner visas för alla "
 "inloggade medlemmar i producentorganisationen."
 
-#: ckanext/restricteddata/translations.py:121
+#: ckanext/restricteddata/translations.py:131
 msgid "Data status"
 msgstr "Status för distribution"
 
-#: ckanext/restricteddata/translations.py:122
+#: ckanext/restricteddata/translations.py:132
 msgid ""
 "Define a state for the data. This is recommended especially if your dataset "
 "has data resources from multiple years."
 msgstr ""
+"Du kan fastställa ett status för datan. Det rekommenderas framför allt om "
+"din datamängd innehåller dataresurser från flera olika år."
 
-#: ckanext/restricteddata/translations.py:123
+#: ckanext/restricteddata/translations.py:133
 msgid "Current version"
 msgstr "Nuvarande"
 
-#: ckanext/restricteddata/translations.py:124
+#: ckanext/restricteddata/translations.py:134
 msgid "Draft version"
 msgstr "Utkast"
 
-#: ckanext/restricteddata/translations.py:125
+#: ckanext/restricteddata/translations.py:135
 msgid "Archived version"
 msgstr "Arkiverad"
 
-#: ckanext/restricteddata/translations.py:126
+#: ckanext/restricteddata/translations.py:136
 msgid "Coordinate system"
-msgstr ""
+msgstr "Koordinatsystem"
 
-#: ckanext/restricteddata/translations.py:127
+#: ckanext/restricteddata/translations.py:137
 msgid ""
 "If your data includes geographic information, specify the coordinate system "
 "it uses."
 msgstr ""
+"Ange kartmaterialets koordinatsystem, till exempel koordinatsystemet för "
+"positionsdata."
 
-#: ckanext/restricteddata/translations.py:128
+#: ckanext/restricteddata/translations.py:138
 msgid "e.g. WGS84 (World Geodetic System 1984)"
-msgstr ""
+msgstr "t.ex. WGS84 (World Geodetic System 1984)"
 
-#: ckanext/restricteddata/translations.py:129
+#: ckanext/restricteddata/translations.py:139
 msgid ""
 "Select the time frame by which the data is separated. For example, does the "
 "resource include data from every week or month."
 msgstr ""
+"Ange hur noggrant datan är separerade i materialet, till exempel om "
+"materialet innehåller data från varje vecka eller månad."
 
-#: ckanext/restricteddata/translations.py:130
+#: ckanext/restricteddata/translations.py:140
 msgid "Temporal granularity"
-msgstr ""
+msgstr "Tidsmässig granularitet"
 
-#: ckanext/restricteddata/translations.py:131
+#: ckanext/restricteddata/translations.py:141
 msgid "e.g. a month"
 msgstr "t.ex. en månad"
 
-#: ckanext/restricteddata/translations.py:132
+#: ckanext/restricteddata/translations.py:142
 msgid "Time Frame"
-msgstr ""
+msgstr "Tidsram"
 
-#: ckanext/restricteddata/translations.py:133
+#: ckanext/restricteddata/translations.py:143
 msgid "Start date"
-msgstr ""
+msgstr "Startdatum"
 
-#: ckanext/restricteddata/translations.py:134
+#: ckanext/restricteddata/translations.py:144
 msgid "End date"
-msgstr ""
+msgstr "Slutdatum"
 
-#: ckanext/restricteddata/translations.py:135
+#: ckanext/restricteddata/translations.py:145
 msgid "Geographical accuracy"
-msgstr ""
+msgstr "Geografisk noggrannhet"
 
-#: ckanext/restricteddata/translations.py:136
+#: ckanext/restricteddata/translations.py:146
 msgid ""
 "If your data includes geographic information, specify the accuracy in meters"
 msgstr ""
+"Om dina data innehåller geodatamaterial, ange noggrannheten i meter. Till "
+"exempel: 30"
 
-#: ckanext/restricteddata/translations.py:137
+#: ckanext/restricteddata/translations.py:147
 msgid "Metadata last updated"
-msgstr ""
+msgstr "Metadata senast uppdaterad"
 
-#: ckanext/restricteddata/translations.py:138
+#: ckanext/restricteddata/translations.py:148
 msgid "Conditions for re-use"
 msgstr ""
 
 #: ckanext/restricteddata/templates/package/edit.html:14
 #: ckanext/restricteddata/templates/package/resources.html:14
-#: ckanext/restricteddata/translations.py:139
+#: ckanext/restricteddata/translations.py:149
 msgid "Resources"
 msgstr "Distributioner"
 
-#: ckanext/restricteddata/translations.py:140
+#: ckanext/restricteddata/translations.py:150
 msgid "Unnamed resource"
-msgstr ""
+msgstr "Namnlös distribution"
 
-#: ckanext/restricteddata/translations.py:141
+#: ckanext/restricteddata/translations.py:151
 msgid "Add view"
-msgstr ""
+msgstr "Lägg till vy"
 
-#: ckanext/restricteddata/translations.py:142
+#: ckanext/restricteddata/translations.py:152
 msgid "All views"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:143
+#: ckanext/restricteddata/translations.py:153
 msgid "View view"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:144
+#: ckanext/restricteddata/translations.py:154
 msgid "eg. My View"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:145
+#: ckanext/restricteddata/translations.py:155
 msgid "eg. Information about my view"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:146
+#: ckanext/restricteddata/translations.py:156
 msgid "Image url"
-msgstr ""
+msgstr "Bildens URL"
 
-#: ckanext/restricteddata/translations.py:147
+#: ckanext/restricteddata/translations.py:157
 msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
 msgstr ""
+"t.ex. http://example.com/image.jpg (om tomt används distributions URL)"
 
 #: ckanext/restricteddata/templates/package/group_list.html:4
-#: ckanext/restricteddata/translations.py:150
-msgid "Groups"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:151
-msgid "Formats"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:152
-msgid "Organization name"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:153
-msgid "Organization description"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:154
-msgid "Common, compact and plain description about the organization"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:155
-msgid "Other information"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:156
-msgid "View Organization"
-msgstr ""
-
-#: ckanext/restricteddata/templates/user/dashboard.html:4
-#: ckanext/restricteddata/translations.py:159
-msgid "News feed"
-msgstr ""
-
 #: ckanext/restricteddata/translations.py:160
-msgid "Activity from items that I'm following"
-msgstr ""
+msgid "Groups"
+msgstr "Kategorier"
 
-#: ckanext/restricteddata/templates/user/dashboard.html:5
 #: ckanext/restricteddata/translations.py:161
-msgid "My Datasets"
-msgstr ""
+msgid "Formats"
+msgstr "Filformat"
 
 #: ckanext/restricteddata/translations.py:162
-msgid "Add Dataset"
-msgstr ""
+msgid "Organization name"
+msgstr "Namnet på organisation"
 
-#: ckanext/restricteddata/templates/user/dashboard.html:6
 #: ckanext/restricteddata/translations.py:163
-msgid "My Organizations"
-msgstr ""
+msgid "Organization description"
+msgstr "Beskrivning av organisationen"
 
 #: ckanext/restricteddata/translations.py:164
-msgid "Add Group"
+msgid "Common, compact and plain description about the organization"
 msgstr ""
+"Beskriv vad din organisation gör, samt vilka tjänster och data den erbjuder."
 
 #: ckanext/restricteddata/translations.py:165
-msgid "My Groups"
-msgstr ""
+msgid "Other information"
+msgstr "Mer information"
 
-#: ckanext/restricteddata/translations.py:168
-msgid "Activity type"
-msgstr ""
+#: ckanext/restricteddata/translations.py:166
+msgid "View Organization"
+msgstr "Visa organisation"
 
-#: ckanext/restricteddata/templates/snippets/activity_type_selector.html:18
+#: ckanext/restricteddata/templates/user/dashboard.html:4
 #: ckanext/restricteddata/translations.py:169
-msgid "All activity types"
-msgstr ""
+msgid "News feed"
+msgstr "Nyhetsflöde"
 
 #: ckanext/restricteddata/translations.py:170
-msgid "Newer activities"
-msgstr ""
+msgid "Activity from items that I'm following"
+msgstr "Aktivitet från ämnen jag följer"
 
+#: ckanext/restricteddata/templates/user/dashboard.html:5
 #: ckanext/restricteddata/translations.py:171
-msgid "Older activities"
-msgstr ""
+msgid "My Datasets"
+msgstr "Mina datamängder"
 
 #: ckanext/restricteddata/translations.py:172
+msgid "Add Dataset"
+msgstr "Lägg till datamängd"
+
+#: ckanext/restricteddata/templates/user/dashboard.html:6
+#: ckanext/restricteddata/translations.py:173
+msgid "My Organizations"
+msgstr "Mina organisationer"
+
+#: ckanext/restricteddata/translations.py:174
+msgid "Add Group"
+msgstr "Lägg till kategori"
+
+#: ckanext/restricteddata/translations.py:175
+msgid "My Groups"
+msgstr "Mina kategorier"
+
+#: ckanext/restricteddata/translations.py:178
+msgid ""
+"You will receive notification emails from {site_title}, e.g. when you have "
+"new activities on your dashboard."
+msgstr ""
+"Du kommer att ta emot e-postmeddelanden från {site_title}, t.ex. när du har "
+"nya aktiviteter på din kontrollpanel."
+
+#: ckanext/restricteddata/translations.py:179
+msgid "Activity type"
+msgstr "Aktivitetstyp"
+
+#: ckanext/restricteddata/templates/snippets/activity_type_selector.html:18
+#: ckanext/restricteddata/translations.py:180
+msgid "All activity types"
+msgstr "Alla aktivitetstyper"
+
+#: ckanext/restricteddata/translations.py:181
+msgid "Newer activities"
+msgstr "Nyare aktiviteter"
+
+#: ckanext/restricteddata/translations.py:182
+msgid "Older activities"
+msgstr "Äldre aktiviteter"
+
+#: ckanext/restricteddata/translations.py:183
 msgid "{actor} created the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:173
+#: ckanext/restricteddata/translations.py:184
 msgid "{actor} updated the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:174
+#: ckanext/restricteddata/translations.py:185
 msgid "{actor} deleted the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:175
+#: ckanext/restricteddata/translations.py:186
 msgid "{actor} created the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:176
+#: ckanext/restricteddata/translations.py:187
 msgid "{actor} updated the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:177
+#: ckanext/restricteddata/translations.py:188
 msgid "{actor} deleted the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:178
+#: ckanext/restricteddata/translations.py:189
 msgid "{actor} created the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:179
+#: ckanext/restricteddata/translations.py:190
 msgid "{actor} updated the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:180
+#: ckanext/restricteddata/translations.py:191
 msgid "{actor} deleted the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:181
+#: ckanext/restricteddata/translations.py:192
 msgid "{actor} added the resource {resource} to the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:182
+#: ckanext/restricteddata/translations.py:193
 msgid "{actor} updated the resource {resource} in the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:183
+#: ckanext/restricteddata/translations.py:194
 msgid "{actor} deleted the resource {resource} from the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:184
+#: ckanext/restricteddata/translations.py:195
 msgid "{actor} {activity_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:185
+#: ckanext/restricteddata/translations.py:196
 msgid "{actor} added the tag {tag} to the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:186
+#: ckanext/restricteddata/translations.py:197
 msgid "{actor} removed the tag {tag} from the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:187
+#: ckanext/restricteddata/translations.py:198
 msgid "{actor} updated their profile"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:188
-msgid "{actor} started following {dataset}"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:189
-msgid "{actor} started following {group}"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:190
-msgid "{actor} started following {user}"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:191
-msgid "new package"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:192
-msgid "changed package"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:193
-msgid "deleted package"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:194
-msgid "follow dataset"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:197
-msgid "Add {object_type}"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:198
-msgid "Create {object_type}"
-msgstr ""
-
 #: ckanext/restricteddata/translations.py:199
-msgid "View {object_type}"
-msgstr ""
+msgid "{actor} started following {dataset}"
+msgstr "{actor} började följa {dataset}"
 
 #: ckanext/restricteddata/translations.py:200
-msgid "Edit {object_type}"
-msgstr ""
+msgid "{actor} started following {group}"
+msgstr "{actor} började följa {group}"
 
 #: ckanext/restricteddata/translations.py:201
-msgid "Save {object_type}"
-msgstr ""
+msgid "{actor} started following {user}"
+msgstr "{actor} började följa {user}"
 
 #: ckanext/restricteddata/translations.py:202
-msgid "Search {object_type}s..."
-msgstr ""
+msgid "new package"
+msgstr "ny datamängd"
 
 #: ckanext/restricteddata/translations.py:203
-msgid "Update {object_type}"
-msgstr ""
+msgid "changed package"
+msgstr "ändrad datamängd"
 
 #: ckanext/restricteddata/translations.py:204
-msgid "A little information about my {object_type}..."
-msgstr ""
+msgid "deleted package"
+msgstr "raderad datamängd"
 
 #: ckanext/restricteddata/translations.py:205
-msgid "There are no {object_type}s associated with this dataset"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:206
-msgid "There are currently no {object_type}s for this site"
-msgstr ""
-
-#: ckanext/restricteddata/translations.py:207
-msgid "There is no description for this {object_type}"
-msgstr ""
+msgid "follow dataset"
+msgstr "följ datamängden"
 
 #: ckanext/restricteddata/translations.py:208
-msgid "You are not a member of any {object_type}s."
-msgstr ""
+msgid "Add {object_type}"
+msgstr "Lägg till {object_type}"
 
 #: ckanext/restricteddata/translations.py:209
-msgid "{object_type} Form"
-msgstr ""
+msgid "Create {object_type}"
+msgstr "Skapa {object_type}"
 
 #: ckanext/restricteddata/translations.py:210
-msgid "My {object_type}s"
-msgstr ""
+msgid "View {object_type}"
+msgstr "Visa {object_type}"
 
 #: ckanext/restricteddata/translations.py:211
-msgid "My {object_type}"
-msgstr ""
+msgid "Edit {object_type}"
+msgstr "Redigera {object_type}"
 
 #: ckanext/restricteddata/translations.py:212
-msgid "No {object_type}"
-msgstr ""
+msgid "Save {object_type}"
+msgstr "Spara {object_type}"
 
 #: ckanext/restricteddata/translations.py:213
+msgid "Search {object_type}s..."
+msgstr "Sök {object_type}..."
+
+#: ckanext/restricteddata/translations.py:214
+msgid "Update {object_type}"
+msgstr "Uppdatera {object_type}"
+
+#: ckanext/restricteddata/translations.py:215
+msgid "A little information about my {object_type}..."
+msgstr "En kort beskrivning av {object_type}..."
+
+#: ckanext/restricteddata/translations.py:216
+msgid "There are no {object_type}s associated with this dataset"
+msgstr "Inga {object_type} har kopplats till datamängden"
+
+#: ckanext/restricteddata/translations.py:217
+msgid "There are currently no {object_type}s for this site"
+msgstr "Det finns inga {object_type} för denna sida just nu"
+
+#: ckanext/restricteddata/translations.py:218
+msgid "There is no description for this {object_type}"
+msgstr "{object_type} saknar beskrivning"
+
+#: ckanext/restricteddata/translations.py:219
+msgid "You are not a member of any {object_type}s."
+msgstr "Du är inte medlem i någon {object_type}."
+
+#: ckanext/restricteddata/translations.py:220
+msgid "{object_type} Form"
+msgstr "{object_type} Form"
+
+#: ckanext/restricteddata/translations.py:221
+msgid "My {object_type}s"
+msgstr "Mina {object_type}"
+
+#: ckanext/restricteddata/translations.py:222
+msgid "My {object_type}"
+msgstr "Min {object_type}"
+
+#: ckanext/restricteddata/translations.py:223
+msgid "No {object_type}"
+msgstr "Inga {object_type}"
+
+#: ckanext/restricteddata/translations.py:224
 msgid "{object_type}s"
-msgstr ""
+msgstr "{object_type}"
 
 #: ckanext/restricteddata/validators.py:44
 msgid "expecting list of strings"
-msgstr ""
+msgstr "förväntar sig en lista med strängar"
 
 #: ckanext/restricteddata/validators.py:53
 #, python-format
 msgid "invalid encoding for \"%s\" value"
-msgstr ""
+msgstr "ogiltig kodning för \"%s\" värdet"
 
 #: ckanext/restricteddata/validators.py:57
 #, python-format
 msgid "invalid type for repeating text: %r"
-msgstr ""
+msgstr "ogiltig typ för upprepande text: %r"
 
 #: ckanext/restricteddata/validators.py:110
 #: ckanext/restricteddata/validators.py:258
 msgid "expecting a list"
-msgstr ""
+msgstr "förväntar sig en lista"
 
 #: ckanext/restricteddata/validators.py:133
 #: ckanext/restricteddata/validators.py:175
 msgid "Failed to decode JSON string"
-msgstr ""
+msgstr "Avkodning av JSON-sträng misslyckades"
 
 #: ckanext/restricteddata/validators.py:136
 #: ckanext/restricteddata/validators.py:178
 msgid "Invalid encoding for JSON string"
-msgstr ""
+msgstr "Felaktig kodning för JSON-sträng"
 
 #: ckanext/restricteddata/validators.py:139
 #: ckanext/restricteddata/validators.py:181
 msgid "expecting JSON object"
-msgstr ""
+msgstr "förväntar sig JSON-objekt"
 
 #: ckanext/restricteddata/validators.py:144
 #: ckanext/restricteddata/validators.py:153
 #, python-format
 msgid "Required language \"%s\" missing"
-msgstr ""
+msgstr "Den nödvändiga översättningen \"%s\" saknas"
+
+#: ckanext/restricteddata/validators.py:282
+msgid "You must select at least 1 high value category"
+msgstr "Du måste välja åtminstone en kategori av värdefull datamängd"
 
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
-msgstr ""
+msgstr "Lägg till e-post"
 
 #: ckanext/restricteddata/assets/modules/form.js:83
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:39
@@ -921,18 +1020,21 @@ msgid ""
 "the resource to the right and place it to the desired location on the list. "
 "When you are done, click the \"Save order\" -button."
 msgstr ""
+"Du kan ordna om distributionerna genom att dra dem med hjälp av pil-ikonen. "
+"Drag och släpp distribution med musen till önskad plats på listan. Avsluta "
+"genom att klicka på ”Spara ordning”."
 
 #: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:63
 msgid "Save order"
-msgstr ""
+msgstr "Spara ordning"
 
 #: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:66
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:76
 msgid "Saving..."
-msgstr ""
+msgstr "Sparar..."
 
 #: ckanext/restricteddata/templates/footer.html:8
 msgid "The service is being developed by"
@@ -948,19 +1050,19 @@ msgstr "Sök på denna webbplats"
 
 #: ckanext/restricteddata/templates/header.html:19
 msgid "Suojattudata logo"
-msgstr ""
+msgstr "Skyddadedata logotyp"
 
 #: ckanext/restricteddata/templates/header.html:24
 msgid "Suomi.fi logo"
-msgstr ""
+msgstr "Suomi.fi logotyp"
 
 #: ckanext/restricteddata/templates/header.html:41
 msgid "Submit"
-msgstr ""
+msgstr "Skicka in"
 
 #: ckanext/restricteddata/templates/header.html:52
 msgid "View profile"
-msgstr ""
+msgstr "Visa profil"
 
 #: ckanext/restricteddata/templates/header.html:54
 #: ckanext/restricteddata/templates/header.html:55
@@ -969,7 +1071,7 @@ msgstr "Logga ut"
 
 #: ckanext/restricteddata/templates/header.html:59
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #: ckanext/restricteddata/templates/header.html:63
 #: ckanext/restricteddata/templates/header.html:65
@@ -990,7 +1092,7 @@ msgstr "Organisationer"
 
 #: ckanext/restricteddata/templates/header.html:115
 msgid "More options"
-msgstr ""
+msgstr "Visa mer alternativ"
 
 #: ckanext/restricteddata/templates/header.html:131
 msgid "Suomi.fi-avoindata"
@@ -998,11 +1100,11 @@ msgstr "Suomi.fi-öppnadata"
 
 #: ckanext/restricteddata/templates/page.html:7
 msgid "Skip to main content"
-msgstr ""
+msgstr "Hoppa till huvudinnehåll"
 
 #: ckanext/restricteddata/templates/page.html:40
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Länkstig"
 
 #: ckanext/restricteddata/templates/admin/config.html:9
 msgid "Info message"
@@ -1033,7 +1135,7 @@ msgstr[1] ""
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:34
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:35
 msgid "View {name}"
-msgstr ""
+msgstr "Visa {name}"
 
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:39
 msgid "Remove dataset from this group"
@@ -1065,7 +1167,7 @@ msgstr "Sök efter..."
 
 #: ckanext/restricteddata/templates/home/layout1.html:27
 msgid "Restricted data categories"
-msgstr ""
+msgstr "Skyddade data kategorier"
 
 #: ckanext/restricteddata/templates/home/layout1.html:31
 msgid "show group"
@@ -1073,7 +1175,7 @@ msgstr "visa kategori"
 
 #: ckanext/restricteddata/templates/home/layout1.html:42
 msgid "Restricted data data sources"
-msgstr ""
+msgstr "Skyddade data dataresurser"
 
 #: ckanext/restricteddata/templates/home/layout1.html:53
 msgid "Browse datasets"
@@ -1111,11 +1213,11 @@ msgstr "öppna nyheten"
 msgid "Browse all news and disruption notices"
 msgstr "Se alla nyheter och störningsmeddelande"
 
-#: ckanext/restricteddata/templates/macros/form/input_block.html:28
+#: ckanext/restricteddata/templates/macros/form/input_block.html:29
 msgid "Custom"
 msgstr ""
 
-#: ckanext/restricteddata/templates/macros/form/input_block.html:29
+#: ckanext/restricteddata/templates/macros/form/input_block.html:30
 msgid "This field is required"
 msgstr "Obligatoriskt fält"
 
@@ -1172,7 +1274,7 @@ msgstr "Välj den organisationen vars beskrivningar av datamängder du vill se."
 
 #: ckanext/restricteddata/templates/organization/snippets/organization_item.html:8
 msgid "View {organization_name}"
-msgstr ""
+msgstr "Visa {organization_name}"
 
 #: ckanext/restricteddata/templates/package/base.html:30
 #: ckanext/restricteddata/templates/package/new.html:6
@@ -1185,7 +1287,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/edit.html:7
 msgid "Edit dataset"
-msgstr "Redigera datamängden"
+msgstr "Redigera datamängd"
 
 #: ckanext/restricteddata/templates/package/edit.html:13
 #: ckanext/restricteddata/templates/package/resources.html:13
@@ -1214,7 +1316,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/group_list.html:27
 msgid "There are no groups associated with this dataset"
-msgstr ""
+msgstr "Inga grupper har kopplats till datamängden"
 
 #: ckanext/restricteddata/templates/package/new.html:13
 msgid "Create new dataset"
@@ -1301,7 +1403,7 @@ msgstr "Redigera"
 #: ckanext/restricteddata/templates/package/resource_read.html:22
 #: ckanext/restricteddata/templates/package/resource_views.html:4
 msgid "View"
-msgstr ""
+msgstr "Visa"
 
 #: ckanext/restricteddata/templates/package/resource_read.html:24
 msgid "API Endpoint"
@@ -1481,7 +1583,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:18
 msgid "This resource view is not available at the moment."
-msgstr ""
+msgstr "Ingen förhandsgranskning tillgänglig just nu"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:20
 msgid "Click here for more information."
@@ -1497,7 +1599,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:57
 msgid "Embed resource view"
-msgstr ""
+msgstr "Bädda in förhandsgranskning av dataresursen"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:62
 msgid ""
@@ -1536,11 +1638,6 @@ msgstr ""
 msgid "No organization"
 msgstr ""
 
-#: ckanext/restricteddata/templates/scheming/form_snippets/multiple_checkbox.html:6
-#, python-format
-msgid "Categories can be edited from <a href=\"%(category_url)s\">here</a>"
-msgstr ""
-
 #: ckanext/restricteddata/templates/scheming/organization/group_form.html:35
 msgid "Are you sure you want to delete this Organization?"
 msgstr ""
@@ -1555,7 +1652,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/scheming/package/resource_read.html:3
 msgid "Additional Information"
-msgstr ""
+msgstr "Mer information"
 
 #: ckanext/restricteddata/templates/scheming/snippets/errors.html:6
 msgid "The form contains invalid entries:"
@@ -1567,11 +1664,11 @@ msgstr "Licens"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:44
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtrera sökning"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:62
 msgid "Order by"
-msgstr ""
+msgstr "Sortera på"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:73
 msgid "Go"
@@ -1707,7 +1804,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Submenu Order"
-msgstr ""
+msgstr "Undermeny ordning"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Not in menu"
@@ -1732,7 +1829,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:27
 msgid "There are currently no blog articles here"
-msgstr ""
+msgstr "Det finns inga bloggartiklar här just nu "
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:29
 msgid "There are currently no pages here"
