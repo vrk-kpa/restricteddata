@@ -1599,7 +1599,7 @@ msgstr "Klicka här för mer information"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:27
 msgid "Download resource"
-msgstr ""
+msgstr "Ladda ned distributionen"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:48
 msgid "Your browser does not support iframes."
