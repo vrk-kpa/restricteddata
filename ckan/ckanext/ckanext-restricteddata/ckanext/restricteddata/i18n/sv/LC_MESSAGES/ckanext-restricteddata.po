@@ -1567,7 +1567,7 @@ msgstr "Vill du verkligen radera denna distribution?"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:28
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:36
 msgid "Save & add another"
