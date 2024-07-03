@@ -1571,7 +1571,7 @@ msgstr "Föregående"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:36
 msgid "Save & add another"
-msgstr ""
+msgstr "Spara och lägg till fler"
 
 #: ckanext/restricteddata/templates/package/snippets/resource_form.html:40
 msgid "Save dataset"
