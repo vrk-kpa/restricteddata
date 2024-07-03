@@ -1300,7 +1300,7 @@ msgstr "Redigera datamängd"
 #: ckanext/restricteddata/templates/package/edit.html:13
 #: ckanext/restricteddata/templates/package/resources.html:13
 msgid "Edit metadata"
-msgstr ""
+msgstr "Redigera metadata"
 
 #: ckanext/restricteddata/templates/package/edit.html:16
 #: ckanext/restricteddata/templates/package/resources.html:16
