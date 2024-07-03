@@ -1547,7 +1547,7 @@ msgstr "Privat"
 
 #: ckanext/restricteddata/templates/package/snippets/package_form.html:23
 msgid "Next: Add Data"
-msgstr ""
+msgstr "Nästa: Lägg till data"
 
 #: ckanext/restricteddata/templates/package/snippets/package_form.html:31
 msgid ""
