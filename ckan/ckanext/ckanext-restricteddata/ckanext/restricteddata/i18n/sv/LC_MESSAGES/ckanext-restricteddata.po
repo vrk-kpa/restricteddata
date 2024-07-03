@@ -1266,7 +1266,7 @@ msgstr "Filtrera sökning"
 #: ckanext/restricteddata/templates/organization/read.html:22
 #: ckanext/restricteddata/templates/user/read.html:5
 msgid "Manage"
-msgstr ""
+msgstr "Redigera"
 
 #: ckanext/restricteddata/templates/organization/snippets/helper.html:15
 msgid ""
