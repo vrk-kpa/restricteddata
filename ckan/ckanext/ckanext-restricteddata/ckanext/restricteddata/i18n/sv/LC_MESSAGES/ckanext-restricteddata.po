@@ -1330,7 +1330,7 @@ msgstr "Lägg till i kategori"
 
 #: ckanext/restricteddata/templates/package/group_list.html:27
 msgid "There are no groups associated with this dataset"
-msgstr "Inga grupper har kopplats till datamängden"
+msgstr "Inga kategorier har kopplats till datamängden"
 
 #: ckanext/restricteddata/templates/package/new.html:13
 msgid "Create new dataset"
