@@ -989,7 +989,7 @@ msgstr "Avkodning av JSON-sträng misslyckades"
 #: ckanext/restricteddata/validators.py:136
 #: ckanext/restricteddata/validators.py:178
 msgid "Invalid encoding for JSON string"
-msgstr "Felaktig kodning för JSON-sträng"
+msgstr "Ogiltig kodning för JSON-sträng"
 
 #: ckanext/restricteddata/validators.py:139
 #: ckanext/restricteddata/validators.py:181
