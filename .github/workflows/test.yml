@@ -97,7 +97,7 @@ jobs:
 
       - name: build images
         if: ${{ matrix.build-container == true }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
@@ -109,6 +109,7 @@ jobs:
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
+          DOCKER_BUILD_RECORD_UPLOAD: false
 
       - name: upload images
         if: ${{ matrix.build-container == true }}
