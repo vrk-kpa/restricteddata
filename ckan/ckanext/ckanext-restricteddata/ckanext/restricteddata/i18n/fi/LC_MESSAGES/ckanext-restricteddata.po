@@ -370,7 +370,7 @@ msgid ""
 "version</a>."
 msgstr ""
 "Tarkastelet tällä hetkellä vanhaa versiota tietoaineistosta. Datatiedostot "
-"eivät välttämättä vastaa metadatan vanhaa versiota. <a "
+"eivät välttämättä vastaa metatietojen vanhaa versiota. <a "
 "href=\"%(url)s\">Tarkastele voimassa olevaa versiota</a>."
 
 #: ckanext/restricteddata/templates/package/changes.html:16
@@ -381,12 +381,12 @@ msgstr "Tarkastele muutoksia"
 #: ckanext/restricteddata/templates/package/changes.html:21
 #: ckanext/restricteddata/translations.py:83
 msgid "to"
-msgstr ""
+msgstr " "
 
 #: ckanext/restricteddata/templates/package/changes.html:39
 #: ckanext/restricteddata/translations.py:84
 msgid "Show metadata diff"
-msgstr ""
+msgstr "Näytä metatietojen diff"
 
 #: ckanext/restricteddata/translations.py:85
 msgid ""
@@ -396,6 +396,11 @@ msgid ""
 "kirjaamo@organisation.fi. We can use this email address to contact the "
 "dataset maintainer."
 msgstr ""
+"Käytä organisaatiosi yleistä sähköpostiosoitetta yksittäisen työntekijän "
+"yhteystietojen sijasta, jotta sähköpostiosoite toimii, vaikka henkilöstössä "
+"tapahtuisi muutoksia. Esimerkiksi opendata@organisation.fi tai "
+"kirjaamo@organisation.fi. Voimme käyttää tätä sähköpostiosoitetta "
+"ottaaksemme yhteyttä tietoaineiston ylläpitäjään."
 
 #: ckanext/restricteddata/translations.py:87
 msgid "Biennial"
@@ -459,31 +464,31 @@ msgstr "Ei koskaan"
 
 #: ckanext/restricteddata/translations.py:103
 msgid "High-value dataset category"
-msgstr ""
+msgstr "Arvokkaan tietoaineiston kategoria"
 
 #: ckanext/restricteddata/translations.py:104
 msgid "Meteorological"
-msgstr ""
+msgstr "Säätiedot"
 
 #: ckanext/restricteddata/translations.py:105
 msgid "Companies and company ownership"
-msgstr ""
+msgstr "Yritys- ja yritysten omistustiedot"
 
 #: ckanext/restricteddata/translations.py:106
 msgid "Geospatial"
-msgstr ""
+msgstr "Paikkatiedot"
 
 #: ckanext/restricteddata/translations.py:107
 msgid "Mobility"
-msgstr ""
+msgstr "Liikkuvuustiedot"
 
 #: ckanext/restricteddata/translations.py:108
 msgid "Earth observation and environment"
-msgstr ""
+msgstr "Maan havainnointi ja ympäristö"
 
 #: ckanext/restricteddata/translations.py:109
 msgid "Statistics"
-msgstr ""
+msgstr "Tilastotiedot"
 
 #: ckanext/restricteddata/translations.py:112
 msgid "Data resource title"
@@ -511,7 +516,7 @@ msgstr "Lisää linkki tietoaineistoon."
 
 #: ckanext/restricteddata/translations.py:117
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: ckanext/restricteddata/translations.py:118
 msgid "Resource URL"
@@ -519,7 +524,7 @@ msgstr "Jakelutavan linkki"
 
 #: ckanext/restricteddata/translations.py:119
 msgid "Select a file format for the distribution"
-msgstr "Data-aineiston tiedostomuoto"
+msgstr "Jakelutavan tiedostomuoto"
 
 #: ckanext/restricteddata/translations.py:120
 msgid "Size"
@@ -531,6 +536,9 @@ msgid ""
 "\n"
 "The size can be approximated as a decimal if the precise size is not known. If data is offered via an API, enter the overall size of the underlying data."
 msgstr ""
+"Syötä tiedoston koko tavuina.\n"
+"\n"
+"Jos et tiedä tarkkaa kokoa, anna arvio desimaalin tarkkuudella. Jos data on tarjolla rajapinnan kautta, koon tulisi viitata rajapinnan takana olevan tietoaineiston todelliseen kokoon."
 
 #: ckanext/restricteddata/translations.py:122
 msgid "Data resource description"
@@ -678,27 +686,27 @@ msgstr "Jakelutavat"
 
 #: ckanext/restricteddata/translations.py:150
 msgid "Unnamed resource"
-msgstr "Nimetön data-aineisto"
+msgstr "Nimetön jakelutapa"
 
 #: ckanext/restricteddata/translations.py:151
 msgid "Add view"
-msgstr ""
+msgstr "Lisää esikatselu"
 
 #: ckanext/restricteddata/translations.py:152
 msgid "All views"
-msgstr ""
+msgstr "Kaikki esikatselut"
 
 #: ckanext/restricteddata/translations.py:153
 msgid "View view"
-msgstr ""
+msgstr "Tarkastele esikatselua"
 
 #: ckanext/restricteddata/translations.py:154
 msgid "eg. My View"
-msgstr ""
+msgstr "esimerkiksi Näkymäni"
 
 #: ckanext/restricteddata/translations.py:155
 msgid "eg. Information about my view"
-msgstr ""
+msgstr "esimerkiksi Tietoa näkymästäni"
 
 #: ckanext/restricteddata/translations.py:156
 msgid "Image url"
@@ -707,6 +715,8 @@ msgstr "Kuvan URL"
 #: ckanext/restricteddata/translations.py:157
 msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
 msgstr ""
+"esimerkiksi http://example.com/image.jpg (jos tyhjä, käytetään jakelutavan "
+"url-osoitetta)"
 
 #: ckanext/restricteddata/templates/package/group_list.html:4
 #: ckanext/restricteddata/translations.py:160
@@ -746,7 +756,7 @@ msgstr "Ajankohtaista"
 
 #: ckanext/restricteddata/translations.py:170
 msgid "Activity from items that I'm following"
-msgstr ""
+msgstr "Seuraamieni asioiden toiminta"
 
 #: ckanext/restricteddata/templates/user/dashboard.html:5
 #: ckanext/restricteddata/translations.py:171
@@ -775,6 +785,8 @@ msgid ""
 "You will receive notification emails from {site_title}, e.g. when you have "
 "new activities on your dashboard."
 msgstr ""
+"Saat ilmoitussähköposteja {site_title}lta esimerkiksi silloin, kun "
+"yhteenvedossasi on uusia tapahtumatietoja."
 
 #: ckanext/restricteddata/translations.py:179
 msgid "Activity type"
@@ -843,7 +855,7 @@ msgstr "{actor} poisti data-aineiston {resource} tietoaineistosta {dataset}"
 
 #: ckanext/restricteddata/translations.py:195
 msgid "{actor} {activity_type}"
-msgstr ""
+msgstr "{actor} {activity_type}"
 
 #: ckanext/restricteddata/translations.py:196
 msgid "{actor} added the tag {tag} to the dataset {dataset}"
@@ -915,7 +927,7 @@ msgstr "Päivitä {object_type}"
 
 #: ckanext/restricteddata/translations.py:215
 msgid "A little information about my {object_type}..."
-msgstr ""
+msgstr "Tietoa {object_type}ni..."
 
 #: ckanext/restricteddata/translations.py:216
 msgid "There are no {object_type}s associated with this dataset"
@@ -923,69 +935,69 @@ msgstr "Tietoaineistoon ei ole liitetty {object_type}"
 
 #: ckanext/restricteddata/translations.py:217
 msgid "There are currently no {object_type}s for this site"
-msgstr ""
+msgstr "Sivulla ei ole tällä hetkellä {object_type}"
 
 #: ckanext/restricteddata/translations.py:218
 msgid "There is no description for this {object_type}"
-msgstr ""
+msgstr "Tälle {object_type}lle ei ole kuvausta"
 
 #: ckanext/restricteddata/translations.py:219
 msgid "You are not a member of any {object_type}s."
-msgstr ""
+msgstr "Et ole minkään {object_type}n jäsen"
 
 #: ckanext/restricteddata/translations.py:220
 msgid "{object_type} Form"
-msgstr ""
+msgstr "{object_type} lomake"
 
 #: ckanext/restricteddata/translations.py:221
 msgid "My {object_type}s"
-msgstr ""
+msgstr "{object_type}ni"
 
 #: ckanext/restricteddata/translations.py:222
 msgid "My {object_type}"
-msgstr ""
+msgstr "{object_type}ni"
 
 #: ckanext/restricteddata/translations.py:223
 msgid "No {object_type}"
-msgstr ""
+msgstr "Ei {object_type}"
 
 #: ckanext/restricteddata/translations.py:224
 msgid "{object_type}s"
-msgstr ""
+msgstr "{object_type}t"
 
 #: ckanext/restricteddata/validators.py:44
 msgid "expecting list of strings"
-msgstr ""
+msgstr "odottaa merkkijonolistaa"
 
 #: ckanext/restricteddata/validators.py:53
 #, python-format
 msgid "invalid encoding for \"%s\" value"
-msgstr ""
+msgstr "Arvon \"%s\" koodaus on virheellinen"
 
 #: ckanext/restricteddata/validators.py:57
 #, python-format
 msgid "invalid type for repeating text: %r"
-msgstr ""
+msgstr "Toistuvan tekstin tyyppi on virheellinen: %r"
 
 #: ckanext/restricteddata/validators.py:110
 #: ckanext/restricteddata/validators.py:258
 msgid "expecting a list"
-msgstr ""
+msgstr "odottaa listaa"
 
 #: ckanext/restricteddata/validators.py:133
 #: ckanext/restricteddata/validators.py:175
 msgid "Failed to decode JSON string"
-msgstr ""
+msgstr "JSON-merkkijonon purkaminen epäonnistui"
 
 #: ckanext/restricteddata/validators.py:136
 #: ckanext/restricteddata/validators.py:178
 msgid "Invalid encoding for JSON string"
-msgstr ""
+msgstr "JSON-merkkijonon koodaus on virheellinen"
 
 #: ckanext/restricteddata/validators.py:139
 #: ckanext/restricteddata/validators.py:181
 msgid "expecting JSON object"
-msgstr ""
+msgstr "odottaa JSON-objektia"
 
 #: ckanext/restricteddata/validators.py:144
 #: ckanext/restricteddata/validators.py:153
@@ -995,7 +1007,7 @@ msgstr "Vaadittu käännös \"%s\" puuttuu"
 
 #: ckanext/restricteddata/validators.py:282
 msgid "You must select at least 1 high value category"
-msgstr ""
+msgstr "Valitse ainakin 1 arvokkaan tietoaineiston kategoria"
 
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
@@ -1017,6 +1029,9 @@ msgid ""
 "the resource to the right and place it to the desired location on the list. "
 "When you are done, click the \"Save order\" -button."
 msgstr ""
+"Voit järjestää jakelutavat uudelleen vetämällä niitä nuolikuvakkeen avulla. "
+"Vedä jakelutapa oikealle ja sijoita se haluamaasi kohtaan listassa. Kun olet"
+" valmis, valitse \"Tallenna järjestys\"."
 
 #: ckanext/restricteddata/assets/modules/rd-resource-reorder.js:63
 msgid "Save order"
@@ -1102,11 +1117,11 @@ msgstr "Murupolku"
 
 #: ckanext/restricteddata/templates/admin/config.html:9
 msgid "Info message"
-msgstr ""
+msgstr "Tiedotusviesti"
 
 #: ckanext/restricteddata/templates/admin/config.html:19
 msgid "Service alert"
-msgstr ""
+msgstr "Palveluvaroitus"
 
 #: ckanext/restricteddata/templates/group/snippets/group_item.html:16
 #: ckanext/restricteddata/templates/organization/snippets/organization_item.html:18
@@ -1209,7 +1224,7 @@ msgstr "Katso kaikki uutiset ja häiriötiedotteet"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:29
 msgid "Custom"
-msgstr ""
+msgstr "Custom"
 
 #: ckanext/restricteddata/templates/macros/form/input_block.html:30
 msgid "This field is required"
@@ -1260,7 +1275,7 @@ msgstr "Rajaa hakua"
 #: ckanext/restricteddata/templates/organization/read.html:22
 #: ckanext/restricteddata/templates/user/read.html:5
 msgid "Manage"
-msgstr "Muokkaa"
+msgstr "Hallinnoi"
 
 #: ckanext/restricteddata/templates/organization/snippets/helper.html:15
 msgid ""
@@ -1295,12 +1310,12 @@ msgstr "Muokkaa tietoaineistoa"
 #: ckanext/restricteddata/templates/package/edit.html:13
 #: ckanext/restricteddata/templates/package/resources.html:13
 msgid "Edit metadata"
-msgstr "Muokkaa metadataa"
+msgstr "Muokkaa metatietoja"
 
 #: ckanext/restricteddata/templates/package/edit.html:16
 #: ckanext/restricteddata/templates/package/resources.html:16
 msgid "Collaborators"
-msgstr ""
+msgstr "Työkumppanit"
 
 #: ckanext/restricteddata/templates/package/edit.html:30
 #: ckanext/restricteddata/templates/package/resource_edit_base.html:33
@@ -1319,7 +1334,7 @@ msgstr "Lisää kategoriaan"
 
 #: ckanext/restricteddata/templates/package/group_list.html:27
 msgid "There are no groups associated with this dataset"
-msgstr ""
+msgstr "Tietoaineistoon ei ole liitetty kategorioita"
 
 #: ckanext/restricteddata/templates/package/new.html:13
 msgid "Create new dataset"
@@ -1608,6 +1623,8 @@ msgid ""
 "You can copy and paste the embed code into a CMS or blog software that "
 "supports raw HTML"
 msgstr ""
+"Voit kopioida ja liittää upotuskoodin CMS- tai blogiohjelmistoon, joka tukee"
+" raakaa HTML:ää."
 
 #: ckanext/restricteddata/templates/package/snippets/resource_view.html:65
 msgid "Width"
@@ -1632,7 +1649,7 @@ msgid ""
 " some?</a></p>"
 msgstr ""
 "<p class=\"empty\">Tietoaineistoon ei ole lisätty dataa, <a "
-"href=\"%(url)s\">haluaisitko lisätä data-aineiston?</a>"
+"href=\"%(url)s\">haluaisitko lisätä data-aineiston?</a></p>"
 
 #: ckanext/restricteddata/templates/package/snippets/resources_list.html:32
 msgid "This dataset has no data"
@@ -1668,7 +1685,7 @@ msgstr "Lisenssi"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:44
 msgid "Filter Results"
-msgstr ""
+msgstr "Rajaa tuloksia"
 
 #: ckanext/restricteddata/templates/snippets/search_form.html:62
 msgid "Order by"
@@ -1810,11 +1827,11 @@ msgstr "Sisältöni"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Submenu Order"
-msgstr ""
+msgstr "Alivalikon järjestys"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/base_form.html:34
 msgid "Not in menu"
-msgstr ""
+msgstr "Ei valikossa"
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/page.html:30
 msgid "This page currently has no content"
@@ -1839,4 +1856,4 @@ msgstr "Sivulla ei ole tällä hetkellä blogi-artikkeleja."
 
 #: ckanext/restricteddata/templates_pages/ckanext_pages/snippets/pages_list.html:29
 msgid "There are currently no pages here"
-msgstr ""
+msgstr "Sivuja ei tällä hetkellä ole"
