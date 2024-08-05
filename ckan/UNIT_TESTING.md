@@ -35,7 +35,7 @@ ckan.redis.url = redis://redis:6379/1
 ```
 
 **3. Start the solr-test container**
-`docker-compose -p restricteddata up -d solr-test`
+`docker compose -p restricteddata up -d solr-test`
 
 **4. Start a shell in ckan-container**
 `docker exec -it restricteddata-ckan-1 bash`
