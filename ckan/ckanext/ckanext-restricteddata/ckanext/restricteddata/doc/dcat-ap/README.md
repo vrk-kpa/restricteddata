@@ -33,6 +33,7 @@ voaf | http://purl.org/vocommons/voaf#
 vcard | http://www.w3.org/2006/vcard/ns#
 geodcat | http://data.europa.eu/930/#
 gsp | http://www.opengis.net/ont/geosparql#
+hvd | https://semiceu.github.io/uri.semic.eu-generated/DCAT-AP/releases/2.2.0-hvd/#
 
 
 ## Classes
@@ -47,6 +48,7 @@ A catalogue or repository that hosts the Datasets being described.
 #### Properties
 
 
+
 ##### Mandatory
 Term | Range | Cardinality | Comment
 -----|-------|-------------|--------
@@ -56,29 +58,17 @@ dct:publisher | foaf:Agent | 1..1 | This property refers to an entity (organisat
 dct:title | rdfs:Literal | 1..n | This property contains a name given to the Catalogue. This property can be repeated for parallel language versions of the name.
  
 
+
+
 ##### Recommended
 Term | Range | Cardinality | Comment
 -----|-------|-------------|--------
 foaf:homepage | foaf:Document | 0..1 | This property refers to a web page that acts as the main page for the Catalogue.
 dct:language | dct:LinguisticSystem | 0..n | This property refers to a language used in the textual metadata describing titles, descriptions, etc. of the Datasets in the Catalogue. This property can be repeated if the metadata is provided in multiple languages.
-dct:license | dct:LicenseDocument | 0..1 | This property refers to the licence under which the Catalogue can be used or reused.
-dct:issued | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the date of formal issuance (e.g., publication) of the Catalogue.
-dct:spatial | dct:Location | 0..n | This property refers to a geographical area covered by the Catalogue.
-dcat:themeTaxonomy | skos:ConceptScheme | 0..n | This property refers to a knowledge organization system used to classify the Catalogue's Datasets.
-dct:modified | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the most recent date on which the Catalogue was modified.
  
 
-##### Optional
-Term | Range | Cardinality | Comment
------|-------|-------------|--------
-dct:hasPart | dcat:Catalog | 0..n | This property refers to a related Catalogue that is part of the described Catalogue
-dct:isPartOf | dcat:Catalog | 0..1 | This property refers to a related Catalogue in which the described Catalogue is physically or logically included.
-dcat:record | dcat:CatalogRecord | 0..n | This property refers to a Catalogue Record that is part of the Catalogue
-dct:rights | dct:RightsStatement | 0..1 | This property refers to a statement that specifies rights associated with the Catalogue.
-dcat:service | dcat:DataService | 0..n | This property refers to a site or end-point that is listed in the catalog.
-dcat:catalog | dcat:Catalog | 0..n | This property refers to a catalog whose contents are of interest in the context of this catalog
-dct:creator | foaf:Agent | 0..1 | This property refers to the  entity primarily responsible for producing the catalogue
- 
+
+
  
 
 ### Dataset
@@ -90,12 +80,15 @@ A conceptual entity that represents the information published.
 #### Properties
 
 
+
 ##### Mandatory
 Term | Range | Cardinality | Comment
 -----|-------|-------------|--------
 dct:description | rdfs:Literal | 1..n | This property contains a free-text account of the Dataset. This property can be repeated for parallel language versions of the description.
 dct:title | rdfs:Literal | 1..n | This property contains a name given to the Dataset. This property can be repeated for parallel language versions of the name.
  
+
+
 
 ##### Recommended
 Term | Range | Cardinality | Comment
@@ -109,6 +102,8 @@ dct:temporal | dct:PeriodOfTime | 0..1 | This property refers to a temporal peri
 dcat:theme, subproperty of dct:subject | skos:Concept | 0..n | This property refers to a category of the Dataset. A Dataset may be associated with multiple themes.
  
 
+
+
 ##### Optional
 Term | Range | Cardinality | Comment
 -----|-------|-------------|--------
@@ -119,7 +114,10 @@ dcat:landingPage | foaf:Document | 0..n | This property refers to a web page tha
 dct:issued | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the date of formal issuance (e.g., publication) of the Dataset.
 dct:type | skos:Concept | 0..1 | This property refers to the type of the Dataset. A controlled vocabulary for the values has not been established.
 dct:modified | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the most recent date on which the Dataset was changed or modified.
+dcatap:hvdCategory | skos:Concept | 0..n | The HVD category to which this Dataset belongs.
+dcatap:applicableLegislation | hvd:LegalResource | 0..n | The legislation that mandates the creation or management of the Dataset.
  
+
  
 
 ### Distribution
@@ -131,11 +129,14 @@ A physical embodiment of the Dataset in a particular format.
 #### Properties
 
 
+
 ##### Mandatory
 Term | Range | Cardinality | Comment
 -----|-------|-------------|--------
 dcat:accessURL | rdfs:Resource | 1..n | This property contains a URL that gives access to a Distribution of the Dataset. The resource at the access URL may contain information about how to get the Dataset.
  
+
+
 
 ##### Recommended
 Term | Range | Cardinality | Comment
@@ -144,6 +145,8 @@ dct:description | rdfs:Literal | 0..n | This property contains a free-text accou
 dct:format | dct:MediaTypeOrExtent | 0..1 | This property refers to the file format of the Distribution.
 dct:license | dct:LicenseDocument | 0..1 | This property refers to the licence under which the Distribution is made available.
  
+
+
 
 ##### Optional
 Term | Range | Cardinality | Comment
@@ -159,6 +162,8 @@ dcat:temporalResolution | xsd:duration | 0..n | This property refers to the mini
 **dct:temporal** | dct:PeriodOfTime | 0..n | This property refers to a temporal period that the Distribution covers.
 dct:title | rdfs:Literal | 0..n | This property contains a name given to the Distribution. This property can be repeated for parallel language versions of the description.
 dct:modified | rdfs:Literal typed as xsd:date or xsd:dateTime | 0..1 | This property contains the most recent date on which the Distribution was changed or modified.
+dcatap:applicableLegislation | hvd:LegalResource | 0..n | The legislation that mandates the creation or management of the Dataset.
  
+
  
  
