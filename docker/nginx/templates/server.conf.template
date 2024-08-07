@@ -44,6 +44,12 @@ location ~ ^/(.*)$ {
     return 301 /en_GB$1;
   }
 
+  location ~ ^/user/_logout {
+    proxy_pass http://$ckan_target/user/_logout;
+    proxy_hide_header Cache-Control;
+    add_header Cache-Control private;
+  }
+
   location ~ /(fi|en_GB|sv)/organization/(.*)/embed {
     proxy_pass http://$ckan_target/$1/organization/$2/embed$is_args$args;
 
