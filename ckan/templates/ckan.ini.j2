@@ -86,7 +86,7 @@ ckan.max_image_size = 5
 ckan.cors.origin_allow_all = True
 ckan.activity_streams_email_notifications = True
 
-{% if environ('DEV_MODE') == 'true' %}
+{% if environ('DEV_MODE') == 'true' or environ('TEST_MODE') == 'true' %}
 ckan.cache_enabled = False
 ckan.cache_expires = 0
 {% else %}
