@@ -260,6 +260,7 @@ jobs:
           dotenv -f docker/.env set REGISTRY ${REGISTRY}
           dotenv -f docker/.env set REPOSITORY ${REPOSITORY}
           dotenv -f docker/.env set MATOMO_ENABLED false
+          dotenv -f docker/.env set TEST_MODE true
         env:
           REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: ${{ vars.REPOSITORY }}
