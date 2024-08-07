@@ -74,7 +74,9 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_translated_logo': helpers.get_translated_logo,
             'get_assignable_groups_for_package': helpers.get_assignable_groups_for_package,
             'scheming_highvalue_category_list': helpers.scheming_highvalue_category_list,
-            'get_highvalue_category_label': helpers.get_highvalue_category_label
+            'get_highvalue_category_label': helpers.get_highvalue_category_label,
+            'get_group_title_translations': helpers.get_group_title_translations,
+            'get_translated_groups': helpers.get_translated_groups
         }
 
     # IValidators:
@@ -102,12 +104,18 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def after_dataset_search(self, search_results, search_params) -> PackageDict:
 
         # Modify facet display name to be human-readable
-        # TODO: handle translations for groups and highvalue categories
+        group_titles = helpers.get_group_title_translations()
+        lang = helpers.get_lang_prefix()
+        # TODO: handle translations for highvalue categories
         if search_results.get('search_facets'):
             for facet in search_results['search_facets']:
                 if facet == "vocab_highvalue_category":
                     for facet_item in search_results['search_facets'][facet]['items']:
                         facet_item['display_name'] = helpers.get_highvalue_category_label(facet_item['name'])
+                elif facet == "groups":
+                    for facet_item in search_results['search_facets'][facet]['items']:
+                        facet_item['display_name'] = (group_titles.get(facet_item['name'], {})
+                                                      .get(lang, facet_item['display_name']))
 
 
         # Only filter results if processing a request

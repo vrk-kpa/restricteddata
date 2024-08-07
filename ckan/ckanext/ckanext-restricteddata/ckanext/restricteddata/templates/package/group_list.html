@@ -20,8 +20,9 @@
   {% if pkg_dict.groups %}
     <form method="post">
       {{ h.csrf_input() }}
+      {% set translated_groups = h.get_translated_groups(pkg_dict.groups) %}
       {% set allow_group_delete = h.check_access('package_update', {'id': pkg.id }) %}
-      {% snippet 'group/snippets/group_list.html', groups=pkg_dict.groups, allow_delete=allow_group_delete %}
+      {% snippet 'group/snippets/group_list.html', groups=translated_groups, allow_delete=allow_group_delete %}
     </form>
   {% else %}
     <p class="empty">{{ h.humanize_entity_type('group', default_group_type, 'no associated label') or _('There are no groups associated with this dataset') }}</p>

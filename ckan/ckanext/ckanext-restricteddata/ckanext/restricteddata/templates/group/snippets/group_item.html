@@ -4,11 +4,13 @@
     <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="media-image img-fluid">
   {% endblock %}
   {% block title %}
-    <h2 class="media-heading">{{ group.display_name }}</h2>
+    {% set title = h.get_translated(group, 'title') %}
+    <h2 class="media-heading">{{ title }}</h2>
   {% endblock %}
   {% block description %}
-    {% if group.description %}
-      <p class="media-description">{{ h.markdown_extract(group.description, extract_length=80) }}</p>
+    {% set description = h.get_translated(group, 'description') %}
+    {% if description %}
+      <p class="media-description">{{ h.markdown_extract(description, extract_length=80) }}</p>
     {% endif %}
   {% endblock %}
   {% block datasets %}
