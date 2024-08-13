@@ -63,3 +63,17 @@
 
   }
 }
+
+/* An alert used in form validation errors */
+.error-explanation {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  .error-explanation-heading {
+    font-weight: rd.$font-weight-bold;
+  }
+  
+  .error-explanation-list {
+    padding-left: 1em;
+    margin-bottom: 0;
+  }
+}
