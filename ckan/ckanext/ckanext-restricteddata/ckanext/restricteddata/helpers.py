@@ -4,6 +4,7 @@ from ckan.plugins import toolkit
 from ckan.lib import i18n
 from ckanext.scheming.helpers import lang
 from ckan.logic import NotFound
+from flask import has_request_context
 from logging import getLogger
 from datetime import datetime, timedelta
 import iso8601
@@ -280,13 +281,19 @@ def get_highvalue_category_label(value):
     return highvalue_categories.get(value, "")
 
 def get_group_title_translations():
-    context = {'model': model, 'session': model.Session, 'user': c.user}
+    context = {'model': model, 'session': model.Session}
+    if has_request_context() and toolkit.g.get('user'):
+        context['user'] = toolkit.g.user
+
     data_dict = {'all_fields': True, 'include_extras': True, 'include_dataset_count': False}
     groups = toolkit.get_action('group_list')(context, data_dict)
     return {g['name']: g.get('title_translated', {}) for g in groups}
 
 def get_translated_groups(groups):
-    context = {'model': model, 'session': model.Session, 'user': c.user}
+    context = {'model': model, 'session': model.Session}
+    if has_request_context() and toolkit.g.get('user'):
+        context['user'] = toolkit.g.user
+
     data_dict = {'groups': [g['name'] for g in groups],
                  'all_fields': True,
                  'include_extras': True,

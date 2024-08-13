@@ -105,7 +105,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
         # Modify facet display name to be human-readable
         group_titles = helpers.get_group_title_translations()
-        lang = helpers.get_lang_prefix()
+        lang = helpers.get_lang_prefix() if has_request_context() else toolkit.config.get('ckan_locale_default', 'en')
         # TODO: handle translations for highvalue categories
         if search_results.get('search_facets'):
             for facet in search_results['search_facets']:
