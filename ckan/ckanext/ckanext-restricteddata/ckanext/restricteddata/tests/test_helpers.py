@@ -40,3 +40,24 @@ class TestGetAssignableGroupsForPackageHelper(object):
         [unassigned_group] = helpers.get_assignable_groups_for_package(d)
         assert unassigned_group['name'] == g2['name']
 
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_get_group_title_translations(app):
+    titles = [(lang, f'title {lang}') for lang in ['fi', 'sv', 'en']]
+    g = Group(title_translated=dict(titles))
+    name = g['name']
+    group_titles = helpers.get_group_title_translations()
+
+    for lang, title in titles:
+        assert group_titles[name][lang] == title
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
+def test_get_translated_groups(app):
+    titles = [(lang, f'title {lang}') for lang in ['fi', 'sv', 'en']]
+    g = Group(title_translated=dict(titles))
+    del g['title_translated']
+    [translated] = helpers.get_translated_groups([g])
+
+    for lang, title in titles:
+        assert translated['title_translated'][lang] == title
