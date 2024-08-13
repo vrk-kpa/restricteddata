@@ -187,6 +187,30 @@ def test_search_facets_with_highvalue_category():
     }
 
 
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_search_facets_with_category():
+    category = Group(**minimal_group())
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['categories'] = [category['name']]
+    Dataset(**dataset_fields)
+    data_dict = {
+        "facet.field": ['groups']
+    }
+    results = call_action('package_search', **data_dict )
+    assert results['search_facets'] == {
+        "groups": {
+            "items": [
+                {
+                    "count": 1,
+                    "display_name": category['display_name'],
+                    "name": category['name']
+                }
+            ],
+            "title": "groups"
+        }
+    }
+
+
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_dataset_with_external_ursl():
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
