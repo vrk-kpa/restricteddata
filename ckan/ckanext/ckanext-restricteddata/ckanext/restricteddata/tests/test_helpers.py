@@ -42,7 +42,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
-def test_get_group_title_translations(app):
+def test_get_group_title_translations():
     titles = [(lang, f'title {lang}') for lang in ['fi', 'sv', 'en']]
     g = Group(title_translated=dict(titles))
     name = g['name']
@@ -52,8 +52,8 @@ def test_get_group_title_translations(app):
         assert group_titles[name][lang] == title
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
-def test_get_translated_groups(app):
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_get_translated_groups():
     titles = [(lang, f'title {lang}') for lang in ['fi', 'sv', 'en']]
     g = Group(title_translated=dict(titles))
     del g['title_translated']
