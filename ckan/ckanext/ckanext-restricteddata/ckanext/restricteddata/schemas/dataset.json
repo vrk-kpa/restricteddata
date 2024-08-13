@@ -106,8 +106,8 @@
     {
       "field_name": "highvalue",
       "label": "High value dataset",
-      "preset": "select",
-      "form_snippet": "radio.html",
+      "preset": "radio",
+      "display_snippet": "boolean.html",
       "choices": [
         {
           "label": "No",
