@@ -31,3 +31,17 @@ def save_to_groups(key, data, errors, context):
         data[('groups',)] = ""
 
     return data[key]
+
+
+def highvalue(key, data, errors, context):
+    value = data[key]
+
+    # Remove highvalue categories if highvalue is false
+    if value is False:
+        removed_keys = []
+        for k in data.keys():
+            if 'highvalue_category' in k:
+                removed_keys.append(k)
+
+        for k in removed_keys:
+            data[k] = []

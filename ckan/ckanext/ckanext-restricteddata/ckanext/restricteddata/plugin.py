@@ -94,7 +94,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'required_languages': validators.required_languages,
             'highvalue_category': validators.highvalue_category,
             # NOTE: this is a converter. (https://github.com/vrk-kpa/ckanext-scheming/#validators)
-            'save_to_groups': converters.save_to_groups
+            'save_to_groups': converters.save_to_groups,
+            'highvalue': converters.highvalue
         }
 
     # IPackageController

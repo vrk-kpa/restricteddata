@@ -120,7 +120,7 @@
         }
       ],
       "default_value": false,
-      "validators": "boolean_validator",
+      "validators": "boolean_validator highvalue",
       "output_validators": "boolean_validator",
       "description": "You can mark dataset as high value dataset"
     },
