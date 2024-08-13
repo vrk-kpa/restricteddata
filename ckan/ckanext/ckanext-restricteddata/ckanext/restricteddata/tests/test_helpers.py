@@ -3,16 +3,15 @@ import pytest
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import toolkit
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
-from .utils import minimal_dataset_with_one_resource_fields
+from .utils import minimal_dataset_with_one_resource_fields, minimal_group
 
 import ckanext.restricteddata.helpers as helpers
-
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 class TestGetAssignableGroupsForPackageHelper(object):
     @pytest.mark.usefixtures("with_request_context")
     def test_get_assignable_groups_for_package_helper_with_non_maintainer(self, app):
-        _g = Group()
+        _g = Group(**minimal_group())
         some_user = User()
         org = Organization()
 
@@ -26,8 +25,8 @@ class TestGetAssignableGroupsForPackageHelper(object):
 
     @pytest.mark.usefixtures("with_request_context")
     def test_get_assignable_groups_for_package_helper_with_maintainer(self, app):
-        g1 = Group()
-        g2 = Group()
+        g1 = Group(**minimal_group())
+        g2 = Group(**minimal_group())
         maintainer = User()
         org = Organization(user=maintainer)
 

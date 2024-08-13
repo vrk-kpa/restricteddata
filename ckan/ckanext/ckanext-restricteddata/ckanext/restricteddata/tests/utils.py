@@ -19,3 +19,7 @@ def minimal_dataset_with_one_resource_fields(user):
     )
 
 
+def minimal_group():
+    return dict(
+        title_translated={lang: f'title {lang}' for lang in ['fi', 'sv']}
+    )
