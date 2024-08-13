@@ -185,6 +185,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             ('groups', toolkit._('Groups')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
+            ('vocab_highvalue_category', toolkit._('High-value dataset category'))
         ])
         return facets_dict
 
