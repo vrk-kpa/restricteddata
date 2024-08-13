@@ -111,12 +111,12 @@
       "choices": [
         {
           "label": "No",
-          "value": "False",
+          "value": "false",
           "hide_element": "highvalue_category"
         },
         {
           "label": "Yes",
-          "value": "True",
+          "value": "true",
           "show_element": "highvalue_category"
         }
       ],
