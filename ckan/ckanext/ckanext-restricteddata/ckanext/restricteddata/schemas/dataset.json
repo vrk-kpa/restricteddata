@@ -74,13 +74,31 @@
       "description": "Select at least one keyword relating to your data that helps users to find your data."
     },
     {
-      "field_name": "categories",
-      "label": "Categories",
-      "preset": "multiple_checkbox",
+      "field_name": "groups",
+      "form_snippet": "group_checkbox.html",
+      "display_snippet": null,
       "choices_helper": "scheming_category_list",
-      "description": "Select at least one category.",
-      "validators": "save_to_groups",
-      "display_snippet": null
+
+      "repeating_subfields": [
+        {
+          "field_name": "id"
+        },
+        {
+          "field_name": "title"
+        },
+        {
+          "field_name": "name"
+        },
+        {
+          "field_name": "description"
+        },
+        {
+          "field_name": "display_name"
+        },
+        {
+          "field_name": "image_display_url"
+        }
+      ]
     },
     {
       "field_name": "private",
