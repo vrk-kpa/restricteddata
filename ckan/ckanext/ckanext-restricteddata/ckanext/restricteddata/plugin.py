@@ -94,7 +94,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'convert_to_json_compatible_str_if_str':
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
-            'highvalue_category': validators.highvalue_category
+            'highvalue': validators.highvalue
         }
 
     # IPackageController
@@ -190,6 +190,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             ('groups', toolkit._('Groups')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
+            ('vocab_highvalue_category', toolkit._('High-value dataset category'))
         ])
         return facets_dict
 

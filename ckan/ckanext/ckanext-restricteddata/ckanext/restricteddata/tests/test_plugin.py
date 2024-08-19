@@ -111,7 +111,7 @@ def test_dataset_with_highvalue_category():
     dataset_fields['highvalue_category'] = "geospatial"
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue'] is True
     assert dataset['highvalue_category'] == ["geospatial"]
 
 
@@ -122,7 +122,7 @@ def test_dataset_with_multiple_highvalue_categories():
     dataset_fields['highvalue_category'] = ["geospatial", "mobility", "earth-observation-and-environment"]
     d = Dataset(**dataset_fields)
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue'] is True
     assert dataset['highvalue_category'] == ["geospatial", "mobility", "earth-observation-and-environment"]
 
 
@@ -158,7 +158,7 @@ def test_dataset_with_highvalue_category_as_normal_user(app):
     d = call_action('package_update', context=context, name=d['name'], **dataset_fields)
 
     dataset = call_action('package_show', id=d['name'])
-    assert dataset['highvalue'] == 'true'
+    assert dataset['highvalue'] is True
     assert dataset['highvalue_category'] == ["geospatial"]
 
 

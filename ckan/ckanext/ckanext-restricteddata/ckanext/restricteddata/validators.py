@@ -282,3 +282,16 @@ def highvalue_category(key, data, errors, context):
             errors[key].append(_('You must select at least 1 high value category'))
 
         return data[key]
+
+def highvalue(key, data, errors, context):
+    value = data[key]
+
+    # Remove highvalue categories if highvalue is false
+    if value is False:
+        removed_keys = []
+        for k in data.keys():
+            if 'highvalue_category' in k:
+                removed_keys.append(k)
+
+        for k in removed_keys:
+            data[k] = []
