@@ -55,7 +55,7 @@ from ckan.plugins import plugin_loaded, toolkit
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
-from .utils import minimal_dataset_with_one_resource_fields
+from .utils import minimal_dataset_with_one_resource_fields, minimal_group
 
 
 @pytest.mark.usefixtures("with_plugins")
@@ -183,6 +183,30 @@ def test_search_facets_with_highvalue_category():
                 }
             ],
             "title": "vocab_highvalue_category"
+        }
+    }
+
+
+@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+def test_search_facets_with_category():
+    category = Group(**minimal_group())
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['categories'] = [category['name']]
+    Dataset(**dataset_fields)
+    data_dict = {
+        "facet.field": ['groups']
+    }
+    results = call_action('package_search', **data_dict )
+    assert results['search_facets'] == {
+        "groups": {
+            "items": [
+                {
+                    "count": 1,
+                    "display_name": category['display_name'],
+                    "name": category['name']
+                }
+            ],
+            "title": "groups"
         }
     }
 
@@ -379,7 +403,7 @@ def test_dataset_with_resource_with_geographical_accuracy():
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_maintainer_can_add_dataset_to_group(app):
-    g = Group()
+    g = Group(**minimal_group())
     author = User()
     org = Organization(user=author)
 
@@ -401,7 +425,7 @@ def test_maintainer_can_add_dataset_to_group(app):
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_non_maintainer_can_not_add_dataset_to_group(app):
-    g = Group()
+    g = Group(**minimal_group())
     some_user = User()
     org = Organization()
 
@@ -420,7 +444,7 @@ def test_non_maintainer_can_not_add_dataset_to_group(app):
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_categories_are_added_as_groups(app):
-    g = Group()
+    g = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['categories'] = g['name']
     d = Dataset(**dataset_fields)
@@ -431,7 +455,7 @@ def test_categories_are_added_as_groups(app):
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
 def test_groups_are_removed_when_categories_are_removed(app):
-    g = Group()
+    g = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
 
     d = Dataset(**dataset_fields)
