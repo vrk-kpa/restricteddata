@@ -49,13 +49,9 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 """
 import pytest
 import jwt
-import factory
-from functools import partial
 
-# import ckanext.restricteddata.plugin as plugin
-from ckan import model
 from ckan.plugins import plugin_loaded, toolkit
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group, _name
+from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
 from .utils import minimal_dataset_with_one_resource_fields, minimal_group
