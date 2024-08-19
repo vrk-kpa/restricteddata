@@ -94,6 +94,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'convert_to_json_compatible_str_if_str':
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
+            'highvalue_category': validators.highvalue_category,
             'highvalue': validators.highvalue
         }
 
