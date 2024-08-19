@@ -85,19 +85,18 @@
     {
       "field_name": "private",
       "label": "Dataset visibility",
-      "preset": "select",
-      "form_snippet": "radio.html",
+      "preset": "radio",
       "choices": [
         {
           "label": "Public",
-          "value": "False"
+          "value": false
         },
         {
           "label": "Private",
-          "value": "True"
+          "value": true
         }
       ],
-      "default_value": "False",
+      "default_value": false,
       "validators": "keep_old_value_if_missing boolean_validator",
       "description": "You can set the visibility to private temporarily, for example if the dataset is missing some information. Private datasets are visible to all members of the organisation.",
       "required": true,
@@ -106,22 +105,23 @@
     {
       "field_name": "highvalue",
       "label": "High value dataset",
-      "preset": "select",
-      "form_snippet": "radio.html",
+      "preset": "radio",
+      "display_snippet": "boolean.html",
       "choices": [
         {
           "label": "No",
-          "value": "False",
+          "value": false,
           "hide_element": "highvalue_category"
         },
         {
           "label": "Yes",
-          "value": "True",
+          "value": true,
           "show_element": "highvalue_category"
         }
       ],
-      "default_value": "False",
-      "validators": "boolean_validator",
+      "default_value": false,
+      "validators": "boolean_validator highvalue",
+      "output_validators": "boolean_validator",
       "description": "You can mark dataset as high value dataset"
     },
     {

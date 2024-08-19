@@ -96,7 +96,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'required_languages': validators.required_languages,
             'highvalue_category': validators.highvalue_category,
             # NOTE: this is a converter. (https://github.com/vrk-kpa/ckanext-scheming/#validators)
-            'save_to_groups': converters.save_to_groups
+            'save_to_groups': converters.save_to_groups,
+            'highvalue': converters.highvalue
         }
 
     # IPackageController
@@ -192,6 +193,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             ('groups', toolkit._('Groups')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
+            ('vocab_highvalue_category', toolkit._('High-value dataset category'))
         ])
         return facets_dict
 
