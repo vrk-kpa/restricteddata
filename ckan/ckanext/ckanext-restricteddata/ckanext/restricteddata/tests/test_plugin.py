@@ -190,7 +190,7 @@ def test_search_facets_with_highvalue_category():
 def test_search_facets_with_category():
     category = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['categories'] = [category['name']]
+    dataset_fields['groups'] = [{'name': category['name']}]
     Dataset(**dataset_fields)
     data_dict = {
         "facet.field": ['groups']
