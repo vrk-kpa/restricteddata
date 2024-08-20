@@ -23,10 +23,10 @@ class GroupView(CkanDatasetGroupView):
     def post(self, package_type, id):
         context, pkg_dict = self._prepare(id)
 
-        category_list = toolkit.request.form.getlist('categories')
+        category_list = toolkit.request.form.getlist('groups')
+        groups = [{'name': name } for name in category_list ]
         try:
-            log.info(category_list)
-            toolkit.get_action('package_patch')(context, {"id": id, "categories": category_list})
+            toolkit.get_action('package_patch')(context, {"id": id, "groups": groups})
             return toolkit.h.redirect_to('dataset_groups', id=id)
         except (toolkit.ObjectNotFound, toolkit.NotAuthorized):
             return toolkit.abort(404, toolkit._('Dataset not found'))
