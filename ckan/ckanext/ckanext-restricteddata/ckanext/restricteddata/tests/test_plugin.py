@@ -447,7 +447,6 @@ def test_groups_are_added(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['groups'] = [{'name': g['name']}]
     d = Dataset(**dataset_fields)
-    #dataset = call_action('package_show', id=d['name'])
 
     assert d['groups'][0]['id'] == g['id']
 
@@ -486,7 +485,7 @@ def test_groups_are_removed(app):
     assert len(d['groups']) == 1
     assert d['groups'][0]['id'] == g['id']
 
-    dataset_fields['groups'] = [{'name': "nonexistant"}]
+    dataset_fields['groups'] = []
 
     d = call_action('package_update', context={'user': user['name']}, name=d['id'], **dataset_fields)
 
