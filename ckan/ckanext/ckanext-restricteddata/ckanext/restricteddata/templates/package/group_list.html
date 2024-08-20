@@ -3,17 +3,32 @@
 {% block primary_content_inner %}
   <h2 class="hide-heading">{{ h.humanize_entity_type('group', default_group_type, 'page title') or _('Groups') }}</h2>
 
-  {# Added package_update requirement #}
-  {% set assignable_groups = h.get_assignable_groups_for_package(pkg_dict) %}
-  {% if assignable_groups %}
+    {%- set schema = h.scheming_get_dataset_schema('dataset') -%}
+
+    {%- set category_field = h.scheming_field_by_name(schema.dataset_fields, 'categories') -%}
+    {%- set choices = [] -%}
+
+    {%- for c in h.scheming_field_choices(category_field) -%}
+    {%- do choices.append(
+      (c.value, h.scheming_language_text_or_empty(c.label))) -%}
+    {%- endfor -%}
+
+    {% if choices %}
     <form class="add-to-group" method="post">
       {{ h.csrf_input() }}
-      <select id="field-add_group" name="group_added" data-module="autocomplete">
-        {% for group in assignable_groups %}
-          <option value="{{ group.name }}">{{ h.get_translated(group, 'title') }}</option>
+
+      <label for="field-add_group">{{_('Groups')}}</label>
+      <fieldset class="checkboxes" id="field-add_group">
+        {% for val, label in choices %}
+        <label class="ytp-checkbox mb-3 mr-4" for="field-{{ val }}">
+          <input id="field-{{ val }}" type="checkbox" name="categories" value="{{val}}" {% if val in c.pkg_dict.categories %} checked {% endif %}>
+          <span class="custom-checkbox"></span>
+          {{ label }}
+        </label>
         {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-primary" title="{{ _('Associate this group with this dataset') }}">{{ _('Add to group') }}</button>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary" title="{{ _('Associate these groups with this dataset') }}">{{ _('Save') }}</button>
     </form>
   {% endif %}
 
