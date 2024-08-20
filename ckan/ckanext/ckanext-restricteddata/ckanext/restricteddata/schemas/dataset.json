@@ -75,10 +75,11 @@
     },
     {
       "field_name": "groups",
+      "label": "Categories",
       "form_snippet": "group_checkbox.html",
       "display_snippet": null,
       "choices_helper": "scheming_category_list",
-
+      "description": "Select at least one category.",
       "repeating_subfields": [
         {
           "field_name": "id"
