@@ -14,8 +14,8 @@
         (c.value, h.scheming_language_text_or_empty(c.label))) -%}
     {%- endfor -%}
     <fieldset class="checkboxes">
-        {# Group number 100 will hopefully never exist, submitted as hidden so empty selection will remove groups #}
-        <input type="hidden" name="groups-100-name" value="" />
+        {# Submitted as hidden so empty selection will remove groups #}
+        <input type="hidden" name="groups-{{ choices|count + 1 }}-name" value="" />
         {% set selected_groups =  data[field.field_name] | map(attribute='name') |join(', ') %}
         {%- for val, label in choices -%}
 
