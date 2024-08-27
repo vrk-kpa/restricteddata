@@ -14,7 +14,7 @@ from collections import OrderedDict
 import jwt
 from flask_login import login_user, logout_user
 
-from . import helpers, validators, converters, views
+from . import helpers, validators, views
 from .logic import action, auth
 import random
 import base64
@@ -95,9 +95,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
             'highvalue_category': validators.highvalue_category,
-            # NOTE: this is a converter. (https://github.com/vrk-kpa/ckanext-scheming/#validators)
-            'save_to_groups': converters.save_to_groups,
-            'highvalue': converters.highvalue
+            'highvalue': validators.highvalue
         }
 
     # IPackageController

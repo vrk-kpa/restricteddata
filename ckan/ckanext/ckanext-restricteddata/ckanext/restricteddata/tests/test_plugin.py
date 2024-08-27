@@ -50,7 +50,6 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 import pytest
 import jwt
 
-# import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import plugin_loaded, toolkit
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
 from ckan.tests.helpers import call_action
@@ -191,7 +190,7 @@ def test_search_facets_with_highvalue_category():
 def test_search_facets_with_category():
     category = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['categories'] = [category['name']]
+    dataset_fields['groups'] = [{'name': category['name']}]
     Dataset(**dataset_fields)
     data_dict = {
         "facet.field": ['groups']
@@ -443,30 +442,54 @@ def test_non_maintainer_can_not_add_dataset_to_group(app):
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
-def test_categories_are_added_as_groups(app):
+def test_groups_are_added(app):
     g = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    dataset_fields['categories'] = g['name']
+    dataset_fields['groups'] = [{'name': g['name']}]
     d = Dataset(**dataset_fields)
-    dataset = call_action('package_show', id=d['name'])
 
-    assert dataset['groups'][0]['id'] == g['id']
+    assert d['groups'][0]['id'] == g['id']
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins")
-def test_groups_are_removed_when_categories_are_removed(app):
-    g = Group(**minimal_group())
-    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+def test_groups_are_updated(app):
 
+    user = Sysadmin()
+    g1 = Group(**minimal_group())
+    g2 = Group(**minimal_group())
+
+    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+
+    dataset_fields['groups'] =[{'name': g1['name']}]
     d = Dataset(**dataset_fields)
 
-    dataset_fields['categories'] = g['name']
-    d = call_action('package_update', name=d['id'], **dataset_fields)
+    assert len(d['groups']) == 1
+    assert d['groups'][0]['id'] == g1['id']
 
-    dataset_fields['categories'] = []
-    dataset = call_action('package_update', name=d['id'], **dataset_fields)
+    dataset_fields['groups'] = [{'name': g2['name']}]
 
-    assert len(dataset['groups']) == 0
+    d = call_action('package_update', context={'user': user['name']}, name=d['id'], **dataset_fields)
+
+    assert len(d['groups']) == 1
+    assert d['groups'][0]['name'] == g2['name']
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_groups_are_removed(app):
+    g = Group(**minimal_group())
+
+    user = Sysadmin()
+    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+    dataset_fields['groups'] = [{'name': g['name']}]
+    d = Dataset(**dataset_fields)
+
+    assert len(d['groups']) == 1
+    assert d['groups'][0]['id'] == g['id']
+
+    dataset_fields['groups'] = []
+
+    d = call_action('package_update', context={'user': user['name']}, name=d['id'], **dataset_fields)
+
+    assert len(d['groups']) == 0
 
 
 @pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
