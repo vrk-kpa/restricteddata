@@ -2,11 +2,13 @@ from typing import List, Dict, Any
 
 import logging
 import json
+import datetime
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.logic import NotFound
 from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
+from ckan.lib.munge import munge_title_to_name
 import ckan.model as model
 from flask import has_request_context
 from ckanext.restricteddata.cli import cli
@@ -317,6 +319,7 @@ def filter_allowed_resources(resources: List[ResourceDict],
 
 class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IAuthenticator, inherit=True)
+    plugins.implements(plugins.interfaces.IActions)
 
     def decode_paha_jwt_token(self, key, algorithm):
         '''Tries to decode a PAHA JWT token payload from request'''
@@ -385,17 +388,75 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
             toolkit.g.user = user.name
             toolkit.g.userobj = user
             login_user(user)
+            return user
         else:
             raise RuntimeError("Could not find or create PAHA user!")
+
+    def create_or_get_paha_organization(self, token):
+        log.info("create_or_get_paha_organization")
+        '''Retrieves an organization based on a PAHA JWT token creating a new one if needed'''
+        site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+        organization_id = token['activeOrganizationId']
+        try:
+            context = {'ignore_auth': True}
+            return toolkit.get_action('organization_show')(context, {'id': organization_id})
+
+        except toolkit.ObjectNotFound:
+            log.info("creating new organization")
+            name_languages = ['fi', 'sv', 'en']
+            organization_titles = {lang: token[f'activeOrganizationName{lang.capitalize()}']
+                                   for lang in name_languages}
+            organization_title = next((organization_titles[lang]
+                                      for lang in name_languages
+                                      if organization_titles.get(lang)), None)
+            if not organization_title:
+                raise RuntimeError("Could not determine a non-empty name for PAHA organization!")
+
+            organization_name = munge_title_to_name(organization_title)
+
+            organization_dict = {
+                'id': organization_id,
+                'name': organization_name,
+                'title_translated': organization_titles,
+                'image_url': ''
+            }
+
+            site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
+            context = {'ignore_auth': site_user_info['name']}
+
+            organization = toolkit.get_action('organization_create')(context, organization_dict)
+            from pprint import pformat
+            log.info("Created organization %s", pformat(organization))
+            return organization
+
+    def temporarily_authorize_user_for_organization(self, user, organization, expires):
+        '''Temporarily authorizes a user to act on behalf of an organization'''
+        context = {'ignore_auth': True}
+        data_dict = {
+            'user': user.id,
+            'organization': organization['id'],
+            'expires': expires
+        }
+        toolkit.get_action('grant_temporary_membership')(context, data_dict)
 
     def identify(self):
         key = toolkit.config.get('ckanext.restricteddata.paha_jwt_key')
         algorithm = toolkit.config.get('ckanext.restricteddata.paha_jwt_algorithm')
         paha_jwt_token = self.decode_paha_jwt_token(key, algorithm)
         if paha_jwt_token:
-            return self.create_or_authenticate_paha_user(paha_jwt_token)
+            user = self.create_or_authenticate_paha_user(paha_jwt_token)
+            organization = self.create_or_get_paha_organization(paha_jwt_token)
+            # expiresIn is a timestamp expressed in milliseconds
+            expires = datetime.datetime.fromtimestamp(paha_jwt_token['expiresIn'] / 1000)
+            self.temporarily_authorize_user_for_organization(user, organization, expires)
 
         return super().identify()
+
+    def get_actions(self):
+        return {
+            'grant_temporary_membership': action.grant_temporary_membership,
+            'purge_expired_temporary_memberships': action.purge_expired_temporary_memberships
+        }
 
 
 # NOTE: DO NOT ENABLE THIS PLUGIN IN NON-LOCAL ENVIRONMENTS

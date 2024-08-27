@@ -25,6 +25,7 @@ fi
 
 # init ckan extension databases
 echo "init ckan extension databases ..."
+ckan -c ${APP_DIR}/ckan.ini restricteddata initdb
 ckan -c ${APP_DIR}/ckan.ini harvester initdb
 if [[ "${MATOMO_ENABLED}" == "true" ]]; then
   ckan -c ${APP_DIR}/ckan.ini matomo init_db && ckan -c ${APP_DIR}/ckan.ini db upgrade -p matomo

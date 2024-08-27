@@ -48,14 +48,16 @@ To temporary patch the CKAN configuration for the duration of a test you can use
         pass
 """
 import pytest
-import jwt
+import datetime
 
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import plugin_loaded, toolkit
 from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
-from .utils import minimal_dataset_with_one_resource_fields, minimal_group
+from .utils import (minimal_dataset, minimal_dataset_with_one_resource_fields,
+                    minimal_group, minimal_organization, create_paha_token)
+from .fixtures import restricteddata_setup  # noqa: F401
 
 
 @pytest.mark.usefixtures("with_plugins")
@@ -469,14 +471,46 @@ def test_groups_are_removed_when_categories_are_removed(app):
     assert len(dataset['groups']) == 0
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context", "restricteddata_setup")
+def test_paha_authentication_creates_organization(app):
+    some_user = User()
+    organization_id = "paha-organization-id"
+    organization_name_fi = "paha organization fi"
+    organization_name_sv = "paha organization sv"
+    organization_name_en = "paha organization en"
+    token = create_paha_token({
+        "id": some_user['id'],
+        "activeOrganizationId": organization_id,
+        "activeOrganizationNameFi": organization_name_fi,
+        "activeOrganizationNameSv": organization_name_sv,
+        "activeOrganizationNameEn": organization_name_en,
+    })
+    headers = {"Authorization": f'Bearer {token}'}
+    response = app.get(url=toolkit.url_for("organization.read", id=organization_id), headers=headers)
+    assert response.status_code == 200
+    assert organization_name_fi in response.body
+
+    organization = call_action('organization_show', 
+                               id=organization_id,
+                               context={"ignore_auth": True})
+    assert organization['id'] == organization_id
+    assert organization['title_translated'] == {
+        'fi': organization_name_fi,
+        'sv': organization_name_sv,
+        'en': organization_name_en
+    }
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context", "restricteddata_setup")
 def test_paha_authentication_creates_new_user(app):
     # Get new user profile with PAHA authentication
+    organization = Organization(**minimal_organization())
     email = "foo@example.com"
-    payload = {"iss": "PAHA", "id": "test-id", "email": email, "firstName": "foo", "lastName": "bar"}
-    key = toolkit.config['ckanext.restricteddata.paha_jwt_key']
-    algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
-    token = jwt.encode(payload, key, algorithm=algorithm)
+    token = create_paha_token({"id":"test-id",
+                               "email":email,
+                               "firstName":"foo",
+                               "lastName":"bar",
+                               "activeOrganizationId":organization["id"]})
     headers = {"Authorization": f'Bearer {token}'}
     response = app.get(url=toolkit.url_for("user.read", id="foo_bar"), headers=headers)
     assert response.status_code == 200
@@ -489,8 +523,9 @@ def test_paha_authentication_creates_new_user(app):
     assert user['fullname'] == "foo bar"
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context")
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context", "restricteddata_setup")
 def test_paha_authentication_logs_in_user(app):
+    organization = Organization(**minimal_organization())
     test_id = "test-id"
     some_user = User(id=test_id)
 
@@ -498,10 +533,10 @@ def test_paha_authentication_logs_in_user(app):
     client = app.test_client(use_cookies=True)
 
     # Get user profile with PAHA authentication
-    payload = {"iss": "PAHA", "id": test_id}
-    key = toolkit.config['ckanext.restricteddata.paha_jwt_key']
-    algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
-    token = jwt.encode(payload, key, algorithm=algorithm)
+    token = create_paha_token({
+        "id": test_id,
+        "activeOrganizationId": organization["id"],
+    })
     headers = {"Authorization": f'Bearer {token}'}
     response = client.get(toolkit.url_for("user.read", id=some_user['name']), headers=headers)
     assert response.status_code == 200
@@ -512,3 +547,56 @@ def test_paha_authentication_logs_in_user(app):
     response = client.get(toolkit.url_for("user.read", id=some_user['name']))
     assert response.status_code == 200
     assert some_user['email'] in response.body
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context", "restricteddata_setup")
+def test_paha_authentication_grants_temporary_membership(app):
+    organization = Organization(**minimal_organization())
+    user = User()
+    client = app.test_client(use_cookies=True)
+    token = create_paha_token({
+        "id": user["id"],
+        "activeOrganizationId": organization["id"],
+    })
+
+    # Log in and open organization edit view
+    headers = {"Authorization": f'Bearer {token}'}
+    response = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
+    assert response.status_code == 200
+
+    # Use same session to open new package view
+    response = client.get(toolkit.url_for("dataset.new", organization_id=organization["name"]))
+    assert response.status_code == 200
+
+    # Actually create a new dataset as the user
+    dataset = minimal_dataset(user['name'])
+    package = call_action('package_create',
+                          name="paha-test-dataset",
+                          owner_org=organization["name"],
+                          context={"user": user["name"], "ignore_auth": False},
+                          **dataset)
+
+    assert package["creator_user_id"] == user["id"]
+
+    # Verify the dataset was created
+    org = call_action('organization_show', id=organization["name"])
+    assert org["package_count"] == 1
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins", "with_request_context", "restricteddata_setup")
+def test_temporary_membership_expiry(app):
+    organization = Organization(**minimal_organization())
+    user = User()
+    expires = datetime.datetime.now()
+    members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
+    assert len(members) == 1  # Contains only admin
+
+    call_action('grant_temporary_membership', user=user['id'], organization=organization['id'], expires=expires)
+    members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
+
+    assert len(members) == 2  # Contains admin and user
+    assert members[-1][0] == user['id']  # Ensure most recent member matches user
+
+    call_action('purge_expired_temporary_memberships')
+    members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
+    assert len(members) == 1  # Contains only admin
