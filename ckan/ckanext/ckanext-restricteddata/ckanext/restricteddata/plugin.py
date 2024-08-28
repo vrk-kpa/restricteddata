@@ -214,6 +214,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'member_create': auth.member_create,
             'member_delete': auth.member_delete,
+            'api_token_create': auth.sysadmin_only
         }
 
 
