@@ -31,3 +31,13 @@ def member_roles_list(original_action, context, data_dict):
                   if role['value'] != 'member']
 
     return result
+
+
+@toolkit.chained_action
+def user_autocomplete(original_action, context, data_dict):
+    try:
+        toolkit.check_access('user_autocomplete', context, data_dict)
+    except toolkit.NotAuthorized:
+        return []
+
+    return original_action(context, data_dict)
