@@ -547,3 +547,25 @@ def test_only_sysadmin_can_create_api_tokens():
     context = {"user": sysadmin["name"], "ignore_auth": False}
     api_token = call_action('api_token_create', context=context, user=sysadmin['name'], name="some api token name")
     assert api_token['token']
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_normal_user_has_no_access_to_user_list():
+    u = User()
+    context = {"user": u["name"], "ignore_auth": False}
+    with pytest.raises(NotAuthorized):
+        call_action('user_list', context=context)
+
+    result = call_action('user_autocomplete', context=context, q=u['name'])
+    assert result == []
+
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_sysadmin_has_user_autocomplete():
+    u = User()
+    sysadmin = Sysadmin()
+    context = {"user": sysadmin["name"], "ignore_auth": False}
+
+    result = call_action('user_autocomplete', context=context, q=u['name'])
+    assert len(result) == 1
+    assert result[0]['name'] == u['name']

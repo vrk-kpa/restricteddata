@@ -206,6 +206,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'user_create': action.user_create,
             'member_roles_list': action.member_roles_list,
+            'user_autocomplete': action.user_autocomplete
         }
 
     # IAuthFunctions
@@ -214,7 +215,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'member_create': auth.member_create,
             'member_delete': auth.member_delete,
-            'api_token_create': auth.sysadmin_only
+            'api_token_create': auth.sysadmin_only,
+            'user_list': auth.sysadmin_only
         }
 
 
