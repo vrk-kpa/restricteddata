@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-18 06:55+0000\n"
+"POT-Creation-Date: 2024-08-28 12:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: ckanext/restricteddata/plugin.py:169
-#: ckanext/restricteddata/templates/header.html:99
-#: ckanext/restricteddata/templates/home/layout1.html:52
-#: ckanext/restricteddata/templates/package/search.html:11
-msgid "Datasets"
+#: ckanext/restricteddata/plugin.py:191
+#: ckanext/restricteddata/templates/group/read_base.html:5
+#: ckanext/restricteddata/templates/package/group_list.html:4
+#: ckanext/restricteddata/templates/package/group_list.html:20
+#: ckanext/restricteddata/translations.py:160
+msgid "Groups"
 msgstr ""
 
-#: ckanext/restricteddata/plugin.py:170
+#: ckanext/restricteddata/plugin.py:192
 msgid "Tags"
 msgstr ""
 
-#: ckanext/restricteddata/plugin.py:171
+#: ckanext/restricteddata/plugin.py:193
 msgid "Format"
+msgstr ""
+
+#: ckanext/restricteddata/plugin.py:194 ckanext/restricteddata/translations.py:103
+msgid "High-value dataset category"
 msgstr ""
 
 #: ckanext/restricteddata/translations.py:8
@@ -412,10 +417,6 @@ msgstr ""
 msgid "Never"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:103
-msgid "High-value dataset category"
-msgstr ""
-
 #: ckanext/restricteddata/translations.py:104
 msgid "Meteorological"
 msgstr ""
@@ -645,11 +646,6 @@ msgstr ""
 msgid "eg. http://example.com/image.jpg (if blank uses resource url)"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/group_list.html:4
-#: ckanext/restricteddata/translations.py:160
-msgid "Groups"
-msgstr ""
-
 #: ckanext/restricteddata/translations.py:161
 msgid "Formats"
 msgstr ""
@@ -674,217 +670,225 @@ msgstr ""
 msgid "View Organization"
 msgstr ""
 
+#: ckanext/restricteddata/translations.py:167
+msgid "VAT number"
+msgstr ""
+
+#: ckanext/restricteddata/translations.py:168
+msgid "The VAT number of the organization."
+msgstr ""
+
 #: ckanext/restricteddata/templates/user/dashboard.html:4
-#: ckanext/restricteddata/translations.py:169
+#: ckanext/restricteddata/translations.py:171
 msgid "News feed"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:170
+#: ckanext/restricteddata/translations.py:172
 msgid "Activity from items that I'm following"
 msgstr ""
 
 #: ckanext/restricteddata/templates/user/dashboard.html:5
-#: ckanext/restricteddata/translations.py:171
+#: ckanext/restricteddata/translations.py:173
 msgid "My Datasets"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:172
+#: ckanext/restricteddata/translations.py:174
 msgid "Add Dataset"
 msgstr ""
 
 #: ckanext/restricteddata/templates/user/dashboard.html:6
-#: ckanext/restricteddata/translations.py:173
+#: ckanext/restricteddata/translations.py:175
 msgid "My Organizations"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:174
+#: ckanext/restricteddata/translations.py:176
 msgid "Add Group"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:175
+#: ckanext/restricteddata/translations.py:177
 msgid "My Groups"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:178
+#: ckanext/restricteddata/translations.py:180
 msgid ""
 "You will receive notification emails from {site_title}, e.g. when you have "
 "new activities on your dashboard."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:179
+#: ckanext/restricteddata/translations.py:181
 msgid "Activity type"
 msgstr ""
 
 #: ckanext/restricteddata/templates/snippets/activity_type_selector.html:18
-#: ckanext/restricteddata/translations.py:180
+#: ckanext/restricteddata/translations.py:182
 msgid "All activity types"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:181
+#: ckanext/restricteddata/translations.py:183
 msgid "Newer activities"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:182
+#: ckanext/restricteddata/translations.py:184
 msgid "Older activities"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:183
+#: ckanext/restricteddata/translations.py:185
 msgid "{actor} created the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:184
+#: ckanext/restricteddata/translations.py:186
 msgid "{actor} updated the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:185
+#: ckanext/restricteddata/translations.py:187
 msgid "{actor} deleted the group {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:186
+#: ckanext/restricteddata/translations.py:188
 msgid "{actor} created the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:187
+#: ckanext/restricteddata/translations.py:189
 msgid "{actor} updated the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:188
+#: ckanext/restricteddata/translations.py:190
 msgid "{actor} deleted the organization {organization}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:189
+#: ckanext/restricteddata/translations.py:191
 msgid "{actor} created the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:190
+#: ckanext/restricteddata/translations.py:192
 msgid "{actor} updated the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:191
+#: ckanext/restricteddata/translations.py:193
 msgid "{actor} deleted the {dataset_type} {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:192
+#: ckanext/restricteddata/translations.py:194
 msgid "{actor} added the resource {resource} to the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:193
+#: ckanext/restricteddata/translations.py:195
 msgid "{actor} updated the resource {resource} in the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:194
+#: ckanext/restricteddata/translations.py:196
 msgid "{actor} deleted the resource {resource} from the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:195
+#: ckanext/restricteddata/translations.py:197
 msgid "{actor} {activity_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:196
+#: ckanext/restricteddata/translations.py:198
 msgid "{actor} added the tag {tag} to the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:197
+#: ckanext/restricteddata/translations.py:199
 msgid "{actor} removed the tag {tag} from the dataset {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:198
+#: ckanext/restricteddata/translations.py:200
 msgid "{actor} updated their profile"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:199
+#: ckanext/restricteddata/translations.py:201
 msgid "{actor} started following {dataset}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:200
+#: ckanext/restricteddata/translations.py:202
 msgid "{actor} started following {group}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:201
+#: ckanext/restricteddata/translations.py:203
 msgid "{actor} started following {user}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:202
+#: ckanext/restricteddata/translations.py:204
 msgid "new package"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:203
+#: ckanext/restricteddata/translations.py:205
 msgid "changed package"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:204
+#: ckanext/restricteddata/translations.py:206
 msgid "deleted package"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:205
+#: ckanext/restricteddata/translations.py:207
 msgid "follow dataset"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:208
+#: ckanext/restricteddata/translations.py:210
 msgid "Add {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:209
+#: ckanext/restricteddata/translations.py:211
 msgid "Create {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:210
+#: ckanext/restricteddata/translations.py:212
 msgid "View {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:211
+#: ckanext/restricteddata/translations.py:213
 msgid "Edit {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:212
+#: ckanext/restricteddata/translations.py:214
 msgid "Save {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:213
+#: ckanext/restricteddata/translations.py:215
 msgid "Search {object_type}s..."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:214
+#: ckanext/restricteddata/translations.py:216
 msgid "Update {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:215
+#: ckanext/restricteddata/translations.py:217
 msgid "A little information about my {object_type}..."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:216
+#: ckanext/restricteddata/translations.py:218
 msgid "There are no {object_type}s associated with this dataset"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:217
+#: ckanext/restricteddata/translations.py:219
 msgid "There are currently no {object_type}s for this site"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:218
+#: ckanext/restricteddata/translations.py:220
 msgid "There is no description for this {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:219
+#: ckanext/restricteddata/translations.py:221
 msgid "You are not a member of any {object_type}s."
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:220
+#: ckanext/restricteddata/translations.py:222
 msgid "{object_type} Form"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:221
+#: ckanext/restricteddata/translations.py:223
 msgid "My {object_type}s"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:222
+#: ckanext/restricteddata/translations.py:224
 msgid "My {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:223
+#: ckanext/restricteddata/translations.py:225
 msgid "No {object_type}"
 msgstr ""
 
-#: ckanext/restricteddata/translations.py:224
+#: ckanext/restricteddata/translations.py:226
 msgid "{object_type}s"
 msgstr ""
 
@@ -932,12 +936,16 @@ msgstr ""
 msgid "You must select at least 1 high value category"
 msgstr ""
 
+#: ckanext/restricteddata/views.py:32
+msgid "Dataset not found"
+msgstr ""
+
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
 msgstr ""
 
 #: ckanext/restricteddata/assets/modules/form.js:83
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:39
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:41
 #: ckanext/restricteddata/templates/snippets/search_form.html:39
 msgid "Remove"
 msgstr ""
@@ -1012,6 +1020,12 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+#: ckanext/restricteddata/templates/header.html:99
+#: ckanext/restricteddata/templates/home/layout1.html:52
+#: ckanext/restricteddata/templates/package/search.html:11
+msgid "Datasets"
+msgstr ""
+
 #: ckanext/restricteddata/templates/header.html:102
 #: ckanext/restricteddata/templates/home/layout1.html:64
 #: ckanext/restricteddata/templates/organization/index.html:4
@@ -1043,31 +1057,40 @@ msgstr ""
 msgid "Service alert"
 msgstr ""
 
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:16
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:18
 #: ckanext/restricteddata/templates/organization/snippets/organization_item.html:18
 msgid "{num} Dataset"
 msgid_plural "{num} Datasets"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:18
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:20
 #: ckanext/restricteddata/templates/organization/snippets/organization_item.html:20
 msgid "0 Datasets"
 msgstr ""
 
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:23
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:25
 msgid "{num} Member"
 msgid_plural "{num} Members"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:34
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:35
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:36
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:37
 msgid "View {name}"
 msgstr ""
 
-#: ckanext/restricteddata/templates/group/snippets/group_item.html:39
+#: ckanext/restricteddata/templates/group/snippets/group_item.html:41
 msgid "Remove dataset from this group"
+msgstr ""
+
+#: ckanext/restricteddata/templates/group/snippets/info.html:8
+#: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:4
+msgid "Deleted"
+msgstr ""
+
+#: ckanext/restricteddata/templates/group/snippets/info.html:20
+msgid "read more"
 msgstr ""
 
 #: ckanext/restricteddata/templates/home/layout1.html:3
@@ -1233,15 +1256,15 @@ msgstr ""
 msgid "Close without saving"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/group_list.html:16
-msgid "Associate this group with this dataset"
+#: ckanext/restricteddata/templates/package/group_list.html:32
+msgid "Associate these groups with this dataset"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/group_list.html:16
-msgid "Add to group"
+#: ckanext/restricteddata/templates/package/group_list.html:32
+msgid "Save"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/group_list.html:27
+#: ckanext/restricteddata/templates/package/group_list.html:44
 msgid "There are no groups associated with this dataset"
 msgstr ""
 
@@ -1423,6 +1446,7 @@ msgid "Version"
 msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/additional_info.html:54
+#: ckanext/restricteddata/templates/scheming/package/snippets/additional_info.html:31
 msgid "State"
 msgstr ""
 
@@ -1434,24 +1458,20 @@ msgstr ""
 msgid "Created"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/snippets/categories.html:15
+#: ckanext/restricteddata/templates/package/snippets/categories.html:16
 msgid "Category icon"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/snippets/categories.html:26
+#: ckanext/restricteddata/templates/package/snippets/categories.html:27
 msgid "Show more categories"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/snippets/categories.html:28
+#: ckanext/restricteddata/templates/package/snippets/categories.html:29
 msgid "Show more"
 msgstr ""
 
-#: ckanext/restricteddata/templates/package/snippets/categories.html:36
+#: ckanext/restricteddata/templates/package/snippets/categories.html:37
 msgid "Edit categories"
-msgstr ""
-
-#: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:4
-msgid "Deleted"
 msgstr ""
 
 #: ckanext/restricteddata/templates/package/snippets/dataset_state_banner.html:7
@@ -1575,8 +1595,20 @@ msgstr ""
 msgid "Additional Information"
 msgstr ""
 
-#: ckanext/restricteddata/templates/scheming/snippets/errors.html:6
+#: ckanext/restricteddata/templates/scheming/snippets/errors.html:8
 msgid "The form contains invalid entries:"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/facet_list.html:32
+msgid "Show More {facet_type}"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/facet_list.html:35
+msgid "Show Only Popular {facet_type}"
+msgstr ""
+
+#: ckanext/restricteddata/templates/snippets/facet_list.html:39
+msgid "There are no {facet_type} that match this search"
 msgstr ""
 
 #: ckanext/restricteddata/templates/snippets/license.html:4

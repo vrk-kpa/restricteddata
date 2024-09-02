@@ -164,6 +164,8 @@ def _translations():
     _("Common, compact and plain description about the organization")
     _("Other information")
     _("View Organization")
+    _('VAT number')
+    _('The VAT number of the organization.')
 
     # Dashboard
     _("News feed")
