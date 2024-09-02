@@ -535,3 +535,15 @@ def test_paha_authentication_logs_in_user(app):
     response = client.get(toolkit.url_for("user.read", id=some_user['name']))
     assert response.status_code == 200
     assert some_user['email'] in response.body
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_only_sysadmin_can_create_api_tokens():
+    u = User()
+    context = {"user": u["name"], "ignore_auth": False}
+    with pytest.raises(NotAuthorized):
+        call_action('api_token_create', context=context, user=u['name'], name="some api token name")
+
+    sysadmin = Sysadmin()
+    context = {"user": sysadmin["name"], "ignore_auth": False}
+    api_token = call_action('api_token_create', context=context, user=sysadmin['name'], name="some api token name")
+    assert api_token['token']
