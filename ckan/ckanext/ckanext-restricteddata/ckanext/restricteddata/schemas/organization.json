@@ -18,7 +18,18 @@
       ],
       "form_placeholder": "My Organization",
       "group_title": "Organization name",
-      "group_description": "* Required field"
+      "group_description": "* Required field",
+      "form_attrs": {
+        "class": "form-control",
+        "readonly": true
+      },
+      "lang_form_attrs": {
+        "fi": {
+          "data-module": "slug-preview-target",
+          "class": "form-control slug-preview-target",
+          "readonly": true
+        }
+      }
     },
     {
       "field_name": "name",
