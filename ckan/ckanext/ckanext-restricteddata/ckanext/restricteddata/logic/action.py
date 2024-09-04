@@ -60,3 +60,13 @@ def grant_temporary_membership(context, data_dict):
 def purge_expired_temporary_memberships(context, data_dict):
     toolkit.check_access('sysadmin', context)
     TemporaryMember.purge_expired()
+
+
+@toolkit.chained_action
+def user_autocomplete(original_action, context, data_dict):
+    try:
+        toolkit.check_access('user_autocomplete', context, data_dict)
+    except toolkit.NotAuthorized:
+        return []
+
+    return original_action(context, data_dict)

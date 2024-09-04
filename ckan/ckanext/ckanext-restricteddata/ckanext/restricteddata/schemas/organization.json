@@ -47,6 +47,12 @@
       "divider": true
     },
     {
+      "field_name": "vat_number",
+      "label": "VAT number",
+      "display_snippet": null,
+      "description": "The VAT number of the organization."
+    },
+    {
       "field_name": "homepage",
       "display_snippet": "link.html",
       "validators": "ignore_missing unicode_safe url_validator",

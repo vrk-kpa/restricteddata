@@ -31,8 +31,5 @@ if [[ "${MATOMO_ENABLED}" == "true" ]]; then
   ckan -c ${APP_DIR}/ckan.ini matomo init_db && ckan -c ${APP_DIR}/ckan.ini db upgrade -p matomo
 fi
 
-echo "Create default restricteddata categories ..."
-ckan -c ${APP_DIR}/ckan.ini restricteddata create-default-categories
-
 # set init flag to done
 echo "$CKAN_IMAGE_TAG" > ${DATA_DIR}/.init-done

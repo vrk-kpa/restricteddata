@@ -16,7 +16,7 @@ from collections import OrderedDict
 import jwt
 from flask_login import login_user, logout_user
 
-from . import helpers, validators, converters, views
+from . import helpers, validators, views
 from .logic import action, auth
 import random
 import base64
@@ -97,9 +97,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
             'highvalue_category': validators.highvalue_category,
-            # NOTE: this is a converter. (https://github.com/vrk-kpa/ckanext-scheming/#validators)
-            'save_to_groups': converters.save_to_groups,
-            'highvalue': converters.highvalue
+            'highvalue': validators.highvalue
         }
 
     # IPackageController
@@ -210,6 +208,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'user_create': action.user_create,
             'member_roles_list': action.member_roles_list,
+            'user_autocomplete': action.user_autocomplete
         }
 
     # IAuthFunctions
@@ -218,6 +217,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'member_create': auth.member_create,
             'member_delete': auth.member_delete,
+            'api_token_create': auth.sysadmin_only,
+            'user_list': auth.sysadmin_only
         }
 
 
