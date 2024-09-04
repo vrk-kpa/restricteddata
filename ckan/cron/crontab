@@ -12,4 +12,5 @@
 # NOTE: Please make sure this file is using LF line-endings, windows CRLF breaks it!
 #
 */5 *   *       *   *   cd /srv/app && ./cron/scripts/harvester-run.sh
+*/5 *   *       *   *   cd /srv/app && ckan api action purge_expired_temporary_memberships
 
