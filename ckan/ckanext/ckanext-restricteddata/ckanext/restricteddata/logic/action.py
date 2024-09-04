@@ -59,5 +59,4 @@ def grant_temporary_membership(context, data_dict):
 
 def purge_expired_temporary_memberships(context, data_dict):
     toolkit.check_access('sysadmin', context)
-    print('Purging expired memberships')
     TemporaryMember.purge_expired()
