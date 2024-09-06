@@ -1172,7 +1172,7 @@ msgstr "Poistettu"
 
 #: ckanext/restricteddata/templates/group/snippets/info.html:20
 msgid "read more"
-msgstr ""
+msgstr "lue lisää"
 
 #: ckanext/restricteddata/templates/home/layout1.html:3
 msgid "All finnish restricted data from one place"
