@@ -1354,7 +1354,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/group_list.html:32
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: ckanext/restricteddata/templates/package/group_list.html:44
 msgid "There are no groups associated with this dataset"
@@ -1710,7 +1710,7 @@ msgstr "Näytä ainoastaan suositut {facet_type}"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:39
 msgid "There are no {facet_type} that match this search"
-msgstr ""
+msgstr "Hakutulokset eivät sisällä \"{facet_type}\"-kenttiä"
 
 #: ckanext/restricteddata/templates/snippets/license.html:4
 msgid "License"
