@@ -1350,7 +1350,7 @@ msgstr ""
 
 #: ckanext/restricteddata/templates/package/group_list.html:32
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: ckanext/restricteddata/templates/package/group_list.html:44
 msgid "There are no groups associated with this dataset"
@@ -1699,7 +1699,7 @@ msgstr "Formuläret innehåller ogiltiga poster:"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:32
 msgid "Show More {facet_type}"
-msgstr ""
+msgstr "Visa mer {facet_type}"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:35
 msgid "Show Only Popular {facet_type}"
