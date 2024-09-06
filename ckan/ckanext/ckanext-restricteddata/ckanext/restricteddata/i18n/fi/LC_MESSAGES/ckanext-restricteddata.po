@@ -1702,7 +1702,7 @@ msgstr "Lomake sisältää virheellisiä syötteitä:"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:32
 msgid "Show More {facet_type}"
-msgstr ""
+msgstr "Näytä lisää"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:35
 msgid "Show Only Popular {facet_type}"
