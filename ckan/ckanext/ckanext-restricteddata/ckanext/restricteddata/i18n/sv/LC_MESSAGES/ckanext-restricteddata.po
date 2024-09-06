@@ -749,7 +749,7 @@ msgstr "FO-nummer"
 
 #: ckanext/restricteddata/translations.py:168
 msgid "The VAT number of the organization."
-msgstr ""
+msgstr "FO-numret om det företag."
 
 #: ckanext/restricteddata/templates/user/dashboard.html:4
 #: ckanext/restricteddata/translations.py:171
