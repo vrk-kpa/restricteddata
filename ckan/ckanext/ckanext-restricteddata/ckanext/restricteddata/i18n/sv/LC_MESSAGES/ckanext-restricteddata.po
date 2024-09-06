@@ -1703,11 +1703,11 @@ msgstr "Visa mer {facet_type}"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:35
 msgid "Show Only Popular {facet_type}"
-msgstr ""
+msgstr "Visa bara populära {facet_type}"
 
 #: ckanext/restricteddata/templates/snippets/facet_list.html:39
 msgid "There are no {facet_type} that match this search"
-msgstr ""
+msgstr "Sökresultaten innehåller inga fält med {facet_type}"
 
 #: ckanext/restricteddata/templates/snippets/license.html:4
 msgid "License"
