@@ -1013,7 +1013,7 @@ msgstr "Du måste välja åtminstone 1 kategori av värdefull datamängd"
 
 #: ckanext/restricteddata/views.py:32
 msgid "Dataset not found"
-msgstr ""
+msgstr "Hittar inte datamängden"
 
 #: ckanext/restricteddata/assets/translations.js:6
 msgid "Add email"
@@ -1169,7 +1169,7 @@ msgstr "Raderad"
 
 #: ckanext/restricteddata/templates/group/snippets/info.html:20
 msgid "read more"
-msgstr ""
+msgstr "läs mer"
 
 #: ckanext/restricteddata/templates/home/layout1.html:3
 msgid "All finnish restricted data from one place"
