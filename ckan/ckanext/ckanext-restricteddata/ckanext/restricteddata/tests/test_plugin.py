@@ -586,8 +586,9 @@ def test_paha_authentication_grants_temporary_membership(app):
     response = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
     assert response.status_code == 200
 
-    # Use same session to open new package view
-    response = client.get(toolkit.url_for("dataset.new", organization_id=organization["name"]))
+    # Use same session to open user edit view
+    # NOTE: new package view would be better, but it depends on building assets with gulp
+    response = client.get(toolkit.url_for("user.edit", id=user["id"]))
     assert response.status_code == 200
 
     # Actually create a new dataset as the user
