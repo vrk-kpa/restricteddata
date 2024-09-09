@@ -29,7 +29,8 @@
           "class": "form-control slug-preview-target",
           "readonly": true
         }
-      }
+      },
+      "validators": "ignore_not_sysadmin keep_old_value_if_missing fluent_text required_languages override_field_with_default_translation(title)"
     },
     {
       "field_name": "name",
