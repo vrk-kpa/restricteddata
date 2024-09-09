@@ -1,7 +1,6 @@
 import click
 import sys
 from ckan.plugins import toolkit
-from ckanext.restricteddata import model
 from . import categories
 from .migrate import Migrate, plan_to_path
 from .migrations import migrations
@@ -81,10 +80,3 @@ def migrate(ctx, current_version, target_version, dryrun, path_index):
         step(ctx, toolkit.config, dryrun, echo=click.secho)
 
     click.secho('Finished migration successfully')
-
-
-@restricteddata.command()
-def initdb() -> None:
-    click.secho('Initializing ckanext-restricteddata database tables')
-    from ckan.model import meta
-    model.init_db(meta.engine)

@@ -3,10 +3,12 @@ from ckan.plugins import toolkit
 from sqlalchemy import types, Column, ForeignKey
 from sqlalchemy.orm import relationship
 from ckan.model import meta, Member
+from ckan.model.types import make_uuid
 
 class TemporaryMember(toolkit.BaseModel):
     __tablename__ = "temporary_member"
-    user_id = Column("user_id", types.UnicodeText, nullable=False, primary_key=True)
+    id = Column("id", primary_key=True, default=make_uuid)
+    user_id = Column("user_id", types.UnicodeText, nullable=False)
     organization_id = Column("organization_id", types.UnicodeText, nullable=False)
     expires = Column("expires", types.DateTime)
     member_id = Column("member_id", types.UnicodeText, ForeignKey("member.id", ondelete="CASCADE"))
@@ -36,7 +38,3 @@ class TemporaryMember(toolkit.BaseModel):
                 .filter(cls.organization_id == organization_id)
                 .where(cls.expires > now)
                 .first())
-
-
-def init_db(engine):
-    toolkit.BaseModel.metadata.create_all(engine)
