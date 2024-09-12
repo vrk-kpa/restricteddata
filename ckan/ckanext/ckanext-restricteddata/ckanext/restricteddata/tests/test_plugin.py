@@ -296,7 +296,7 @@ def test_dataset_with_resource_with_rights():
 def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     author = User()
-    org = Organization(user=author)
+    org = Organization(user=author, title_translated={'fi': "finnish title", 'sv': "swedish title"})
     dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
@@ -314,7 +314,7 @@ def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
 def test_dataset_with_resource_with_private(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     author = User()
-    org = Organization(user=author)
+    org = Organization(user=author, title_translated={'fi': "finnish title", 'sv': "swedish title"})
     dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
@@ -404,7 +404,7 @@ def test_dataset_with_resource_with_geographical_accuracy():
 def test_maintainer_can_add_dataset_to_group(app):
     g = Group(**minimal_group())
     author = User()
-    org = Organization(user=author)
+    org = Organization(user=author, title_translated={'fi': "finnish title", 'sv': "swedish title"})
 
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['owner_org'] = org['id']
@@ -426,7 +426,7 @@ def test_maintainer_can_add_dataset_to_group(app):
 def test_non_maintainer_can_not_add_dataset_to_group(app):
     g = Group(**minimal_group())
     some_user = User()
-    org = Organization()
+    org = Organization(title_translated={'fi': "finnish title", 'sv': "swedish title"})
 
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['owner_org'] = org['id']
@@ -569,3 +569,26 @@ def test_sysadmin_has_user_autocomplete():
     result = call_action('user_autocomplete', context=context, q=u['name'])
     assert len(result) == 1
     assert result[0]['name'] == u['name']
+
+@pytest.mark.usefixtures("clean_db", "with_plugins")
+def test_organization_title_updates_are_ignored():
+    u = User()
+
+    titles = {
+        'fi': "finnish title",
+        'sv': "swedish title",
+        'en': "english title"
+    }
+
+
+    organization = Organization(title_translated=titles, user=u)
+
+
+    context = {"user": u["name"], "ignore_auth": False}
+    call_action('organization_patch', context=context, id=organization['id'],
+                title_translated={'fi': 'modified finnish', 'sv': 'modified swedish'})
+
+    result = call_action('organization_show', id=organization['id'])
+
+    assert result['title_translated'] == titles
+

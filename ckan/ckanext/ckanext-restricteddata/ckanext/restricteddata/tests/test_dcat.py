@@ -44,7 +44,7 @@ def test_dcat_catalog(app):
 @pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
 def test_dcat_dataset_with_minimal_dataset(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    organization = Organization(name='org')
+    organization = Organization(name='org', title_translated={'fi': "finnish title", 'sv': "swedish title"})
     dataset_fields['owner_org'] = organization['id']
     Dataset(**dataset_fields)
 

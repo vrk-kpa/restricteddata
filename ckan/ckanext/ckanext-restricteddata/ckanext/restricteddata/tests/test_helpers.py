@@ -13,7 +13,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
     def test_get_assignable_groups_for_package_helper_with_non_maintainer(self, app):
         _g = Group(**minimal_group())
         some_user = User()
-        org = Organization()
+        org = Organization(title_translated={'fi': "finnish title", 'sv': "swedish title"})
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
@@ -28,7 +28,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
         g1 = Group(**minimal_group())
         g2 = Group(**minimal_group())
         maintainer = User()
-        org = Organization(user=maintainer)
+        org = Organization(user=maintainer, title_translated={'fi': "finnish title", 'sv': "swedish title"})
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
