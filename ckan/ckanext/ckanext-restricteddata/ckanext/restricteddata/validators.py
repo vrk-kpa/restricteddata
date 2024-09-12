@@ -235,17 +235,20 @@ def keep_old_value_if_missing(field, schema):
 
     def validator(key, data, errors, context):
 
-        if 'package' not in context and 'organization' not in context:
+        if 'package' not in context and 'group' not in context:
             return
 
         action = ''
+        context_var = ''
         if 'package' in context:
             action = 'package'
+            context_var = 'package'
 
-        if 'organization' in context:
+        if 'group' in context:
             action = 'organization'
+            context_var = 'group'
 
-        data_dict = flatten_dict(get_action(action + '_show')(context, {'id': context[action].id}))
+        data_dict = flatten_dict(get_action(action + '_show')(context, {'id': context[context_var].id}))
 
         if key not in data or data[key] is missing:
             if key in data_dict:
