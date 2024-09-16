@@ -51,10 +51,12 @@ import pytest
 import jwt
 
 from ckan.plugins import plugin_loaded, toolkit
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
+from ckan.tests.factories import Dataset, Sysadmin, User, Group
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
 from .utils import minimal_dataset_with_one_resource_fields, minimal_group
+
+from .factories import RestrictedDataOrganization
 
 
 @pytest.mark.usefixtures("with_plugins")
@@ -296,7 +298,7 @@ def test_dataset_with_resource_with_rights():
 def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     author = User()
-    org = Organization(user=author, title_translated={'fi': "finnish title", 'sv': "swedish title"})
+    org = RestrictedDataOrganization(user=author)
     dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
@@ -314,7 +316,7 @@ def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
 def test_dataset_with_resource_with_private(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     author = User()
-    org = Organization(user=author, title_translated={'fi': "finnish title", 'sv': "swedish title"})
+    org = RestrictedDataOrganization(user=author)
     dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
@@ -404,7 +406,7 @@ def test_dataset_with_resource_with_geographical_accuracy():
 def test_maintainer_can_add_dataset_to_group(app):
     g = Group(**minimal_group())
     author = User()
-    org = Organization(user=author, title_translated={'fi': "finnish title", 'sv': "swedish title"})
+    org = RestrictedDataOrganization(user=author)
 
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['owner_org'] = org['id']
@@ -426,7 +428,7 @@ def test_maintainer_can_add_dataset_to_group(app):
 def test_non_maintainer_can_not_add_dataset_to_group(app):
     g = Group(**minimal_group())
     some_user = User()
-    org = Organization(title_translated={'fi': "finnish title", 'sv': "swedish title"})
+    org = RestrictedDataOrganization()
 
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['owner_org'] = org['id']
@@ -574,21 +576,12 @@ def test_sysadmin_has_user_autocomplete():
 def test_organization_title_updates_are_ignored():
     u = User()
 
-    titles = {
-        'fi': "finnish title",
-        'sv': "swedish title",
-        'en': "english title"
-    }
-
-
-    organization = Organization(title_translated=titles, user=u)
-
-
+    organization = RestrictedDataOrganization(user=u)
     context = {"user": u["name"], "ignore_auth": False}
     call_action('organization_patch', context=context, id=organization['id'],
                 title_translated={'fi': 'modified finnish', 'sv': 'modified swedish'})
 
     result = call_action('organization_show', id=organization['id'])
 
-    assert result['title_translated'] == titles
+    assert result['title_translated'] == organization['title_translated']
 
