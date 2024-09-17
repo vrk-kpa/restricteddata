@@ -49,7 +49,7 @@
     <div class="user">
       {% if c.userobj %}
       <div class="account authed" data-module="me" data-me="{{ c.userobj.id }}">
-        <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" title="{{ _('View profile') }}">
+        <a href="{{ h.url_for('activity.dashboard')}}" title="{{ _('View profile') }}">
           <span class="username">{{ c.userobj.display_name }}</span></a>
         <a href="{{ h.url_for('user.logout') }}" class="logout" title="{{ _('Log out') }}">
           <span class="text">{{ _('Log out')|upper }}</span>
