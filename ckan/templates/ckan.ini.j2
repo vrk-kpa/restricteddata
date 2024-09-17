@@ -139,7 +139,7 @@ ckanext.restricteddata.info_message_en =
 ckanext.restricteddata.service_alert_fi =
 ckanext.restricteddata.service_alert_sv =
 ckanext.restricteddata.service_alert_en =
-ckanext.restricteddata.paha_jwt_key = {{ environ('CKAN_PAHA_JWT_KEY') }}
+ckanext.restricteddata.paha_jwt_key = {{ environ('CKAN_PAHA_JWT_KEY') | replace('\n', '\n  ') }}
 ckanext.restricteddata.paha_jwt_algorithm = {{ environ('CKAN_PAHA_JWT_ALGORITHM') }}
 
 {% if environ('SENTRY_DSN') %}
