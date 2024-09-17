@@ -77,6 +77,7 @@ export class CkanStack extends Stack {
       "restricteddata_pages",
       "pages",
       "restricteddata",
+      "restricteddata_paha_authentication",
       "markdown_editor",
       "activity",
       "text_view",
