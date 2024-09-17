@@ -60,7 +60,12 @@
         <ul class="list-unstyled">
           {% block header_account_notlogged %}
           <li>
-            <a href="{{ h.url_for('user.login') }}" class="btn btn-primary" title="{{ _('Log in') }}">
+            {% if g.debug %}
+              {% set login_url = h.url_for('user.login') %}
+            {% else %}
+              {% set login_url = "https://palveluhallinta.suomi.fi/" + current_lang + "/rekisteroityminen" %}
+            {% endif %}
+            <a href="{{ login_url }}" class="btn btn-primary" title="{{ _('Log in') }}">
               <i class="icon login"></i>
               <span class="text">{{ _('Log in') }}</span>
             </a>
