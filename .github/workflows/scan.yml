@@ -1,0 +1,29 @@
+name: Run security scans
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sast-scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_SCAN_ROLE }}
+          role-session-name: github-actions
+          aws-region: eu-north-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Pull sast scanner
+        run: |
+          docker pull ${REGISTRY}/${REPOSITORY}/sast-scanner-meta:latest
+        env:
+          REGISTRY: ${{ secrets.TOOLS_REGISTRY }}
+          REPOSITORY: ${{ secrets.TOOLS_REPOSITORY }}
