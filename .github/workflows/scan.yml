@@ -2,6 +2,7 @@ name: Run security scans
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   sast-scanner:
