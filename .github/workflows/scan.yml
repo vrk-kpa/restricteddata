@@ -19,7 +19,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_SCAN_ROLE }}
           role-session-name: github-actions
-          aws-region: eu-north-1
+          aws-region: eu-west-1
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -30,7 +30,7 @@ jobs:
 
       - name: Pull sast scanner
         run: |
-          docker pull ${REGISTRY}/${REPOSITORY}/sast-scanner-meta:latest
+          docker pull $REGISTRY/$REPOSITORY/sast-scanner-meta:latest
         env:
-          REGISTRY: ${{ secrets.TOOLS_REGISTRY }}
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ secrets.TOOLS_REPOSITORY }}
