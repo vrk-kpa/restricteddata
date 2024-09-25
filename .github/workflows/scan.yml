@@ -34,3 +34,10 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ secrets.TOOLS_REPOSITORY }}
+
+      - name: Run sast scanner
+        run: |
+          docker run --rm -v ".:/src" -e LEVEL=HIGH -e TARGET=app -e FORMAT=html $REGISTRY/$REPOSITORY/sast-scanner-meta:latest
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ secrets.TOOLS_REPOSITORY }}
