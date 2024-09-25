@@ -30,7 +30,7 @@ jobs:
 
       - name: Run sast scanner
         run: |
-          docker run --rm -v ".:/src" -e LEVEL=HIGH -e TARGET=app -e FORMAT=sarif  $REGISTRY/$REPOSITORY/sast-scanner-meta:v1.0.0
+          docker run --rm -v "${{ github.workspace }}:${{ github.workspace }}" -e LEVEL=HIGH -e TARGET=app -e FORMAT=sarif -e SRCDIR=${{ github.workspace }} $REGISTRY/$REPOSITORY/sast-scanner-meta:v1.0.0
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ secrets.TOOLS_REPOSITORY }}
