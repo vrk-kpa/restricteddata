@@ -27,14 +27,6 @@ jobs:
         with:
           registries: ${{ secrets.TOOLS_REGISTRY }}
 
-
-      - name: Pull sast scanner
-        run: |
-          docker pull $REGISTRY/$REPOSITORY/sast-scanner-meta:latest
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ secrets.TOOLS_REPOSITORY }}
-
       - name: Run sast scanner
         run: |
           docker run --rm -v ".:/src" -e LEVEL=HIGH -e TARGET=app -e FORMAT=sarif  $REGISTRY/$REPOSITORY/sast-scanner-meta:v1.0.0
@@ -44,6 +36,6 @@ jobs:
 
 
       - name: upload results to advanced security
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif-file: semgrep-app-report.sarif
+          sarif_file: semgrep-app-report.sarif
