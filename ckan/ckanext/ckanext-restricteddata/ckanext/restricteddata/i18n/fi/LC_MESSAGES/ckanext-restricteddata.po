@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-restricteddata 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-28 12:22+0000\n"
+"POT-Creation-Date: 2024-09-23 10:20+0000\n"
 "PO-Revision-Date: 2023-08-15 18:05+0000\n"
 "Last-Translator: Pinja Perttunen, 2024\n"
 "Language-Team: Finnish (https://app.transifex.com/avoindata/teams/7979/fi/)\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ckanext/restricteddata/plugin.py:191
+#: ckanext/restricteddata/plugin.py:193
 #: ckanext/restricteddata/templates/group/read_base.html:5
 #: ckanext/restricteddata/templates/package/group_list.html:4
 #: ckanext/restricteddata/templates/package/group_list.html:20
@@ -36,15 +36,15 @@ msgstr ""
 msgid "Groups"
 msgstr "Kategoriat"
 
-#: ckanext/restricteddata/plugin.py:192
+#: ckanext/restricteddata/plugin.py:194
 msgid "Tags"
 msgstr "Avainsanat"
 
-#: ckanext/restricteddata/plugin.py:193
+#: ckanext/restricteddata/plugin.py:195
 msgid "Format"
 msgstr "Tiedostomuoto"
 
-#: ckanext/restricteddata/plugin.py:194
+#: ckanext/restricteddata/plugin.py:196
 #: ckanext/restricteddata/translations.py:103
 msgid "High-value dataset category"
 msgstr "Arvokkaan tietoaineiston kategoria"
@@ -1082,43 +1082,48 @@ msgstr "Lähetä"
 msgid "View profile"
 msgstr "Tarkastele profiilia"
 
-#: ckanext/restricteddata/templates/header.html:54
 #: ckanext/restricteddata/templates/header.html:55
+#: ckanext/restricteddata/templates/header.html:56
+msgid "Sysadmin profile"
+msgstr ""
+
+#: ckanext/restricteddata/templates/header.html:59
+#: ckanext/restricteddata/templates/header.html:60
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
-#: ckanext/restricteddata/templates/header.html:59
+#: ckanext/restricteddata/templates/header.html:64
 msgid "Account"
 msgstr "Tili"
 
-#: ckanext/restricteddata/templates/header.html:63
-#: ckanext/restricteddata/templates/header.html:65
+#: ckanext/restricteddata/templates/header.html:68
+#: ckanext/restricteddata/templates/header.html:70
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-#: ckanext/restricteddata/templates/header.html:98
+#: ckanext/restricteddata/templates/header.html:103
 #: ckanext/restricteddata/templates/snippets/home_breadcrumb_item.html:2
 msgid "Home"
 msgstr "Etusivu"
 
-#: ckanext/restricteddata/templates/header.html:99
+#: ckanext/restricteddata/templates/header.html:104
 #: ckanext/restricteddata/templates/home/layout1.html:52
 #: ckanext/restricteddata/templates/package/search.html:11
 msgid "Datasets"
 msgstr "Tietoaineistot"
 
-#: ckanext/restricteddata/templates/header.html:102
+#: ckanext/restricteddata/templates/header.html:107
 #: ckanext/restricteddata/templates/home/layout1.html:64
 #: ckanext/restricteddata/templates/organization/index.html:4
 #: ckanext/restricteddata/templates/package/base.html:20
 msgid "Organizations"
 msgstr "Tuottajat"
 
-#: ckanext/restricteddata/templates/header.html:115
+#: ckanext/restricteddata/templates/header.html:120
 msgid "More options"
 msgstr "Lisää vaihtoehtoja"
 
-#: ckanext/restricteddata/templates/header.html:131
+#: ckanext/restricteddata/templates/header.html:136
 msgid "Suomi.fi-avoindata"
 msgstr "Suomi.fi-avoindata"
 
