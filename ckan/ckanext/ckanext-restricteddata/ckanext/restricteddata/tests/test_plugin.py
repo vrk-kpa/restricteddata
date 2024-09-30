@@ -657,3 +657,59 @@ def test_sysadmin_has_user_autocomplete():
     result = call_action('user_autocomplete', context=context, q=u['name'])
     assert len(result) == 1
     assert result[0]['name'] == u['name']
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_only_sysadmin_can_manage_organization_members():
+    user = User()
+    organization = Organization(user=user, **minimal_organization())
+
+    another_user = User()
+
+    # Attempt to make another_user a member as an organization admin user
+    with pytest.raises(NotAuthorized):
+        context = {"user": user["name"], "ignore_auth": False}
+        call_action('organization_member_create',
+                    context=context,
+                    id=organization["id"],
+                    username=another_user["name"],
+                    role="member")
+
+    # Verify another_user is not in organization members
+    members = call_action('member_list', id=organization["id"], object_type="user", capacity="member")
+    assert all(member_id != another_user["id"] for member_id, _, _ in members)
+
+    # Make another_user a member as a sysadmin
+    sysadmin = Sysadmin()
+    context = {"user": sysadmin["name"], "ignore_auth": False}
+
+    call_action('organization_member_create',
+                context=context,
+                id=organization["id"],
+                username=another_user["name"],
+                role="member")
+
+    # Verify another_user is in organization members
+    members = call_action('member_list', id=organization["id"], object_type="user", capacity="member")
+    assert any(member_id == another_user["id"] for member_id, _, _ in members)
+
+    # Attempt to remove another_user as an organization admin user
+    with pytest.raises(NotAuthorized):
+        call_action('organization_member_delete',
+                    context={"user": user["name"], "ignore_auth": False},
+                    id=organization["id"],
+                    username=another_user["name"])
+
+    # Verify another_user is in organization members
+    members = call_action('member_list', id=organization["id"], object_type="user", capacity="member")
+    assert any(member_id == another_user["id"] for member_id, _, _ in members)
+
+    # Remove another_user as a sysadmin
+    call_action('organization_member_delete',
+                context={"user": sysadmin["name"], "ignore_auth": False},
+                id=organization["id"],
+                username=another_user["name"])
+
+    # Verify another_user is not in organization members
+    members = call_action('member_list', id=organization["id"], object_type="user", capacity="member")
+    assert all(member_id != another_user["id"] for member_id, _, _ in members)
