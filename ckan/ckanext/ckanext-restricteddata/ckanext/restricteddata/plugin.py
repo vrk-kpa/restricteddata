@@ -219,6 +219,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'member_delete': auth.member_delete,
             'member_list': auth.member_list,
             'organization_member_create': auth.sysadmin_only,
+            'organization_member_delete': auth.sysadmin_only,
             'organization_member_list': auth.sysadmin_only,
             'api_token_create': auth.sysadmin_only,
             'user_list': auth.sysadmin_only
