@@ -29,6 +29,15 @@ def member_delete(next_auth: AuthFunction, context: Context, data_dict: DataDict
 
     return next_auth(context, data_dict)
 
+@toolkit.chained_auth_function
+def member_list(next_auth: AuthFunction, context: Context, data_dict: DataDict) -> AuthResult:
+    match data_dict['object_type']:
+        case 'user':
+            return sysadmin_only(context, data_dict)
+
+    return next_auth(context, data_dict)
+
+
 
 def sysadmin_only(contaxt, data_dict):
     return {'success': False, 'message': 'Only sysadmins are allowed to call this'}

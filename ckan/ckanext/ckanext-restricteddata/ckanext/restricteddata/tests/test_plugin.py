@@ -51,7 +51,7 @@ import pytest
 import datetime
 
 from ckan.plugins import plugin_loaded, toolkit
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
+from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group, APIToken
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
 from .utils import (minimal_dataset, minimal_dataset_with_one_resource_fields,
@@ -713,3 +713,22 @@ def test_only_sysadmin_can_manage_organization_members():
     # Verify another_user is not in organization members
     members = call_action('member_list', id=organization["id"], object_type="user", capacity="member")
     assert all(member_id != another_user["id"] for member_id, _, _ in members)
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
+    user = User()
+    organization = Organization(user=user, **minimal_organization())
+    client = app.test_client(use_cookies=True)
+    headers = {"Authorization": APIToken(user=user['name'])["token"]}
+
+    # Make sure the user has admin privileges to the organization
+    result = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
+    assert result.status_code == 200
+
+    # Verify the user cannot view the member edit pages
+    result = client.get(toolkit.url_for("organization.member_new", id=organization['name']), headers=headers)
+    assert result.status_code == 403
+
+    result = client.get(toolkit.url_for("organization.members", id=organization['name']), headers=headers)
+    assert result.status_code == 403
