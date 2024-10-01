@@ -730,7 +730,8 @@ def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
     result = client.get(toolkit.url_for("organization.member_new", id=organization['name']), headers=headers)
     assert result.status_code == 403
 
-    result = client.get(toolkit.url_for("organization.member_delete", id=organization['name'], user=user["id"]), headers=headers)
+    result = client.get(toolkit.url_for("organization.member_delete", id=organization['name'], user=user["id"]),
+                        headers=headers)
     assert result.status_code == 403
 
     result = client.get(toolkit.url_for("organization.members", id=organization['name']), headers=headers)
