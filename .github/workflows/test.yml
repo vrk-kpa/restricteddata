@@ -294,7 +294,13 @@ jobs:
         shell: bash
         run: docker run --rm --network host -v ./results:/robot/results robot/test
 
-      - name: upload robot test results
+      - name: upload robot test results to XRay
+        if: always()
+        shell: bash
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.JIRA_ACCESS_TOKEN }}" -F file=@results/output.xml "${{ secrets.JIRA_URL }}/rest/raven/1.0/import/execution/robot?projectKey=${{ secrets.JIRA_PROJECT_ID }}"
+
+      - name: upload robot test result artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
