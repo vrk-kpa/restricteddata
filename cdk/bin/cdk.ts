@@ -242,7 +242,7 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   secondaryDomainName: devStackProps.secondaryDomainName,
   fileSystem: FileSystemStackDev.ckanFs,
   taskDef: {
-    taskCpu: 256,
+    taskCpu: 512,
     taskMem: 1024,
     taskMinCapacity: 1,
     taskMaxCapacity: 1
@@ -462,10 +462,10 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
   secondaryDomainName: prodStackProps.secondaryDomainName,
   fileSystem: FileSystemStackProd.ckanFs,
   taskDef: {
-    taskCpu: 256,
-    taskMem: 1024,
-    taskMinCapacity: 1,
-    taskMaxCapacity: 1
+    taskCpu: 1024,
+    taskMem: 2048,
+    taskMinCapacity: 3,
+    taskMaxCapacity: 3
   },
   cronTaskDef: {
     taskCpu: 256,
