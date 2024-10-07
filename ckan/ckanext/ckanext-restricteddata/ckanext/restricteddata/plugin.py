@@ -208,7 +208,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'user_create': action.user_create,
             'member_roles_list': action.member_roles_list,
-            'user_autocomplete': action.user_autocomplete
+            'user_autocomplete': action.user_autocomplete,
+            'member_list': action.member_list
         }
 
     # IAuthFunctions

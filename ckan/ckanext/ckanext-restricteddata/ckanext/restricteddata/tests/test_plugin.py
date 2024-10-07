@@ -754,12 +754,17 @@ def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
-def test_member_list_for_dataset_in_group(app):
+def test_member_add_and_delete_for_dataset_in_group(app):
     group = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['groups'] = [{'name': group['name']}]
-    Dataset(**dataset_fields)
-    call_action('member_list', id=group["name"])
+    dataset = Dataset(**dataset_fields)
+    members = call_action('member_list', id=group["name"])
+    print(members)
+    assert len(members) == 1
+    call_action('member_delete', id=group["name"], object_type="package", object=dataset["name"])
+    members = call_action('member_list', id=group["name"])
+    assert len(members) == 0
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
