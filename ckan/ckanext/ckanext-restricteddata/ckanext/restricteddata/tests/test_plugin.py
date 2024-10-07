@@ -736,3 +736,12 @@ def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
 
     result = client.get(toolkit.url_for("organization.members", id=organization['name']), headers=headers)
     assert result.status_code == 403
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_member_list_for_dataset_in_group(app):
+    group = Group(**minimal_group())
+    dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
+    dataset_fields['groups'] = [{'name': group['name']}]
+    dataset = Dataset(**dataset_fields)
+    call_action('member_list', id=group["name"])
