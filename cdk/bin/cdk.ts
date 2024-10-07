@@ -78,7 +78,8 @@ const VpcStackDev = new VpcStack(app, 'VpcStack-dev', {
   env: {
     account: devStackProps.account,
     region: devStackProps.region
-  }
+  },
+  maxAzs: 2
 })
 
 
@@ -307,7 +308,8 @@ const VpcStackProd = new VpcStack(app, 'VpcStack-prod', {
   env: {
     account: prodStackProps.account,
     region: prodStackProps.region
-  }
+  },
+  maxAzs: 3
 })
 
 const KmsKeyStackProd = new KmsKeyStack(app, 'KmsKeyStack-prod', {
