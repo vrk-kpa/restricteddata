@@ -1,4 +1,19 @@
 """
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_normal_user_cannot_view_user_profile(app):
+    user = User()
+    client = app.test_client(use_cookies=True)
+    headers = {"Authorization": APIToken(user=user['name'])["token"]}
+    result = client.get(toolkit.url_for("user.read", id=user['name']), headers=headers)
+    assert result.status_code == 403
+
+    with pytest.raises(NotAuthorized):
+        call_action('user_show',
+                    context={"user": user["name"], "ignore_auth": False},
+                    id=user["name"])
+
+
+
 Tests for plugin.py.
 
 Tests are written using the pytest library (https://docs.pytest.org), and you
@@ -586,9 +601,9 @@ def test_paha_authentication_grants_temporary_membership(app):
     response = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
     assert response.status_code == 200
 
-    # Use same session to open user edit view
+    # Use same session to open user dashboard view
     # NOTE: new package view would be better, but it depends on building assets with gulp
-    response = client.get(toolkit.url_for("user.edit", id=user["id"]))
+    response = client.get(toolkit.url_for("dashboard.datasets", id=user["id"]))
     assert response.status_code == 200
 
     # Actually create a new dataset as the user
