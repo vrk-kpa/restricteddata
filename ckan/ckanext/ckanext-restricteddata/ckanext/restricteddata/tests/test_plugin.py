@@ -743,5 +743,5 @@ def test_member_list_for_dataset_in_group(app):
     group = Group(**minimal_group())
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['groups'] = [{'name': group['name']}]
-    dataset = Dataset(**dataset_fields)
+    Dataset(**dataset_fields)
     call_action('member_list', id=group["name"])
