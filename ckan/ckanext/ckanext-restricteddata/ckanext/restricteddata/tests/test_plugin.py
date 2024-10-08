@@ -760,12 +760,12 @@ def test_member_add_and_delete_for_dataset_in_group(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(user)
     dataset_fields['groups'] = [{'name': group['name']}]
     dataset = Dataset(**dataset_fields)
-    members = call_action('member_list', id=group["name"])
+    context = {"user": user["name"], "ignore_auth": False}
+    members = call_action('member_list', context=context, id=group["name"])
     assert len(members) == 1
-    call_action('member_delete',
-                context={"user": user["name"], "ignore_auth": False},
+    call_action('member_delete', context=context,
                 id=group["name"], object_type="package", object=dataset["name"])
-    members = call_action('member_list', id=group["name"])
+    members = call_action('member_list', context=context, id=group["name"])
     assert len(members) == 0
 
 
