@@ -48,45 +48,14 @@ Create Minimal Dataset And Resource
     Page Should Contain  Testiresurssin käyttöoikeuksien kuvaus
     
     
-# Default sorting option is sorting by relevance
-#     Open Browser To Front Page
+Create Dataset With All Fields
+    Fail  Not implemented
 
-# Default sorting option persists after search
-#     Open Browser To Front Page
+Display Dataset Metadata
+    Fail  Not implemented
 
-# Chosen sorting options changes the way datasets are sorted
-#     Open Browser To Front Page
+Edit Dataset
+    Fail  Not implemented
 
-# Chosen sorting option persists after search
-#     Open Browser To Front Page
-
-# Datasets have sorting options
-#     Open Browser To Front Page
-
-# Datasets appear sorted by creation date by default
-#     Open Browser To Front Page
-
-# Dataset properties are visible as filter options
-#     Open Browser To Front Page
-
-# Create a dataset with a category
-#     Open Browser To Front Page
-
-# Create a dataset with all fields
-#     Open Browser To Front Page
-
-# Creating an empty dataset fails
-#     Open Browser To Front Page
-
-# Cannot create dataset if logged out
-#     Open Browser To Front Page
-
-# Delete a dataset
-#     Open Browser To Front Page
-
-# Dataset collection contains correct properties
-#     Open Browser To Front Page
-
-# Dataset contains correct properties
-#     Open Browser To Front Page
-
+Remove Dataset
+    Fail  Not implemented
