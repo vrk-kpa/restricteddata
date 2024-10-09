@@ -747,7 +747,7 @@ def test_only_sysadmin_can_manage_organization_members():
 @pytest.mark.usefixtures("with_plugins", "clean_db")
 def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
     user = User()
-    organization = Organization(user=user, **minimal_organization())
+    organization = RestrictedDataOrganization(user=user)
     client = app.test_client(use_cookies=True)
     headers = {"Authorization": APIToken(user=user['name'])["token"]}
 
