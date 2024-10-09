@@ -3,7 +3,7 @@ import pytest
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import toolkit
 from ckan.tests.factories import Dataset, Sysadmin, User, Group
-from .utils import minimal_dataset_with_one_resource_fields, minimal_group, minimal_organization
+from .utils import minimal_dataset_with_one_resource_fields, minimal_group
 
 import ckanext.restricteddata.helpers as helpers
 from .factories import RestrictedDataOrganization

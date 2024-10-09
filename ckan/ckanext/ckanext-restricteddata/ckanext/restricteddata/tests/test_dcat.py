@@ -4,7 +4,7 @@ import logging
 from ckan.tests.factories import Dataset, Sysadmin
 from ckan.tests.helpers import call_action
 from ckan.plugins import toolkit
-from .utils import minimal_dataset_with_one_resource_fields, minimal_organization
+from .utils import minimal_dataset_with_one_resource_fields
 from rdflib import Graph
 from rdflib.term import Literal, URIRef
 from rdflib.namespace import XSD

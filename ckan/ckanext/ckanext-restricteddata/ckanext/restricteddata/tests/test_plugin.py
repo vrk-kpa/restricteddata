@@ -70,7 +70,7 @@ from ckan.tests.factories import Dataset, Sysadmin, User, Group, APIToken
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
 from .utils import (minimal_dataset, minimal_dataset_with_one_resource_fields,
-                    minimal_group, minimal_organization, create_paha_token)
+                    minimal_group, create_paha_token)
 
 from .factories import RestrictedDataOrganization
 
