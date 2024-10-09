@@ -6,9 +6,6 @@ from ckanext.scheming.helpers import lang
 from ckan.logic import NotFound
 from flask import has_request_context
 from logging import getLogger
-from datetime import datetime, timedelta
-import iso8601
-import requests
 from html import escape as html_escape
 from urllib.parse import quote
 
