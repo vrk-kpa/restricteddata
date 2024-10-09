@@ -7,6 +7,7 @@
       "field_name": "title_translated",
       "label": "Title",
       "preset": "fluent_core_title_translated",
+      "form_snippet": "fluent_readonly.html",
       "form_languages": [
         "fi",
         "sv",
@@ -16,20 +17,8 @@
         "fi",
         "sv"
       ],
-      "form_placeholder": "My Organization",
       "group_title": "Organization name",
       "group_description": "* Required field",
-      "form_attrs": {
-        "class": "form-control",
-        "readonly": true
-      },
-      "lang_form_attrs": {
-        "fi": {
-          "data-module": "slug-preview-target",
-          "class": "form-control slug-preview-target",
-          "readonly": true
-        }
-      },
       "validators": "ignore_not_sysadmin keep_old_value_if_missing fluent_text required_languages override_field_with_default_translation(title)"
     },
     {
