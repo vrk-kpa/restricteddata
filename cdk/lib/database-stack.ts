@@ -3,7 +3,7 @@ import {Construct} from "constructs";
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as rds from 'aws-cdk-lib/aws-rds';
 import {DatabaseStackProps} from "./database-stack-props";
-import {Credentials} from "aws-cdk-lib/aws-rds";
+import {Credentials, SnapshotCredentials} from "aws-cdk-lib/aws-rds";
 import {InstanceType, SubnetType} from "aws-cdk-lib/aws-ec2";
 import {Key} from "aws-cdk-lib/aws-kms";
 import * as bak from "aws-cdk-lib/aws-backup";
@@ -45,8 +45,29 @@ export class DatabaseStack extends Stack {
         this.ckanAdminCredentials = Credentials.fromSecret(databaseSecret);
 
 
-        this.ckanInstance = new aws_rds.DatabaseInstance(this, 'databaseInstance', {
-            engine: aws_rds.DatabaseInstanceEngine.POSTGRES,
+        if ( props.restoreFromSnapshot ) {
+          this.ckanInstance = new aws_rds.DatabaseInstanceFromSnapshot(this, 'databaseInstance', {
+            engine: aws_rds.DatabaseInstanceEngine.postgres({version: aws_rds.PostgresEngineVersion.VER_15}),
+            snapshotIdentifier: props.snapshotIdentifier!,
+            credentials: SnapshotCredentials.fromSecret(databaseSecret),
+            vpc: props.vpc,
+            port: 5432,
+            instanceType: new InstanceType(pDatabaseInstanceType.stringValue),
+            multiAz: props.multiAz,
+            allocatedStorage: 20,
+            maxAllocatedStorage: 100,
+            vpcSubnets: {
+              subnets: props.vpc.privateSubnets
+            },
+            securityGroups: [
+              this.databaseSecurityGroup
+            ]
+          })
+        }
+
+        else {
+          this.ckanInstance = new aws_rds.DatabaseInstance(this, 'databaseInstance', {
+            engine: aws_rds.DatabaseInstanceEngine.postgres({version: aws_rds.PostgresEngineVersion.VER_15}),
             credentials: this.ckanAdminCredentials,
             vpc: props.vpc,
             port: 5432,
@@ -55,13 +76,15 @@ export class DatabaseStack extends Stack {
             allocatedStorage: 20,
             maxAllocatedStorage: 100,
             vpcSubnets: {
-                subnets: props.vpc.privateSubnets
+              subnets: props.vpc.privateSubnets
             },
             securityGroups: [
-                this.databaseSecurityGroup
+              this.databaseSecurityGroup
             ],
             storageEncryptionKey: encryptionKey
-        })
+          })
+        }
+
 
         if (props.backups && props.backupPlan ) {
             props.backupPlan.addSelection('backupPlanDatabaseSelection', {
