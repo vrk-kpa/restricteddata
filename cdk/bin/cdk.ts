@@ -97,7 +97,7 @@ const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
     region: devStackProps.region,
   },
   environment: devStackProps.environment,
-  importVault: false,
+  importVault: true,
   backups: true
 })
 
@@ -113,7 +113,9 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
   backupPlan: BackupStackDev.backupPlan,
   cacheNodeType: 'cache.t3.micro',
   numCacheNodes: 1,
-  terminationProtection: true
+  terminationProtection: true,
+  restoreFromSnapshot: true,
+  snapshotIdentifier: 'pre-subnet-reduction'
 })
 
 const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev', {
@@ -342,7 +344,8 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
   backupPlan: BackupStackProd.backupPlan,
   cacheNodeType: 'cache.t3.micro',
   numCacheNodes: 1,
-  terminationProtection: true
+  terminationProtection: true,
+  restoreFromSnapshot: false
 })
 
 const LoadBalancerStackProd = new LoadBalancerStack(app, 'LoadBalancerStack-prod', {
