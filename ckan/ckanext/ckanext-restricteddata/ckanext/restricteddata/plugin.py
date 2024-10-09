@@ -69,7 +69,6 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             helpers.scheming_language_text_or_empty,
             'get_lang_prefix': helpers.get_lang_prefix,
             'call_toolkit_function': helpers.call_toolkit_function,
-            'get_homepage_news': helpers.get_homepage_news,
             'get_homepage_groups': helpers.get_homepage_groups,
             'scheming_category_list': helpers.scheming_category_list,
             'build_nav_main': helpers.build_nav_main,
