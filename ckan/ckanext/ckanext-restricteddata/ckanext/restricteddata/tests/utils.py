@@ -33,11 +33,6 @@ def minimal_group():
         title_translated={lang: f'title {lang}' for lang in ['fi', 'sv']}
     )
 
-def minimal_organization():
-    return dict(
-        title_translated={'fi': 'Title (fi)', 'sv': 'Title (sv)'},
-        image_url=''
-    )
 
 def create_paha_token(data):
     payload = {

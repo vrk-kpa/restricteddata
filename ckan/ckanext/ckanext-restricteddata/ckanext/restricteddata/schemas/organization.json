@@ -7,6 +7,7 @@
       "field_name": "title_translated",
       "label": "Title",
       "preset": "fluent_core_title_translated",
+      "form_snippet": "fluent_readonly.html",
       "form_languages": [
         "fi",
         "sv",
@@ -16,9 +17,9 @@
         "fi",
         "sv"
       ],
-      "form_placeholder": "My Organization",
       "group_title": "Organization name",
-      "group_description": "* Required field"
+      "group_description": "* Required field",
+      "validators": "ignore_not_sysadmin keep_old_value_if_missing fluent_text required_languages override_field_with_default_translation(title)"
     },
     {
       "field_name": "name",

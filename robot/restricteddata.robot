@@ -91,7 +91,7 @@ Log In As Test User
     Input Password  ${TEST_USER_PASSWORD}
     Submit Primary Form
     URL Path Should Be  /dashboard/datasets
-    
+
 Log Out
     Open URL Path  /user/_logout
     URL Path Should Be  /user/logged_out_redirect
@@ -120,28 +120,24 @@ Reset Data And Open Front Page
 
 
 Create Test Organisation
-    Log In As Administrator
-    Go To  ${ROOT_URL}/organization/
-    Click Link  link:Lisää organisaatio
-    Input Text  id:field-title_translated-fi  Testiorganisaatio
-    Input Text  id:field-title_translated-sv  Test organisation
-    Submit Primary Form
-    URL Path Should Be  /organization/testiorganisaatio
+    Create Organization  Testiorganisaatio  Test organisation  testiorganisaatio
+    Open URL Path  /organization/testiorganisaatio
 
 Add Test User To Test Organisation
+    Log In As Administrator
     Open URL Path  /organization/members/testiorganisaatio
     Click Link  link:Lisää jäsen
     Input Text Into Select2  username  ${TEST_USER_USERNAME}
     Submit Primary Form
     Log Out
-    
+
 
 Input Text Into CKEditor
     [Arguments]  ${id}  ${text}
     Scroll Element Into View  css:#${id} + .ck-editor .ck-editor__editable
     Click Element  css:#${id} + .ck-editor .ck-editor__editable
     Press Keys     None  ${text}
-    
+
 Input Tag Into Select2
     [Arguments]  ${id}  ${text}
     Scroll Element Into View  id:s2id_${id}

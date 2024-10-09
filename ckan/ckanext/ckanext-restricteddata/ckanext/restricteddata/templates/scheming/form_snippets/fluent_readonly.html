@@ -1,0 +1,35 @@
+{% from 'macros/form/hidden.html' import hidden %}
+{% from 'macros/form/input_block.html' import input_block %}
+
+
+{% set langs = h.fluent_form_languages(field, entity_type, object_type, schema) %}
+{% set lang = langs[0] %}
+
+<div class="form-group-fluent">
+  {%- for lang in langs -%}
+    {% if loop.first and field.description and field.description.strip() %}
+      {% set description = field.description %}
+    {% endif %}
+      {% if lang in (field.lang_form_attrs or {}) %}
+        {% set attrs = field.lang_form_attrs[lang] %}
+    {% else %}
+      {% set attrs = field.form_attrs if 'form_attrs' in field else {} %}
+    {% endif %}
+
+    {{ hidden(name=field.field_name + '-' + lang, value=data[field.field_name + '-' + lang] or data.get(field.field_name, {})[lang])}}
+
+    {% if data[field.field_name + '-' + lang] or data.get(field.field_name, {})[lang] %}
+      {% call input_block(
+        for='field-' + field.field_name,
+        label=_(field.label) + ' ' + _(lang|upper),
+        error=errors[field.field_name + '-' + lang],
+        classes=field.classes if 'classes' in field else ['control-medium'],
+        control_classes=dict({"class": "form-control"}, **(field.get('form_attrs', {}))),
+      ) %}
+        {{ data[field.field_name + '-' + lang] or data.get(field.field_name, {})[lang] }}
+      {% endcall %}
+    {% endif %}
+
+  {%- endfor -%}
+</div>
+

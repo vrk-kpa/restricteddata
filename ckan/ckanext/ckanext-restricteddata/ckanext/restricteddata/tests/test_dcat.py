@@ -1,14 +1,16 @@
 import pytest
 import logging
 
-from ckan.tests.factories import Dataset, Sysadmin, Organization
+from ckan.tests.factories import Dataset, Sysadmin
 from ckan.tests.helpers import call_action
 from ckan.plugins import toolkit
-from .utils import minimal_dataset_with_one_resource_fields, minimal_organization
+from .utils import minimal_dataset_with_one_resource_fields
 from rdflib import Graph
 from rdflib.term import Literal, URIRef
 from rdflib.namespace import XSD
 from urllib.parse import unquote
+
+from .factories import RestrictedDataOrganization
 
 log = logging.getLogger(__name__)
 
@@ -44,7 +46,7 @@ def test_dcat_catalog(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_with_minimal_dataset(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    organization = Organization(name='org', **minimal_organization())
+    organization = RestrictedDataOrganization(name='org')
     dataset_fields['owner_org'] = organization['id']
     Dataset(**dataset_fields)
 

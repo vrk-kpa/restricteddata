@@ -41,3 +41,8 @@ class CkanLibrary:
     def create_ckan_user(self, name, email, password):
         data = {'name': name, 'email': email, 'password': password}
         post(self.action('user_create'), data=data, cookies=self.admin_cookies)
+
+    @keyword
+    def create_organization(self, title_fi, title_sv, name):
+        data = {'title_translated': {'fi': title_fi, 'sv': title_sv}, 'name': name, "image_url": ""}
+        post(self.action('organization_create'), json=data, cookies=self.admin_cookies)

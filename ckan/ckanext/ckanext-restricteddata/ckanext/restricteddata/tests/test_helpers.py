@@ -2,10 +2,11 @@ import pytest
 
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import toolkit
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
-from .utils import minimal_dataset_with_one_resource_fields, minimal_group, minimal_organization
+from ckan.tests.factories import Dataset, Sysadmin, User, Group
+from .utils import minimal_dataset_with_one_resource_fields, minimal_group
 
 import ckanext.restricteddata.helpers as helpers
+from .factories import RestrictedDataOrganization
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
 class TestGetAssignableGroupsForPackageHelper(object):
@@ -13,7 +14,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
     def test_get_assignable_groups_for_package_helper_with_non_maintainer(self, app):
         _g = Group(**minimal_group())
         some_user = User()
-        org = Organization(**minimal_organization())
+        org = RestrictedDataOrganization()
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
@@ -28,7 +29,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
         g1 = Group(**minimal_group())
         g2 = Group(**minimal_group())
         maintainer = User()
-        org = Organization(user=maintainer, **minimal_organization())
+        org = RestrictedDataOrganization(user=maintainer)
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
