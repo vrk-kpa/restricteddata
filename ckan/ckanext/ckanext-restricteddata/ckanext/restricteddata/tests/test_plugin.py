@@ -731,6 +731,45 @@ def test_only_sysadmin_can_manage_organization_members():
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
+    user = User()
+    organization = Organization(user=user, **minimal_organization())
+    client = app.test_client(use_cookies=True)
+    headers = {"Authorization": APIToken(user=user['name'])["token"]}
+
+    # Make sure the user has admin privileges to the organization
+    result = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
+    assert result.status_code == 200
+
+    # Verify the user cannot view the member edit pages
+    result = client.get(toolkit.url_for("organization.member_new", id=organization['name']), headers=headers)
+    assert result.status_code == 403
+
+    result = client.get(toolkit.url_for("organization.member_delete", id=organization['name'], user=user["id"]),
+                        headers=headers)
+    assert result.status_code == 403
+
+    result = client.get(toolkit.url_for("organization.members", id=organization['name']), headers=headers)
+    assert result.status_code == 403
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_member_add_and_delete_for_dataset_in_group(app):
+    group = Group(**minimal_group())
+    user = User()
+    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+    dataset_fields['groups'] = [{'name': group['name']}]
+    dataset = Dataset(**dataset_fields)
+    context = {"user": user["name"], "ignore_auth": False}
+    members = call_action('member_list', context=context, id=group["name"])
+    assert len(members) == 1
+    call_action('member_delete', context=context,
+                id=group["name"], object_type="package", object=dataset["name"])
+    members = call_action('member_list', context=context, id=group["name"])
+    assert len(members) == 0
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
 def test_normal_user_cannot_edit_user_profile(app):
     user = User()
     client = app.test_client(use_cookies=True)

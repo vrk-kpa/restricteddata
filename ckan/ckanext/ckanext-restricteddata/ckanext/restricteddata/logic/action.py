@@ -70,3 +70,9 @@ def user_autocomplete(original_action, context, data_dict):
         return []
 
     return original_action(context, data_dict)
+
+
+@toolkit.chained_action
+def member_list(original_action, context, data_dict):
+    data_dict['object_type'] = data_dict.get('object_type', 'package')
+    return original_action(context, data_dict)
