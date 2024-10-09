@@ -69,7 +69,6 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             helpers.scheming_language_text_or_empty,
             'get_lang_prefix': helpers.get_lang_prefix,
             'call_toolkit_function': helpers.call_toolkit_function,
-            'get_homepage_news': helpers.get_homepage_news,
             'get_homepage_groups': helpers.get_homepage_groups,
             'scheming_category_list': helpers.scheming_category_list,
             'build_nav_main': helpers.build_nav_main,
@@ -208,7 +207,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'user_create': action.user_create,
             'member_roles_list': action.member_roles_list,
-            'user_autocomplete': action.user_autocomplete
+            'user_autocomplete': action.user_autocomplete,
+            'member_list': action.member_list
         }
 
     # IAuthFunctions
@@ -217,6 +217,10 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'member_create': auth.member_create,
             'member_delete': auth.member_delete,
+            'member_list': auth.member_list,
+            'organization_member_create': auth.sysadmin_only,
+            'organization_member_delete': auth.sysadmin_only,
+            'organization_member_list': auth.sysadmin_only,
             'api_token_create': auth.sysadmin_only,
             'user_list': auth.sysadmin_only,
             'user_update': auth.sysadmin_only,
