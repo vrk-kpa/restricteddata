@@ -2,18 +2,19 @@ import pytest
 
 # import ckanext.restricteddata.plugin as plugin
 from ckan.plugins import toolkit
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group
-from .utils import minimal_dataset_with_one_resource_fields, minimal_group
+from ckan.tests.factories import Dataset, Sysadmin, User, Group
+from .utils import minimal_dataset_with_one_resource_fields, minimal_group, minimal_organization
 
 import ckanext.restricteddata.helpers as helpers
+from .factories import RestrictedDataOrganization
 
-@pytest.mark.usefixtures("clean_db", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db")
 class TestGetAssignableGroupsForPackageHelper(object):
     @pytest.mark.usefixtures("with_request_context")
     def test_get_assignable_groups_for_package_helper_with_non_maintainer(self, app):
         _g = Group(**minimal_group())
         some_user = User()
-        org = Organization(title_translated={'fi': "finnish title", 'sv': "swedish title"})
+        org = RestrictedDataOrganization()
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
@@ -28,7 +29,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
         g1 = Group(**minimal_group())
         g2 = Group(**minimal_group())
         maintainer = User()
-        org = Organization(user=maintainer, title_translated={'fi': "finnish title", 'sv': "swedish title"})
+        org = RestrictedDataOrganization(user=maintainer)
 
         dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
         dataset_fields['owner_org'] = org['id']
@@ -40,7 +41,7 @@ class TestGetAssignableGroupsForPackageHelper(object):
         assert unassigned_group['name'] == g2['name']
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db")
 def test_get_group_title_translations():
     titles = [(lang, f'title {lang}') for lang in ['fi', 'sv', 'en']]
     g = Group(title_translated=dict(titles))
@@ -51,7 +52,7 @@ def test_get_group_title_translations():
         assert group_titles[name][lang] == title
 
 
-@pytest.mark.usefixtures("clean_db", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db")
 def test_get_translated_groups():
     titles = [(lang, f'title {lang}') for lang in ['fi', 'sv', 'en']]
     g = Group(title_translated=dict(titles))

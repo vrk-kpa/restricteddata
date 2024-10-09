@@ -1,14 +1,16 @@
 import pytest
 import logging
 
-from ckan.tests.factories import Dataset, Sysadmin, Organization
+from ckan.tests.factories import Dataset, Sysadmin
 from ckan.tests.helpers import call_action
 from ckan.plugins import toolkit
-from .utils import minimal_dataset_with_one_resource_fields
+from .utils import minimal_dataset_with_one_resource_fields, minimal_organization
 from rdflib import Graph
 from rdflib.term import Literal, URIRef
 from rdflib.namespace import XSD
 from urllib.parse import unquote
+
+from .factories import RestrictedDataOrganization
 
 log = logging.getLogger(__name__)
 
@@ -25,7 +27,7 @@ def fetch_catalog_graph(app):
     return g
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_catalog(app):
     catalog = fetch_catalog_graph(app).query('''
         SELECT ?title ?homepage
@@ -41,10 +43,10 @@ def test_dcat_catalog(app):
     assert homepage == URIRef(toolkit.config.get('ckan.site_url'))
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_with_minimal_dataset(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
-    organization = Organization(name='org', title_translated={'fi': "finnish title", 'sv': "swedish title"})
+    organization = RestrictedDataOrganization(name='org')
     dataset_fields['owner_org'] = organization['id']
     Dataset(**dataset_fields)
 
@@ -85,7 +87,7 @@ def test_dcat_dataset_with_minimal_dataset(app):
     assert unquote(maintainer_email) == f'mailto:{dataset_fields["maintainer_email"]}'
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_rights(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['rights_translated'] = {lang: f'rights {lang}'
@@ -109,7 +111,7 @@ def test_dcat_dataset_rights(app):
     assert rights_en == Literal(dataset_fields['rights_translated']['en'], lang='en')
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_maintainer_website(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['maintainer_website'] = 'http://example.com'
@@ -129,7 +131,7 @@ def test_dcat_dataset_maintainer_website(app):
     assert maintainer_website == URIRef(dataset_fields['maintainer_website'])
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_external_urls(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['external_urls'] = ['http://first.example.com',
@@ -149,7 +151,7 @@ def test_dcat_dataset_external_urls(app):
                              for url in dataset_fields['external_urls']]
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_update_frequency(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['update_frequency'] = 'quarterly'
@@ -167,7 +169,7 @@ def test_dcat_dataset_update_frequency(app):
     assert update_frequency == URIRef('http://publications.europa.eu/resource/authority/frequency/QUARTERLY')
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_dataset_valid_from_till(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['valid_from'] = '2023-01-01T00:00:00'
@@ -190,7 +192,7 @@ def test_dcat_dataset_valid_from_till(app):
     assert valid_till == Literal(dataset_fields['valid_till'], datatype=XSD.dateTime)
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_minimal_resource(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -219,7 +221,7 @@ def test_dcat_resource_with_minimal_resource(app):
     assert rights_sv == Literal(resource_fields['rights_translated']['sv'], lang='sv')
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_name(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -243,7 +245,7 @@ def test_dcat_resource_with_name(app):
     assert name_en == Literal(resource_fields['name_translated']['en'], lang='en')
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_endpoint_url(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -263,7 +265,7 @@ def test_dcat_resource_with_endpoint_url(app):
     assert endpoint_url == URIRef(resource_fields['endpoint_url'])
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_description(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -288,7 +290,7 @@ def test_dcat_resource_with_description(app):
     assert description_en == Literal(resource_fields['description_translated']['en'], lang='en')
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_position_info(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -308,7 +310,7 @@ def test_dcat_resource_with_position_info(app):
     assert position_info == Literal(resource_fields['position_info'])
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_temporal_granularity(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -332,7 +334,7 @@ def test_dcat_resource_with_temporal_granularity(app):
             assert Literal(value, lang=lang) in results
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_temporal_coverage(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]
@@ -356,7 +358,7 @@ def test_dcat_resource_with_temporal_coverage(app):
     assert temporal_coverage_till == Literal(resource_fields['temporal_coverage_till'], datatype=XSD.dateTime)
 
 
-@pytest.mark.usefixtures("clean_db", "clean_index", "with_plugins")
+@pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
 def test_dcat_resource_with_geographical_accuracy(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     resource_fields = dataset_fields['resources'][0]

@@ -1,24 +1,31 @@
 from ckan.plugins import toolkit
+from ckan.types import Context, DataDict, AuthResult, AuthFunction
 
 @toolkit.chained_auth_function
-def member_create(next_auth, context, data_dict):
-    if data_dict['object_type'] == 'package':
-        try:
-            toolkit.check_access('package_update', context, {'id': data_dict['object']})
-        except toolkit.NotAuthorized:
-            return {'success': False,
-                    'message': 'Only dataset owners can modify dataset groups'}
+def member_create(next_auth: AuthFunction, context: Context, data_dict: DataDict) -> AuthResult:
+    match data_dict['object_type']:
+        case 'package':
+            try:
+                toolkit.check_access('package_update', context, {'id': data_dict['object']})
+            except toolkit.NotAuthorized:
+                return {'success': False,
+                        'message': 'Only dataset owners can modify dataset groups'}
+        case 'user':
+            return sysadmin_only(context, data_dict)
 
     return next_auth(context, data_dict)
 
 @toolkit.chained_auth_function
-def member_delete(next_auth, context, data_dict):
-    if data_dict['object_type'] == 'package':
-        try:
-            toolkit.check_access('package_update', context, {'id': data_dict['object']})
-        except toolkit.NotAuthorized:
-            return {'success': False,
-                    'message': 'Only dataset owners can modify dataset groups'}
+def member_delete(next_auth: AuthFunction, context: Context, data_dict: DataDict) -> AuthResult:
+    match data_dict['object_type']:
+        case 'package':
+            try:
+                toolkit.check_access('package_update', context, {'id': data_dict['object']})
+            except toolkit.NotAuthorized:
+                return {'success': False,
+                        'message': 'Only dataset owners can modify dataset groups'}
+        case 'user':
+            return sysadmin_only(context, data_dict)
 
     return next_auth(context, data_dict)
 

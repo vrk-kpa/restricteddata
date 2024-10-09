@@ -49,10 +49,15 @@
     <div class="user">
       {% if c.userobj %}
       <div class="account authed" data-module="me" data-me="{{ c.userobj.id }}">
-        <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" title="{{ _('View profile') }}">
+        <a href="{{ h.url_for('activity.dashboard')}}" title="{{ _('View profile') }}">
           <span class="username">{{ c.userobj.display_name }}</span></a>
-        <a href="{{ h.url_for('user.logout') }}" class="logout" title="{{ _('Log out') }}">
-          <span class="text">{{ _('Log out')|upper }}</span>
+        {% if h.check_access('sysadmin') %}
+        <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="text" title="{{ _('Sysadmin profile') }}">
+          <span>{{ _('Sysadmin profile') }}</span>
+        </a>
+        {% endif %}
+        <a href="{{ h.url_for('user.logout') }}"  class="text" title="{{ _('Log out') }}">
+          <span>{{ _('Log out')|upper }}</span>
         </a>
       </div>
       {% else %}
@@ -60,7 +65,12 @@
         <ul class="list-unstyled">
           {% block header_account_notlogged %}
           <li>
-            <a href="{{ h.url_for('user.login') }}" class="btn btn-primary" title="{{ _('Log in') }}">
+            {% if g.debug %}
+              {% set login_url = h.url_for('user.login') %}
+            {% else %}
+              {% set login_url = "https://palveluhallinta.suomi.fi/" + current_lang + "/rekisteroityminen" %}
+            {% endif %}
+            <a href="{{ login_url }}" class="btn btn-primary" title="{{ _('Log in') }}">
               <i class="icon login"></i>
               <span class="text">{{ _('Log in') }}</span>
             </a>
