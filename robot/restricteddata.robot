@@ -138,12 +138,14 @@ Add Test User To Test Organisation
 
 Input Text Into CKEditor
     [Arguments]  ${id}  ${text}
+    Wait Until Page Contains Element  id:${id}
     Scroll Element Into View  css:#${id} + .ck-editor .ck-editor__editable
     Click Element  css:#${id} + .ck-editor .ck-editor__editable
     Press Keys     None  ${text}
     
 Input Tag Into Select2
     [Arguments]  ${id}  ${text}
+    Wait Until Page Contains Element  id:s2id_${id}
     Scroll Element Into View  id:s2id_${id}
     Click Element  id:s2id_${id}
     Press Keys     None  ${text}
@@ -153,9 +155,27 @@ Input Tag Into Select2
 
 Input Text Into Select2
     [Arguments]  ${id}  ${text}
+    Wait Until Page Contains Element  id:s2id_${id}
     Scroll Element Into View  id:s2id_${id}
     Click Element  id:s2id_${id}
     Press Keys     None  ${text}
     Wait Until Element Is Visible  css:.select2-result-label[data-value="${text}"]
     Press Keys     None  \n
     Textfield Value Should Be  name:${id}  ${text}
+
+Select Suomi.fi Radio Button
+    [Arguments]  ${name}  ${value}
+    Scroll Element Into View  css:#field-${name}-${value} + .check
+    Click Element  css:#field-${name}-${value} + .check
+
+Select Suomi.fi Checkbox
+    [Arguments]  ${name}  ${value}
+    Scroll Element Into View  css:#field-${name}-${value} + .custom-checkbox
+    Click Element  css:#field-${name}-${value} + .custom-checkbox
+
+
+Remove Suomi.fi Tag
+    [Arguments]  ${name}  ${language}  ${value}
+    Scroll Element Into View  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
+    Click Element  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
+
