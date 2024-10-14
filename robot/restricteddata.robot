@@ -173,9 +173,65 @@ Select Suomi.fi Checkbox
     Scroll Element Into View  css:#field-${name}-${value} + .custom-checkbox
     Click Element  css:#field-${name}-${value} + .custom-checkbox
 
-
 Remove Suomi.fi Tag
     [Arguments]  ${name}  ${language}  ${value}
     Scroll Element Into View  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
     Click Element  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
 
+Fill Dataset Form With Minimal Test Data
+    Input Text  id:field-title_translated-fi  Testiaineisto
+    Input Text  id:field-title_translated-sv  Test dataset
+    Input Text Into CKEditor  field-notes_translated-fi  Testiaineiston kuvaus
+    Input Text Into CKEditor  field-notes_translated-sv  Test dataset beskrivning
+    Input Tag Into Select2   field-keywords-fi  Testi
+    Input Tag Into Select2   field-keywords-sv  Test
+    Input Text  id:field-maintainer  Teemu Testaaja
+    Input Text  id:field-maintainer_email  teemu.testaaja@example.com
+
+Fill Dataset Form With Full Test Data
+    Fill Dataset Form With Minimal Test Data
+    Input Text  id:field-title_translated-en  Test dataset
+    Input Text Into CKEditor  field-notes_translated-en  Test dataset description
+    Input Tag Into Select2   field-keywords-en  Test
+    Input Text Into CKEditor  field-rights_translated-fi  Testiaineiston käyttöoikeudet
+    Input Text Into CKEditor  field-rights_translated-sv  Test dataset behörigheter
+    Input Text Into CKEditor  field-rights_translated-en  Test dataset rights
+    Input Text  id:field-external_urls  https://example.com/2
+    Scroll Element Into View  css:label[for="field-external_urls"] + .controls button
+    Click Button  Lisää linkki
+    Input Text  css:[name=external_urls]:not(#field-external_urls)  https://example.com
+    Select From List By Value  id:field-update_frequency  annual
+    Input Text  id:field-valid_from  01/01/2023
+    Input Text  id:field-valid_till  01/01/2033
+    Scroll Element Into View  css:label[for="field-maintainer_email"] + .controls button
+    Click Button  Lisää sähköposti
+    Input Text  css:[name=maintainer_email]:not(#field-maintainer_email)  teuvo.testaaja@example.com
+    Input Text  id:field-maintainer_website  https://example.com/maintenance
+    
+
+Fill Resource Form With Minimal Test Data
+    Input Text  id:field-name_translated-fi  Testiresurssi
+    Input Text  id:field-name_translated-sv  Test resurs
+    Click Button  id:resource-link-button
+    Input Text  id:field-resource-url  http://example.com
+    Input Tag Into Select2  field-format  HTML
+    Input Text  id:field-size  12345
+    Input Text Into CKEditor  field-rights_translated-fi  Testiresurssin käyttöoikeuksien kuvaus
+    Input Text Into CKEditor  field-rights_translated-sv  Test resurs användningsrättigheter
+
+Fill Resource Form With Full Test Data
+    Fill Resource Form With Minimal Test Data
+    Input Text  id:field-name_translated-en  Test resource
+    Input Text Into CKEditor  field-description_translated-fi  Testiresurssin kuvaus
+    Input Text Into CKEditor  field-description_translated-sv  Test resurs beskrivning
+    Input Text Into CKEditor  field-description_translated-en  Test resource description
+    Input Text Into CKEditor  field-rights_translated-en  Test resource rights
+    Input Tag Into Select2   field-temporal_granularity-fi  Kuukausi
+    Input Tag Into Select2   field-temporal_granularity-sv  Månad
+    Input Tag Into Select2   field-temporal_granularity-en  Month
+    Input Text  id:field-endpoint_url  http://example.com/api
+    Input Text  id:field-position_info  WGS84
+    Input Text  id:field-temporal_coverage_from  01/02/2023
+    Input Text  id:field-temporal_coverage_till  03/04/2034
+    Input Text  id:field-geographical_accuracy  42
+    
