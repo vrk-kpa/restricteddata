@@ -78,7 +78,8 @@ const VpcStackDev = new VpcStack(app, 'VpcStack-dev', {
   env: {
     account: devStackProps.account,
     region: devStackProps.region
-  }
+  },
+  maxAzs: 2
 })
 
 
@@ -96,7 +97,7 @@ const BackupStackDev = new BackupStack(app, 'BackupStack-dev', {
     region: devStackProps.region,
   },
   environment: devStackProps.environment,
-  importVault: false,
+  importVault: true,
   backups: true
 })
 
@@ -112,7 +113,9 @@ const DatabaseStackDev = new DatabaseStack(app, 'DatabaseStack-dev', {
   backupPlan: BackupStackDev.backupPlan,
   cacheNodeType: 'cache.t3.micro',
   numCacheNodes: 1,
-  terminationProtection: true
+  terminationProtection: true,
+  restoreFromSnapshot: true,
+  snapshotIdentifier: 'pre-subnet-reduction'
 })
 
 const LoadBalancerStackDev = new LoadBalancerStack(app, 'LoadBalancerStack-dev', {
@@ -242,7 +245,7 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   secondaryDomainName: devStackProps.secondaryDomainName,
   fileSystem: FileSystemStackDev.ckanFs,
   taskDef: {
-    taskCpu: 256,
+    taskCpu: 512,
     taskMem: 1024,
     taskMinCapacity: 1,
     taskMaxCapacity: 1
@@ -307,7 +310,8 @@ const VpcStackProd = new VpcStack(app, 'VpcStack-prod', {
   env: {
     account: prodStackProps.account,
     region: prodStackProps.region
-  }
+  },
+  maxAzs: 3
 })
 
 const KmsKeyStackProd = new KmsKeyStack(app, 'KmsKeyStack-prod', {
@@ -340,7 +344,8 @@ const DatabaseStackProd = new DatabaseStack(app, 'DatabaseStack-prod', {
   backupPlan: BackupStackProd.backupPlan,
   cacheNodeType: 'cache.t3.micro',
   numCacheNodes: 1,
-  terminationProtection: true
+  terminationProtection: true,
+  restoreFromSnapshot: false
 })
 
 const LoadBalancerStackProd = new LoadBalancerStack(app, 'LoadBalancerStack-prod', {
@@ -462,10 +467,10 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
   secondaryDomainName: prodStackProps.secondaryDomainName,
   fileSystem: FileSystemStackProd.ckanFs,
   taskDef: {
-    taskCpu: 256,
-    taskMem: 1024,
-    taskMinCapacity: 1,
-    taskMaxCapacity: 1
+    taskCpu: 1024,
+    taskMem: 2048,
+    taskMinCapacity: 3,
+    taskMaxCapacity: 3
   },
   cronTaskDef: {
     taskCpu: 256,

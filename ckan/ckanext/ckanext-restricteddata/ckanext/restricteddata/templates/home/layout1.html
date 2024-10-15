@@ -85,23 +85,4 @@
       </div>
     </div>
   </section>
-
-  <section>
-    <h2>Ajankohtaista</h2>
-    <ul class="news-items">
-      {% for news in h.get_homepage_news() %}
-      {% set title = news.title[h.lang()] or news.title.fi %}
-      {% set published = news.published | datetimeformat('d.M.y') %}
-      {% set url = news.url[h.lang()] or news.url.fi %}
-      <li>
-        <span class="news-published">{{ _('Published') }} {{ published }}</span>
-        <a class="news-title" href="{{ url }}" aria-label="{{ _('open news item') }} {{ title }}"><h3>{{ title }}</h3></a>
-        {% for tag in news.tags %}
-          <span class="news-badge">{{ tag.name[h.lang()] or tag.name.fi }}</span>
-        {% endfor %}
-      </li>
-      {% endfor %}
-    </ul>
-    <a class="chevron-link" href="https://palveluhallinta.suomi.fi/{{ h.lang() }}/ajankohtaista/uutiset/">{{ _('Browse all news and disruption notices') }}</a>
-  </section>
 </div>

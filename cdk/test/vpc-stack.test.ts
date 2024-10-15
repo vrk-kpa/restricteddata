@@ -4,7 +4,7 @@ import { VpcStack } from '../lib/vpc-stack';
 
 test('VPC Created with given cidr block', () => {
     const app = new cdk.App();
-    const stack = new VpcStack(app, 'VpcStack-test');
+    const stack = new VpcStack(app, 'VpcStack-test', {maxAzs: 3});
 
     const template = Template.fromStack(stack);
 

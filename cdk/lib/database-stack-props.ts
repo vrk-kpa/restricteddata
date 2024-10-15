@@ -8,5 +8,7 @@ export interface DatabaseStackProps extends NetworkStackProps {
     cacheNodeType: string;
     numCacheNodes: number;
     terminationProtection: boolean;
+    restoreFromSnapshot: boolean;
+    snapshotIdentifier?: string;
 }
 

@@ -66,11 +66,13 @@ import pytest
 import datetime
 
 from ckan.plugins import plugin_loaded, toolkit
-from ckan.tests.factories import Dataset, Sysadmin, Organization, User, Group, APIToken
+from ckan.tests.factories import Dataset, Sysadmin, User, Group, APIToken
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
 from .utils import (minimal_dataset, minimal_dataset_with_one_resource_fields,
-                    minimal_group, minimal_organization, create_paha_token)
+                    minimal_group, create_paha_token)
+
+from .factories import RestrictedDataOrganization
 
 
 @pytest.mark.usefixtures("with_plugins")
@@ -312,7 +314,7 @@ def test_dataset_with_resource_with_rights():
 def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     author = User()
-    org = Organization(user=author, **minimal_organization())
+    org = RestrictedDataOrganization(user=author)
     dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
@@ -330,7 +332,7 @@ def test_dataset_with_private_resource_not_showing_for_unauthorized_user(app):
 def test_dataset_with_resource_with_private(app):
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     author = User()
-    org = Organization(user=author, **minimal_organization())
+    org = RestrictedDataOrganization(user=author)
     dataset_fields['owner_org'] = org['id']
     dataset_fields['resources'][0]['private'] = True
     d = Dataset(**dataset_fields)
@@ -420,7 +422,7 @@ def test_dataset_with_resource_with_geographical_accuracy():
 def test_maintainer_can_add_dataset_to_group(app):
     g = Group(**minimal_group())
     author = User()
-    org = Organization(user=author, **minimal_organization())
+    org = RestrictedDataOrganization(user=author)
 
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['owner_org'] = org['id']
@@ -442,8 +444,7 @@ def test_maintainer_can_add_dataset_to_group(app):
 def test_non_maintainer_can_not_add_dataset_to_group(app):
     g = Group(**minimal_group())
     some_user = User()
-    org = Organization(**minimal_organization())
-
+    org = RestrictedDataOrganization()
     dataset_fields = minimal_dataset_with_one_resource_fields(Sysadmin())
     dataset_fields['owner_org'] = org['id']
     d = Dataset(**dataset_fields)
@@ -527,7 +528,7 @@ def test_paha_authentication_creates_organization(app):
     assert response.status_code == 200
     assert organization_name_fi in response.body
 
-    organization = call_action('organization_show', 
+    organization = call_action('organization_show',
                                id=organization_id,
                                context={"ignore_auth": True})
     assert organization['id'] == organization_id
@@ -541,7 +542,7 @@ def test_paha_authentication_creates_organization(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_creates_new_user(app):
     # Get new user profile with PAHA authentication
-    organization = Organization(**minimal_organization())
+    organization = RestrictedDataOrganization()
     email = "foo@example.com"
     token = create_paha_token({"id":"test-id",
                                "email":email,
@@ -562,7 +563,7 @@ def test_paha_authentication_creates_new_user(app):
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_logs_in_user(app):
-    organization = Organization(**minimal_organization())
+    organization = RestrictedDataOrganization()
     test_id = "test-id"
     some_user = User(id=test_id)
 
@@ -588,7 +589,7 @@ def test_paha_authentication_logs_in_user(app):
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_grants_temporary_membership(app):
-    organization = Organization(**minimal_organization())
+    organization = RestrictedDataOrganization()
     user = User()
     client = app.test_client(use_cookies=True)
     token = create_paha_token({
@@ -623,7 +624,7 @@ def test_paha_authentication_grants_temporary_membership(app):
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_temporary_membership_expiry(app):
-    organization = Organization(**minimal_organization())
+    organization = RestrictedDataOrganization()
     user = User()
     expires = datetime.datetime.now()
     members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
@@ -673,11 +674,24 @@ def test_sysadmin_has_user_autocomplete():
     assert len(result) == 1
     assert result[0]['name'] == u['name']
 
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_organization_title_updates_are_ignored():
+    u = User()
+
+    organization = RestrictedDataOrganization(user=u)
+    context = {"user": u["name"], "ignore_auth": False}
+    call_action('organization_patch', context=context, id=organization['id'],
+                title_translated={'fi': 'modified finnish', 'sv': 'modified swedish'})
+
+    result = call_action('organization_show', id=organization['id'])
+
+    assert result['title_translated'] == organization['title_translated']
+
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
 def test_only_sysadmin_can_manage_organization_members():
     user = User()
-    organization = Organization(user=user, **minimal_organization())
+    organization = RestrictedDataOrganization(user=user)
 
     another_user = User()
 
@@ -728,6 +742,45 @@ def test_only_sysadmin_can_manage_organization_members():
     # Verify another_user is not in organization members
     members = call_action('member_list', id=organization["id"], object_type="user", capacity="member")
     assert all(member_id != another_user["id"] for member_id, _, _ in members)
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_normal_user_has_no_access_to_organization_member_edit_pages(app):
+    user = User()
+    organization = RestrictedDataOrganization(user=user)
+    client = app.test_client(use_cookies=True)
+    headers = {"Authorization": APIToken(user=user['name'])["token"]}
+
+    # Make sure the user has admin privileges to the organization
+    result = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
+    assert result.status_code == 200
+
+    # Verify the user cannot view the member edit pages
+    result = client.get(toolkit.url_for("organization.member_new", id=organization['name']), headers=headers)
+    assert result.status_code == 403
+
+    result = client.get(toolkit.url_for("organization.member_delete", id=organization['name'], user=user["id"]),
+                        headers=headers)
+    assert result.status_code == 403
+
+    result = client.get(toolkit.url_for("organization.members", id=organization['name']), headers=headers)
+    assert result.status_code == 403
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_member_add_and_delete_for_dataset_in_group(app):
+    group = Group(**minimal_group())
+    user = User()
+    dataset_fields = minimal_dataset_with_one_resource_fields(user)
+    dataset_fields['groups'] = [{'name': group['name']}]
+    dataset = Dataset(**dataset_fields)
+    context = {"user": user["name"], "ignore_auth": False}
+    members = call_action('member_list', context=context, id=group["name"])
+    assert len(members) == 1
+    call_action('member_delete', context=context,
+                id=group["name"], object_type="package", object=dataset["name"])
+    members = call_action('member_list', context=context, id=group["name"])
+    assert len(members) == 0
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
