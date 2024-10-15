@@ -55,6 +55,9 @@ Go To Login Page
     Go To    ${LOGIN URL}
     Login Page Should Be Open
 
+Go To Organisation List
+    Open URL Path  /organization
+
 URL Path Should be
     [Arguments]    ${path}
     Location Should Be  ${ROOT_URL}${path}
@@ -94,7 +97,6 @@ Log In As Test User
 
 Log Out
     Open URL Path  /user/_logout
-    URL Path Should Be  /user/logged_out_redirect
     Page Should Contain  Kirjaudu sisään
     Delete All Cookies
 
@@ -118,23 +120,20 @@ Reset Data And Open Front Page
     Reset CKAN
     Open Browser To Front Page
 
-
 Create Test Organisation
     Create Organization  Testiorganisaatio  Test organisation  testiorganisaatio
     Open URL Path  /organization/testiorganisaatio
 
 Add Test User To Test Organisation
-    Log In As Administrator
     Open URL Path  /organization/members/testiorganisaatio
     Click Link  link:Lisää jäsen
     Input Text Into Select2  username  ${TEST_USER_USERNAME}
     Submit Primary Form
     Log Out
 
-
 Input Text Into CKEditor
     [Arguments]  ${id}  ${text}
-    Wait Until Page Contains Element  id:${id}
+    Wait Until Page Contains Element  css:#${id} + .ck-editor .ck-editor__editable
     Scroll Element Into View  css:#${id} + .ck-editor .ck-editor__editable
     Click Element  css:#${id} + .ck-editor .ck-editor__editable
     Press Keys     None  ${text}
@@ -173,6 +172,17 @@ Remove Suomi.fi Tag
     [Arguments]  ${name}  ${language}  ${value}
     Scroll Element Into View  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
     Click Element  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
+
+Scroll To Form Actions
+    Scroll Element Into View  css:.form-actions
+
+Fill Organisation Form With Full Test Data
+    Input Text Into CKEditor  field-description_translated-fi  Testiorganisaation kuvaus
+    Input Text Into CKEditor  field-description_translated-sv  Test organisation beskrivning
+    Input Text Into CKEditor  field-description_translated-en  Test organisation description
+    Input Text  id:field-vat_number  1234567-0
+    Input Text  id:field-homepage  http://example.com
+    Input Text  id:field-image-url  http://localhost/images/icon-192.png
 
 Fill Dataset Form With Minimal Test Data
     Input Text  id:field-title_translated-fi  Testiaineisto

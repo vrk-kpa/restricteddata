@@ -1,18 +1,49 @@
 *** Settings ***
 Documentation     A producer test suite.
 Resource          ../restricteddata.robot
-Test Setup        Reset Data And Open Front Page
+Test Setup        Producer Test Setup
 Test Teardown     Close Chromium
 
 *** Test Cases ***
-Create Producer With All Fields
-    Fail  Not implemented
-
 Display Producer Metadata
-    Fail  Not implemented
+    Log In As Test User
+    Open URL Path  /organization/testiorganisaatio
+    Click Link  Hallinnoi
+    URL Path Should Be  /organization/edit/testiorganisaatio
+    Fill Organisation Form With Full Test Data
+    Submit Primary Form
+
+    URL Path Should Be  /organization/testiorganisaatio
+    Page Should Contain  Testiorganisaatio
+
+    Go To Organisation List
+    Page Should Contain  Testiorganisaatio
+    Page Should Contain  Testiorganisaation kuvaus
 
 Edit Producer
-    Fail  Not implemented
+    Log In As Test User
+    Open URL Path  /organization/testiorganisaatio
+    Click Link  Hallinnoi
+    Fill Organisation Form With Full Test Data
+    Submit Primary Form
 
 Remove Producer
-    Fail  Not implemented
+    Log In As Administrator
+    Open URL Path  /organization/testiorganisaatio
+    Click Link  Hallinnoi
+
+    Scroll To Form Actions
+    Click Link  link:Poista
+    Wait Until Element Is Visible  css:.modal .btn-primary
+    Click Button  Vahvista
+    URL Path Should Be  /organization/
+
+*** Keywords ***
+Producer Test Setup
+    Reset Data And Open Front Page
+    Log In As Administrator
+    Create Test Organisation
+    Create Test User
+    Add Test User To Test Organisation
+    Log out
+    Go To Front Page

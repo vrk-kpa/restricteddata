@@ -123,7 +123,7 @@ Remove Dataset
     URL Path Should Be  /dataset/testiaineisto
     Click Link  Muokkaa tietoaineistoa
 
-    Scroll Element Into View  css:.form-actions
+    Scroll To Form Actions
     Click Link  link:Poista
     Wait Until Element Is Visible  css:.modal .btn-primary
     Click Button  Vahvista
