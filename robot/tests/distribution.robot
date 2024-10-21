@@ -29,24 +29,34 @@ Display Distribution Metadata
     Submit Primary Form
     
     URL Path Should Be  /dataset/testiaineisto/resource/new
-    Fill Resource Form With Full Test Data
+    Fill Resource Form With Full Test Data  name fi=Testiresurssin nimi
+    ...                                     description fi=Testiresurssin kuvausteksti
+    ...                                     format=XHTML
+    ...                                     size=1024
+    ...                                     rights fi=Testiresurssin oikeudet
+    ...                                     endpoint url=http://example.com/api/2.0
+    ...                                     position info=WGS99
+    ...                                     temporal granularity fi=Vuosi
+    ...                                     temporal coverage from=01/02/2024
+    ...                                     temporal coverage till=05/06/2034
+    ...                                     geographical accuracy=123
     Submit Primary Form
 
     URL Path Should Be  /dataset/testiaineisto
-    Click Link  Testiresurssi
+    Click Link  Testiresurssin nimi
     
-    Page Should Contain  Testiresurssi
-    Page Should Contain  Testiresurssin kuvaus
-    Page Should Contain  HTML
-    Page Should Contain  12345
-    Page Should Contain  Testiresurssin käyttöoikeuksien kuvaus
-    Page Should Contain  http://example.com/api
+    Page Should Contain  Testiresurssin nimi
+    Page Should Contain  Testiresurssin kuvausteksti
+    Page Should Contain  XHTML
+    Page Should Contain  1024
+    Page Should Contain  Testiresurssin oikeudet
+    Page Should Contain  http://example.com/api/2.0
     Page Should Contain  Voimassa
-    Page Should Contain  WGS84
-    Page Should Contain  Kuukausi
-    Page Should Contain  2023-01-02
-    Page Should Contain  2034-03-04
-    Page Should Contain  42
+    Page Should Contain  WGS99
+    Page Should Contain  Vuosi
+    Page Should Contain  2024-01-02
+    Page Should Contain  2034-05-06
+    Page Should Contain  123
 
 Edit Distribution
     Log In As Test User
@@ -63,19 +73,19 @@ Edit Distribution
     Click Link  Testiresurssi
     Click Link  Muokkaa 
 
-    Input Text  id:field-name_translated-fi  Testiresurssi (muokattu)
-    Input Text  id:field-resource-url  http://example.com/modified
-    Input Tag Into Select2  field-format  HTMX
-    Input Text  id:field-size  1234
-    Input Text Into CKEditor  field-description_translated-fi  Testiresurssin kuvaus (muokattu)
-    Input Text Into CKEditor  field-rights_translated-fi  Testiresurssin käyttöoikeuksien kuvaus (muokattu)
+    Fill Resource Form With Full Test Data  name fi=Testiresurssi (muokattu)
+    ...                                     url=http://example.com/modified
+    ...                                     format=HTMX
+    ...                                     size=1234
+    ...                                     description fi=Testiresurssin kuvaus (muokattu)
+    ...                                     rights fi=Testiresurssin käyttöoikeuksien kuvaus (muokattu)
+    ...                                     temporal granularity fi=Vuosi
+    ...                                     endpoint url=http://example.com/api/2.0
+    ...                                     position info=WGS99
+    ...                                     temporal coverage from=05/06/2024
+    ...                                     temporal coverage till=07/08/2044
+    ...                                     geographical accuracy=314
     Remove Suomi.fi Tag  temporal_granularity  fi  Kuukausi
-    Input Tag Into Select2   field-temporal_granularity-fi  Vuosi
-    Input Text  id:field-endpoint_url  http://example.com/api/2.0
-    Input Text  id:field-position_info  WGS99
-    Input Text  id:field-temporal_coverage_from  05/06/2024
-    Input Text  id:field-temporal_coverage_till  07/08/2044
-    Input Text  id:field-geographical_accuracy  314
     Submit Primary Form
 
     Page Should Contain  Testiresurssi (muokattu)
@@ -107,18 +117,18 @@ Remove Distribution
     Click Link  Testiresurssi
     Click Link  Muokkaa 
 
-    Scroll Element Into View  css:.form-actions
+    Scroll To Form Actions
     Click Link  link:Poista
-    Wait Until Element Is Visible  css:.modal .btn-primary
-    Click Button  Vahvista
+    Click Suomi.fi Dialog Button  Vahvista
     URL Path Should Be  /dataset/testiaineisto
     Page Should Contain  Tietoaineistoon ei ole lisätty dataa
 
 *** Keywords ***
 Distribution Test Setup
     Reset Data And Open Front Page
+    Log In As Administrator
     Create Test Organisation
     Create Test User
     Add Test User To Test Organisation
-
+    Log Out
     Go To Front Page
