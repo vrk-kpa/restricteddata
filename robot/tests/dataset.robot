@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     A dataset test suite.
 Resource          ../restricteddata.robot
-Test Setup        Reset Data And Open Front Page
+Test Setup        Dataset Test Setup
 Test Teardown     Close Chromium
 
 *** Test Cases ***
@@ -10,32 +10,14 @@ Navigate To The Dataset Page
     Dataset List Should Be Open
 
 Create Minimal Dataset And Resource
-    Create Test Organisation
-    Create Test User
-    Add Test User To Test Organisation
-
     Log In As Test User
     Click Link  link:Tietoaineistot
     Click Link  link:Lisää tietoaineisto
-    Input Text  id:field-title_translated-fi  Testiaineisto
-    Input Text  id:field-title_translated-sv  Test dataset
-    Input Text Into CKEditor  field-notes_translated-fi  Testiaineiston kuvaus
-    Input Text Into CKEditor  field-notes_translated-sv  Test dataset beskrivning
-    Input Tag Into Select2   field-keywords-fi  Testi
-    Input Tag Into Select2   field-keywords-sv  Test
-    Input Text  id:field-maintainer  Teemu Testaaja
-    Input Text  id:field-maintainer_email  teemu.testaaja@example.com
+    Fill Dataset Form With Minimal Test Data
     Submit Primary Form
     
     URL Path Should Be  /dataset/testiaineisto/resource/new
-    Input Text  id:field-name_translated-fi  Testiresurssi
-    Input Text  id:field-name_translated-sv  Test resurs
-    Click Button  id:resource-link-button
-    Input Text  id:field-resource-url  http://example.com
-    Input Tag Into Select2  field-format  HTML
-    Input Text  id:field-size  12345
-    Input Text Into CKEditor  field-rights_translated-fi  Testiresurssin käyttöoikeuksien kuvaus
-    Input Text Into CKEditor  field-rights_translated-sv  Test resurs användningsrättigheter
+    Fill Resource Form With Minimal Test Data
     Submit Primary Form
     
     URL Path Should Be  /dataset/testiaineisto
@@ -48,45 +30,121 @@ Create Minimal Dataset And Resource
     Page Should Contain  Testiresurssin käyttöoikeuksien kuvaus
     
     
-# Default sorting option is sorting by relevance
-#     Open Browser To Front Page
+Create Dataset With All Fields
+    Log In As Test User
+    Click Link  link:Tietoaineistot
+    Click Link  link:Lisää tietoaineisto
+    Fill Dataset Form With Full Test Data
+    Submit Primary Form
+    URL Path Should Be  /dataset/testiaineisto/resource/new
+    Fill Resource Form With Minimal Test Data
+    Submit Primary Form
 
-# Default sorting option persists after search
-#     Open Browser To Front Page
+Display Dataset Metadata
+    Log In As Test User
+    Click Link  link:Tietoaineistot
+    Click Link  link:Lisää tietoaineisto
+    Fill Dataset Form With Full Test Data  title fi=Testiaineisto
+    ...                                    notes fi=Testiaineiston kuvaus
+    ...                                    rights fi=Testiaineiston käyttöoikeudet
+    ...                                    keyword fi=Testi
+    ...                                    external url=https://example.com
+    ...                                    second external url=https://example.com/2
+    ...                                    update frequency=annual
+    ...                                    valid from=01/01/2023
+    ...                                    valid till=01/01/2033
+    ...                                    maintainer=Teemu Testaaja
+    ...                                    maintainer email=teemu.testaaja@example.com
+    ...                                    second maintainer email=teuvo.testaaja@example.com
+    ...                                    maintenance website=https://example.com/maintenance
+    Submit Primary Form
+    URL Path Should Be  /dataset/testiaineisto/resource/new
+    Fill Resource Form With Minimal Test Data
+    Submit Primary Form
+    URL Path Should Be  /dataset/testiaineisto
+    Page Should Contain  Testiaineisto
+    Page Should Contain Link  /dataset/?vocab_keywords_fi=testi
+    Page Should Contain  Testiaineiston kuvaus
+    Page Should Contain  Ei-julkinen
+    Page Should Contain  Testiaineiston käyttöoikeudet
+    Page Should Contain Link  https://example.com
+    Page Should Contain Link  https://example.com/2
+    Page Should Contain  Vuotuinen
+    Page Should Contain  2023-01-01
+    Page Should Contain  2033-01-01
+    Page Should Contain  Teemu Testaaja
+    Page Should Contain Link  teemu.testaaja@example.com
+    Page Should Contain Link  teuvo.testaaja@example.com
+    Page Should Contain Link  https://example.com/maintenance
 
-# Chosen sorting options changes the way datasets are sorted
-#     Open Browser To Front Page
+Edit Dataset
+    Log In As Test User
+    Click Link  link:Tietoaineistot
+    Click Link  link:Lisää tietoaineisto
+    Fill Dataset Form With Full Test Data
+    Submit Primary Form
+    URL Path Should Be  /dataset/testiaineisto/resource/new
+    Fill Resource Form With Minimal Test Data
+    Submit Primary Form
+    URL Path Should Be  /dataset/testiaineisto
+    Click Link  Muokkaa tietoaineistoa
+    Fill Dataset Form With Full Test Data  title fi=Testiaineisto (muokattu)
+    ...                                    notes fi=Testiaineiston kuvaus (muokattu)
+    ...                                    rights fi=Testiaineiston käyttöoikeudet (muokattu)
+    ...                                    keyword fi=Muokattu
+    ...                                    private=True
+    ...                                    highvalue=True
+    ...                                    highvalue category=meteorological
+    ...                                    access rights=restricted
+    ...                                    external url=https://example.com/3
+    ...                                    update frequency=weekly
+    ...                                    valid from=02/03/2024
+    ...                                    valid till=02/03/2034
+    ...                                    maintainer=Tea Testaaja
+    ...                                    maintainer email=tea.testaaja@example.com
+    ...                                    maintenance website=https://example.com/service
+    Submit Primary Form
+    Page Should Contain  Yksityinen
+    Page Should Contain  Testiaineisto (muokattu)
+    Page Should Contain Link  /dataset/?vocab_keywords_fi=muokattu
+    Page Should Contain  Testiaineiston kuvaus (muokattu)
+    Page Should Contain  Rajattu
+    Page Should Contain Link  /dataset/?vocab_highvalue_category=meteorological
+    Page Should Contain  Testiaineiston käyttöoikeudet (muokattu)
+    Page Should Contain Link  https://example.com/3
+    Page Should Contain  Viikoittainen
+    Page Should Contain  2024-02-03
+    Page Should Contain  2034-02-03
+    Page Should Contain  Tea Testaaja
+    Page Should Contain Link  tea.testaaja@example.com
+    Page Should Contain Link  https://example.com/service
+    
+Remove Dataset
+    Log In As Test User
+    Click Link  link:Tietoaineistot
+    Click Link  link:Lisää tietoaineisto
+    Fill Dataset Form With Minimal Test Data
+    Submit Primary Form
+    
+    URL Path Should Be  /dataset/testiaineisto/resource/new
+    Fill Resource Form With Minimal Test Data
+    Submit Primary Form
+    
+    URL Path Should Be  /dataset/testiaineisto
+    Click Link  Muokkaa tietoaineistoa
 
-# Chosen sorting option persists after search
-#     Open Browser To Front Page
+    Scroll To Form Actions
+    Click Link  link:Poista
+    Click Suomi.fi Dialog Button  Vahvista
+    URL Path Should Be  /dataset/
+    Page Should Contain  Ei löytynyt yhtään tietoaineistoa
 
-# Datasets have sorting options
-#     Open Browser To Front Page
-
-# Datasets appear sorted by creation date by default
-#     Open Browser To Front Page
-
-# Dataset properties are visible as filter options
-#     Open Browser To Front Page
-
-# Create a dataset with a category
-#     Open Browser To Front Page
-
-# Create a dataset with all fields
-#     Open Browser To Front Page
-
-# Creating an empty dataset fails
-#     Open Browser To Front Page
-
-# Cannot create dataset if logged out
-#     Open Browser To Front Page
-
-# Delete a dataset
-#     Open Browser To Front Page
-
-# Dataset collection contains correct properties
-#     Open Browser To Front Page
-
-# Dataset contains correct properties
-#     Open Browser To Front Page
-
+*** Keywords ***
+Dataset Test Setup
+    Reset Data And Open Front Page
+    Log In As Administrator
+    Create Test Organisation
+    Create Test User
+    Add Test User To Test Organisation
+    Log Out
+    Go To Front Page

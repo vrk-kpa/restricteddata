@@ -17,6 +17,7 @@ Create A Header Nav Page
 
     Go To Front Page
     Reload Page  # CKAN cache shows old front page without this
+    Wait Until Page Contains Element  css:header .navbar
     Element Should Contain  css:header .navbar  Title fi
 
     Click Element  id:language-select-dropdown
@@ -41,6 +42,7 @@ Create A Footer Nav Page
 
     Go To Front Page
     Reload Page  # CKAN cache shows old front page without this
+    Wait Until Page Contains Element  css:.footer-links
     Element Should Contain  css:.footer-links  Title fi
 
     Click Element  id:language-select-dropdown
