@@ -21,6 +21,7 @@ def user_create(original_action, context, data_dict):
 
 
 # Remove "member" capacity from UIs
+@toolkit.side_effect_free
 @toolkit.chained_action
 def member_roles_list(original_action, context, data_dict):
     roles = original_action(context, data_dict)
@@ -62,6 +63,7 @@ def purge_expired_temporary_memberships(context, data_dict):
     TemporaryMember.purge_expired()
 
 
+@toolkit.side_effect_free
 @toolkit.chained_action
 def user_autocomplete(original_action, context, data_dict):
     try:
@@ -72,6 +74,7 @@ def user_autocomplete(original_action, context, data_dict):
     return original_action(context, data_dict)
 
 
+@toolkit.side_effect_free
 @toolkit.chained_action
 def member_list(original_action, context, data_dict):
     data_dict['object_type'] = data_dict.get('object_type', 'package')
