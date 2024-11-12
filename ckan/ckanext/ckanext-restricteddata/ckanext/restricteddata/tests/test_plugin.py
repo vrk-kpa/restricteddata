@@ -796,3 +796,26 @@ def test_normal_user_cannot_edit_user_profile(app):
                     context={"user": user["name"], "ignore_auth": False},
                     id=user["name"],
                     fullname="Test full name")
+        
+@pytest.mark.usefixtures("with_plugins", "clean_db")
+def test_normal_user_cannot_request_reset(app):
+    client = app.test_client(use_cookies=True)
+    user = User()
+    request_reset = toolkit.url_for("user.request_reset")
+
+    # Anonymous user get
+    result = client.get(request_reset)
+    assert result.status_code == 403
+    
+    # Anonymous user post
+    result = client.post(request_reset, data={'id': user['id']})
+    assert result.status_code == 403
+
+    # Logged in normal user get
+    headers = {"Authorization": APIToken(user=user['name'])["token"]}
+    result = client.get(request_reset, headers=headers)
+    assert result.status_code == 403
+
+    # Logged in normal user post
+    result = client.post(request_reset, headers=headers, data={'id': user['id']})
+    assert result.status_code == 403
