@@ -102,9 +102,10 @@ Log In As Test User
     URL Path Should Be  /dashboard/datasets
 
 Log Out
-    Open URL Path  /user/_logout
-    Page Should Contain  Kirjaudu sisään
-    Delete All Cookies
+    Go To Front Page
+    Click Link  link:KIRJAUDU ULOS
+    URL Path Should Be  /user/logged_out_redirect
+    Wait Until Page Contains  Kirjaudu sisään
 
 Dashboard Page Should Be Open
     Location Should Be    ${DASHBOARD URL}
@@ -128,6 +129,7 @@ Reset Data And Open Front Page
 Create Test Organisation
     Create Organization  Testiorganisaatio  Test organisation  testiorganisaatio
     Open URL Path  /organization/testiorganisaatio
+    Page Should Contain  Testiorganisaatio
 
 Add Test User To Test Organisation
     Open URL Path  /organization/members/testiorganisaatio

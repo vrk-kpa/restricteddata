@@ -497,5 +497,8 @@ def _reset(context, data_dict):
     toolkit.get_action('user_patch')(context, {'id': admin['name'],
                                                'email': admin['email'],
                                                'sysadmin': True})
+    token = toolkit.get_action('api_token_create')(context, {
+                                                   'user': admin_username,
+                                                   'name': 'default'})['token']
 
-    return "Cleared"
+    return {'token': token, 'status': 'Cleared'}
