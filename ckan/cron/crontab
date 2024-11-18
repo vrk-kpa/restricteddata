@@ -13,4 +13,5 @@
 #
 */5 *   *       *   *   cd /srv/app && ./cron/scripts/harvester-run.sh
 */5 *   *       *   *   cd /srv/app && ckan api action purge_expired_temporary_memberships
+*/5 *   *       *   *   cd /srv/app && ckan api action purge_expired_paha_auth_tokens
 

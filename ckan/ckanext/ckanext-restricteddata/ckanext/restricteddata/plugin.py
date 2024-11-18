@@ -2,24 +2,21 @@ from typing import List, Dict, Any
 
 import logging
 import json
-import datetime
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import ckan.model as model
 from ckan.logic import NotFound
 from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
-from ckan.lib.munge import munge_title_to_name
-import ckan.model as model
 from flask import has_request_context
 from ckanext.restricteddata.cli import cli
+from ckanext.restricteddata.model import PahaAuthenticationToken
 from collections import OrderedDict
-import jwt
-from flask_login import login_user, logout_user
+
+from flask import request
 
 from . import helpers, validators, views
 from .logic import action, auth
-import random
-import base64
 
 log = logging.getLogger(__name__)
 ResourceDict = Dict[str, Any]
@@ -326,146 +323,29 @@ def filter_allowed_resources(resources: List[ResourceDict],
 
 
 class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IAuthenticator, inherit=True)
     plugins.implements(plugins.interfaces.IActions)
-
-    def decode_paha_jwt_token(self, key, algorithm):
-        '''Tries to decode a PAHA JWT token payload from request'''
-
-        if not (key and algorithm):
-            return
-
-        authorization = toolkit.request.headers.get('Authorization')
-        if not authorization:
-            return
-        try:
-            schema, encoded_token = authorization.split(' ', 1)
-        except ValueError:
-            return
-
-        if schema != 'Bearer':
-            return
-
-        try:
-            token = jwt.decode(encoded_token, key, algorithms=[algorithm])
-        except Exception:
-            # Fallback to regular auth if anything at all goes wrong with the token
-            return
-
-        if token.get('iss') != 'PAHA':
-            return
-
-        return token
-
-    def create_or_authenticate_paha_user(self, token):
-        '''Identifies a user based on a PAHA JWT token creating a new user if needed'''
-        user_id = token['id']
-        user = model.User.get(user_id)
-
-        # Create a new user if one does not exist
-        if not user:
-            logout_user()
-            user_email = token['email']
-            user_first_name = token['firstName']
-            user_last_name = token['lastName']
-            user_name = f'{user_first_name}_{user_last_name}'
-            if not model.User.check_name_available(user_name):
-                for i in range(1, 100):
-                    user_name = f'{user_first_name}_{user_last_name}_{i}'
-                    if model.User.check_name_available(user_name):
-                        break
-                else:
-                    raise RuntimeError("Could not generate an available username!")
-
-            user_dict = {
-                'id': user_id,
-                'name': user_name,
-                'email': user_email,
-                'password': base64.a85encode(random.randbytes(128)).decode('utf-8'),
-                'fullname': f'{user_first_name} {user_last_name}'
-            }
-
-            site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
-            context = {'user': site_user_info['name']}
-
-            toolkit.get_action('user_create')(context, user_dict)
-
-            user = model.User.get(user_id)
-
-        if user:
-            toolkit.g.user = user.name
-            toolkit.g.userobj = user
-            login_user(user)
-            return user
-        else:
-            raise RuntimeError("Could not find or create PAHA user!")
-
-    def create_or_get_paha_organization(self, token):
-        log.info("create_or_get_paha_organization")
-        '''Retrieves an organization based on a PAHA JWT token creating a new one if needed'''
-        site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
-        organization_id = token['activeOrganizationId']
-        try:
-            context = {'ignore_auth': True}
-            return toolkit.get_action('organization_show')(context, {'id': organization_id})
-
-        except toolkit.ObjectNotFound:
-            log.info("creating new organization")
-            name_languages = ['fi', 'sv', 'en']
-            organization_titles = {lang: token[f'activeOrganizationName{lang.capitalize()}']
-                                   for lang in name_languages}
-            organization_title = next((organization_titles[lang]
-                                      for lang in name_languages
-                                      if organization_titles.get(lang)), None)
-            if not organization_title:
-                raise RuntimeError("Could not determine a non-empty name for PAHA organization!")
-
-            organization_name = munge_title_to_name(organization_title)
-
-            organization_dict = {
-                'id': organization_id,
-                'name': organization_name,
-                'title_translated': organization_titles,
-                'image_url': ''
-            }
-
-            site_user_info = toolkit.get_action('get_site_user')({'ignore_auth': True}, {})
-            context = {'ignore_auth': site_user_info['name']}
-
-            organization = toolkit.get_action('organization_create')(context, organization_dict)
-            from pprint import pformat
-            log.info("Created organization %s", pformat(organization))
-            return organization
-
-    def temporarily_authorize_user_for_organization(self, user, organization, expires):
-        '''Temporarily authorizes a user to act on behalf of an organization'''
-        context = {'ignore_auth': True}
-        data_dict = {
-            'user': user.id,
-            'organization': organization['id'],
-            'expires': expires
-        }
-        toolkit.get_action('grant_temporary_membership')(context, data_dict)
-
-    def identify(self):
-        key = toolkit.config.get('ckanext.restricteddata.paha_jwt_key')
-        algorithm = toolkit.config.get('ckanext.restricteddata.paha_jwt_algorithm')
-        paha_jwt_token = self.decode_paha_jwt_token(key, algorithm)
-        if paha_jwt_token:
-            user = self.create_or_authenticate_paha_user(paha_jwt_token)
-            organization = self.create_or_get_paha_organization(paha_jwt_token)
-            # expiresIn is a timestamp expressed in milliseconds
-            expires = datetime.datetime.fromtimestamp(paha_jwt_token['expiresIn'] / 1000)
-            self.temporarily_authorize_user_for_organization(user, organization, expires)
-
-        return super().identify()
+    plugins.implements(plugins.interfaces.IAuthenticator, inherit=True)
 
     def get_actions(self):
         return {
+            'authorize_paha_session': action.authorize_paha_session,
             'grant_temporary_membership': action.grant_temporary_membership,
-            'purge_expired_temporary_memberships': action.purge_expired_temporary_memberships
+            'purge_expired_temporary_memberships': action.purge_expired_temporary_memberships,
+            'purge_expired_paha_auth_tokens': action.purge_expired_paha_auth_tokens,
         }
 
+    def identify(self):
+        auth_header = next((v for k, v in request.headers if k == 'Authorization'), None)
+        if auth_header:
+            token = PahaAuthenticationToken.get(auth_header)
+            if token is not None:
+                user = model.User.get(token.user_id)
+                toolkit.g.user = user.name
+                toolkit.g.userobj = user
+                toolkit.login_user(user)
+                return
+
+        return super().identify()
 
 # NOTE: DO NOT ENABLE THIS PLUGIN IN NON-LOCAL ENVIRONMENTS
 class RestrictedDataResetPlugin(plugins.SingletonPlugin):

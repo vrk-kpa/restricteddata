@@ -44,3 +44,9 @@ def create_paha_token(data):
     algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
     token = jwt.encode(payload, key, algorithm=algorithm)
     return token
+
+def get_auth_token_for_paha_token(app, paha_token):
+    client = app.test_client()
+    response = client.post(toolkit.url_for('paha.authorize'), data=paha_token)
+    assert response.status_code == 200
+    return response.json['token']

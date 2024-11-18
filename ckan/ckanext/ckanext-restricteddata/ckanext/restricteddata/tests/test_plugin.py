@@ -70,7 +70,7 @@ from ckan.tests.factories import Dataset, Sysadmin, User, Group, APIToken
 from ckan.tests.helpers import call_action
 from ckan.plugins.toolkit import NotAuthorized
 from .utils import (minimal_dataset, minimal_dataset_with_one_resource_fields,
-                    minimal_group, create_paha_token)
+                    minimal_group, create_paha_token, get_auth_token_for_paha_token)
 
 from .factories import RestrictedDataOrganization
 
@@ -516,18 +516,18 @@ def test_paha_authentication_creates_organization(app):
     organization_name_fi = "paha organization fi"
     organization_name_sv = "paha organization sv"
     organization_name_en = "paha organization en"
-    token = create_paha_token({
+
+    # Get access token with a PAHA token
+    paha_token = create_paha_token({
         "id": some_user['id'],
         "activeOrganizationId": organization_id,
         "activeOrganizationNameFi": organization_name_fi,
         "activeOrganizationNameSv": organization_name_sv,
         "activeOrganizationNameEn": organization_name_en,
     })
-    headers = {"Authorization": f'Bearer {token}'}
-    response = app.get(url=toolkit.url_for("organization.read", id=organization_id), headers=headers)
-    assert response.status_code == 200
-    assert organization_name_fi in response.body
+    _auth_token = get_auth_token_for_paha_token(app, paha_token)
 
+    # Check that the organization was created
     organization = call_action('organization_show',
                                id=organization_id,
                                context={"ignore_auth": True})
@@ -544,17 +544,14 @@ def test_paha_authentication_creates_new_user(app):
     # Get new user profile with PAHA authentication
     organization = RestrictedDataOrganization()
     email = "foo@example.com"
-    token = create_paha_token({"id":"test-id",
-                               "email":email,
-                               "firstName":"foo",
-                               "lastName":"bar",
-                               "activeOrganizationId":organization["id"]})
-    headers = {"Authorization": f'Bearer {token}'}
-    response = app.get(url=toolkit.url_for("user.read", id="foo_bar"), headers=headers)
-    assert response.status_code == 200
 
-    # Make sure
-    assert email in response.body
+    # Get access token with a PAHA token
+    paha_token = create_paha_token({"id":"test-id",
+                                    "email":email,
+                                    "firstName":"foo",
+                                    "lastName":"bar",
+                                    "activeOrganizationId":organization["id"]})
+    _auth_token = get_auth_token_for_paha_token(app, paha_token)
 
     # Verify that the user has been created
     user = call_action('user_show', id="foo_bar", context={"ignore_auth": True})
@@ -567,38 +564,38 @@ def test_paha_authentication_logs_in_user(app):
     test_id = "test-id"
     some_user = User(id=test_id)
 
-    # Prepare a client that can hold cookies
-    client = app.test_client(use_cookies=True)
-
-    # Get user profile with PAHA authentication
-    token = create_paha_token({
+    # Get access token with a PAHA token
+    paha_token = create_paha_token({
         "id": test_id,
         "activeOrganizationId": organization["id"],
     })
-    headers = {"Authorization": f'Bearer {token}'}
+    auth_token = get_auth_token_for_paha_token(app, paha_token)
+
+    # Use the token to log in
+    client = app.test_client(use_cookies=True)
+    headers={'Authorization': auth_token}
     response = client.get(toolkit.url_for("user.read", id=some_user['name']), headers=headers)
     assert response.status_code == 200
-    # User is logged in if their email is on their profile page
-    assert some_user['email'] in response.body
+    assert some_user['fullname'] in response.body
 
-    # Use the cookies set in previous step to repeat the query
+    # Test the user stays logged in with cookies
     response = client.get(toolkit.url_for("user.read", id=some_user['name']))
     assert response.status_code == 200
-    assert some_user['email'] in response.body
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_grants_temporary_membership(app):
     organization = RestrictedDataOrganization()
     user = User()
-    client = app.test_client(use_cookies=True)
-    token = create_paha_token({
+    paha_token = create_paha_token({
         "id": user["id"],
         "activeOrganizationId": organization["id"],
     })
+    auth_token = get_auth_token_for_paha_token(app, paha_token)
 
     # Log in and open organization edit view
-    headers = {"Authorization": f'Bearer {token}'}
+    client = app.test_client(use_cookies=True)
+    headers={'Authorization': auth_token}
     response = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
     assert response.status_code == 200
 
@@ -621,6 +618,25 @@ def test_paha_authentication_grants_temporary_membership(app):
     org = call_action('organization_show', id=organization["name"])
     assert org["package_count"] == 1
 
+
+@pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
+def test_paha_auth_token_expiry(app):
+    user = User()
+    organization = RestrictedDataOrganization()
+    paha_token = create_paha_token({
+        "id": user["id"],
+        "activeOrganizationId": organization["id"],
+        "expiresIn": int(datetime.datetime.now().timestamp() * 1000),
+    })
+    auth_token = get_auth_token_for_paha_token(app, paha_token)
+
+    call_action('purge_expired_paha_auth_tokens')
+
+    # Use the token to try to log in
+    client = app.test_client()
+    headers={'Authorization': auth_token}
+    response = client.get(toolkit.url_for("organization.edit", id=organization['id']), headers=headers)
+    assert response.status_code == 403
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_temporary_membership_expiry(app):
