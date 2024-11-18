@@ -1087,7 +1087,7 @@ msgstr "Tarkastele profiilia"
 #: ckanext/restricteddata/templates/header.html:55
 #: ckanext/restricteddata/templates/header.html:56
 msgid "Sysadmin profile"
-msgstr ""
+msgstr "Ylläpitäjän profiili"
 
 #: ckanext/restricteddata/templates/header.html:59
 #: ckanext/restricteddata/templates/header.html:60
