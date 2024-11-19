@@ -525,7 +525,7 @@ def test_paha_authentication_creates_organization(app):
         "activeOrganizationNameSv": organization_name_sv,
         "activeOrganizationNameEn": organization_name_en,
     })
-    _auth_token = get_auth_token_for_paha_token(app, paha_token)
+    _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Check that the organization was created
     organization = call_action('organization_show',
@@ -551,7 +551,7 @@ def test_paha_authentication_creates_new_user(app):
                                     "firstName":"foo",
                                     "lastName":"bar",
                                     "activeOrganizationId":organization["id"]})
-    _auth_token = get_auth_token_for_paha_token(app, paha_token)
+    _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Verify that the user has been created
     user = call_action('user_show', id="foo_bar", context={"ignore_auth": True})
@@ -569,7 +569,7 @@ def test_paha_authentication_logs_in_user(app):
         "id": test_id,
         "activeOrganizationId": organization["id"],
     })
-    auth_token = get_auth_token_for_paha_token(app, paha_token)
+    auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Use the token to log in
     client = app.test_client(use_cookies=True)
@@ -584,6 +584,20 @@ def test_paha_authentication_logs_in_user(app):
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
+def test_paha_authentication_with_invalid_signature(app):
+    organization = RestrictedDataOrganization()
+    user = User()
+
+    # Get access token with a PAHA token
+    paha_token = create_paha_token({
+        "id": user['id'],
+        "activeOrganizationId": organization["id"],
+    }, private_key_file='jwtRS256.invalid.key')
+
+    token_response = get_auth_token_for_paha_token(app, paha_token)
+    token_response.status_code == 400
+
+@pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_grants_temporary_membership(app):
     organization = RestrictedDataOrganization()
     user = User()
@@ -591,7 +605,7 @@ def test_paha_authentication_grants_temporary_membership(app):
         "id": user["id"],
         "activeOrganizationId": organization["id"],
     })
-    auth_token = get_auth_token_for_paha_token(app, paha_token)
+    auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Log in and open organization edit view
     client = app.test_client(use_cookies=True)
@@ -628,7 +642,7 @@ def test_paha_auth_token_expiry(app):
         "activeOrganizationId": organization["id"],
         "expiresIn": int(datetime.datetime.now().timestamp() * 1000),
     })
-    auth_token = get_auth_token_for_paha_token(app, paha_token)
+    auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     call_action('purge_expired_paha_auth_tokens')
 
