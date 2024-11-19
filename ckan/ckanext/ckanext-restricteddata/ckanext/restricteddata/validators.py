@@ -293,6 +293,7 @@ def highvalue_category(key, data, errors, context):
 
         return data[key]
 
+
 def highvalue(key, data, errors, context):
     value = data[key]
 

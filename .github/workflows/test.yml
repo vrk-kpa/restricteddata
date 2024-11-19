@@ -295,7 +295,7 @@ jobs:
         run: docker run --rm --network host -v ./results:/robot/results robot/test
 
       - name: upload robot test results to XRay
-        if: always()
+        if: always() && github.ref == 'refs/heads/main'
         shell: bash
         env:
           JIRA_ACCESS_TOKEN: ${{ secrets.JIRA_ACCESS_TOKEN }}
