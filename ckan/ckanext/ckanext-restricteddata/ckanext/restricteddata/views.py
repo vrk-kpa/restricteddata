@@ -19,6 +19,8 @@ restricted_data_dataset = Blueprint("restricted_data_dataset", __name__,
                                     url_prefix='/dataset',
                                     url_defaults={'package_type': 'dataset'})
 
+paha = Blueprint("paha", __name__, url_prefix='/paha')
+
 class GroupView(CkanDatasetGroupView):
     def post(self, package_type, id):
         context, pkg_dict = self._prepare(id)
@@ -34,5 +36,12 @@ class GroupView(CkanDatasetGroupView):
 
 restricted_data_dataset.add_url_rule(u'/groups/<id>', view_func=GroupView.as_view('groups'))
 
+def authorize():
+    paha_token = toolkit.request.data
+    token = toolkit.get_action('authorize_paha_session')({'ignore_auth': True}, {'token': paha_token})
+    return {'token': token}
+
+paha.add_url_rule('/authorize', view_func=authorize, methods=['POST'])
+
 def get_blueprints():
-    return [ns, restricted_data_dataset]
+    return [ns, restricted_data_dataset, paha]
