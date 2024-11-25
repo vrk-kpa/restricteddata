@@ -95,7 +95,6 @@ def _create_or_authenticate_paha_user(token: str):
         user_first_name = token['firstName']
         user_last_name = token['lastName']
         user_name = _user_name_from_full_name(user_first_name, user_last_name)
-        print(user_name)
 
         user_dict = {
             'id': user_id,
