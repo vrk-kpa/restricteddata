@@ -554,7 +554,8 @@ def test_paha_authentication_creates_new_user(app):
     _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Verify that the user has been created
-    user = call_action('user_show', id="foo_bar-baz-von-barzug", context={"ignore_auth": True})
+    user_dict = call_action('user_list', email=email)[0]
+    user = call_action('user_show', id=user_dict['id'], context={"ignore_auth": True})
     assert user['fullname'] == "Foo Bar-Baz von Bärzügə"
 
 

@@ -2,10 +2,11 @@ import datetime
 import jwt
 import random
 import base64
+import re
 
 import ckan.model as model
 from ckan.plugins import toolkit
-from ckan.lib.munge import munge_title_to_name, munge_name
+from ckan.lib.munge import munge_title_to_name, substitute_ascii_equivalents
 from ckan.types import Context, DataDict, Action
 from ckanext.restricteddata.model import TemporaryMember, PahaAuthenticationToken
 from logging import getLogger
@@ -66,6 +67,22 @@ def _decode_paha_jwt_token(encoded_token: str):
     return token
 
 
+def _user_name_from_full_name(first_name, last_name):
+    name = substitute_ascii_equivalents(f'{first_name}_{last_name}')
+    name = name.lower()
+    name = re.sub(r'\s', '-', name)
+    name = re.sub(r'[^A-Za-z0-9\-_]', '', name)
+
+    max_name_creation_attempts = 100
+    for _i in range(max_name_creation_attempts):
+        number = random.randint(1, 100)
+        user_name = f'{name}_{number}'
+        if model.User.check_name_available(user_name):
+            return user_name
+
+    raise RuntimeError("Could not generate an available username!")
+
+
 def _create_or_authenticate_paha_user(token: str):
     '''Identifies a user based on a PAHA JWT token creating a new user if needed'''
     user_id = token['id']
@@ -77,15 +94,8 @@ def _create_or_authenticate_paha_user(token: str):
         user_email = token['email']
         user_first_name = token['firstName']
         user_last_name = token['lastName']
-        user_name = munge_name(f'{user_first_name}_{user_last_name}')
+        user_name = _user_name_from_full_name(user_first_name, user_last_name)
         print(user_name)
-        if not model.User.check_name_available(user_name):
-            for i in range(1, 100):
-                user_name = munge_name(f'{user_first_name}_{user_last_name}_{i}')
-                if model.User.check_name_available(user_name):
-                    break
-            else:
-                raise RuntimeError("Could not generate an available username!")
 
         user_dict = {
             'id': user_id,
