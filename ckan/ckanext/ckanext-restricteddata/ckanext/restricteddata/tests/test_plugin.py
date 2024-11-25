@@ -548,14 +548,15 @@ def test_paha_authentication_creates_new_user(app):
     # Get access token with a PAHA token
     paha_token = create_paha_token({"id":"test-id",
                                     "email":email,
-                                    "firstName":"foo",
-                                    "lastName":"bar",
+                                    "firstName":"Foo",
+                                    "lastName":"Bar-Baz von Bärzügə",
                                     "activeOrganizationId":organization["id"]})
     _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Verify that the user has been created
-    user = call_action('user_show', id="foo_bar", context={"ignore_auth": True})
-    assert user['fullname'] == "foo bar"
+    user_dict = call_action('user_list', email=email)[0]
+    user = call_action('user_show', id=user_dict['id'], context={"ignore_auth": True})
+    assert user['fullname'] == "Foo Bar-Baz von Bärzügə"
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
