@@ -71,7 +71,7 @@ def _user_name_from_full_name(first_name, last_name):
     name = substitute_ascii_equivalents(f'{first_name}_{last_name}')
     name = name.lower()
     name = re.sub(r'\s', '-', name)
-    name = re.sub(r'[^A-Za-z0-9\-_]', '', name)
+    name = re.sub(r'[^a-z0-9\-_]', '', name)
 
     max_name_creation_attempts = 100
     for _i in range(max_name_creation_attempts):
