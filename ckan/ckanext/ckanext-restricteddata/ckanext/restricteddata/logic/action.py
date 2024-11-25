@@ -5,7 +5,7 @@ import base64
 
 import ckan.model as model
 from ckan.plugins import toolkit
-from ckan.lib.munge import munge_title_to_name
+from ckan.lib.munge import munge_title_to_name, munge_name
 from ckan.types import Context, DataDict, Action
 from ckanext.restricteddata.model import TemporaryMember, PahaAuthenticationToken
 from logging import getLogger
@@ -77,10 +77,11 @@ def _create_or_authenticate_paha_user(token: str):
         user_email = token['email']
         user_first_name = token['firstName']
         user_last_name = token['lastName']
-        user_name = f'{user_first_name}_{user_last_name}'
+        user_name = munge_name(f'{user_first_name}_{user_last_name}')
+        print(user_name)
         if not model.User.check_name_available(user_name):
             for i in range(1, 100):
-                user_name = f'{user_first_name}_{user_last_name}_{i}'
+                user_name = munge_name(f'{user_first_name}_{user_last_name}_{i}')
                 if model.User.check_name_available(user_name):
                     break
             else:
