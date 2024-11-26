@@ -1,6 +1,6 @@
 from ckan.plugins import toolkit
 from ckan.views.dataset import GroupView as CkanDatasetGroupView
-from flask import Blueprint
+from flask import Blueprint, make_response
 import logging
 
 log = logging.getLogger(__name__)
@@ -38,8 +38,13 @@ restricted_data_dataset.add_url_rule(u'/groups/<id>', view_func=GroupView.as_vie
 
 def authorize():
     paha_token = toolkit.request.data
-    token = toolkit.get_action('authorize_paha_session')({'ignore_auth': True}, {'token': paha_token})
-    return {'token': token}
+    try:
+        token = toolkit.get_action('authorize_paha_session')({'ignore_auth': True}, {'token': paha_token})
+        return {'token': token}
+    except toolkit.ValidationError as e:
+        body = {'error': e.error_dict['message']}
+        headers = {'Content-Type': 'application/json'}
+        return make_response(body, 400, headers)
 
 paha.add_url_rule('/authorize', view_func=authorize, methods=['POST'])
 

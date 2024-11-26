@@ -38,6 +38,14 @@ def minimal_group():
 def create_paha_token(data, private_key_file='jwtRS256.valid.key'):
     payload = {
         "iss": "PAHA",
+        "id": "user-id",
+        "email": "foo.bar@example.com",
+        "firstName": "Foo",
+        "lastName": "Bar",
+        "activeOrganizationId": "organization-id",
+        "activeOrganizationNameFi": "organization name fi",
+        "activeOrganizationNameSv": "organization name sv",
+        "activeOrganizationNameEn": "organization name en",
         "expiresIn": int((datetime.datetime.now() + datetime.timedelta(days=1)).timestamp() * 1000),
     }
     payload.update(data)
