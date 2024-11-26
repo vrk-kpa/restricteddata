@@ -147,7 +147,10 @@ def _create_or_get_paha_organization(token: str):
 
         existing_organization_names = set(toolkit.get_action('organization_list')({'ignore_auth': True}, {}))
         if len(existing_organization_names) >= 1000:
-            log.error("Organization count over 1000, fix PAHA organization code")
+            log.error("""Organization count over max returned by organization_list.
+                         This may cause errors in generating unique organization names in PAHA auth,
+                         and should be fixed by increasing ckan.group_and_organization_list_max
+                         or by implementing paged fetch for organization names.""")
 
         organization_name = munge_title_to_name(organization_title)
         for i in range(2, 100):
