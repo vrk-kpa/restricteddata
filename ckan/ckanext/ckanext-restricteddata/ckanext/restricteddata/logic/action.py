@@ -61,6 +61,13 @@ def _decode_paha_jwt_token(encoded_token: str):
         # Fallback to regular auth if anything at all goes wrong with the token
         return
 
+    required_fields = ['iss', 'id', 'email', 'firstName', 'lastName', 'activeOrganizationId',
+                       'activeOrganizationNameFi', 'activeOrganizationNameSv',
+                       'activeOrganizationNameEn', 'expiresIn']
+    if any(field not in token for field in required_fields):
+        error = f'Token did not contain required fields: {", ".join(required_fields)}'
+        raise toolkit.ValidationError(error)
+
     if token.get('iss') != 'PAHA':
         return
 

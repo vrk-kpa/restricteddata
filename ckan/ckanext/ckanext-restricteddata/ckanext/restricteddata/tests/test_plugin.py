@@ -64,7 +64,9 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 """
 import pytest
 import datetime
+import jwt
 
+from pathlib import Path
 from ckan.plugins import plugin_loaded, toolkit
 from ckan.tests.factories import Dataset, Sysadmin, User, Group, APIToken
 from ckan.tests.helpers import call_action
@@ -507,6 +509,37 @@ def test_groups_are_removed(app):
     d = call_action('package_update', context={'user': user['name']}, name=d['id'], **dataset_fields)
 
     assert len(d['groups']) == 0
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
+def test_paha_authentication_with_missing_fields(app):
+    valid_token = {
+        "iss": "PAHA",
+        "id": "user-id",
+        "email": "foo.bar@example.com",
+        "firstName": "Foo",
+        "lastName": "Bar",
+        "activeOrganizationId": "organization-id",
+        "activeOrganizationNameFi": "organization name fi",
+        "activeOrganizationNameSv": "organization name sv",
+        "activeOrganizationNameEn": "organization name en",
+        "expiresIn": int((datetime.datetime.now() + datetime.timedelta(days=1)).timestamp() * 1000),
+    }
+    private_key = (Path(__file__).parent / 'data' / 'jwtRS256.valid.key').open().read()
+    algorithm = toolkit.config['ckanext.restricteddata.paha_jwt_algorithm']
+
+    # Test the token is actually valid
+    token = jwt.encode(valid_token, private_key, algorithm=algorithm)
+    _auth_token = get_auth_token_for_paha_token(app, token).json['token']
+
+    # Test removing each field, verify that validation fails
+    for key in valid_token:
+        invalid_token = valid_token.copy()
+        del invalid_token[key]
+        token = jwt.encode(invalid_token, private_key, algorithm=algorithm)
+        response = get_auth_token_for_paha_token(app, token)
+        assert response.status_code == 400
+        assert key in response.json['error']
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
