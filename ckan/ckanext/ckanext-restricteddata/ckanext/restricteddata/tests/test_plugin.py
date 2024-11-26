@@ -539,7 +539,7 @@ def test_paha_authentication_with_missing_fields(app):
         token = jwt.encode(invalid_token, private_key, algorithm=algorithm)
         response = get_auth_token_for_paha_token(app, token)
         assert response.status_code == 400
-        assert key in response.json['error']
+        assert key in response.json['message']
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
@@ -569,6 +569,28 @@ def test_paha_authentication_creates_organization(app):
         'fi': organization_name_fi,
         'sv': organization_name_sv,
         'en': organization_name_en
+    }
+
+    # Test using fallback organization title
+    organization_id = "paha-organization-id-2"
+    paha_token = create_paha_token({
+        "id": some_user['id'],
+        "activeOrganizationId": organization_id,
+        "activeOrganizationNameFi": organization_name_fi,
+        "activeOrganizationNameSv": "",
+        "activeOrganizationNameEn": "",
+    })
+    _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
+
+    # Check that the organization was created
+    organization = call_action('organization_show',
+                               id=organization_id,
+                               context={"ignore_auth": True})
+    assert organization['id'] == organization_id
+    assert organization['title_translated'] == {
+        'fi': organization_name_fi,
+        'sv': organization_name_fi,
+        'en': organization_name_fi
     }
 
 

@@ -42,7 +42,7 @@ def authorize():
         token = toolkit.get_action('authorize_paha_session')({'ignore_auth': True}, {'token': paha_token})
         return {'token': token}
     except toolkit.ValidationError as e:
-        body = {'error': e.error_dict['message']}
+        body = e.error_dict
         headers = {'Content-Type': 'application/json'}
         return make_response(body, 400, headers)
 

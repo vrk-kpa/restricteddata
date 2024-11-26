@@ -133,7 +133,11 @@ def _create_or_get_paha_organization(token: str):
 
     except toolkit.ObjectNotFound:
         name_languages = ['fi', 'sv', 'en']
-        organization_titles = {lang: token[f'activeOrganizationName{lang.capitalize()}']
+        fallback_language = 'fi'
+
+        title_field = 'activeOrganizationName{}'.format
+        organization_titles = {lang: (token[title_field(lang.capitalize())]
+                                      or token[title_field(fallback_language.capitalize())])
                                for lang in name_languages}
         organization_title = next((organization_titles[lang]
                                   for lang in name_languages
@@ -141,7 +145,18 @@ def _create_or_get_paha_organization(token: str):
         if not organization_title:
             raise RuntimeError("Could not determine a non-empty name for PAHA organization!")
 
+        existing_organization_names = set(toolkit.get_action('organization_list')({'ignore_auth': True}, {}))
+        if len(existing_organization_names) >= 1000:
+            log.error("Organization count over 1000, fix PAHA organization code")
+
         organization_name = munge_title_to_name(organization_title)
+        for i in range(2, 100):
+            if organization_name not in existing_organization_names:
+                break
+            else:
+                organization_name = munge_title_to_name(f'{organization_title}-{i}')
+        else:
+            raise RuntimeError("Could not generate a unique name for organization!")
 
         organization_dict = {
             'id': organization_id,
