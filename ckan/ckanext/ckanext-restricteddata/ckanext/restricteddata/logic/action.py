@@ -182,7 +182,7 @@ def authorize_paha_session(context: Context, data_dict: DataDict):
     paha_jwt_token = _decode_paha_jwt_token(encoded_token)
     if not paha_jwt_token:
         log.error("No valid PAHA JWT provided")
-        return toolkit.abort(400)
+        raise toolkit.ValidationError("No valid PAHA JWT provided")
 
     user = _create_or_authenticate_paha_user(paha_jwt_token)
     organization = _create_or_get_paha_organization(paha_jwt_token)
