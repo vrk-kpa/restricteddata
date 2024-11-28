@@ -1,7 +1,6 @@
 import {
   aws_ecr,
   aws_ecs,
-  aws_ssm,
   aws_ecs_patterns,
   aws_elasticloadbalancingv2,
   aws_logs, aws_route53, aws_route53_targets,
@@ -48,10 +47,6 @@ export class NginxStack extends Stack {
     const nginxCspWorkerSrc: string[] = [];
 
 
-    const pAuthSourceAddress = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'pAuthSourceAddress', {
-      parameterName: `/${props.environment}/restricteddata/auth_source_address`,
-    });
-
     const nginxContainer = nginxTaskDefinition.addContainer('nginx', {
       image: aws_ecs.ContainerImage.fromEcrRepository(nginxRepo, props.envProps.NGINX_IMAGE_TAG),
       environment: {
@@ -77,7 +72,7 @@ export class NginxStack extends Stack {
         CKAN_PORT: '5000',
         NGINX_ROBOTS_ALLOW: props.allowRobots,
         NGINX_PROXY_ADDRESS: props.loadBalancer.loadBalancerDnsName,
-        AUTH_SOURCE_ADDRESS: pAuthSourceAddress.stringValue,
+        AUTH_SOURCE_ADDRESS: props.authSourceAddress.stringValue,
       },
       logging: aws_ecs.LogDrivers.awsLogs({
         logGroup: nginxLogGroup,

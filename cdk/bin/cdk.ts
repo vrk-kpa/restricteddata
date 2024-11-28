@@ -20,6 +20,7 @@ import {CkanStack} from "../lib/ckan-stack";
 import {ShieldParameterStack} from "../lib/shield-parameter-stack";
 import {ShieldStack} from "../lib/shield-stack";
 import {MonitoringStack} from '../lib/monitoring-stack';
+import { RestricteddataParameterStack } from '../lib/restricteddata-parameter-stack';
 
 const app = new cdk.App();
 
@@ -175,6 +176,14 @@ const FileSystemStackDev = new FileSystemStack(app, 'FilesystemStack-dev', {
   terminationProtection: true
 })
 
+const RestricteddataParameterStackDev = new RestricteddataParameterStack(app, 'RestricteddataParameterStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region,
+  },
+  environment: devStackProps.environment,
+})
+
 
 const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
   env: {
@@ -201,8 +210,8 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
     taskMem: 512,
     taskMinCapacity: 1,
     taskMaxCapacity: 1
-  }
-
+  },
+  authSourceAddress: RestricteddataParameterStackDev.authSourceAddress
 })
 
 const SolrStackDev = new SolrStack(app, 'SolrStack-dev', {
@@ -398,6 +407,14 @@ const FileSystemStackProd = new FileSystemStack(app, 'FilesystemStack-prod', {
 })
 
 
+const RestricteddataParameterStackProd = new RestricteddataParameterStack(app, 'RestricteddataParameterStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region,
+  },
+  environment: prodStackProps.environment,
+})
+
 const NginxStackProd = new NginxStack(app, 'NginxStack-prod', {
   env: {
     account: prodStackProps.account,
@@ -423,8 +440,8 @@ const NginxStackProd = new NginxStack(app, 'NginxStack-prod', {
     taskMem: 512,
     taskMinCapacity: 1,
     taskMaxCapacity: 1
-  }
-
+  },
+  authSourceAddress: RestricteddataParameterStackProd.authSourceAddress
 })
 
 const SolrStackProd = new SolrStack(app, 'SolrStack-prod', {
