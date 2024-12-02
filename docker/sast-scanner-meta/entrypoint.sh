@@ -111,7 +111,7 @@ run_semgrep() {
     echo "[*] JUNIT-XML format will be used."
     OUTPUT_ARGS="--junit-xml --output $OUTDIR/semgrep-$1-report.xml"
   fi
-  semgrep ci $3 --metrics=off $EXCLUDES $RULE_EXCLUSIONS $OUTPUT_ARGS $SEMGREP_SEVERITY --no-error $ARGS
+  semgrep ci $3 --metrics=off $EXCLUDES $RULE_EXCLUSIONS $OUTPUT_ARGS --no-error $ARGS
 }
 
 if [ $2 = "APP" ]
