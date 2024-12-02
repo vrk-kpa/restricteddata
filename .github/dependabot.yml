@@ -37,6 +37,12 @@ updates:
   open-pull-requests-limit: 10
   registries:
   - npm-registry-npm-fontawesome-com
+- package-ecosystem: npm
+  directory: "/cdk/"
+  schedule:
+    interval: daily
+    time: "03:00"
+  open-pull-requests-limit: 10
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
