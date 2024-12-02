@@ -155,6 +155,8 @@ services:
       - NAMESERVER=${NAMESERVER}
       - CKAN_HOST=${CKAN_HOST}
       - CKAN_PORT=${CKAN_PORT}
+      - NGINX_PROXY_ADDRESS=${NGINX_PROXY_ADDRESS}
+      - AUTH_SOURCE_ADDRESS=${AUTH_SOURCE_ADDRESS}
 
   mailhog:
     image: mailhog/mailhog:latest

@@ -46,6 +46,7 @@ export class NginxStack extends Stack {
 
     const nginxCspWorkerSrc: string[] = [];
 
+
     const nginxContainer = nginxTaskDefinition.addContainer('nginx', {
       image: aws_ecs.ContainerImage.fromEcrRepository(nginxRepo, props.envProps.NGINX_IMAGE_TAG),
       environment: {
@@ -70,6 +71,8 @@ export class NginxStack extends Stack {
         CKAN_HOST: `ckan.${props.namespace.namespaceName}`,
         CKAN_PORT: '5000',
         NGINX_ROBOTS_ALLOW: props.allowRobots,
+        NGINX_PROXY_ADDRESS: props.loadBalancer.loadBalancerDnsName,
+        AUTH_SOURCE_ADDRESS: props.authSourceAddress.stringValue,
       },
       logging: aws_ecs.LogDrivers.awsLogs({
         logGroup: nginxLogGroup,
