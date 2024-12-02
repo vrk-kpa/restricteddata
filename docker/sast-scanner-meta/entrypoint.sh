@@ -117,6 +117,7 @@ run_semgrep() {
 if [ $2 = "APP" ]
   then
     run_semgrep "app" $SRCDIR "$APP_RULES"
+    app_exit_code=$?
 
     handle_output
 elif [ $2 = "IAC" ]
@@ -125,6 +126,7 @@ elif [ $2 = "IAC" ]
     handle_output
 else
   run_semgrep "app" $SRCDIR "$APP_RULES"
+  app_exit_code=$?
   run_semgrep "iac" $IACDIR "$IAC_RULES"
 
   handle_output
@@ -134,5 +136,5 @@ if [[ "${BUCKET}" ]]; then
   /copy_to_s3.sh
 fi
 
-echo "[*] All done!"
-exit 0
+echo "[*] All done!, echoing exit code for app rules"
+exit $exit_code
