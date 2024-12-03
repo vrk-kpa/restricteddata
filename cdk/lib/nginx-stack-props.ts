@@ -12,5 +12,5 @@ export interface NginxStackProps extends EcsStackProps {
   secondaryDomainName: string,
   fqdn: string,
   secondaryFqdn: string,
-  authSourceAddress: aws_ssm.IStringParameter
+  authSourceAddresses: aws_ssm.IStringListParameter
 }

@@ -211,7 +211,7 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
-  authSourceAddress: RestricteddataParameterStackDev.authSourceAddress
+  authSourceAddresses: RestricteddataParameterStackDev.authSourceAddresses
 })
 
 const SolrStackDev = new SolrStack(app, 'SolrStack-dev', {
@@ -441,7 +441,7 @@ const NginxStackProd = new NginxStack(app, 'NginxStack-prod', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
-  authSourceAddress: RestricteddataParameterStackProd.authSourceAddress
+  authSourceAddresses: RestricteddataParameterStackProd.authSourceAddresses
 })
 
 const SolrStackProd = new SolrStack(app, 'SolrStack-prod', {
