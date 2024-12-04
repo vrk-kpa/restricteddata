@@ -72,7 +72,7 @@ export class NginxStack extends Stack {
         CKAN_HOST: `ckan.${props.namespace.namespaceName}`,
         CKAN_PORT: '5000',
         NGINX_ROBOTS_ALLOW: props.allowRobots,
-        NGINX_PROXY_ADDRESS: props.loadBalancer.loadBalancerDnsName,
+        PROXY_ADDRESSES: Fn.join(',', props.loadBalancer.vpc!.publicSubnets.map(subnet => subnet.ipv4CidrBlock)),
         AUTH_SOURCE_ADDRESSES: Fn.join(',', props.authSourceAddresses.stringListValue)
       },
       logging: aws_ecs.LogDrivers.awsLogs({

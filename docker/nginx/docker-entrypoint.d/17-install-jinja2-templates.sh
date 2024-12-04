@@ -11,4 +11,5 @@ echo "{}" | jinja2 /etc/nginx/jinja2-templates/robots.txt.j2 \
 
 echo "{}" |jinja2 /etc/nginx/jinja2-templates/server.conf.j2 \
   -D "auth_source_addresses=${AUTH_SOURCE_ADDRESSES}" \
+  -D "proxy_addresses=${PROXY_ADDRESSES}" \
   > /etc/nginx/templates/server.conf.template ;
