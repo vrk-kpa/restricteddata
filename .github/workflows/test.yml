@@ -325,7 +325,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docker-logs
-          path: /tmp/restricteddata_*.log
+          path: /tmp/restricteddata-*.log
 
   test-cdk:
     name: test-cdk
