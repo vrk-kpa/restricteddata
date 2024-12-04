@@ -11,7 +11,7 @@ COPY templates /etc/nginx/templates
 COPY jinja2-templates /etc/nginx/jinja2-templates
 
 # install entrypoint scripts
-COPY docker-entrypoint.d/100-install-jinja2-templates.sh /docker-entrypoint.d/
+COPY docker-entrypoint.d/17-install-jinja2-templates.sh /docker-entrypoint.d/
 RUN chmod +x /docker-entrypoint.d/*.sh
 
 RUN mkdir /var/www
