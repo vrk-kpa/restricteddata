@@ -89,6 +89,7 @@ export class NginxStack extends Stack {
 
     this.nginxService = new aws_ecs_patterns.ApplicationLoadBalancedFargateService(this, 'nginxService', {
       cluster: props.cluster,
+      serviceName: "nginx",
       cloudMapOptions: {
         cloudMapNamespace: props.namespace,
         dnsRecordType: aws_servicediscovery.DnsRecordType.A,
