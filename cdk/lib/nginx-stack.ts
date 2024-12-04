@@ -73,7 +73,6 @@ export class NginxStack extends Stack {
         CKAN_PORT: '5000',
         NGINX_ROBOTS_ALLOW: props.allowRobots,
         NGINX_PROXY_ADDRESS: props.loadBalancer.loadBalancerDnsName,
-        AUTH_SOURCE_ADDRESS: props.authSourceAddress.stringValue,
         AUTH_SOURCE_ADDRESSES: Fn.join(',', props.authSourceAddresses.stringListValue)
       },
       logging: aws_ecs.LogDrivers.awsLogs({
