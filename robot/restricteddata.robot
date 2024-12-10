@@ -312,17 +312,13 @@ Fill Dataset Form With Full Test Data
     Input Text  id:field-maintainer_website  ${maintenance website}
 
 Fill Resource Form With Minimal Test Data
-    [Arguments]  ${name fi}=Testiresurssi
-    ...          ${name sv}=Test resurs
-    ...          ${description fi}=Testiresurssin kuvaus
+    [Arguments]  ${description fi}=Testiresurssin kuvaus
     ...          ${description sv}=Test resurs beskrivning
     ...          ${url}=https://example.com
     ...          ${format}=HTML
     ...          ${size}=12345
     ...          ${rights fi}=Testiresurssin käyttöoikeuksien kuvaus
     ...          ${rights sv}=Test resurs användningsrättigheter
-    Input Text  id:field-name_translated-fi  ${name fi}
-    Input Text  id:field-name_translated-sv  ${name sv}
     TRY
         Click Button  id:resource-link-button
     EXCEPT
@@ -355,10 +351,11 @@ Fill Resource Form With Full Test Data
     ...          ${temporal coverage from}=01/02/2023
     ...          ${temporal coverage till}=03/04/2033
     ...          ${geographical accuracy}=42
-    Fill Resource Form With Minimal Test Data  name fi=${name fi}  name sv=${name sv}
-    ...                                        description fi=${description fi}  description sv=${description sv}
+    Fill Resource Form With Minimal Test Data  description fi=${description fi}  description sv=${description sv}
     ...                                        url=${url}  format=${format}  size=${size}
     ...                                        rights fi=${rights fi}  rights sv=${rights sv}
+    Input Text  id:field-name_translated-fi  ${name fi}
+    Input Text  id:field-name_translated-sv  ${name sv}
     Input Text  id:field-name_translated-en  Test resource
     Input Text Into CKEditor  field-description_translated-fi  ${description fi}
     Input Text Into CKEditor  field-description_translated-sv  ${description sv}

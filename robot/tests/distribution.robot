@@ -113,8 +113,8 @@ Remove Distribution
     Fill Resource Form With Minimal Test Data
     Submit Primary Form
 
-    URL Path Should Be  /dataset/testiaineisto
-    Click Link  Testiresurssi
+    URL Path Should Be  /dataset/testiaineisto  url=http://example.com/test-resource
+    Click Link  http://example.com/test-resource
     Click Link  Muokkaa 
 
     Scroll To Form Actions

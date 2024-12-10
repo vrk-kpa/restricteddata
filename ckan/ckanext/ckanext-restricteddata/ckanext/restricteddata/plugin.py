@@ -93,7 +93,8 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             validators.convert_to_json_compatible_str_if_str,
             'required_languages': validators.required_languages,
             'highvalue_category': validators.highvalue_category,
-            'highvalue': validators.highvalue
+            'highvalue': validators.highvalue,
+            'populate_required_languages_from_field_if_missing': validators.populate_required_languages_from_field_if_missing,
         }
 
     # IPackageController

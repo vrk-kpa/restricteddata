@@ -17,7 +17,7 @@ Create Minimal Dataset And Resource
     Submit Primary Form
     
     URL Path Should Be  /dataset/testiaineisto/resource/new
-    Fill Resource Form With Minimal Test Data
+    Fill Resource Form With Minimal Test Data  url=http://example.com/test-resource
     Submit Primary Form
     
     URL Path Should Be  /dataset/testiaineisto
@@ -25,7 +25,7 @@ Create Minimal Dataset And Resource
     Page Should Contain  Teemu Testaaja
     Page Should Contain  teemu.testaaja@example.com
         
-    Click Link  link:Testiresurssi
+    Click Link  http://example.com/test-resource
     Page Should Contain  12345
     Page Should Contain  Testiresurssin käyttöoikeuksien kuvaus
     
