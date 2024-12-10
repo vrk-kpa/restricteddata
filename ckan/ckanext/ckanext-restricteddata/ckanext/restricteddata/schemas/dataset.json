@@ -302,13 +302,18 @@
         "sv",
         "en"
       ],
+      "required_languages": [
+        "fi",
+        "sv"
+      ],
       "form_placeholder": "e.g. Most popular Finnish first names 2019",
       "form_attrs": {
         "class": "form-control"
       },
       "description": "Give a short and descriptive name for the distribution. If the data covers a specific time frame, mention that in the name.",
       "group_title": "Data resource title",
-      "group_description": "* Required field"
+      "group_description": "* Required field",
+      "validators": "fluent_text populate_required_languages_from_field_if_missing(url)"
     },
     {
       "field_name": "url",

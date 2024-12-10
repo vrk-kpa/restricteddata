@@ -192,6 +192,40 @@ def override_field_with_default_translation(overridden_field_name):
     return implementation
 
 
+def populate_required_languages_from_field_if_missing(field_name):
+    @scheming_validator
+    def validator(field, schema):
+        def inner(key, data, errors, context):
+            languages = field.get('required_languages', [])
+            value = {} if data[key] is toolkit.missing else data[key]
+            # Assumption: subject field is a sibling to the object field
+            default_value = data[key[:-1] + (field_name,)]
+
+            if isinstance(value, str):
+                try:
+                    value = json.loads(value)
+                except ValueError:
+                    errors[key].append(_('Failed to decode JSON string'))
+                    return
+                except UnicodeDecodeError:
+                    errors[key].append(_('Invalid encoding for JSON string'))
+                    return
+
+            if not isinstance(value, dict):
+                errors[key].append(_('expecting JSON object'))
+                return
+
+            for lang in languages:
+                if value.get(lang, '') == '':
+                    value[lang] = default_value
+
+            data[key] = json.dumps(value)
+
+        return inner
+
+    return validator
+
+
 def create_fluent_tags(vocab):
     def callable(key, data, errors, context):
         value = data[key]

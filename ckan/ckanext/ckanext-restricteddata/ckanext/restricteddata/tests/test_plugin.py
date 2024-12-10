@@ -104,6 +104,7 @@ def test_minimal_dataset():
     assert len(dataset['resources']) == 1
     resource = dataset['resources'][0]
     assert resource['url'] == dataset_fields['resources'][0]['url']
+    assert resource['name_translated']['fi'] == resource['url']
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db")
