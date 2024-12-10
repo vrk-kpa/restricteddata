@@ -590,8 +590,8 @@ def test_paha_authentication_creates_organization(app):
     assert organization['id'] == organization_id
     assert organization['title_translated'] == {
         'fi': organization_name_fi,
-        'sv': organization_name_fi,
-        'en': organization_name_fi
+        'sv': '',
+        'en': ''
     }
 
 

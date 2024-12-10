@@ -7,12 +7,12 @@ def minimal_dataset(user):
     return dict(
         user=user,
         private=False,
-        title_translated={'fi': 'Title (fi)', 'sv': 'Title (sv)'},
-        notes_translated={'fi': 'Notes (fi)', 'sv': 'Notes (sv)'},
+        title_translated={'fi': 'Title (fi)'},
+        notes_translated={'fi': 'Notes (fi)'},
         access_rights='non-public',
         maintainer='maintainer',
         maintainer_email=['maintainer@example.com'],
-        keywords={'fi': ['test-fi'], 'sv': ['test-sv']},
+        keywords={'fi': ['test-fi']},
     )
 
 
@@ -22,7 +22,7 @@ def minimal_dataset_with_one_resource_fields(user):
             url='http://example.com',
             format='TXT',
             size=1234,
-            rights_translated={'fi': 'Rights (fi)', 'sv': 'Rights (sv)'},
+            rights_translated={'fi': 'Rights (fi)'},
             private=False,
             maturity='current',
         )]
@@ -31,7 +31,7 @@ def minimal_dataset_with_one_resource_fields(user):
 
 def minimal_group():
     return dict(
-        title_translated={lang: f'title {lang}' for lang in ['fi', 'sv']}
+        title_translated={lang: f'title {lang}' for lang in ['fi']}
     )
 
 
