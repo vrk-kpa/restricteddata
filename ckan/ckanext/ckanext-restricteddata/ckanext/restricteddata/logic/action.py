@@ -133,11 +133,9 @@ def _create_or_get_paha_organization(token: str):
 
     except toolkit.ObjectNotFound:
         name_languages = ['fi', 'sv', 'en']
-        fallback_language = 'fi'
 
         title_field = 'activeOrganizationName{}'.format
-        organization_titles = {lang: (token[title_field(lang.capitalize())]
-                                      or token[title_field(fallback_language.capitalize())])
+        organization_titles = {lang: token.get(title_field(lang.capitalize()), '')
                                for lang in name_languages}
         organization_title = next((organization_titles[lang]
                                   for lang in name_languages

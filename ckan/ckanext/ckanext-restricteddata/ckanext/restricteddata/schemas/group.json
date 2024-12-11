@@ -13,8 +13,7 @@
         "sv"
       ],
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "form_placeholder": "My Group"
     },

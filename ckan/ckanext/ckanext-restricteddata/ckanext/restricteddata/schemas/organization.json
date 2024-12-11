@@ -14,8 +14,7 @@
         "en"
       ],
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "group_title": "Organization name",
       "group_description": "* Required field",

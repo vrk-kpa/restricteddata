@@ -51,18 +51,15 @@ def test_dcat_dataset_with_minimal_dataset(app):
     Dataset(**dataset_fields)
 
     result = fetch_catalog_graph(app).query('''
-        SELECT ?id ?titleFi ?titleSv ?descriptionFi ?descriptionSv
-               ?keywordFi ?keywordSv ?publisher
+        SELECT ?id ?titleFi ?descriptionFi
+               ?keywordFi ?publisher
                ?accessRights ?maintainer ?maintainerEmail
         WHERE {
             ?a a dcat:Dataset
             . ?a dcterms:identifier ?id
             . ?a dcterms:title ?titleFi FILTER ( lang(?titleFi) = "fi")
-            . ?a dcterms:title ?titleSv FILTER ( lang(?titleSv) = "sv")
             . ?a dcterms:description ?descriptionFi FILTER ( lang(?descriptionFi) = "fi")
-            . ?a dcterms:description ?descriptionSv FILTER ( lang(?descriptionSv) = "sv")
             . ?a dcat:keyword ?keywordFi FILTER ( lang(?keywordFi) = "fi")
-            . ?a dcat:keyword ?keywordSv FILTER ( lang(?keywordSv) = "sv")
             . ?a dcterms:publisher ?publisher
             . ?a dcterms:accessRights ?accessRights
             . ?a dcat:contactPoint ?contact
@@ -71,16 +68,13 @@ def test_dcat_dataset_with_minimal_dataset(app):
         }
         ''')
 
-    [(id, title_fi, title_sv, notes_fi, notes_sv, keyword_fi, keyword_sv,
+    [(id, title_fi, notes_fi, keyword_fi,
       publisher, access_rights, maintainer, maintainer_email)] = list(result)
 
     assert id is not None
     assert title_fi == Literal(dataset_fields['title_translated']['fi'], lang='fi')
-    assert title_sv == Literal(dataset_fields['title_translated']['sv'], lang='sv')
     assert notes_fi == Literal(dataset_fields['notes_translated']['fi'], lang='fi')
-    assert notes_sv == Literal(dataset_fields['notes_translated']['sv'], lang='sv')
     assert keyword_fi == Literal(dataset_fields['keywords']['fi'][0], lang='fi')
-    assert keyword_sv == Literal(dataset_fields['keywords']['sv'][0], lang='sv')
     assert publisher is not None
     assert access_rights == Literal(dataset_fields['access_rights'])
     assert maintainer == Literal(dataset_fields['maintainer'])
@@ -199,7 +193,7 @@ def test_dcat_resource_with_minimal_resource(app):
     Dataset(**dataset_fields)
 
     result = fetch_catalog_graph(app).query('''
-        SELECT ?url ?format ?size ?maturity ?rightsFi ?rightsSv
+        SELECT ?url ?format ?size ?maturity ?rightsFi 
         WHERE {
             ?a a dcat:Distribution
             . ?a dcat:accessURL ?url
@@ -207,18 +201,16 @@ def test_dcat_resource_with_minimal_resource(app):
             . ?a dcat:byteSize ?size
             . ?a adms:status ?maturity
             . ?a dcterms:rights ?rightsFi FILTER ( lang(?rightsFi) = "fi")
-            . ?a dcterms:rights ?rightsSv FILTER ( lang(?rightsSv) = "sv")
         }
         ''')
 
-    [(url, format, size, maturity, rights_fi, rights_sv)] = list(result)
+    [(url, format, size, maturity, rights_fi)] = list(result)
 
     assert url == URIRef(resource_fields['url'])
     assert format == Literal(resource_fields['format'])
     assert size == Literal(resource_fields['size'], datatype=XSD.nonNegativeInteger)
     assert maturity == Literal(resource_fields['maturity'])
     assert rights_fi == Literal(resource_fields['rights_translated']['fi'], lang='fi')
-    assert rights_sv == Literal(resource_fields['rights_translated']['sv'], lang='sv')
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
