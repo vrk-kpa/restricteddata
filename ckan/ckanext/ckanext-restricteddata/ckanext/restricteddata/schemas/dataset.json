@@ -14,8 +14,7 @@
       ],
       "form_placeholder": "e.g. Finnish names",
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "description": "Give a short and descriptive name for the dataset.<br><br>The URL is created automatically based on the dataset title. If necessary, you can edit the URL.",
       "group_title": "Dataset title",
@@ -43,8 +42,7 @@
       "display_snippet": null,
       "validators": "fluent_text required_languages",
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "description": "Describe the dataset’s contents, collection process, quality of the data and possible limits, flaws and applications in an easily understandable way.",
       "group_title": "Dataset description"
@@ -62,8 +60,7 @@
       "preset": "fluent_vocabulary_with_autocomplete",
       "validators": "required_languages fluent_tags create_fluent_tags(keywords)",
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "form_attrs": {
         "data-module": "autocomplete",
@@ -303,8 +300,7 @@
         "en"
       ],
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "form_placeholder": "e.g. Most popular Finnish first names 2019",
       "form_attrs": {
@@ -374,8 +370,7 @@
         "en"
       ],
       "required_languages": [
-        "fi",
-        "sv"
+        "fi"
       ],
       "form_attrs": {
         "class": "form-control"
