@@ -19,7 +19,7 @@
     "lint": "gulp lint"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-pro": "^6.7.1",
+    "@fortawesome/fontawesome-pro": "^6.7.2",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.2",
     "bootstrap": "^5.3.3",
     "gulp": "^5.0.0",
