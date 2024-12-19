@@ -14,6 +14,7 @@ from ckanext.restricteddata.model import PahaAuthenticationToken
 from collections import OrderedDict
 
 from flask import request
+from typing import Optional
 
 from . import helpers, validators, views
 from .logic import action, auth
@@ -184,7 +185,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     # IFacets
 
-    def dataset_facets(self, facets_dict, package_type):
+    def _facets(self):
         lang = helpers.get_lang_prefix()
         facets_dict = OrderedDict([
             ('groups', toolkit._('Groups')),
@@ -193,6 +194,24 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             ('vocab_highvalue_category', toolkit._('High-value dataset category'))
         ])
         return facets_dict
+
+    def dataset_facets(self, facets_dict: OrderedDict[str, Any], package_type: str) -> OrderedDict[str, Any]:
+        return self._facets()
+
+    def group_facets(self,
+                     facets_dict: OrderedDict[str, Any],
+                     group_type: str,
+                     package_type: Optional[str]) -> OrderedDict[str, Any]:
+        
+        facets = self._facets()
+        del facets['groups']
+        return facets
+
+    def organization_facets(self,
+                            facets_dict: OrderedDict[str, Any],
+                            organization_type: str,
+                            package_type: Optional[str]) -> OrderedDict[str, Any]:
+        return self._facets()
 
     # IBlueprint
 
