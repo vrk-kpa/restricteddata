@@ -202,7 +202,10 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
                      facets_dict: OrderedDict[str, Any],
                      group_type: str,
                      package_type: Optional[str]) -> OrderedDict[str, Any]:
-        return self._facets()
+        
+        facets = self._facets()
+        del facets['groups']
+        return facets
 
     def organization_facets(self,
                             facets_dict: OrderedDict[str, Any],
