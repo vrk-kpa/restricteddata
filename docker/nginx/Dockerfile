@@ -3,7 +3,7 @@
 FROM nginx:1.27.3-alpine AS nginx_build
 
 # install pkgs
-RUN apk add --update-cache python3 py3-pip jinja2-cli
+RUN apk add --no-cache python3 py3-pip jinja2-cli
 
 # copy config, nginx templated configs & jinja2 templates
 COPY nginx.conf /etc/nginx/nginx.conf
