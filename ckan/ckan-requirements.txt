@@ -22,7 +22,8 @@ charset-normalizer==2.0.12
     # via
     #   ckan
     #   requests
-ckan==2.10.6
+# Removed manually for installing editable separately
+# ckan==2.10.6
     # via -r ckan-requirements.in
 click==8.1.3
     # via
