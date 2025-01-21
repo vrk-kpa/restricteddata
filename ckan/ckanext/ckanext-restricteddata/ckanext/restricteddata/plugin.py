@@ -187,7 +187,9 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     def _facets(self):
         lang = helpers.get_lang_prefix()
+
         facets_dict = OrderedDict([
+            ('organization', toolkit._('Organizations')),
             ('groups', toolkit._('Groups')),
             ('vocab_keywords_' + lang, toolkit._('Tags')),
             ('res_format', toolkit._('Format')),
@@ -211,7 +213,9 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
                             facets_dict: OrderedDict[str, Any],
                             organization_type: str,
                             package_type: Optional[str]) -> OrderedDict[str, Any]:
-        return self._facets()
+        facets = self._facets()
+        del facets['organization']
+        return facets
 
     # IBlueprint
 
