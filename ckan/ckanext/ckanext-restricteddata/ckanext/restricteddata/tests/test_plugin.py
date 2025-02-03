@@ -708,6 +708,28 @@ def test_paha_auth_token_expiry(app):
     response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
     assert response.status_code == 400
 
+
+@pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
+def test_paha_auth_fails_with_reused_token(app):
+    user = User()
+    organization = RestrictedDataOrganization()
+    paha_token = create_paha_token({
+        "id": user["id"],
+        "activeOrganizationId": organization["id"],
+    })
+    auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
+
+    # Log in using the token
+    client = app.test_client()
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
+    assert response.status_code == 200
+    
+    # Try to log in again with a different client using the same token
+    client = app.test_client()
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
+    assert response.status_code == 400
+
+
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_temporary_membership_expiry(app):
     organization = RestrictedDataOrganization()

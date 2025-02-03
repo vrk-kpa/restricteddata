@@ -54,8 +54,9 @@ def authorized():
     token = PahaAuthenticationToken.get(token_value)
     if token is None:
         toolkit.abort(400, "Missing token")
-
     user = User.get(token.user_id)
+    PahaAuthenticationToken.invalidate(token.id)
+
     toolkit.g.user = user.name
     toolkit.g.userobj = user
     toolkit.login_user(user)
