@@ -4,16 +4,13 @@ import logging
 import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-import ckan.model as model
 from ckan.logic import NotFound
 from ckanext.pages.interfaces import IPagesSchema
 from ckan.lib.plugins import DefaultTranslation
 from flask import has_request_context
 from ckanext.restricteddata.cli import cli
-from ckanext.restricteddata.model import PahaAuthenticationToken
 from collections import OrderedDict
 
-from flask import request
 from typing import Optional
 
 from . import helpers, validators, views
@@ -348,7 +345,6 @@ def filter_allowed_resources(resources: List[ResourceDict],
 
 class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.interfaces.IActions)
-    plugins.implements(plugins.interfaces.IAuthenticator, inherit=True)
 
     def get_actions(self):
         return {
@@ -357,19 +353,6 @@ class RestrictedDataPahaAuthenticationPlugin(plugins.SingletonPlugin):
             'purge_expired_temporary_memberships': action.purge_expired_temporary_memberships,
             'purge_expired_paha_auth_tokens': action.purge_expired_paha_auth_tokens,
         }
-
-    def identify(self):
-        auth_header = next((v for k, v in request.headers if k == 'Authorization'), None)
-        if auth_header:
-            token = PahaAuthenticationToken.get(auth_header)
-            if token is not None:
-                user = model.User.get(token.user_id)
-                toolkit.g.user = user.name
-                toolkit.g.userobj = user
-                toolkit.login_user(user)
-                return
-
-        return super().identify()
 
 # NOTE: DO NOT ENABLE THIS PLUGIN IN NON-LOCAL ENVIRONMENTS
 class RestrictedDataResetPlugin(plugins.SingletonPlugin):
