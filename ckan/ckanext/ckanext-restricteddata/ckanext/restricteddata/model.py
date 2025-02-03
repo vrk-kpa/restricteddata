@@ -69,3 +69,9 @@ class PahaAuthenticationToken(toolkit.BaseModel):
                 .filter(cls.secret == secret)
                 .where(cls.expires > now)
                 .first())
+
+    @classmethod
+    def invalidate(cls, id):
+        matching = meta.Session.query(cls).filter(id == id).one()
+        meta.Session.delete(matching)
+        meta.Session.commit()

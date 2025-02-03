@@ -1,6 +1,8 @@
 from ckan.plugins import toolkit
+from ckan.model import User
 from ckan.views.dataset import GroupView as CkanDatasetGroupView
 from flask import Blueprint, make_response
+from ckanext.restricteddata.model import PahaAuthenticationToken
 import logging
 
 log = logging.getLogger(__name__)
@@ -46,7 +48,22 @@ def authorize():
         headers = {'Content-Type': 'application/json'}
         return make_response(body, 400, headers)
 
+
+def authorized():
+    token_value = toolkit.get_or_bust(toolkit.request.params, 'token')
+    token = PahaAuthenticationToken.get(token_value)
+    if token is None:
+        toolkit.abort(400, "Missing token")
+    user = User.get(token.user_id)
+    PahaAuthenticationToken.invalidate(token.id)
+
+    toolkit.g.user = user.name
+    toolkit.g.userobj = user
+    toolkit.login_user(user)
+    return toolkit.h.redirect_to('activity.dashboard')
+
 paha.add_url_rule('/authorize', view_func=authorize, methods=['POST'])
+paha.add_url_rule('/authorized', view_func=authorized, methods=['GET'])
 
 def get_blueprints():
     return [ns, restricted_data_dataset, paha]

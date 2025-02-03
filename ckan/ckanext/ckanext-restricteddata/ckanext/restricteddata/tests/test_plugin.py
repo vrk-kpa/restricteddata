@@ -630,8 +630,9 @@ def test_paha_authentication_logs_in_user(app):
 
     # Use the token to log in
     client = app.test_client(use_cookies=True)
-    headers={'Authorization': auth_token}
-    response = client.get(toolkit.url_for("user.read", id=some_user['name']), headers=headers)
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
+    assert response.status_code == 200
+    response = client.get(toolkit.url_for("user.read", id=some_user['name']))
     assert response.status_code == 200
     assert some_user['fullname'] in response.body
 
@@ -666,8 +667,7 @@ def test_paha_authentication_grants_temporary_membership(app):
 
     # Log in and open organization edit view
     client = app.test_client(use_cookies=True)
-    headers={'Authorization': auth_token}
-    response = client.get(toolkit.url_for("organization.edit", id=organization['name']), headers=headers)
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
     assert response.status_code == 200
 
     # Use same session to open user dashboard view
@@ -705,9 +705,30 @@ def test_paha_auth_token_expiry(app):
 
     # Use the token to try to log in
     client = app.test_client()
-    headers={'Authorization': auth_token}
-    response = client.get(toolkit.url_for("organization.edit", id=organization['id']), headers=headers)
-    assert response.status_code == 403
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
+    assert response.status_code == 400
+
+
+@pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
+def test_paha_auth_fails_with_reused_token(app):
+    user = User()
+    organization = RestrictedDataOrganization()
+    paha_token = create_paha_token({
+        "id": user["id"],
+        "activeOrganizationId": organization["id"],
+    })
+    auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
+
+    # Log in using the token
+    client = app.test_client()
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
+    assert response.status_code == 200
+    
+    # Try to log in again with a different client using the same token
+    client = app.test_client()
+    response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
+    assert response.status_code == 400
+
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_temporary_membership_expiry(app):
