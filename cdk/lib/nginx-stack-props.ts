@@ -1,5 +1,5 @@
 import {EcsStackProps} from "./ecs-stack-props";
-import {aws_certificatemanager, aws_elasticloadbalancingv2, aws_route53, aws_ssm} from "aws-cdk-lib";
+import {aws_certificatemanager, aws_elasticloadbalancingv2, aws_route53} from "aws-cdk-lib";
 
 export interface NginxStackProps extends EcsStackProps {
   allowRobots: string,
@@ -12,5 +12,5 @@ export interface NginxStackProps extends EcsStackProps {
   secondaryDomainName: string,
   fqdn: string,
   secondaryFqdn: string,
-  authSourceAddresses: aws_ssm.IStringListParameter
+  authSourceAddressesParameterName: string
 }

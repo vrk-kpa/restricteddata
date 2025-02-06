@@ -53,6 +53,16 @@ export class ShieldStack extends Stack {
       default: props.highPriorityCountryCodeListParameterName
     });
 
+    const highPriorityRateLimit = aws_ssm.StringParameter.fromStringParameterAttributes(this,
+      'highPriorityRateLimit', {
+        parameterName: props.highPriorityRateLimitParameterName,
+        simpleName: false
+      })
+
+    const rateLimit = aws_ssm.StringParameter.fromStringParameterAttributes(this, 'rateLimit', {
+      parameterName: props.rateLimitParameterName,
+      simpleName: false
+    })
 
     let rules = [
       {
@@ -122,7 +132,7 @@ export class ShieldStack extends Stack {
         },
         statement: {
           rateBasedStatement: {
-            limit: Token.asNumber(props.highPriorityRateLimit.stringValue),
+            limit: Token.asNumber(highPriorityRateLimit.stringValue),
             aggregateKeyType: "IP",
             scopeDownStatement: {
               geoMatchStatement: {
@@ -146,7 +156,7 @@ export class ShieldStack extends Stack {
         },
         statement: {
           rateBasedStatement: {
-            limit: Token.asNumber(props.rateLimit.stringValue),
+            limit: Token.asNumber(rateLimit.stringValue),
             aggregateKeyType: "IP",
             scopeDownStatement: {
               notStatement: {
@@ -298,9 +308,21 @@ export class ShieldStack extends Stack {
       webAclArn: cfnWebAcl.attrArn
     })
 
-    const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", props.wafAutomationArn.stringValue)
+    const wafAutomationArn = aws_ssm.StringParameter.fromStringParameterAttributes(this,
+      'wafAutomationArn', {
+        parameterName: props.wafAutomationArnParameterName,
+        simpleName: false
+      })
 
-    const topic =  aws_sns.Topic.fromTopicArn(this, "SNSTopic", props.snsTopicArn.stringValue)
+    const WafAutomationLambdaFunction = aws_lambda.Function.fromFunctionArn(this, "WafAutomation", wafAutomationArn.stringValue)
+
+    const snsTopicArn = aws_ssm.StringParameter.fromStringParameterAttributes(this,
+      'snsTopicArn', {
+        parameterName: props.snsTopicArnParameterName,
+        simpleName: false
+      })
+
+    const topic =  aws_sns.Topic.fromTopicArn(this, "SNSTopic", snsTopicArn.stringValue)
 
     topic.addSubscription(new aws_sns_subscriptions.LambdaSubscription(WafAutomationLambdaFunction))
 

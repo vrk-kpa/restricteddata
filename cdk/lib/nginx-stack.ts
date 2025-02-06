@@ -6,7 +6,7 @@ import {
   aws_elasticloadbalancingv2,
   aws_logs, aws_route53, aws_route53_targets,
   aws_servicediscovery, Duration,
-  Stack
+  Stack, aws_ssm
 } from "aws-cdk-lib";
 import {Construct} from "constructs";
 import {getRepositoryArn} from "./env-props";
@@ -48,6 +48,14 @@ export class NginxStack extends Stack {
     const nginxCspWorkerSrc: string[] = [];
 
 
+    const authSourceAddresses = aws_ssm.StringListParameter.fromListParameterAttributes(this,
+      'authSourceAddresses', {
+        parameterName: props.authSourceAddressesParameterName,
+        simpleName: false
+      })
+
+
+
     const nginxContainer = nginxTaskDefinition.addContainer('nginx', {
       image: aws_ecs.ContainerImage.fromEcrRepository(nginxRepo, props.envProps.NGINX_IMAGE_TAG),
       environment: {
@@ -73,7 +81,7 @@ export class NginxStack extends Stack {
         CKAN_PORT: '5000',
         NGINX_ROBOTS_ALLOW: props.allowRobots,
         PROXY_ADDRESSES: Fn.join(',', props.loadBalancer.vpc!.publicSubnets.map(subnet => subnet.ipv4CidrBlock)),
-        AUTH_SOURCE_ADDRESSES: Fn.join(',', props.authSourceAddresses.stringListValue)
+        AUTH_SOURCE_ADDRESSES: Fn.join(',', authSourceAddresses.stringListValue)
       },
       logging: aws_ecs.LogDrivers.awsLogs({
         logGroup: nginxLogGroup,
