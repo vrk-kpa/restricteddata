@@ -211,7 +211,7 @@ const NginxStackDev = new NginxStack(app, 'NginxStack-dev', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
-  authSourceAddresses: RestricteddataParameterStackDev.authSourceAddresses
+  authSourceAddressesParameterName: RestricteddataParameterStackDev.authSourceAddressesParameterName
 })
 
 const SolrStackDev = new SolrStack(app, 'SolrStack-dev', {
@@ -296,12 +296,12 @@ const ShieldStackDev = new ShieldStack(app, 'ShieldStack-dev', {
   bannedIpListParameterName: ShieldParameterStackDev.bannedIpListParameterName,
   whitelistedIpListParameterName: ShieldParameterStackDev.whitelistedIpListParameterName,
   highPriorityCountryCodeListParameterName: ShieldParameterStackDev.highPriorityCountryCodeListParameterName,
-  highPriorityRateLimit: ShieldParameterStackDev.highPriorityRateLimit,
-  rateLimit: ShieldParameterStackDev.rateLimit,
+  highPriorityRateLimitParameterName: ShieldParameterStackDev.highPriorityRateLimitParameterName,
+  rateLimitParameterName: ShieldParameterStackDev.rateLimitParameterName,
   managedRulesParameterName: ShieldParameterStackDev.managedRulesParameterName,
-  snsTopicArn: ShieldParameterStackDev.snsTopicArn,
-  wafAutomationArn: ShieldParameterStackDev.wafAutomationArn,
-  evaluationPeriod: ShieldParameterStackDev.evaluationPeriod
+  snsTopicArnParameterName: ShieldParameterStackDev.snsTopicArnParameterName,
+  wafAutomationArnParameterName: ShieldParameterStackDev.wafAutomationArnParameterName,
+  evaluationPeriodParameterName: ShieldParameterStackDev.evaluationPeriodParameterName
 })
 
 const MonitoringStackDev = new MonitoringStack(app, 'MonitoringStack-dev', {
@@ -441,7 +441,7 @@ const NginxStackProd = new NginxStack(app, 'NginxStack-prod', {
     taskMinCapacity: 1,
     taskMaxCapacity: 1
   },
-  authSourceAddresses: RestricteddataParameterStackProd.authSourceAddresses
+  authSourceAddressesParameterName: RestricteddataParameterStackProd.authSourceAddressesParameterName
 })
 
 const SolrStackProd = new SolrStack(app, 'SolrStack-prod', {
@@ -527,12 +527,12 @@ const ShieldStackProd = new ShieldStack(app, 'ShieldStack-prod', {
   bannedIpListParameterName: ShieldParameterStackProd.bannedIpListParameterName,
   whitelistedIpListParameterName: ShieldParameterStackProd.whitelistedIpListParameterName,
   highPriorityCountryCodeListParameterName: ShieldParameterStackProd.highPriorityCountryCodeListParameterName,
-  highPriorityRateLimit: ShieldParameterStackProd.highPriorityRateLimit,
-  rateLimit: ShieldParameterStackProd.rateLimit,
+  highPriorityRateLimitParameterName: ShieldParameterStackProd.highPriorityRateLimitParameterName,
+  rateLimitParameterName: ShieldParameterStackProd.rateLimitParameterName,
   managedRulesParameterName: ShieldParameterStackProd.managedRulesParameterName,
-  snsTopicArn: ShieldParameterStackProd.snsTopicArn,
-  wafAutomationArn: ShieldParameterStackProd.wafAutomationArn,
-  evaluationPeriod: ShieldParameterStackProd.evaluationPeriod
+  snsTopicArnParameterName: ShieldParameterStackProd.snsTopicArnParameterName,
+  wafAutomationArnParameterName: ShieldParameterStackProd.wafAutomationArnParameterName,
+  evaluationPeriodParameterName: ShieldParameterStackProd.evaluationPeriodParameterName
 })
 
 const MonitoringStackProd = new MonitoringStack(app, 'MonitoringStack-prod', {
