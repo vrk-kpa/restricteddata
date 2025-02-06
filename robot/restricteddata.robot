@@ -192,6 +192,7 @@ Remove Suomi.fi Tag
     Click Element  css:[data-container-id=field-${name}-${language}][data-tag-id=${value}] i
 
 Scroll To Form Actions
+    Wait Until Element Is Visible  css:.form-actions
     Scroll Element Into View  css:.form-actions
 
 Click Suomi.fi Dialog Button
