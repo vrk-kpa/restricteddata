@@ -50,8 +50,8 @@ location ~ ^/(.*)$ {
     add_header Cache-Control private;
   }
 
-  location ~ ^/paha/(.*)$ {
-    proxy_pass http://$ckan_target/paha/$1$is_args$args;
+  location ~ ^/paha/authorize$ {
+    proxy_pass http://$ckan_target/paha/authorize$is_args$args;
 
     # Process proxy address list into allow directives
     {% for ip in proxy_addresses.split(',') %}
