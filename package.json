@@ -21,7 +21,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^6.7.2",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.2",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.5",
     "gulp": "^5.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^3.0.0",
