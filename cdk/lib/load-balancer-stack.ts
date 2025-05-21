@@ -37,7 +37,13 @@ export class LoadBalancerStack extends Stack {
       lifecycleRules: [
         {
           enabled: true,
-          expiration: Duration.days(30)
+          expiration: Duration.days(30),
+          noncurrentVersionExpiration: Duration.days(30),
+          abortIncompleteMultipartUploadAfter: Duration.days(30)
+        },
+        {
+          enabled: true,
+          expiredObjectDeleteMarker: true
         }
       ]
     })

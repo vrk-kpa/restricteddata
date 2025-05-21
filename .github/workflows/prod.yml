@@ -73,6 +73,26 @@ jobs:
         run: |
           npx cdk deploy *-prod --require-approval=never > /tmp/deploy.log 2>&1
 
+      - name: Configure AWS credentials for re-tagging prod images
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_BUILD_ROLE }}
+          role-session-name: github-actions
+          aws-region: eu-north-1
+
+      - name: Add prod-tag to used images
+        run: |
+          add_tag() {
+            aws ecr describe-images --filter tagStatus=TAGGED --repository-name ${{ vars.REPOSITORY }}/$1 | jq -c ".imageDetails[] | select( .imageTags[] | contains(\"prod-$2\"))" -e || \
+            MANIFEST="$(aws ecr batch-get-image --repository-name ${{ vars.REPOSITORY }}/$1 --image-ids imageTag=$2 --output text --query 'images[].imageManifest')" \
+            bash -c 'source docker/.env && aws ecr put-image --repository-name ${{ vars.REPOSITORY }}/$1 --image-tag prod-$2 --image-manifest "$MANIFEST"'
+          }
+
+          source docker/.env
+          add_tag ckan $CKAN_IMAGE_TAG
+          add_tag solr $SOLR_IMAGE_TAG
+          add_tag nginx $NGINX_IMAGE_TAG
+
       - name: upload deploy log artifacts
         if: failure()
         uses: actions/upload-artifact@v4
