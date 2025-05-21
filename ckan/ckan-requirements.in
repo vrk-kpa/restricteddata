@@ -4,4 +4,4 @@
 ckan[requirements]==2.10.8
 
 # Runtime requirements
-uWSGI==2.0.26
+uWSGI==2.0.29
