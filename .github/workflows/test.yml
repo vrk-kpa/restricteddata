@@ -298,6 +298,7 @@ jobs:
         shell: bash
         run: docker run --rm --network host -v ./results:/robot/results robot/test
 
+      # Disabled for now, as no one is looking at the test results in jira
       #- name: upload robot test results to XRay
       #  if: always() && github.ref == 'refs/heads/main'
       #  shell: bash
