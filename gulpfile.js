@@ -5,7 +5,6 @@ import { rm } from "node:fs/promises";
 import { promisify } from "node:util";
 import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
-import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin';
 import cleancss from "gulp-clean-css";
 import concat from "gulp-concat";
 import rename from "gulp-rename";
@@ -112,7 +111,13 @@ const fontsCss = () => {
 };
 
 // Optimize images
-const images = () => {
+const images = async () => {
+  const imagemin = (await import("gulp-imagemin")).default;
+  const gifsicle = (await import("gulp-imagemin")).gifsicle;
+  const mozjpeg = (await import("gulp-imagemin")).mozjpeg;
+  const optipng = (await import("gulp-imagemin")).optipng;
+  const svgo = (await import("gulp-imagemin")).svgo;
+
   return src(paths.src.images + "**/*", { since: lastRun(images) })
     .pipe(imagemin([
       gifsicle({ interlaced: true }),
