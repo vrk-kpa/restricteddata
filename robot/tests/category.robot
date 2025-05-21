@@ -34,7 +34,7 @@ Edit Category
     Fill Group Form With Full Test Data
     Submit Primary Form
     URL path should be  /group/testikategoria
-    
+
     Click Link  Hallinnoi
     Fill Group Form With Full Test Data  title fi=Testikategoria (muokattu)
     ...                                  description fi=Testikategorian kuvaus (muokattu)
@@ -57,5 +57,6 @@ Remove Category
     Click Link  Hallinnoi
     Scroll To Form Actions
     Click Link  link:Poista
+    Wait Until Network Is Idle
     Click Suomi.fi Dialog Button  Vahvista
     URL Path Should Be  /group/
