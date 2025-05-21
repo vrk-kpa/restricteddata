@@ -34,8 +34,8 @@ Remove Producer
 
     Scroll To Form Actions
     Click Link  link:Poista
-    Wait Until Network Is Idle
     Click Suomi.fi Dialog Button  Vahvista
+    Wait Until Location Is Not  /organization/edit/testiorganisaatio
     URL Path Should Be  /organization/
 
 *** Keywords ***

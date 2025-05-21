@@ -57,6 +57,6 @@ Remove Category
     Click Link  Hallinnoi
     Scroll To Form Actions
     Click Link  link:Poista
-    Wait Until Network Is Idle
     Click Suomi.fi Dialog Button  Vahvista
+    Wait Until Location Is Not  /group/edit/testikategoria
     URL Path Should Be  /group/
