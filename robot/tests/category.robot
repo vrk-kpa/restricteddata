@@ -58,5 +58,5 @@ Remove Category
     Scroll To Form Actions
     Click Link  link:Poista
     Click Suomi.fi Dialog Button  Vahvista
-    Wait Until Location Is Not  /group/edit/testikategoria
+    Wait For Condition	return document.readyState == "complete"
     URL Path Should Be  /group/

@@ -99,6 +99,7 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          provenance: false
           tags: |
             ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:${{ github.sha }}
             ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/${{ matrix.name }}:latest
