@@ -72,6 +72,10 @@ Open URL Path
     [Arguments]    ${path}
     Go To  ${ROOT_URL}${path}
 
+Wait Until URL Path Is
+    [Arguments]    ${path}
+    Wait Until Location Is  ${ROOT_URL}${path}
+
 Input Username
     [Arguments]    ${username}
     Input Text    id:field-login    ${username}

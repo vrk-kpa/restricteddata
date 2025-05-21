@@ -58,5 +58,4 @@ Remove Category
     Scroll To Form Actions
     Click Link  link:Poista
     Click Suomi.fi Dialog Button  Vahvista
-    Wait For Condition	return document.readyState == "complete"
-    URL Path Should Be  /group/
+    Wait Until URL Path Is  /group/
