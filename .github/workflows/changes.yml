@@ -18,6 +18,9 @@ on:
       assets:
         description: "Changes in frontend assets"
         value: ${{ jobs.changes_in_containers.outputs.assets }}
+      robot:
+        description: "Changes in robot tests"
+        value: ${{ jobs.changes_in_containers.outputs.robot }}
 
 jobs:
   changes_in_containers:
@@ -28,6 +31,7 @@ jobs:
       solr: ${{ steps.filter.outputs.solr }}
       environment: ${{ steps.filter.outputs.environment }}
       assets: ${{ steps.filter.outputs.assets }}
+      robot: ${{ steps.filter.outputs.robot }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,3 +53,4 @@ jobs:
             nginx: docker/nginx/**
             environment: docker/*
             assets: assets/**
+            robot: robot/**
