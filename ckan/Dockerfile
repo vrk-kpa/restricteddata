@@ -1,6 +1,6 @@
 # build args
 ARG SECRET_NPMRC
-ARG BASE_IMAGE=public.ecr.aws/docker/library/python:3.10.12-alpine3.18
+ARG BASE_IMAGE=public.ecr.aws/docker/library/python:3.10.17-alpine3.21
 
 #
 # Add common configuration to base image
