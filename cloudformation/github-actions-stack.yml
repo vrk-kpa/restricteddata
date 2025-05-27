@@ -135,6 +135,7 @@ Resources:
                   - "ecr:InitiateLayerUpload"
                   - "ecr:PutImage"
                   - "ecr:UploadLayerPart"
+                  - "ecr:DescribeImages"
                 Resource: !Ref ECRRepositoryArn
 
   ScanRole:
