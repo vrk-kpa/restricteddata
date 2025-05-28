@@ -4,7 +4,7 @@ ARG SECRET_NPMRC
 #
 # Add common configuration to base image
 #
-FROM public.ecr.aws/docker/library/python:3.10.17-alpine3.21 AS configured_base
+FROM public.ecr.aws/docker/library/python:3.13.3-alpine3.21 AS configured_base
 
 ENV APP_DIR=/srv/app
 ENV SRC_DIR=${APP_DIR}/src
