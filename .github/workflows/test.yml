@@ -233,7 +233,7 @@ jobs:
           registries: ${{ secrets.AWS_PROD_ACCOUNT_ID }}
 
       - name: download built images
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: /tmp
 
