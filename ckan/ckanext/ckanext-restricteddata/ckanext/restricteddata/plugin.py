@@ -201,7 +201,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
                      facets_dict: OrderedDict[str, Any],
                      group_type: str,
                      package_type: Optional[str]) -> OrderedDict[str, Any]:
-        
+
         facets = self._facets()
         del facets['groups']
         return facets
@@ -247,8 +247,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
         }
 
 
-class RestrictedDataPagesPlugin(plugins.SingletonPlugin, DefaultTranslation):
-    plugins.implements(plugins.ITranslation)
+class RestrictedDataPagesPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(IPagesSchema)
     plugins.implements(plugins.ITemplateHelpers)
