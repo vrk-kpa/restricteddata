@@ -74,9 +74,9 @@ export class CkanStack extends Stack {
 
     const ckanPlugins: string[] = [
       "dcat",
-      "restricteddata",
       "restricteddata_pages",
       "pages",
+      "restricteddata",
       "restricteddata_paha_authentication",
       "markdown_editor",
       "activity",

@@ -172,7 +172,8 @@ def pages_build_nav_main(*args):
 
     return output
 
-def build_nav_main(*args, pages=False):
+@toolkit.chained_helper
+def build_nav_main(next, *args, pages=False):
     if pages:
         return pages_build_nav_main(*args)
     else:
