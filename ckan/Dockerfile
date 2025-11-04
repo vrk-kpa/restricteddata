@@ -83,7 +83,7 @@ RUN \
   mkdir -p ${DATA_DIR} && \
   # Install CKAN and requirements
   pip install --find-links=/srv/app/wheels -r ${SRC_DIR}/ckan-requirements.txt && \
-  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.10.8#egg=ckan && \
+  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.10.9#egg=ckan && \
   # Configure environment
   addgroup -g 92 ckan && \
   adduser -u 92 -h ${APP_DIR} -H -D -G ckan ckan && \
@@ -231,7 +231,6 @@ COPY ckanext/ckanext-pages/requirements.txt ${EXT_DIR}/ckanext-pages/requirement
 COPY ckanext/ckanext-harvest/requirements.txt ${EXT_DIR}/ckanext-harvest/requirements.txt
 COPY ckanext/ckanext-restricteddata/requirements.txt ${EXT_DIR}/ckanext-restricteddata/requirements.txt
 COPY ckanext/ckanext-matomo/requirements.txt ${EXT_DIR}/ckanext-matomo/requirements.txt
-COPY ckanext/ckanext-sentry/requirements.txt ${EXT_DIR}/ckanext-sentry/requirements.txt
 RUN ${SCRIPT_DIR}/install_extension_requirements.sh
 
 # copy extensions

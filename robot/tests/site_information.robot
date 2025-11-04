@@ -5,7 +5,7 @@ Resource  ../restricteddata.robot
 
 *** Test cases ***
 CKAN version
-  CKAN Version Should Be  2.10.8
+  CKAN Version Should Be  2.10.9
 
 Site title
   Open Chromium

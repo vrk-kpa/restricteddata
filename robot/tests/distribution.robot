@@ -11,14 +11,14 @@ Create Distribution With All Fields
     Click Link  link:Lisää tietoaineisto
     Fill Dataset Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto/resource/new
     Fill Resource Form With Full Test Data
     Submit Primary Form
 
     URL Path Should Be  /dataset/testiaineisto
     Click Link  Testiresurssi
-    
+
     Page Should Contain  Testiresurssi
 
 Display Distribution Metadata
@@ -27,7 +27,7 @@ Display Distribution Metadata
     Click Link  link:Lisää tietoaineisto
     Fill Dataset Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto/resource/new
     Fill Resource Form With Full Test Data  name fi=Testiresurssin nimi
     ...                                     description fi=Testiresurssin kuvausteksti
@@ -44,7 +44,7 @@ Display Distribution Metadata
 
     URL Path Should Be  /dataset/testiaineisto
     Click Link  Testiresurssin nimi
-    
+
     Page Should Contain  Testiresurssin nimi
     Page Should Contain  Testiresurssin kuvausteksti
     Page Should Contain  XHTML
@@ -64,14 +64,14 @@ Edit Distribution
     Click Link  link:Lisää tietoaineisto
     Fill Dataset Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto/resource/new
     Fill Resource Form With Full Test Data
     Submit Primary Form
 
     URL Path Should Be  /dataset/testiaineisto
     Click Link  Testiresurssi
-    Click Link  Muokkaa 
+    Click Link  Muokkaa
 
     Fill Resource Form With Full Test Data  name fi=Testiresurssi (muokattu)
     ...                                     url=http://example.com/modified
@@ -100,7 +100,7 @@ Edit Distribution
     Page Should Contain  2024-05-06
     Page Should Contain  2044-07-08
     Page Should Contain  314
-    
+
 
 Remove Distribution
     Log In As Test User
@@ -108,19 +108,19 @@ Remove Distribution
     Click Link  link:Lisää tietoaineisto
     Fill Dataset Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto/resource/new
     Fill Resource Form With Minimal Test Data  url=http://example.com/test-resource
     Submit Primary Form
 
     URL Path Should Be  /dataset/testiaineisto
     Click Link  http://example.com/test-resource
-    Click Link  Muokkaa 
+    Click Link  Muokkaa
 
     Scroll To Form Actions
     Click Link  link:Poista
     Click Suomi.fi Dialog Button  Vahvista
-    URL Path Should Be  /dataset/testiaineisto
+    Wait Until URL Path Is  /dataset/testiaineisto
     Page Should Contain  Tietoaineistoon ei ole lisätty dataa
 
 *** Keywords ***

@@ -15,21 +15,21 @@ Create Minimal Dataset And Resource
     Click Link  link:Lisää tietoaineisto
     Fill Dataset Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto/resource/new
     Fill Resource Form With Minimal Test Data  url=http://example.com/test-resource
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto
     Page Should Contain  Testiaineiston kuvaus
     Page Should Contain  Teemu Testaaja
     Page Should Contain  teemu.testaaja@example.com
-        
+
     Click Link  http://example.com/test-resource
     Page Should Contain  12345
     Page Should Contain  Testiresurssin käyttöoikeuksien kuvaus
-    
-    
+
+
 Create Dataset With All Fields
     Log In As Test User
     Click Link  link:Tietoaineistot
@@ -118,25 +118,25 @@ Edit Dataset
     Page Should Contain  Tea Testaaja
     Page Should Contain Link  tea.testaaja@example.com
     Page Should Contain Link  https://example.com/service
-    
+
 Remove Dataset
     Log In As Test User
     Click Link  link:Tietoaineistot
     Click Link  link:Lisää tietoaineisto
     Fill Dataset Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto/resource/new
     Fill Resource Form With Minimal Test Data
     Submit Primary Form
-    
+
     URL Path Should Be  /dataset/testiaineisto
     Click Link  Muokkaa tietoaineistoa
 
     Scroll To Form Actions
     Click Link  link:Poista
     Click Suomi.fi Dialog Button  Vahvista
-    URL Path Should Be  /dataset/
+    Wait Until URL Path Is  /dataset/
     Page Should Contain  Ei löytynyt yhtään tietoaineistoa
 
 *** Keywords ***
