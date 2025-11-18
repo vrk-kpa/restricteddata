@@ -21,6 +21,8 @@ import {ShieldParameterStack} from "../lib/shield-parameter-stack";
 import {ShieldStack} from "../lib/shield-stack";
 import {MonitoringStack} from '../lib/monitoring-stack';
 import { RestricteddataParameterStack } from '../lib/restricteddata-parameter-stack';
+import { DnssecKeyStack } from '../lib/dnssec-key-stack';
+import { DnssecStack } from '../lib/dnssec-stack';
 
 const app = new cdk.App();
 
@@ -31,7 +33,9 @@ const prodStackProps = {
   domainName: "suojattudata.fi",
   secondaryDomainName: "suojattudata.suomi.fi",
   fqdn: "suojattudata.fi",
-  secondaryFqdn: "suomi.fi"
+  secondaryFqdn: "suomi.fi",
+  dnssecKeyAlias: 'dnssec-key-prod',
+
 }
 
 const devStackProps = {
@@ -41,7 +45,8 @@ const devStackProps = {
   domainName: "dev.suojattudata.fi",
   secondaryDomainName: "dev.suojattudata.suomi.fi",
   fqdn: "suojattudata.fi",
-  secondaryFqdn: "suomi.fi"
+  secondaryFqdn: "suomi.fi",
+  dnssecKeyAlias: 'dnssec-key-dev',
 }
 
 
@@ -72,6 +77,23 @@ const DomainStackProd = new DomainStack(app, 'DomainStack-prod', {
   },
   crossAccountId: devStackProps.account
 });
+
+const DnssecKeyStackProd = new DnssecKeyStack(app, 'DnssecKeyStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: 'us-east-1'
+  },
+  keyAlias: prodStackProps.dnssecKeyAlias
+})
+
+const DnssecStackProd = new DnssecStack(app, 'DnssecStack-prod', {
+  env: {
+    account: prodStackProps.account,
+    region: prodStackProps.region
+  },
+  zones: [DomainStackProd.publicZone, DomainStackProd.newPublicZone],
+  keyAlias: prodStackProps.dnssecKeyAlias
+})
 
 // Dev
 
@@ -146,6 +168,23 @@ const SubDomainStackDev = new SubDomainStack(app, 'SubDomainStack-dev', {
   },
   prodAccountId: prodStackProps.account,
   subDomainName: "dev"
+})
+
+const DnssecKeyStackDev = new DnssecKeyStack(app, 'DnssecKeyStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: 'us-east-1'
+  },
+  keyAlias: devStackProps.dnssecKeyAlias
+})
+
+const DnssecStackDev = new DnssecStack(app, 'DnssecStack-dev', {
+  env: {
+    account: devStackProps.account,
+    region: devStackProps.region
+  },
+  zones: [SubDomainStackDev.subZone,SubDomainStackDev.newSubZone],
+  keyAlias: devStackProps.dnssecKeyAlias
 })
 
 const CertificateStackDev = new CertificateStack(app, 'CertificateStack-dev', {
