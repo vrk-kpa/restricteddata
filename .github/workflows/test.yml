@@ -189,7 +189,6 @@ jobs:
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db init
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p restricteddata
-        ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p harvest
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p pages
 
     - name: Run tests
