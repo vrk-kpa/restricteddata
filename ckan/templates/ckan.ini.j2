@@ -20,14 +20,12 @@ use = egg:ckan
 full_stack = true
 cache_dir = /tmp/%(ckan.site_id)s/
 
-beaker.session.key = ckan
-beaker.session.secret = {{ environ('CKAN_BEAKER_SESSION_SECRET') }}
-beaker.session.cookie_expires = {% if environ('DEV_MODE') == 'true' %}False{% else %}True{% endif %}
-# Secure session does not currently work in our environments as ssl is terminated on Load balancerreq
-#beaker.session.secure = True
-beaker.session.httponly = True
-beaker.session.type = cookie
-beaker.session.validate_key = {{ environ('CKAN_BEAKER_SESSION_VALIDATE_KEY') }}
+SECRET_KEY = {{ environ('CKAN_SESSION_SECRET') }}
+SESSION_COOKIE_NAME = ckan
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = Strict
+SESSION_TYPE = cookie
 
 app_instance_uuid = {{ environ('CKAN_APP_INSTANCE_UUID') }}
 

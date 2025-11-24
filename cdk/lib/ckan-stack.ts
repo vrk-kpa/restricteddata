@@ -181,7 +181,7 @@ export class CkanStack extends Stack {
 
     const ckanContainerSecrets: { [key: string]: aws_ecs.Secret; } = {
       // .env.ckan
-      CKAN_BEAKER_SESSION_SECRET: aws_ecs.Secret.fromSecretsManager(beakerSecret),
+      CKAN_SESSION_SECRET: aws_ecs.Secret.fromSecretsManager(beakerSecret),
       CKAN_APP_INSTANCE_UUID: aws_ecs.Secret.fromSecretsManager(appUUIDSecret),
       CKAN_BEAKER_SESSION_VALIDATE_KEY: aws_ecs.Secret.fromSecretsManager(beakerValidateKeySecret),
       CKAN_PAHA_JWT_KEY: aws_ecs.Secret.fromSecretsManager(pahaJwtKeySecret),
