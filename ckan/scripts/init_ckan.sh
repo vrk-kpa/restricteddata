@@ -30,6 +30,7 @@ ckan -c ${APP_DIR}/ckan.ini db upgrade
 # init ckan extension databases
 echo "init ckan extension databases ..."
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p restricteddata
+ckan -c ${APP_DIR}/ckan.ini db upgrade -p activity
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p harvest
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p pages
 

@@ -180,7 +180,11 @@ jobs:
         pip install -e .
 
     - name: Initialize database
-      run: ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db init
+      run: |
+        ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db init
+        ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p restricteddata
+        ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p pages
+        ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p activity
     - name: Run tests
       run: pytest --ckan-ini=ckan/ckanext/ckanext-restricteddata/test.ini --cov=ckanext.restricteddata --disable-warnings ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/tests
 

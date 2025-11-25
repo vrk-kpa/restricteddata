@@ -16,6 +16,7 @@ ckan -c ${APP_DIR}/ckan.ini db init
 echo "Upgrade CKAN database ..."
 ckan -c ${APP_DIR}/ckan.ini db upgrade
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p restricteddata
+ckan -c ${APP_DIR}/ckan.ini db upgrade -p activity
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p pages
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p harvest
 
