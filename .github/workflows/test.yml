@@ -156,6 +156,7 @@ jobs:
         submodules: true
     - name: Install requirements
       run: |
+        apt update
         apt install proj-bin geos
         cd ckan/ckanext/ckanext-restricteddata
         pip install -r dev-requirements.txt
