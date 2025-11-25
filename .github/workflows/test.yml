@@ -156,8 +156,8 @@ jobs:
         submodules: true
     - name: Install requirements
       run: |
-        apt update
-        apt install proj-bin geos
+        apt-get update
+        apt-get install proj-bin geos-bin
         cd ckan/ckanext/ckanext-restricteddata
         pip install -r dev-requirements.txt
         pip install -r requirements.txt
@@ -184,7 +184,7 @@ jobs:
 
     - name: install codecov requirements
       run: |
-        apt install gpg gpg-agent
+        apt-get install gpg gpg-agent
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
