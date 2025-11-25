@@ -179,6 +179,8 @@ jobs:
         pip install -r requirements.txt
         pip install -e .
 
+    - name: Initialize database
+      run: ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db init
     - name: Run tests
       run: pytest --ckan-ini=ckan/ckanext/ckanext-restricteddata/test.ini --cov=ckanext.restricteddata --disable-warnings ckan/ckanext/ckanext-restricteddata/ckanext/restricteddata/tests
 
