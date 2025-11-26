@@ -6,3 +6,4 @@ def clean_db(reset_db, migrate_db_for):
     reset_db()
     migrate_db_for("restricteddata")
     migrate_db_for("activity")  # https://github.com/ckan/ckan/issues/8540
+    migrate_db_for("pages")  # probably the same issue?
