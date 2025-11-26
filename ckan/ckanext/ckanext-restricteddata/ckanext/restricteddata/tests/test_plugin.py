@@ -602,7 +602,6 @@ def test_paha_authentication_creates_new_user(app):
     email = "foo@example.com"
 
     # Get access token with a PAHA token
-    test_id = uuid
     paha_token = create_paha_token({"id":"test-id",
                                     "email":email,
                                     "firstName":"Foo",
@@ -619,11 +618,12 @@ def test_paha_authentication_creates_new_user(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_logs_in_user(app):
     organization = RestrictedDataOrganization()
-    some_user = User()
+    test_id = "test-id"
+    some_user = User(id=test_id)
 
     # Get access token with a PAHA token
     paha_token = create_paha_token({
-        "id": some_user.id,
+        "id": test_id,
         "activeOrganizationId": organization["id"],
     })
     auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
