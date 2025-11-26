@@ -93,6 +93,7 @@ class RestrictedDataPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'highvalue_category': validators.highvalue_category,
             'highvalue': validators.highvalue,
             'populate_required_languages_from_field_if_missing': validators.populate_required_languages_from_field_if_missing,
+            'uuid_validator': validators.dummy_uuid_validator,
         }
 
     # IPackageController

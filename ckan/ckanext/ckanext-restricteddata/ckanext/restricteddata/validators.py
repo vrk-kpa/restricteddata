@@ -340,3 +340,6 @@ def highvalue(key, data, errors, context):
 
         for k in removed_keys:
             data[k] = []
+
+def dummy_uuid_validator(value):
+    return value
