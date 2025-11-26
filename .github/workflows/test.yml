@@ -182,6 +182,7 @@ jobs:
     - name: Initialize database
       run: |
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db init
+        ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p restricteddata
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p pages
         ckan -c ckan/ckanext/ckanext-restricteddata/test.ini db upgrade -p activity
