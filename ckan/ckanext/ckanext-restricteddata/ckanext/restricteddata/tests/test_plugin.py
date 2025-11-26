@@ -515,7 +515,7 @@ def test_groups_are_removed(app):
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_with_missing_fields(app):
-    test_id = uuid.uuid4()
+    test_id = str(uuid.uuid4())
     valid_token = {
         "iss": "PAHA",
         "id": test_id,
@@ -548,7 +548,7 @@ def test_paha_authentication_with_missing_fields(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_creates_organization(app):
     some_user = User()
-    organization_id = uuid.uuid4()
+    organization_id = str(uuid.uuid4())
     organization_name_fi = "paha organization fi"
     organization_name_sv = "paha organization sv"
     organization_name_en = "paha organization en"
@@ -604,7 +604,7 @@ def test_paha_authentication_creates_new_user(app):
     email = "foo@example.com"
 
     # Get access token with a PAHA token
-    test_id = uuid.uuid4()
+    test_id = str(uuid.uuid4())
     paha_token = create_paha_token({"id": test_id,
                                     "email": email,
                                     "firstName": "Foo",
@@ -625,7 +625,7 @@ def test_paha_authentication_logs_in_user(app):
 
     # Get access token with a PAHA token
     paha_token = create_paha_token({
-        "id": some_user.id,
+        "id": some_user['id'],
         "activeOrganizationId": organization["id"],
     })
     auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
