@@ -574,7 +574,7 @@ def test_paha_authentication_creates_organization(app):
     }
 
     # Test using fallback organization title
-    organization_id = "paha-organization-id-2"
+    organization_id = str(uuid.uuid4())
     paha_token = create_paha_token({
         "id": some_user['id'],
         "activeOrganizationId": organization_id,
