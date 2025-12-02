@@ -65,6 +65,7 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 import pytest
 import datetime
 import jwt
+import uuid
 
 from pathlib import Path
 from ckan.plugins import plugin_loaded, toolkit
@@ -516,11 +517,11 @@ def test_groups_are_removed(app):
 def test_paha_authentication_with_missing_fields(app):
     valid_token = {
         "iss": "PAHA",
-        "id": "user-id",
+        "id": str(uuid.uuid4()),
         "email": "foo.bar@example.com",
         "firstName": "Foo",
         "lastName": "Bar",
-        "activeOrganizationId": "organization-id",
+        "activeOrganizationId": str(uuid.uuid4()),
         "activeOrganizationNameFi": "organization name fi",
         "activeOrganizationNameSv": "organization name sv",
         "activeOrganizationNameEn": "organization name en",
@@ -546,7 +547,7 @@ def test_paha_authentication_with_missing_fields(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_creates_organization(app):
     some_user = User()
-    organization_id = "paha-organization-id"
+    organization_id = str(uuid.uuid4())
     organization_name_fi = "paha organization fi"
     organization_name_sv = "paha organization sv"
     organization_name_en = "paha organization en"
@@ -602,11 +603,11 @@ def test_paha_authentication_creates_new_user(app):
     email = "foo@example.com"
 
     # Get access token with a PAHA token
-    paha_token = create_paha_token({"id":"test-id",
-                                    "email":email,
-                                    "firstName":"Foo",
-                                    "lastName":"Bar-Baz von Bärzügə",
-                                    "activeOrganizationId":organization["id"]})
+    paha_token = create_paha_token({"id": str(uuid.uuid4()),
+                                    "email" :email,
+                                    "firstName": "Foo",
+                                    "lastName": "Bar-Baz von Bärzügə",
+                                    "activeOrganizationId": organization["id"]})
     _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Verify that the user has been created
@@ -618,7 +619,7 @@ def test_paha_authentication_creates_new_user(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_logs_in_user(app):
     organization = RestrictedDataOrganization()
-    test_id = "test-id"
+    test_id = str(uuid.uuid4())
     some_user = User(id=test_id)
 
     # Get access token with a PAHA token
