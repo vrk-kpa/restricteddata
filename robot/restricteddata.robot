@@ -136,7 +136,7 @@ Create Test Organisation
     Page Should Contain  Testiorganisaatio
 
 Add Test User To Test Organisation
-    Open URL Path  /organization/members/testiorganisaatio
+    Open URL Path  /organization/manage_members/testiorganisaatio
     Click Link  link:Lisää jäsen
     Input Text Into Select2  username  ${TEST_USER_USERNAME}
     Submit Primary Form

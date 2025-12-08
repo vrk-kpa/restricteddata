@@ -83,11 +83,10 @@ RUN \
   mkdir -p ${DATA_DIR} && \
   # Install CKAN and requirements
   pip install --find-links=/srv/app/wheels -r ${SRC_DIR}/ckan-requirements.txt && \
-  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.10.9#egg=ckan && \
+  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.11.4#egg=ckan && \
   # Configure environment
   addgroup -g 92 ckan && \
   adduser -u 92 -h ${APP_DIR} -H -D -G ckan ckan && \
-  cp ${CKAN_DIR}/who.ini ${APP_DIR} && \
   # Set timezone
   echo "UTC" >  /etc/timezone && \
   # Change ownership to app user
@@ -189,6 +188,8 @@ RUN \
   addgroup sudo && \
   adduser ckan sudo && \
   echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+  # Add development packages required by pip-compile
+  apk add --no-cache postgresql-dev && \
   # fix permissions
   chown -R ckan:ckan ${APP_DIR}
 

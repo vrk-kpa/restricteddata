@@ -65,6 +65,7 @@ To temporary patch the CKAN configuration for the duration of a test you can use
 import pytest
 import datetime
 import jwt
+import uuid
 
 from pathlib import Path
 from ckan.plugins import plugin_loaded, toolkit
@@ -516,11 +517,11 @@ def test_groups_are_removed(app):
 def test_paha_authentication_with_missing_fields(app):
     valid_token = {
         "iss": "PAHA",
-        "id": "user-id",
+        "id": str(uuid.uuid4()),
         "email": "foo.bar@example.com",
         "firstName": "Foo",
         "lastName": "Bar",
-        "activeOrganizationId": "organization-id",
+        "activeOrganizationId": str(uuid.uuid4()),
         "activeOrganizationNameFi": "organization name fi",
         "activeOrganizationNameSv": "organization name sv",
         "activeOrganizationNameEn": "organization name en",
@@ -546,7 +547,7 @@ def test_paha_authentication_with_missing_fields(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_creates_organization(app):
     some_user = User()
-    organization_id = "paha-organization-id"
+    organization_id = str(uuid.uuid4())
     organization_name_fi = "paha organization fi"
     organization_name_sv = "paha organization sv"
     organization_name_en = "paha organization en"
@@ -573,7 +574,7 @@ def test_paha_authentication_creates_organization(app):
     }
 
     # Test using fallback organization title
-    organization_id = "paha-organization-id-2"
+    organization_id = str(uuid.uuid4())
     paha_token = create_paha_token({
         "id": some_user['id'],
         "activeOrganizationId": organization_id,
@@ -602,11 +603,11 @@ def test_paha_authentication_creates_new_user(app):
     email = "foo@example.com"
 
     # Get access token with a PAHA token
-    paha_token = create_paha_token({"id":"test-id",
-                                    "email":email,
-                                    "firstName":"Foo",
-                                    "lastName":"Bar-Baz von Bärzügə",
-                                    "activeOrganizationId":organization["id"]})
+    paha_token = create_paha_token({"id": str(uuid.uuid4()),
+                                    "email" :email,
+                                    "firstName": "Foo",
+                                    "lastName": "Bar-Baz von Bärzügə",
+                                    "activeOrganizationId": organization["id"]})
     _auth_token = get_auth_token_for_paha_token(app, paha_token).json['token']
 
     # Verify that the user has been created
@@ -618,7 +619,7 @@ def test_paha_authentication_creates_new_user(app):
 @pytest.mark.usefixtures("with_plugins", "clean_db", "with_request_context")
 def test_paha_authentication_logs_in_user(app):
     organization = RestrictedDataOrganization()
-    test_id = "test-id"
+    test_id = str(uuid.uuid4())
     some_user = User(id=test_id)
 
     # Get access token with a PAHA token
@@ -723,7 +724,7 @@ def test_paha_auth_fails_with_reused_token(app):
     client = app.test_client()
     response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
     assert response.status_code == 200
-    
+
     # Try to log in again with a different client using the same token
     client = app.test_client()
     response = client.get(toolkit.url_for("paha.authorized", token=auth_token))
@@ -904,7 +905,7 @@ def test_normal_user_cannot_edit_user_profile(app):
                     context={"user": user["name"], "ignore_auth": False},
                     id=user["name"],
                     fullname="Test full name")
-        
+
 @pytest.mark.usefixtures("with_plugins", "clean_db")
 def test_normal_user_cannot_request_reset(app):
     client = app.test_client(use_cookies=True)
@@ -914,7 +915,7 @@ def test_normal_user_cannot_request_reset(app):
     # Anonymous user get
     result = client.get(request_reset)
     assert result.status_code == 403
-    
+
     # Anonymous user post
     result = client.post(request_reset, data={'id': user['id']})
     assert result.status_code == 403
