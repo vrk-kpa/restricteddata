@@ -244,17 +244,17 @@ jobs:
       - name: load built ckan image
         if: ${{ (needs.detect-changes.outputs.ckan == 'true') || (needs.detect-changes.outputs.assets == 'true')}}
         run: |
-          docker load --input /tmp/ckan/ckan.tar
+          docker load --input /tmp/ckan.tar
 
       - name: load built solr image
         if: ${{ needs.detect-changes.outputs.solr == 'true' }}
         run: |
-          docker load --input /tmp/solr/solr.tar
+          docker load --input /tmp/solr.tar
 
       - name: load built nginx image
         if: ${{ needs.detect-changes.outputs.nginx == 'true' }}
         run: |
-          docker load --input /tmp/nginx/nginx.tar
+          docker load --input /tmp/nginx.tar
 
       - uses: actions/setup-python@v6
         with:
