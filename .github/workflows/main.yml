@@ -76,7 +76,7 @@ jobs:
 
       - name: install nodejs v22
         if: ${{ matrix.build-frontend == true && matrix.build-container == true }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'npm'
@@ -171,7 +171,7 @@ jobs:
           ref: ${{ needs.commit-new-images.outputs.sha }}
 
       - name: install nodejs v22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: 'npm'
