@@ -35,7 +35,7 @@ ckan -c ${APP_DIR}/ckan.ini db upgrade -p harvest
 ckan -c ${APP_DIR}/ckan.ini db upgrade -p pages
 
 if [[ "${MATOMO_ENABLED}" == "true" ]]; then
-  ckan -c ${APP_DIR}/ckan.ini matomo init_db && ckan -c ${APP_DIR}/ckan.ini db upgrade -p matomo
+  ckan -c ${APP_DIR}/ckan.ini db upgrade -p matomo
 fi
 
 # Update client translations
