@@ -4,7 +4,7 @@ ARG SECRET_NPMRC
 #
 # Add common configuration to base image
 #
-FROM public.ecr.aws/docker/library/python:3.10.17-alpine3.21 AS configured_base
+FROM public.ecr.aws/docker/library/python:3.14.4-alpine3.23 AS configured_base
 
 ENV APP_DIR=/srv/app
 ENV SRC_DIR=${APP_DIR}/src
@@ -83,7 +83,7 @@ RUN \
   mkdir -p ${DATA_DIR} && \
   # Install CKAN and requirements
   pip install --find-links=/srv/app/wheels -r ${SRC_DIR}/ckan-requirements.txt && \
-  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.11.4#egg=ckan && \
+  pip install -e git+https://github.com/ckan/ckan.git@ckan-2.11.5#egg=ckan && \
   # Configure environment
   addgroup -g 92 ckan && \
   adduser -u 92 -h ${APP_DIR} -H -D -G ckan ckan && \
