@@ -307,8 +307,8 @@ const CkanStackDev = new CkanStack(app, 'CkanStack-dev', {
   vpc: VpcStackDev.vpc,
   analyticsEnabled: true,
   matomoSiteId: 47,
-  matomoDomain: "suomi.matomo.cloud",
-  matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/",
+  matomoDomain: "matomo.cloud.dvv.fi",
+  matomoScriptDomain: "//matomo.cloud.dvv.fi/",
   sentryTracesSampleRate: "1.0",
   sentryProfilesSampleRate: "1.0"
 })
@@ -537,8 +537,8 @@ const CkanStackProd = new CkanStack(app, 'CkanStack-prod', {
   vpc: VpcStackProd.vpc,
   analyticsEnabled: true,
   matomoSiteId: 48,
-  matomoDomain: "suomi.matomo.cloud",
-  matomoScriptDomain: "//cdn.matomo.cloud/suomi.matomo.cloud/",
+  matomoDomain: "matomo.cloud.dvv.fi",
+  matomoScriptDomain: "//matomo.cloud.dvv.fi/",
   sentryTracesSampleRate: "0.1",
   sentryProfilesSampleRate: "0.1"
 })
