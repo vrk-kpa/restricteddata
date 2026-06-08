@@ -34,14 +34,14 @@ export class NginxStack extends Stack {
     // define nginx content security policies
     const nginxCspDefaultSrc: string[] = [];
     const nginxCspScriptSrc: string[] = [
-      'cdn.matomo.cloud',
-      'suomi.matomo.cloud',
-      'js-de.sentry-cdn.com'
+      'matomo.cloud.dvv.fi',
+      'js-de.sentry-cdn.com',
+      'browser.sentry-cdn.com'
     ];
     const nginxCspStyleSrc: string[] = [];
     const nginxCspFrameSrc: string[] = [];
     const nginxCspConnecSrc: string[] = [
-      "suomi.matomo.cloud",
+      "matomo.cloud.dvv.fi",
       "*.sentry.io"
     ]
 
