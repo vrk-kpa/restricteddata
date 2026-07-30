@@ -121,8 +121,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.BOT_TOKEN }}
 
       - name: Update .env.template to reference new ckan image
         if: ${{ (needs.build-and-test-containers.outputs.ckan == 'true') || (needs.build-and-test-containers.outputs.assets == 'true') }}
