@@ -4,8 +4,6 @@
 #
 #    pip-compile ckan-requirements.in
 #
---extra-index-url https://alpine-wheels.github.io/index
-
 alembic==1.13.2
     # via ckan
 async-timeout==4.0.3
@@ -34,8 +32,7 @@ charset-normalizer==3.3.2
     # via
     #   ckan
     #   requests
-# Removed manually for installing editable separately
-# ckan[requirements]==2.11.5
+ckan[requirements]==2.11.5
     # via -r ckan-requirements.in
 click==8.1.7
     # via
@@ -179,7 +176,7 @@ urllib3==2.6.3
     # via
     #   ckan
     #   requests
-uwsgi==2.0.30
+uwsgi==2.0.31
     # via -r ckan-requirements.in
 watchdog==4.0.1
     # via
