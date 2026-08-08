@@ -42,7 +42,7 @@ jobs:
         with:
           main-branch-name: 'main'
           workflow-id: 'main.yml'
-      - uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v4
         id: filter
         with:
           initial-fetch-depth: '10'
