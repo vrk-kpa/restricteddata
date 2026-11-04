@@ -42,7 +42,8 @@ export class NginxStack extends Stack {
     const nginxCspFrameSrc: string[] = [];
     const nginxCspConnecSrc: string[] = [
       "matomo.cloud.dvv.fi",
-      "*.sentry.io"
+      "*.sentry.io",
+      "browser.sentry-cdn.com"
     ]
 
     const nginxCspWorkerSrc: string[] = [];
