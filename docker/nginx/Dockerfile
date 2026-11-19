@@ -1,6 +1,6 @@
 # build args
 
-FROM nginx:1.31.3-alpine AS nginx_build
+FROM nginx:1.31.9-alpine@sha256:90b6bd2aec278b16b98221d64deb1d6d35d164567f507ab0716e6053878315aa AS nginx_build
 
 # install pkgs
 RUN apk add --no-cache python3 py3-pip jinja2-cli
