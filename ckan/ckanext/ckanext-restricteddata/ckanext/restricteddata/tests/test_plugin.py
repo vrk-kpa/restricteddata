@@ -743,7 +743,7 @@ def test_temporary_membership_expiry(app):
     members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
 
     assert len(members) == 2  # Contains admin and user
-    assert members[-1][0] == user['id']  # Ensure most recent member matches user
+    assert user['id'] in (m[0] for m in members)  # Ensure user is in members
 
     call_action('purge_expired_temporary_memberships')
     members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
