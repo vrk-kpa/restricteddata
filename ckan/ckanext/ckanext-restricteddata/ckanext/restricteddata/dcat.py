@@ -1,10 +1,9 @@
 from ckan.plugins import toolkit
 from ckanext.dcat.profiles import (
     EuropeanDCATAP2Profile,
-    XSD, RDF, DCT, DCAT, FOAF, ADMS, VCARD,
-    Literal, URIRef, BNode)
+    XSD, RDF, DCT, DCAT, FOAF, ADMS, VCARD)
 
-from rdflib.namespace import Namespace
+from rdflib import URIRef, BNode, Literal, Namespace
 
 FREQUENCY = Namespace("http://publications.europa.eu/resource/authority/frequency/")
 
