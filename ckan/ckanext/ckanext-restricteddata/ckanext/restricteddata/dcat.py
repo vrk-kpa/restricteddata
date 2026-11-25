@@ -139,8 +139,7 @@ class RestrictedDataDCATAPProfile(EuropeanDCATAP2Profile):
                     self.g.add((ref, predicate, Literal(value, lang=language)))
 
     def graph_from_catalog(self, catalog_dict, catalog_ref):
-        super(EuropeanDCATAP2Profile, self).graph_from_catalog(catalog_dict,
-                                                               catalog_ref)
+        super().graph_from_catalog(catalog_dict, catalog_ref)
 
         # Catalog description is required, so add an empty one if it is missing
         if not list(self.g[catalog_ref:DCT.description]):

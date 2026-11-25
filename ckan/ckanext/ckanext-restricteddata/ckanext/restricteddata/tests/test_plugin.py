@@ -217,7 +217,7 @@ def test_search_facets_with_category():
     data_dict = {
         "facet.field": ['groups']
     }
-    results = call_action('package_search', **data_dict )
+    results = call_action('package_search', **data_dict)
     assert results['search_facets'] == {
         "groups": {
             "items": [
