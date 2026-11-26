@@ -19,6 +19,10 @@ ckan -c ${APP_DIR}/ckan.ini db init
 echo "Upgrade CKAN database ..."
 ckan -c ${APP_DIR}/ckan.ini db upgrade
 
+# Add admin user
+ckan user add ${CKAN_SYSADMIN_NAME} email=${CKAN_SYSADMIN_EMAIL} password=${CKAN_SYSADMIN_PASSWORD} || echo 'Could not add sysadmin user ${CKAN_SYSADMIN_NAME}, maybe it exists already?'
+ckan sysadmin add ${CKAN_SYSADMIN_NAME} || echo 'Could not make ${CKAN_SYSADMIN_NAME} a sysadmin'
+
 #if [[ "${DEV_MODE}" == "true" ]]; then
   #echo "Initializing test database"
   #echo ${DB_CKAN_PASS} | psql -h ${DB_CKAN_HOST} -U ${DB_CKAN_USER} -c "CREATE DATABASE ckan_test OWNER ${DB_CKAN_USER} ENCODING 'utf-8'"
