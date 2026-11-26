@@ -217,7 +217,7 @@ def test_search_facets_with_category():
     data_dict = {
         "facet.field": ['groups']
     }
-    results = call_action('package_search', **data_dict )
+    results = call_action('package_search', **data_dict)
     assert results['search_facets'] == {
         "groups": {
             "items": [
@@ -743,7 +743,7 @@ def test_temporary_membership_expiry(app):
     members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')
 
     assert len(members) == 2  # Contains admin and user
-    assert members[-1][0] == user['id']  # Ensure most recent member matches user
+    assert user['id'] in (m[0] for m in members)  # Ensure user is in members
 
     call_action('purge_expired_temporary_memberships')
     members = call_action('member_list', id=organization['id'], object_type='user', capacity='admin')

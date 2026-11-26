@@ -61,7 +61,8 @@ def test_dcat_dataset_with_minimal_dataset(app):
             . ?a dcterms:description ?descriptionFi FILTER ( lang(?descriptionFi) = "fi")
             . ?a dcat:keyword ?keywordFi FILTER ( lang(?keywordFi) = "fi")
             . ?a dcterms:publisher ?publisher
-            . ?a dcterms:accessRights ?accessRights
+            . ?a dcterms:accessRights ?accessRightsNode
+            . ?accessRightsNode rdfs:label ?accessRights
             . ?a dcat:contactPoint ?contact
             . ?contact vcard:fn ?maintainer
             . ?contact vcard:hasEmail ?maintainerEmail
@@ -182,8 +183,8 @@ def test_dcat_dataset_valid_from_till(app):
 
     [(valid_from, valid_till)] = list(result)
 
-    assert valid_from == Literal(dataset_fields['valid_from'], datatype=XSD.dateTime)
-    assert valid_till == Literal(dataset_fields['valid_till'], datatype=XSD.dateTime)
+    assert valid_from == Literal(dataset_fields['valid_from'], datatype=XSD.date)
+    assert valid_till == Literal(dataset_fields['valid_till'], datatype=XSD.date)
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
@@ -193,7 +194,7 @@ def test_dcat_resource_with_minimal_resource(app):
     Dataset(**dataset_fields)
 
     result = fetch_catalog_graph(app).query('''
-        SELECT ?url ?format ?size ?maturity ?rightsFi 
+        SELECT ?url ?format ?size ?maturity ?rightsFi
         WHERE {
             ?a a dcat:Distribution
             . ?a dcat:accessURL ?url
@@ -346,8 +347,8 @@ def test_dcat_resource_with_temporal_coverage(app):
 
     [(temporal_coverage_from, temporal_coverage_till)] = list(result)
 
-    assert temporal_coverage_from == Literal(resource_fields['temporal_coverage_from'], datatype=XSD.dateTime)
-    assert temporal_coverage_till == Literal(resource_fields['temporal_coverage_till'], datatype=XSD.dateTime)
+    assert temporal_coverage_from == Literal(resource_fields['temporal_coverage_from'], datatype=XSD.date)
+    assert temporal_coverage_till == Literal(resource_fields['temporal_coverage_till'], datatype=XSD.date)
 
 
 @pytest.mark.usefixtures("with_plugins", "clean_db", "clean_index")
